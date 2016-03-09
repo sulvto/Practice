@@ -6,7 +6,7 @@ package main.cglib;
 public class Main{
     public static void main(String[] args) {
         Person chin = PeopleProxyFactory.getAuthInstance();
-        chin.hello("孙悟空");
+        chin.hello("world");
         System.out.println(chin.getClass());
     }
 }
