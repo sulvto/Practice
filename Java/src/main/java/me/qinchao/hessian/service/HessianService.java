@@ -1,4 +1,4 @@
-package main.hessian;
+package me.qinchao.hessian.service;
 
 /**
  * Created by SULVTO on 16-3-9.

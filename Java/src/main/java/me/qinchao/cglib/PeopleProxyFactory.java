@@ -1,4 +1,4 @@
-package main.cglib;
+package me.qinchao.cglib;
 
 import net.sf.cglib.proxy.Enhancer;
 

@@ -1,4 +1,4 @@
-package main.cglib;
+package me.qinchao.cglib;
 
 /**
  * Created by SULVTO on 16-3-9.
