@@ -1,9 +1,9 @@
-package me.qinchao.cglib;
+package me.qinchao.proxy;
 
 /**
  * Created by SULVTO on 16-3-9.
  */
-public class Chinese  implements Person{
+public class Chinese  implements Person {
 
 
     public String hello(String name){

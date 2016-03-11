@@ -1,4 +1,4 @@
-package me.qinchao.cglib;
+package me.qinchao.proxy.cglib;
 
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;

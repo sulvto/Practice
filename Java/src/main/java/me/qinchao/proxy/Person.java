@@ -1,4 +1,4 @@
-package me.qinchao.cglib;
+package me.qinchao.proxy;
 
 /**
  * Created by SULVTO on 16-3-9.

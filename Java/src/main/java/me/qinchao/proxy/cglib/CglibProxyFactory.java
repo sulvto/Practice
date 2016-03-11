@@ -1,11 +1,12 @@
-package me.qinchao.cglib;
+package me.qinchao.proxy.cglib;
 
+import me.qinchao.proxy.Chinese;
 import net.sf.cglib.proxy.Enhancer;
 
 /**
  * Created by SULVTO on 16-3-9.
  */
-public class PeopleProxyFactory {
+public class CglibProxyFactory {
     public static Chinese getAuthInstance() {
         Enhancer en = new Enhancer();
         // 设置要代理的目标类

@@ -1,6 +1,6 @@
-package me.qinchao.CXFService.impl;
+package me.qinchao.CXF.service.impl;
 
-import me.qinchao.CXFService.IHelloService;
+import me.qinchao.CXF.service.IHelloService;
 
 /**
  * Created by SULVTO on 16-3-11.

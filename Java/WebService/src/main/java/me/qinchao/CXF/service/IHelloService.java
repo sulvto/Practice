@@ -1,4 +1,4 @@
-package me.qinchao.CXFService;
+package me.qinchao.CXF.service;
 
 /**
  * Created by SULVTO on 16-3-11.
