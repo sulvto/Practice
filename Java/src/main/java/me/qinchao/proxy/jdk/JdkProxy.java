@@ -13,6 +13,10 @@ public class JdkProxy implements InvocationHandler {
 
     private TransactionManager transactionManager;
 
+    /**
+     * @param target             proxy target
+     * @param transactionManager
+     */
     public JdkProxy(Object target, TransactionManager transactionManager) {
         super();
         this.target = target;
