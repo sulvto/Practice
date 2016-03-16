@@ -1,8 +1,8 @@
 package me.qinchao.CXF;
 
 import me.qinchao.CXF.interceptor.AuthInterceptor;
-import me.qinchao.CXF.service.IHelloService;
-import me.qinchao.service.HelloServiceImpl;
+import me.qinchao.HelloService.IHelloService;
+import me.qinchao.WebService.HelloServiceImpl;
 import org.apache.cxf.frontend.ServerFactoryBean;
 
 /**

@@ -1,6 +1,4 @@
-package me.qinchao.service;
-
-import me.qinchao.service.HelloServiceImpl;
+package me.qinchao.WebService;
 
 import javax.xml.ws.Endpoint;
 

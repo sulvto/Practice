@@ -1,4 +1,4 @@
-package me.qinchao.service;
+package me.qinchao.WebService;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
