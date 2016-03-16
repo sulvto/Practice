@@ -18,33 +18,34 @@ import java.net.Socket;
 public class MyRpc {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyRpc.class);
 
-    public static void publish(Object service,int port) throws Exception {
+    public static void publish(Object service, int port) throws Exception {
         ServerSocket server = new ServerSocket(port);
         for (; ; ) {
             try (Socket socket = server.accept()) {
                 LOGGER.debug("server.accept");
 
-                ObjectInputStream inputStreamReader = new ObjectInputStream(socket.getInputStream());
+                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
                 try {
-                    String methodName = inputStreamReader.readUTF();
-                    Class<?>[] parameterTypes = (Class<?>[]) inputStreamReader.readObject();
-                    Object[] arguments = (Object[]) inputStreamReader.readObject();
-                    Method method = service.getClass().getMethod(methodName, parameterTypes);
-                    Object result = method.invoke(arguments);
+                    String methodName = objectInputStream.readUTF();
+                    Class<?>[] parameterTypes = (Class<?>[]) objectInputStream.readObject();
+                    Object[] arguments = (Object[]) objectInputStream.readObject();
+
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                     try {
+                        Method method = service.getClass().getMethod(methodName, parameterTypes);
+                        Object result = method.invoke(service,arguments);
                         objectOutputStream.writeObject(result);
                     } finally {
                         objectOutputStream.close();
                     }
                 } finally {
-                    inputStreamReader.close();
+                    objectInputStream.close();
                 }
             }
         }
     }
 
-    public static <T> T refer(final Class<T> interfaceClass, final int port) {
+    public static <T> T call(final Class<T> interfaceClass, final int port) {
 
         return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass}, new InvocationHandler() {
             @Override
@@ -56,6 +57,9 @@ public class MyRpc {
                         objectOutputStream.writeObject(args);
                         try (ObjectInputStream input = new ObjectInputStream(socket.getInputStream())) {
                             Object result = input.readObject();
+                            if (result instanceof Throwable) {
+                                throw (Throwable) result;
+                            }
                             return result;
                         }
                     }
