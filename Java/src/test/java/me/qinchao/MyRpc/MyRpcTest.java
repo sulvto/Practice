@@ -15,8 +15,8 @@ public class MyRpcTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyRpcTest.class);
     @Test
     public void testRefer() throws Exception {
-        IHelloService refer = MyRpc.call(IHelloService.class, 9999);
-        LOGGER.debug("invoke result: " + refer.sayHello("World"));
+        IHelloService refer = MyRpc.call(IHelloService.class,"127.0.0.1", 9999);
+        LOGGER.debug("invoke result---> " + refer.sayHello("World"));
 
     }
 }
