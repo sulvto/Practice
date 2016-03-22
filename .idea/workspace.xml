@@ -2,19 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cf5714b-eb34-45c3-b14e-56cbc13e4d9d" name="Default" comment="test ZooKeeper">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/.gitignore" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/UseJedis.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/UseJedis.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/Main.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/service/HessianService.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/service/HessianService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/service/impl/HessianServiceImpl.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/service/impl/HessianServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/Chinese.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/Chinese.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/Person.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/Person.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/cglib/AroundAdvice.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/cglib/AroundAdvice.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/cglib/CglibProxyFactory.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/cglib/CglibProxyFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/jdk/JdkProxy.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/jdk/JdkProxy.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/jdk/TransactionManager.class" afterPath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/jdk/TransactionManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/cglib/CglibProxyFactoryTest.class" afterPath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/cglib/CglibProxyFactoryTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/jdk/JdkProxyTest.class" afterPath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/jdk/JdkProxyTest.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitigonre" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/CXF/Publish.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/CXF/interceptor/AuthInterceptor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/HelloService/IHelloService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/HelloService/impl/HelloService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/MyRpc/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/MyRpc/MyRpc$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/MyRpc/MyRpc.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/UseJedis.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/WebService/HelloServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/WebService/Publish.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/service/HessianService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/hessian/service/impl/HessianServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/Chinese.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/Person.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/aop/AopConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/aop/AspectProxy.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/cglib/AroundAdvice.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/cglib/CglibProxyFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/jdk/JdkProxy.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/proxy/jdk/TransactionManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/rmi/HelloClient.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/rmi/HelloServer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/rmi/service/HelloService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/rmi/service/HelloServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/spring/Application.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/spring/service/MessagePrinter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/spring/service/MessageService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/spring/service/impl/MessagePrinterImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/spring/service/impl/MessageServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/zookeeper/Main$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/classes/me/qinchao/zookeeper/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/MyRpc/MyRpcTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/OtherTest$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/OtherTest$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/OtherTest$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/OtherTest$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/OtherTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/aop/AspectProxyTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/cglib/CglibProxyFactoryTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Java/target/test-classes/me/qinchao/proxy/jdk/JdkProxyTest.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/.gitignore" afterPath="$PROJECT_DIR$/Java/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java/src/main/java/me/qinchao/zookeeper/Main.java" afterPath="$PROJECT_DIR$/Java/src/main/java/me/qinchao/zookeeper/Main.java" />
     </list>
     <ignored path="JustForFun.iws" />
@@ -53,8 +84,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Java/src/main/java/me/qinchao/zookeeper/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76086956">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.39583334">
+              <caret line="61" column="15" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -190,7 +221,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -208,58 +239,6 @@
         <subPane subId="Project Files">
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test/java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="main">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -295,6 +274,110 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustForFun" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustForFun" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qinchao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustForFun" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qinchao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CXF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustForFun" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qinchao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CXF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interceptor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -971,7 +1054,7 @@
       <workItem from="1457630344122" duration="7000" />
       <workItem from="1457715459780" duration="67000" />
       <workItem from="1457715607733" duration="623000" />
-      <workItem from="1458575247765" duration="3975000" />
+      <workItem from="1458575247765" duration="7334000" />
     </task>
     <task id="LOCAL-00001" summary="redis.java">
       <created>1457452773821</created>
@@ -1051,25 +1134,35 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21997000" />
+    <option name="totallyTimeSpent" value="25356000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="28" width="1368" height="707" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958803" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45571956" sideWeight="0.4761194" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24906367" sideWeight="0.51492536" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38283584" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7712177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41947564" sideWeight="0.48507464" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4868914" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41947564" sideWeight="0.48507464" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49701494" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841328" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="top" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1082,7 +1175,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841328" sideWeight="0.49701494" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841328" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1154,6 +1246,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1283,6 +1376,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="37" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1298,6 +1392,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1420,6 +1515,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.04225352">
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1481,8 +1577,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Java/src/main/java/me/qinchao/zookeeper/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76086956">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.39583334">
+          <caret line="61" column="15" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
           <folding />
         </state>
       </provider>

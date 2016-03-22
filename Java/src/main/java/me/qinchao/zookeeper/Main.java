@@ -63,7 +63,6 @@ public class Main {
     }
 
     public static void test() throws IOException, KeeperException, InterruptedException {
-
         // 创建一个与服务器的连接
         ZooKeeper zk = new ZooKeeper("localhost:2181", 500000, null);
 
