@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="zz:war exploded">
+    <output-path>$PROJECT_DIR$/zz/target/me.qinchao</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="zz" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/zz/target/me.qinchao/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="zz/web/Web" />
+    </root>
+  </artifact>
+</component>
