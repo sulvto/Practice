@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="zz:war">
-    <output-path>$PROJECT_DIR$/zz/target</output-path>
-    <root id="archive" name="me.qinchao.war">
-      <element id="artifact" artifact-name="zz:war exploded" />
-    </root>
-  </artifact>
-</component>
