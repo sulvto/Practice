@@ -1,12 +1,9 @@
-package me.qinchao.MyRpc;
+package me.qinchao.MyRpc.simple;
 
 import me.qinchao.HelloService.IHelloService;
-import me.qinchao.HelloService.impl.HelloService;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by SULVTO on 16-3-16.

@@ -1,4 +1,4 @@
-package me.qinchao;
+package me.qinchao.redis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
