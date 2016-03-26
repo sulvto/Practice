@@ -1,6 +1,5 @@
-package me.qinchao.MyRpc;
+package me.qinchao.MyRpc.simple;
 
-import me.qinchao.HelloService.IHelloService;
 import me.qinchao.HelloService.impl.HelloService;
 
 /**

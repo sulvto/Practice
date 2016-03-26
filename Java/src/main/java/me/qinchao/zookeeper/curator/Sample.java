@@ -24,6 +24,7 @@ public class Sample {
                 .retryPolicy(retryPolicy)
                 .build();
         client.start();
+
         //  NodeCache
 
         String path = "/zk-root/c1";

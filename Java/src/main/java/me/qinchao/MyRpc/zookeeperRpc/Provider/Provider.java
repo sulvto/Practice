@@ -1,4 +1,4 @@
-package me.qinchao.MyRpc;
+package me.qinchao.MyRpc.zookeeperRpc.Provider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,18 +6,17 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by SULVTO on 16-3-16.
+ * 暴露服务的服务提供方
+ * Created by SULVTO on 16-3-25.
  */
-public class MyRpc {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MyRpc.class);
+public class Provider {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Provider.class);
 
     public static void publish(Object service, int port) throws IOException {
         ServerSocket server = new ServerSocket(port);
@@ -68,31 +67,4 @@ public class MyRpc {
             }
         }
     }
-
-    public static <T> T call(final Class<T> interfaceClass, final String host, final int port) {
-
-        return (T) Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class<?>[]{interfaceClass}, new InvocationHandler() {
-                    @Override
-                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        try (Socket socket = new Socket(host, port)) {
-                            try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream())) {
-                                objectOutputStream.writeUTF(method.getName());
-                                objectOutputStream.writeObject(method.getParameterTypes());
-                                objectOutputStream.writeObject(args);
-                                try (ObjectInputStream input = new ObjectInputStream(socket.getInputStream())) {
-                                    Object result = input.readObject();
-                                    if (result instanceof Throwable) {
-                                        throw (Throwable) result;
-                                    }
-                                    return result;
-                                }
-                            }
-                        }
-
-                    }
-                }
-        );
-
-    }
-
 }

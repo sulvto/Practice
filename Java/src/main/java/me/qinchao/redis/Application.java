@@ -32,10 +32,10 @@ public class Application {
         IUserDao userDao = context.getBean(UserDaoImpl.class);
 
         userDao.setUser("example", new User("example", 1));
-        LOGGER.info(userDao.getUser("example").toString());
+        LOGGER.debug(userDao.getUser("example").toString());
         userDao.setUser("example2", new User("example2", 1));
         LOGGER.debug(userDao.getUser("example2").toString());
-        LOGGER.info(userDao.getUser("example").toString());
+        LOGGER.debug(userDao.getUser("example").toString());
 
     }
 }

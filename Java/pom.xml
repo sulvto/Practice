@@ -7,8 +7,11 @@
     <groupId>me.qinchao</groupId>
     <artifactId>Java</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>ZookeeperRMI</module>
+    </modules>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>Java</name>
     <url>http://maven.apache.org</url>
     <properties>
