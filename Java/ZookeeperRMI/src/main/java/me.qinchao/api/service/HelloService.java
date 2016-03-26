@@ -1,4 +1,4 @@
-package me.qinchao.MyRpc.ZookeeperRMI.api.service;
+package me.qinchao.api.service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

@@ -1,4 +1,4 @@
-package me.qinchao.MyRpc.zookeeperRpc.Provider;
+package me.qinchao;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
