@@ -8,7 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by SULVTO on 16-3-15.
  */
-@RpcRegistry(host = "127.0.0.1",port = 9999)
+//@RpcRegistry(host = "127.0.0.1",port = 9999)
 public class HelloServiceImpl  extends UnicastRemoteObject implements HelloService {
 
     public HelloServiceImpl() throws RemoteException {

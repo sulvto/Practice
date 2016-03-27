@@ -17,6 +17,4 @@ public @interface RpcRegistry {
     String host();
 
     int port();
-
-    String name() default "";
 }

@@ -18,6 +18,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.concurrent.TimeUnit;
+import java.util.function.*;
 
 /**
  * 暴露服务的服务提供方
@@ -30,6 +31,17 @@ public class Provider {
 
     private final static String ROOT = "/root";
     private ZooKeeper zkClient;
+    java.util.function.BiConsumer<String, CreateMode> createNode = (path, mode) -> {
+        try {
+            if (zkClient.exists(path, true) == null) {
+                zkClient.create(path, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, mode);
+            }
+        } catch (KeeperException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    };
 
     public Provider() {
         try {
@@ -41,6 +53,7 @@ public class Provider {
                     }
                 }
             });
+            createNode.accept(ROOT,CreateMode.PERSISTENT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,7 +61,7 @@ public class Provider {
 
     }
 
-    void publish(String host, int port, Remote service) throws IOException {
+    void publish(String host, int port, Remote service) {
         try {
             // RMI
             LocateRegistry.createRegistry(port);
@@ -65,15 +78,10 @@ public class Provider {
         }
     }
 
-    private void registry(String serviceName, String serverAddress) {
-        try {
-            String path = String.format("%s/%s/%s", ROOT, serviceName, serverAddress);
-            zkClient.create(path, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE,
-                    CreateMode.EPHEMERAL);
-        } catch (KeeperException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private void registry(String serverAddress, String serviceName) {
+
+
+        createNode.accept(ROOT + "/" + serverAddress, CreateMode.PERSISTENT);
+        createNode.accept(ROOT + "/" + serverAddress + "/" + serverAddress, CreateMode.EPHEMERAL);
     }
 }
