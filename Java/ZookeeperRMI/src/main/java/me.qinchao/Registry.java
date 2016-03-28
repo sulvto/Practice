@@ -6,27 +6,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.rmi.AlreadyBoundException;
+import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.util.concurrent.TimeUnit;
-import java.util.function.*;
+import java.util.List;
 
 /**
- * 暴露服务的服务提供方
- * Created by SULVTO on 16-3-25.
+ * Created by SULVTO on 16-3-29.
  */
 @Component
-public class Provider {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Provider.class);
+public class Registry {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Registry.class);
 
 
     private final static String ROOT = "/root";
@@ -43,7 +36,7 @@ public class Provider {
         }
     };
 
-    public Provider() {
+    public Registry() {
         try {
             zkClient = new ZooKeeper("localhost:2182",
                     500000, new Watcher() {
@@ -53,7 +46,7 @@ public class Provider {
                     }
                 }
             });
-            createNode.accept(ROOT,CreateMode.PERSISTENT);
+            createNode.accept(ROOT, CreateMode.PERSISTENT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,11 +54,10 @@ public class Provider {
 
     }
 
-    void publish(String host, int port, Remote service) {
+    void publish(String host, int port, String serviceName, Remote service) {
         try {
             // RMI
             LocateRegistry.createRegistry(port);
-            String serviceName = service.getClass().getName();
             String bindAddress = String.format("rmi://%s:%d/%s", host, port, serviceName);
             Naming.rebind(bindAddress, service);
 
@@ -79,9 +71,27 @@ public class Provider {
     }
 
     private void registry(String serverAddress, String serviceName) {
-
-
         createNode.accept(ROOT + "/" + serverAddress, CreateMode.PERSISTENT);
-        createNode.accept(ROOT + "/" + serverAddress + "/" + serverAddress, CreateMode.EPHEMERAL);
+        createNode.accept(ROOT + "/" + serverAddress + "/" + serviceName, CreateMode.EPHEMERAL);
     }
+
+    public String lookup(String serviceName) {
+
+        try {
+            List<String> children = zkClient.getChildren(ROOT, true);
+            for (int i = 0; i < children.size(); i++) {
+                List<String> children2 = zkClient.getChildren(ROOT + "/" + children.get(i), true);
+                if (children2.contains(serviceName)) {
+                    return children.get(i) + "/" + serviceName;
+                }
+            }
+        } catch (KeeperException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
