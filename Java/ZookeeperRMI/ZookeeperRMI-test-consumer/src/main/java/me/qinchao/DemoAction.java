@@ -16,14 +16,11 @@
 package me.qinchao;
 
 import me.qinchao.annotation.Reference;
-import me.qinchao.api.service.HelloService;
-import org.springframework.context.annotation.Bean;
+import me.qinchao.service.HelloService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Test
@@ -37,7 +34,7 @@ public class DemoAction {
     @PostConstruct
     public void start() throws RemoteException {
         String aaa = helloService.sayHello("aaa");
-        System.out.println("=======" + aaa);
+        System.out.println("sayHello==" + aaa);
 
     }
 }

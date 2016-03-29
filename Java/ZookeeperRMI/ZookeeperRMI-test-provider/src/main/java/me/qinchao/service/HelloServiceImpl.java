@@ -1,6 +1,7 @@
-package me.qinchao.api.service;
+package me.qinchao.service;
 
-import me.qinchao.annotation.RpcRegistry;
+
+import me.qinchao.annotation.Service;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -8,7 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by SULVTO on 16-3-15.
  */
-//@RpcRegistry(host = "127.0.0.1",port = 9999)
+@Service(host = "127.0.0.1",port = 9999)
 public class HelloServiceImpl  extends UnicastRemoteObject implements HelloService {
 
     public HelloServiceImpl() throws RemoteException {

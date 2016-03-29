@@ -1,4 +1,4 @@
-package me.qinchao.api.service;
+package me.qinchao.service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

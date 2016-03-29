@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -18,9 +17,8 @@ import java.util.List;
  * Created by SULVTO on 16-3-29.
  */
 @Component
-public class Registry {
-    private static final Logger LOGGER = LoggerFactory.getLogger(Registry.class);
-
+public class ZooKeeperRegistry {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZooKeeperRegistry.class);
 
     private final static String ROOT = "/root";
     private ZooKeeper zkClient;
@@ -36,7 +34,7 @@ public class Registry {
         }
     };
 
-    public Registry() {
+    public ZooKeeperRegistry() {
         try {
             zkClient = new ZooKeeper("localhost:2182",
                     500000, new Watcher() {
@@ -50,11 +48,9 @@ public class Registry {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
-    void publish(String host, int port, String serviceName, Remote service) {
+    void doRegister(String host, int port, String serviceName, Remote service) {
         try {
             // RMI
             LocateRegistry.createRegistry(port);
@@ -62,7 +58,7 @@ public class Registry {
             Naming.rebind(bindAddress, service);
 
             // zookeeper registry
-            registry(host + ":" + port, serviceName);
+            createNode(host + ":" + port, serviceName);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
@@ -70,7 +66,7 @@ public class Registry {
         }
     }
 
-    private void registry(String serverAddress, String serviceName) {
+    private void createNode(String serverAddress, String serviceName) {
         createNode.accept(ROOT + "/" + serverAddress, CreateMode.PERSISTENT);
         createNode.accept(ROOT + "/" + serverAddress + "/" + serviceName, CreateMode.EPHEMERAL);
     }

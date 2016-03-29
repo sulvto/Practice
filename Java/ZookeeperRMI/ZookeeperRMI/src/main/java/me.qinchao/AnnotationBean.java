@@ -1,45 +1,32 @@
 package me.qinchao;
 
 import me.qinchao.annotation.Reference;
-import me.qinchao.annotation.RpcRegistry;
+import me.qinchao.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanInitializationException;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by SULVTO on 16-3-28.
  */
+@Component
 public class AnnotationBean implements Serializable, BeanPostProcessor, ApplicationContextAware {
 
     private static final long serialVersionUID = -7582802454287589552L;
-
-    private static final Logger logger = LoggerFactory.getLogger(AnnotationBean.class);
 
     private ApplicationContext applicationContext;
 
@@ -71,9 +58,7 @@ public class AnnotationBean implements Serializable, BeanPostProcessor, Applicat
                     }
                 }
             } catch (Exception e) {
-                // modified by lishen
                 throw new BeanInitializationException("Failed to init remote service reference at filed " + field.getName() + " in class " + bean.getClass().getName(), e);
-//            	logger.error("Failed to init remote service reference at filed " + field.getName() + " in class " + bean.getClass().getName() + ", cause: " + e.getMessage(), e);
             }
         }
         return bean;
@@ -82,45 +67,33 @@ public class AnnotationBean implements Serializable, BeanPostProcessor, Applicat
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        Class<?>[] interfaces = bean.getClass().getInterfaces();
         Class<?> clazz = bean.getClass();
         if (isProxyBean(bean)) {
             clazz = AopUtils.getTargetClass(bean);
         }
-        RpcRegistry rpcRegistry = clazz.getAnnotation(RpcRegistry.class);
-        if (rpcRegistry != null) {
-            publish(rpcRegistry, bean);
+        Service service = clazz.getAnnotation(Service.class);
+        if (service != null) {
+            publish(service, bean);
         }
         return bean;
     }
 
-    private void publish(RpcRegistry rpcRegistry, Object bean) {
-        Registry registry = applicationContext.getBean(Registry.class);
+    private void publish(Service service, Object bean) {
+        ZooKeeperRegistry registry = applicationContext.getBean(ZooKeeperRegistry.class);
         Class<?>[] interfaces = bean.getClass().getInterfaces();
         String name = interfaces[0].getName();
-        registry.publish(rpcRegistry.host(), rpcRegistry.port(), name, (Remote) bean);
-
+        registry.doRegister(service.host(), service.port(), name, (Remote) bean);
     }
 
-    private Object refer(Class<?> referenceClass) { //method.getParameterTypes()[0]
-        Registry registry = applicationContext.getBean(Registry.class);
+    private Object refer(Class<?> referenceClass) throws RemoteException, NotBoundException, MalformedURLException {
+        ZooKeeperRegistry registry = applicationContext.getBean(ZooKeeperRegistry.class);
         String url = registry.lookup(referenceClass.getName());
-        try {
-            return url == null ? null : Naming.lookup("rmi://" + url);
-        } catch (NotBoundException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return url == null ? null : Naming.lookup("rmi://" + url);
     }
 
 
     private boolean isProxyBean(Object bean) {
         return AopUtils.isAopProxy(bean);
     }
-
 
 }
