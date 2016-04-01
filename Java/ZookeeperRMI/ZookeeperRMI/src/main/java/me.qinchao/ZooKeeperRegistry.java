@@ -16,6 +16,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by SULVTO on 16-3-29.
@@ -24,14 +25,17 @@ import java.util.List;
 public class ZooKeeperRegistry {
     private static final Logger LOGGER = LoggerFactory.getLogger(ZooKeeperRegistry.class);
 
-    private final static String ROOT = "/root";
+    private final String ROOT = "/root";
     private ZooKeeper zkClient;
     private boolean isInit = false;
-    private final String address;
-    public ZooKeeperRegistry(){
-        address = env.getProperty("registry.address");
-        if (org.apache.commons.lang3.StringUtils.isBlank(address)) {
-            throw new NotReadablePropertyException("registry address is blank");
+    private final String ADDRESS;
+    private CountDownLatch latch = new CountDownLatch(1);
+
+
+    public ZooKeeperRegistry() {
+        ADDRESS = env.getProperty("registry.address");
+        if (org.apache.commons.lang3.StringUtils.isBlank(ADDRESS)) {
+            throw new RuntimeException("registry address is blank");
         }
     }
 
@@ -43,18 +47,21 @@ public class ZooKeeperRegistry {
         if (zkClient == null) {
 
             try {
-
-                zkClient = new ZooKeeper("localhost:2182",
+                zkClient = new ZooKeeper(ADDRESS,
                         500000, new Watcher() {
                     public void process(WatchedEvent event) {
                         if (event.getState() == Event.KeeperState.SyncConnected) {
                             LOGGER.debug("已经触发了" + event.getType() + "事件！");
+                            latch.countDown();
                         }
                     }
                 });
+                latch.await();
                 createNode(ROOT, CreateMode.PERSISTENT);
                 isInit = true;
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

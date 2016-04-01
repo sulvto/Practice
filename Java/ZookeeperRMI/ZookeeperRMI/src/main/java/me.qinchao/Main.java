@@ -11,7 +11,6 @@ import java.util.Date;
  * Created by SULVTO on 16-3-26.
  */
 @ComponentScan
-
 public class Main {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
