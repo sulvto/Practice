@@ -1,8 +1,12 @@
 package me.qinchao;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.apache.zookeeper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.NotReadablePropertyException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.*;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -22,7 +26,44 @@ public class ZooKeeperRegistry {
 
     private final static String ROOT = "/root";
     private ZooKeeper zkClient;
-    java.util.function.BiConsumer<String, CreateMode> createNode = (path, mode) -> {
+    private boolean isInit = false;
+    private final String address;
+    public ZooKeeperRegistry(){
+        address = env.getProperty("registry.address");
+        if (org.apache.commons.lang3.StringUtils.isBlank(address)) {
+            throw new NotReadablePropertyException("registry address is blank");
+        }
+    }
+
+    @Autowired
+    private org.springframework.core.env.Environment env;
+
+
+    private void init() {
+        if (zkClient == null) {
+
+            try {
+
+                zkClient = new ZooKeeper("localhost:2182",
+                        500000, new Watcher() {
+                    public void process(WatchedEvent event) {
+                        if (event.getState() == Event.KeeperState.SyncConnected) {
+                            LOGGER.debug("已经触发了" + event.getType() + "事件！");
+                        }
+                    }
+                });
+                createNode(ROOT, CreateMode.PERSISTENT);
+                isInit = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void createNode(String path, CreateMode mode) {
+        if (!isInit) {
+            init();
+        }
         try {
             if (zkClient.exists(path, true) == null) {
                 zkClient.create(path, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, mode);
@@ -32,22 +73,11 @@ public class ZooKeeperRegistry {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    };
+    }
 
-    public ZooKeeperRegistry() {
-        try {
-            zkClient = new ZooKeeper("localhost:2182",
-                    500000, new Watcher() {
-                public void process(WatchedEvent event) {
-                    if (event.getState() == Event.KeeperState.SyncConnected) {
-                        LOGGER.debug("已经触发了" + event.getType() + "事件！");
-                    }
-                }
-            });
-            createNode.accept(ROOT, CreateMode.PERSISTENT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void createRegistryNode(String serverAddress, String serviceName) {
+        createNode(ROOT + "/" + serverAddress, CreateMode.PERSISTENT);
+        createNode(ROOT + "/" + serverAddress + "/" + serviceName, CreateMode.EPHEMERAL);
     }
 
     void doRegister(String host, int port, String serviceName, Remote service) {
@@ -58,7 +88,7 @@ public class ZooKeeperRegistry {
             Naming.rebind(bindAddress, service);
 
             // zookeeper registry
-            createNode(host + ":" + port, serviceName);
+            createRegistryNode(host + ":" + port, serviceName);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (RemoteException e) {
@@ -66,10 +96,6 @@ public class ZooKeeperRegistry {
         }
     }
 
-    private void createNode(String serverAddress, String serviceName) {
-        createNode.accept(ROOT + "/" + serverAddress, CreateMode.PERSISTENT);
-        createNode.accept(ROOT + "/" + serverAddress + "/" + serviceName, CreateMode.EPHEMERAL);
-    }
 
     public String lookup(String serviceName) {
 

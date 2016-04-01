@@ -1,8 +1,8 @@
 package me.qinchao;
 
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +11,7 @@ import java.util.Date;
  * Created by SULVTO on 16-3-26.
  */
 @ComponentScan
+
 public class Main {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
