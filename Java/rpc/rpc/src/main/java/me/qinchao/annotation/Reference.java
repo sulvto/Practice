@@ -1,10 +1,10 @@
-
 package me.qinchao.annotation;
 
 import java.lang.annotation.*;
 
 /**
  * Reference
+ * 
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
