@@ -1,5 +1,7 @@
-package me.qinchao;
+package me.qinchao.registry;
 
+import me.qinchao.RegistryConfig;
+import me.qinchao.RegistryObject;
 import org.apache.zookeeper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -19,8 +22,8 @@ import java.util.concurrent.CountDownLatch;
  * Created by SULVTO on 16-3-29.
  */
 @Component
-public class ServiceRegistry {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceRegistry.class);
+public class ZookeeperRegistry implements RegistryService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZookeeperRegistry.class);
 
     private final String ROOT = "/root";
     private ZooKeeper zkClient;
@@ -29,7 +32,7 @@ public class ServiceRegistry {
     private CountDownLatch latch = new CountDownLatch(1);
 
 
-    public ServiceRegistry() {
+    public ZookeeperRegistry() {
         ADDRESS = env.getProperty("registry.address");
         if (org.apache.commons.lang3.StringUtils.isBlank(ADDRESS)) {
             throw new RuntimeException("registry address is blank");
@@ -84,24 +87,13 @@ public class ServiceRegistry {
         createNode(ROOT + "/" + serverAddress + "/" + serviceName, CreateMode.EPHEMERAL);
     }
 
-    void doRegister(String host, int port, String serviceName, Remote service) {
-        try {
-            // RMI
-            LocateRegistry.createRegistry(port);
-            String bindAddress = String.format("rmi://%s:%d/%s", host, port, serviceName);
-            Naming.rebind(bindAddress, service);
-
-            // zookeeper registry
-            createRegistryNode(host + ":" + port, serviceName);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+    void doRegister(String host, int port, String serviceName) {
+        // zookeeper registry
+        createRegistryNode(host + ":" + port, serviceName);
     }
 
 
-    public String lookup(String serviceName) {
+    public String subscribe(String serviceName) {
 
         try {
             List<String> children = zkClient.getChildren(ROOT, true);
@@ -120,4 +112,15 @@ public class ServiceRegistry {
     }
 
 
+    @Override
+    public void register(RegistryConfig config) {
+        doRegister(config.getHost(), config.getPort(), config.getServiceName());
+    }
+
+    @Override
+    public List<RegistryObject> subscribe() {
+        // TODO
+        subscribe();
+        return new ArrayList<>();
+    }
 }

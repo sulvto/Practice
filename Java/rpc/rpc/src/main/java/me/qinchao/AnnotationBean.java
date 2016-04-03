@@ -10,7 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
@@ -69,23 +68,22 @@ public class AnnotationBean implements BeanPostProcessor, ApplicationContextAwar
         }
         RpcService service = clazz.getAnnotation(RpcService.class);
         if (service != null) {
-            publish(service, bean);
+            export(service, bean);
         }
         return bean;
     }
 
-    private void publish(RpcService service, Object bean) {
-        ServiceRegistry registry = applicationContext.getBean(ServiceRegistry.class);
+    private void export(RpcService service, Object bean) {
+        RegistryService registry = applicationContext.getBean(RegistryService.class);
         Class<?>[] interfaces = bean.getClass().getInterfaces();
         String name = interfaces[0].getName();
-        registry.doRegister(service.host(), service.port(), name, (Remote) bean);
+        registry.doExport(service.host(), service.port(), name, (Remote) bean);
     }
 
     private Object refer(Class<?> referenceClass) throws RemoteException, NotBoundException, MalformedURLException {
-        ServiceRegistry registry = applicationContext.getBean(ServiceRegistry.class);
-        String url = registry.lookup(referenceClass.getName());
+        RegistryService registry = applicationContext.getBean(RegistryService.class);
+        String url = registry.register(referenceClass.getName());
 
-//        return url == null ? null : Naming.lookup("rmi://" + url);
         return null;
     }
 

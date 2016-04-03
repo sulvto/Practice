@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2012 Alibaba Group.
+ * Copyright 1999-2011 Alibaba Group.
  *  
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,31 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.qinchao.annotation;
+package me.qinchao.protocol;
 
-import java.lang.annotation.*;
+import me.qinchao.ProtocolConfig;
 
 /**
- * Reference
- * 
- * @author william.liangf
- * @export
+ * Protocol.
  */
-@Documented
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
-public @interface Reference {
+public interface Protocol {
 
-    Class<?> interfaceClass() default void.class;
+    /**
+     * 暴露远程服务
+     */
+    void export(Object serviceObject, ProtocolConfig protocolConfig);
 
-    String interfaceName() default "";
-
-    String version() default "";
-
-    String group() default "";
-
-    String protocol() default "";
-
-    String[] registry() default {};
+    /**
+     * 引用远程服务
+     */
+    <T> T refer(Class<T> type, ProtocolConfig protocolConfig);
 
 }
