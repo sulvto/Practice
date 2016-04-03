@@ -1,4 +1,4 @@
-package me.qinchao;
+package me.qinchao.api;
 
 /**
  * Created by SULVTO on 16-4-3.
@@ -6,6 +6,14 @@ package me.qinchao;
 public abstract class AbstractConfig {
     private String host;
     private int port;
+
+    public AbstractConfig() {
+    }
+
+    public AbstractConfig(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
 
     public String getHost() {
         return host;

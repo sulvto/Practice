@@ -1,7 +1,6 @@
 package me.qinchao.registry;
 
-import me.qinchao.RegistryConfig;
-import me.qinchao.RegistryObject;
+import me.qinchao.api.RegistryConfig;
 import org.apache.zookeeper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,11 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -22,7 +16,7 @@ import java.util.concurrent.CountDownLatch;
  * Created by SULVTO on 16-3-29.
  */
 @Component
-public class ZookeeperRegistry implements RegistryService {
+public class ZookeeperRegistry implements Registry {
     private static final Logger LOGGER = LoggerFactory.getLogger(ZookeeperRegistry.class);
 
     private final String ROOT = "/root";
@@ -87,20 +81,25 @@ public class ZookeeperRegistry implements RegistryService {
         createNode(ROOT + "/" + serverAddress + "/" + serviceName, CreateMode.EPHEMERAL);
     }
 
-    void doRegister(String host, int port, String serviceName) {
-        // zookeeper registry
-        createRegistryNode(host + ":" + port, serviceName);
+
+    @Override
+    public void register(RegistryConfig config) {
+        createRegistryNode(config.getHost() + ":" + config.getPort(), config.getServiceName());
+
     }
 
-
-    public String subscribe(String serviceName) {
+    @Override
+    public List<RegistryConfig> subscribe(String serviceName) {
+        List<RegistryConfig> serviceList = new ArrayList<>();
 
         try {
             List<String> children = zkClient.getChildren(ROOT, true);
             for (int i = 0; i < children.size(); i++) {
                 List<String> children2 = zkClient.getChildren(ROOT + "/" + children.get(i), true);
                 if (children2.contains(serviceName)) {
-                    return children.get(i) + "/" + serviceName;
+                    String address = children.get(i);
+                    String[] split = address.split(":");
+                    serviceList.add(new RegistryConfig(split[0], Integer.parseInt(split[1]), serviceName));
                 }
             }
         } catch (KeeperException e) {
@@ -108,19 +107,6 @@ public class ZookeeperRegistry implements RegistryService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-
-    @Override
-    public void register(RegistryConfig config) {
-        doRegister(config.getHost(), config.getPort(), config.getServiceName());
-    }
-
-    @Override
-    public List<RegistryObject> subscribe() {
-        // TODO
-        subscribe();
-        return new ArrayList<>();
+        return serviceList;
     }
 }

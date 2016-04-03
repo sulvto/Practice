@@ -13,24 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.qinchao.protocol;
-
-import me.qinchao.api.AbstractConfig;
-import me.qinchao.api.ProtocolConfig;
+package me.qinchao.api;
 
 /**
- * Protocol.
+ * ReferenceConfig
+ * 
  */
-public interface Protocol {
+public class ReferenceConfig extends AbstractConfig{
 
-    /**
-     * 暴露远程服务
-     */
-    void export(Object serviceObject, ProtocolConfig protocolConfig);
+    private String serviceName;
 
-    /**
-     * 引用远程服务
-     */
-    <T> T refer(Class<T> type, AbstractConfig protocolConfig);
+    public ReferenceConfig(String serviceName) {
+        this.serviceName = serviceName;
+    }
 
+    public ReferenceConfig(String host, int port, String serviceName) {
+        super(host, port);
+        this.serviceName = serviceName;
+
+    }
+
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
 }

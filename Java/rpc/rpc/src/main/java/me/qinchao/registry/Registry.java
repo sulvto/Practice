@@ -1,7 +1,6 @@
 package me.qinchao.registry;
 
-import me.qinchao.RegistryConfig;
-import me.qinchao.RegistryObject;
+import me.qinchao.api.RegistryConfig;
 
 import java.util.List;
 
@@ -11,5 +10,5 @@ import java.util.List;
 public interface Registry {
     void register(RegistryConfig config);
 
-    List<RegistryObject> subscribe();
+    List<RegistryConfig> subscribe(String serviceName);
 }

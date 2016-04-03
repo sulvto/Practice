@@ -1,7 +1,7 @@
 package me.qinchao.protocol.impl;
 
-import me.qinchao.ProtocolConfig;
-import me.qinchao.ServiceObject;
+import me.qinchao.api.AbstractConfig;
+import me.qinchao.api.ProtocolConfig;
 import me.qinchao.protocol.Protocol;
 
 import java.io.IOException;
@@ -12,7 +12,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by SULVTO on 16-4-3.
@@ -72,7 +71,7 @@ public class DefaultProtocol implements Protocol {
     }
 
     @Override
-    public <T> T refer(Class<T> serviceType, ProtocolConfig protocolConfig) {
+    public <T> T refer(Class<T> serviceType, AbstractConfig protocolConfig) {
         return (T) Proxy.newProxyInstance(serviceType.getClassLoader(), new Class<?>[]{serviceType}, new InvocationHandler() {
                     @Override
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
