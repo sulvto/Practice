@@ -1,4 +1,4 @@
-package me.qinchao.netty.client;
+package me.qinchao.nio.netty.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

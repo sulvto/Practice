@@ -1,4 +1,4 @@
-package me.qinchao.netty.server;
+package me.qinchao.nio.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
