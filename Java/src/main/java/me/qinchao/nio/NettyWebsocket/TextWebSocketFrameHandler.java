@@ -18,11 +18,11 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
     @Override
     protected void messageReceived(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         Channel channel = ctx.channel();
-        for (Channel channel2 : channelGroup) {
-            if (channel != channel2) {
-                channel.writeAndFlush(new TextWebSocketFrame("[" + channel2.remoteAddress() + "]" + msg.text()));
+        for (Channel group : channelGroup) {
+            if (group != channel) {
+                group.writeAndFlush(new TextWebSocketFrame("[" + channel.remoteAddress() + "]" + msg.text()));
             } else {
-                channel.writeAndFlush(new TextWebSocketFrame("[you]" + msg.text()));
+                // TODO
             }
         }
     }
@@ -30,7 +30,6 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
     @Override
     public void handlerAdded(ChannelHandlerContext context) {
         Channel channel = context.channel();
-        channel.writeAndFlush(new TextWebSocketFrame("[SERVER] - " + channel.remoteAddress() + " Added"));
         channelGroup.add(channel);
         System.out.println("Client:" + channel.remoteAddress() + " Added");
     }
@@ -42,7 +41,7 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext context) throws Exception { // (6)
+    public void channelInactive(ChannelHandlerContext context) throws Exception {
         Channel channel = context.channel();
         System.out.println("Client:" + channel.remoteAddress() + " Inactive");
     }

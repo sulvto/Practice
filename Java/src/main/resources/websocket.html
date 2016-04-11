@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Chat</title>
+</head>
+<body>
+
+<form onsubmit="return false;">
+    <h3>WebSocket Chat：</h3>
+    <textarea id="responseText" style="width: 500px; height: 300px;"></textarea>
+    <br>
+    <input type="text" id="inputText" name="message" style="width: 300px">
+    <input type="button" value="send" onclick="send(this.form.message.value)">
+    <input type="button" onclick="javascript:document.getElementById('responseText').value=''" value="clear">
+</form>
+<br>
+<script type="text/javascript">
+    window.WebSocket = window.WebSocket || window.MozWebSocket;
+
+    var socket = new WebSocket("ws://localhost:8080/ws");
+    socket.onmessage = function (event) {
+        var ta = document.getElementById('responseText');
+        ta.value = ta.value + '\n' + event.data
+        document.getElementById('responseText').scrollTop = document.getElementById('responseText').scrollHeight;
+    };
+    socket.onopen = function (event) {
+        var ta = document.getElementById('responseText');
+        ta.value = "OPEN！";
+    };
+    socket.onclose = function (event) {
+        var ta = document.getElementById('responseText');
+        ta.value = ta.value + "CLOSE！";
+    };
+
+    function send(message) {
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(message);
+            document.getElementById("inputText").value = "";
+        } else {
+            setTimeout(function () {
+                send(message);
+            }, 1000);
+        }
+    }
+</script>
+</body>
+</html>
