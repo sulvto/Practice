@@ -5,6 +5,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
 /**
  * Created by SULVTO on 16-4-8.
@@ -31,7 +32,9 @@ public class TimeServer {
    private class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
         @Override
         protected void initChannel(SocketChannel socketChannel) throws Exception {
-            socketChannel.pipeline().addLast(new TimeServerHandler());
+
+            ChannelPipeline pipeline = socketChannel.pipeline();
+            pipeline.addLast(new TimeServerHandler());
         }
     }
 
