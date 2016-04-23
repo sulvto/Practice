@@ -30,7 +30,7 @@
     };
     socket.onclose = function (event) {
         var ta = document.getElementById('responseText');
-        ta.value = ta.value + "CLOSE！";
+        ta.value = ta.value + '\n' + "CLOSE！";
     };
 
     function send(message) {
