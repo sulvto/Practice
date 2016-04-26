@@ -9,22 +9,31 @@
 #define BINARYTREENODE_H_
 
 #include <iostream>
+
 using namespace std;
 
 template<class T>
-struct BinaryTreeNode {
-	T element;
-	BinaryTreeNode<T> * leftChild, rightChild;
-	BinaryTreeNode() {
-		leftChild = rightChild = NULL;
-	}
+class BinaryTreeNode {
 
-	BinaryTreeNode(const T& _element, BinaryTreeNode * _leftChild,
-			BinaryTreeNode * _rightChild) {
-		element = _element;
-		rightChild = _rightChild;
-		leftChild = _leftChild;
-	}
+public:
+    T element;
+    BinaryTreeNode<T> *leftChild, *rightChild;
+
+    BinaryTreeNode() {
+        leftChild = rightChild = NULL;
+    }
+
+    BinaryTreeNode(const T &element) {
+        this->element = element;
+        leftChild = rightChild = NULL;
+    }
+
+    BinaryTreeNode(const T &element, BinaryTreeNode *leftChild,
+                   BinaryTreeNode *rightChild) {
+        this->element(element);
+        this->rightChild = rightChild;
+        this->leftChild = leftChild;
+    }
 
 };
 
