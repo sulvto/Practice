@@ -1,12 +1,11 @@
 #include <iostream>
-#include "src/BinaryTreeNode.h"
-#include "src/LinkedBinaryTree.cpp"
+#include "tree/header/BinaryTreeNode.h"
+#include "tree/source/LinkedBinaryTree.cpp"
 
 using namespace std;
 
 int main() {
-    LinkedBinaryTree *linkedBinaryTree();
-    linkedBinaryTree。root = new BinaryTreeNode<int>();
+//    LinkedBinaryTree<int> linkedBinaryTree;
 
 
 //    linkedBinaryTree->preOrder(linkedBinaryTree->root);

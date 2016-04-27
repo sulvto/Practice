@@ -29,7 +29,6 @@ public:
 
     virtual void levelOrder(void (*)(T *)) = 0;
 
-
 };
 
 #endif /* BINARYTREE_H_ */
