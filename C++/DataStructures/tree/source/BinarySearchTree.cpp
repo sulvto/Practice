@@ -43,7 +43,7 @@ void BinarySearchTree::insert(const pair<const K, E> &thePair) {
         }
     } else {
         root = newNode;
-    }
+    }学习
     treeSize++;
 };
 
