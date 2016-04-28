@@ -43,13 +43,13 @@ void BinarySearchTree::insert(const pair<const K, E> &thePair) {
         }
     } else {
         root = newNode;
-    }学习
+    }
     treeSize++;
 };
 
 
 template<class K, class E>
-void BinarySearchTree::erase(const K &theK) {
+void BinarySearchTree::remove(const K &theK) {
     BinaryTreeNode <pair<const K, E>> *target = root, *ptarget = NULL;
     while (target != NULL) {
         ptarget = target;

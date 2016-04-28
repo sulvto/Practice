@@ -6,9 +6,6 @@
 #ifndef DATASTRUCTURES_BINARYSEARCHTREE_H
 #define DATASTRUCTURES_BINARYSEARCHTREE_H
 
-#include <iostream>
-#include <utility>
-#include <string>
 
 #include "LinkedBinaryTree.h"
 #include "BinaryTreeNode.h"
@@ -23,7 +20,7 @@ public:
 
     virtual pair<const K, E> *find(const K &) const;
 
-    virtual void erase(const K &) = 0;
+    virtual void remove(const K &) = 0;
 
     virtual void insert(const pair<const K, E> &) = 0;
 
