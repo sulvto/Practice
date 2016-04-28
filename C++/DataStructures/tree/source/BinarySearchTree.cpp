@@ -35,7 +35,7 @@ void BinarySearchTree::insert(const pair<const K, E> &thePair) {
     }
     BinaryTreeNode<pair<const K, E>> *newNode = new BinaryTreeNode(thePair);
 
-    if (p != NULL) {
+    if (temp != NULL) {
         if (thePair.first < temp->element.first) {
             temp->leftChild = newNode;
         } else {
@@ -50,14 +50,15 @@ void BinarySearchTree::insert(const pair<const K, E> &thePair) {
 
 template<class K, class E>
 void BinarySearchTree::erase(const K &theK) {
-    BinaryTreeNode<pair<const K, E>> *p = root, *target = NULL;
-    while (p != NULL) {
-        if (theK < p->element.first) {
-            p = p->leftChild;
-        } else if (theK > p->element.first) {
-            p = p->rightChild;
+    BinaryTreeNode <pair<const K, E>> *target = root, *ptarget = NULL;
+    while (target != NULL) {
+        ptarget = target;
+        if (theK < target->element.first) {
+            target = target->leftChild;
+        } else if (theK > target->element.first) {
+            target = target->rightChild;
         } else {
-            target = p;
+            break;
         }
     }
     if (target == NULL) {
@@ -65,27 +66,37 @@ void BinarySearchTree::erase(const K &theK) {
     }
 
     if (target->leftChild != NULL && target->rightChild != NULL) {
-        //TODO
 
-        BinaryTreeNode<pair<const K, E>> *r = target->rightChild,*ps;
+        BinaryTreeNode <pair<const K, E>> *s = target->rightChild, *ps = target;
 
-        while (r->leftChild != NULL) {
-            ps = r;
-            r = r->leftChild;
-        }
-        //TODO
-
-
-
-
-    } else if (target->leftChild == NULL) {
-        BinaryTreeNode<pair<const K, E>> *r = target->rightChild;
-
-        while (r->leftChild != NULL) {
-            r = r->leftChild;
+        while (s->leftChild != NULL) {
+            ps = s;
+            s = s->leftChild;
         }
 
-    } else if (target->rightChild == NULL) {
+        BinaryTreeNode <pair<const K, E>> *newNode = new BinaryTreeNode<pair<const K, E>>(s->element, target->leftChild,
+                                                                                          target->rightChild);
+        if (ptarget == target) {
+            root = newNode;
+        } else if (ptarget->rightChild == target) {
+            ptarget->rightChild = newNode;
+        } else {
+            ptarget->leftChild = newNode;
+        }
 
+        if (s->rightChild != NULL) {
+            ps->leftChild = s->rightChild;
+        }
+    } else {
+        BinaryTreeNode <pair<const K, E>> *c = target->leftChild == NULL ? target->rightChild : target->rightChild;
+        if (ptarget == target) {
+            root = c;
+        } else if (ptarget->rightChild == target) {
+            ptarget->rightChild = c;
+        } else {
+            ptarget->leftChild = c;
+        }
     }
+    treeSize--;
+    delete target;
 }
