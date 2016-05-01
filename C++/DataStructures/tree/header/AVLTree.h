@@ -30,7 +30,7 @@ public:
 
     virtual void insert(BinaryTreeNode<E> node, const E &);
 
-    void remove(BinaryTreeNode node, const E &theE);
+    virtual void remove(BinaryTreeNode node, const E &theE);
 };
 
 

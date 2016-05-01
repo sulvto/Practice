@@ -2,7 +2,7 @@
  * Stack.h
  *
  *  Created on: 2015年7月22日
- *      Author: acer1
+ *      Author: sulvto
  */
 
 #ifndef STACK_H_
