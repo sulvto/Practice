@@ -29,6 +29,8 @@ public:
 
     virtual void levelOrder(void (*)(T *)) = 0;
 
+    virtual int height(T node);
+
 };
 
 #endif /* BINARYTREE_H_ */

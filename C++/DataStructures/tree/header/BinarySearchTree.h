@@ -10,19 +10,19 @@
 #include "LinkedBinaryTree.h"
 #include "BinaryTreeNode.h"
 
-template<class K, class E>
-class BinarySearchTree : LinkedBinaryTree<pair<const K, E>> {
+template<class E>
+class BinarySearchTree : LinkedBinaryTree<E> {
 private:
-    BinaryTreeNode<pair<const K, E>> *root;
+    BinaryTreeNode<E> *root;
     int treeSize;
 
 public:
 
-    virtual pair<const K, E> *find(const K &) const;
+    virtual E *find(const E &) const;
 
-    virtual void remove(const K &) = 0;
+    virtual void remove(const E &) = 0;
 
-    virtual void insert(const pair<const K, E> &) = 0;
+    virtual void insert(const E &) = 0;
 
 };
 

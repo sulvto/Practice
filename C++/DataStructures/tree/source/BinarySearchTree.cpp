@@ -3,40 +3,40 @@
 //
 #include "../header/BinarySearchTree.h"
 
-template<class K, class E>
-pair<const K, E> *BinarySearchTree<K, E>::find(const K &theKey) const {
-    BinaryTreeNode<pair<const K, E>> *p = root;
+template<class E>
+E *BinarySearchTree<E>::find(const E &theE) const {
+    BinaryTreeNode<E> *p = root;
     while (p != NULL) {
-        if (theKey < p->element.first) {
+        if (theE < p->element) {
             p = p->leftChild;
-        } else if (theKey > p->element.first) {
+        } else if (theE > p->element) {
             p = p->rightChild;
-        } else {
+        } else if (theE == p->element) {
             return &p->element;
         }
     }
     return NULL;
 }
 
-template<class K, class E>
-void BinarySearchTree::insert(const pair<const K, E> &thePair) {
-    BinaryTreeNode<pair<const K, E>> *p = root, *temp = NULL;
+template<class E>
+void BinarySearchTree::insert(const E &theE) {
+    BinaryTreeNode<E> *p = root, *temp = NULL;
 
     while (p != NULL) {
         temp = p;
-        if (thePair.first < p->element.first) {
+        if (theE.first < p->element) {
             p = p->leftChild;
-        } else if (thePair.first > p->element.first) {
+        } else if (theE.first > p->element) {
             p = p->rightChild;
         } else {
-            p->element.second = thePair.second;
+            p->element.second = theE.second;
             return;
         }
     }
-    BinaryTreeNode<pair<const K, E>> *newNode = new BinaryTreeNode(thePair);
+    BinaryTreeNode<E> *newNode = new BinaryTreeNode(theE);
 
     if (temp != NULL) {
-        if (thePair.first < temp->element.first) {
+        if (theE.first < temp->element) {
             temp->leftChild = newNode;
         } else {
             temp->rightChild = newNode;
@@ -48,14 +48,14 @@ void BinarySearchTree::insert(const pair<const K, E> &thePair) {
 };
 
 
-template<class K, class E>
-void BinarySearchTree::remove(const K &theK) {
-    BinaryTreeNode <pair<const K, E>> *target = root, *ptarget = NULL;
+template<class E>
+void BinarySearchTree::remove(const E &theE) {
+    BinaryTreeNode<E> *target = root, *ptarget = NULL;
     while (target != NULL) {
         ptarget = target;
-        if (theK < target->element.first) {
+        if (theE < target->element) {
             target = target->leftChild;
-        } else if (theK > target->element.first) {
+        } else if (theE > target->element) {
             target = target->rightChild;
         } else {
             break;
@@ -67,15 +67,15 @@ void BinarySearchTree::remove(const K &theK) {
 
     if (target->leftChild != NULL && target->rightChild != NULL) {
 
-        BinaryTreeNode <pair<const K, E>> *s = target->rightChild, *ps = target;
+        BinaryTreeNode<E> *s = target->rightChild, *ps = target;
 
         while (s->leftChild != NULL) {
             ps = s;
             s = s->leftChild;
         }
 
-        BinaryTreeNode <pair<const K, E>> *newNode = new BinaryTreeNode<pair<const K, E>>(s->element, target->leftChild,
-                                                                                          target->rightChild);
+        BinaryTreeNode<E> *newNode = new BinaryTreeNode<E>(s->element, target->leftChild,
+                                                           target->rightChild);
         if (ptarget == target) {
             root = newNode;
         } else if (ptarget->rightChild == target) {
@@ -88,7 +88,7 @@ void BinarySearchTree::remove(const K &theK) {
             ps->leftChild = s->rightChild;
         }
     } else {
-        BinaryTreeNode <pair<const K, E>> *c = target->leftChild == NULL ? target->rightChild : target->rightChild;
+        BinaryTreeNode<E> *c = target->leftChild == NULL ? target->rightChild : target->rightChild;
         if (ptarget == target) {
             root = c;
         } else if (ptarget->rightChild == target) {

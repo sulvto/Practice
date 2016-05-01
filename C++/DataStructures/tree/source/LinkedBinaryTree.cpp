@@ -6,6 +6,26 @@
 #include "../header/BinaryTreeNode.h"
 #include "../header/LinkedBinaryTree.h"
 
+template<class T>
+void LinkedBinaryTree<T>::print(BinaryTreeNode<T> node) const {
+    // TODO
+}
+
+template<class T>
+void LinkedBinaryTree<T>::printTree(BinaryTreeNode<T> node) const {
+    // TODO
+}
+
+template<class T>
+int LinkedBinaryTree<T>::height(BinaryTreeNode<T> node) const {
+
+    if (node.rightChild == NULL && node.leftChild == NULL) {
+        return 0;
+    }
+    int r = height(node.rightChild);
+    int l = height(node.leftChild);
+    return r > l ? r : l;
+}
 
 template<class T>
 void LinkedBinaryTree<T>::inOrder(BinaryTreeNode<T> *t) {

@@ -56,6 +56,12 @@ public:
         cout << endl;
     }
 
+    int height(BinaryTreeNode<T> node) const;
+
+    void print(BinaryTreeNode<T> node) const;
+
+    void printTree(BinaryTreeNode<T> node) const;
+
 private:
     BinaryTreeNode<T> *root;
 

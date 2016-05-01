@@ -7,16 +7,30 @@
 
 #include "BinarySearchTree.h"
 
-template<class K, class E>
-class AVLTree : BinarySearchTree<pair<const K, E>> {
-    BinaryTreeNode<pair<const K, E>> *leftLeftRotation(BinaryTreeNode<pair<const K, E>> &node);
+template<class E>
+class AVLTree : BinarySearchTree<E> {
+private:
+    BinaryTreeNode<E> *root;
+    int treeSize;
+public:
 
-    BinaryTreeNode<pair<const K, E>> *leftRightRotation(BinaryTreeNode<pair<const K, E>> &node);
 
-    BinaryTreeNode<pair<const K, E>> *rightLeftRotation(BinaryTreeNode<pair<const K, E>> &node);
+    BinaryTreeNode<E> *leftLeftRotation(BinaryTreeNode node);
 
-    BinaryTreeNode<pair<const K, E>> *rightRightRotation(BinaryTreeNode<pair<const K, E>> &node);
+    BinaryTreeNode<E> *leftRightRotation(BinaryTreeNode node);
 
+    BinaryTreeNode<E> *rightLeftRotation(BinaryTreeNode node);
+
+    BinaryTreeNode<E> *rightRightRotation(BinaryTreeNode node);
+
+
+    virtual void remove(const E &) = 0;
+
+    virtual void insert(E &) = 0;
+
+    virtual void insert(BinaryTreeNode<E> node, const E &);
+
+    void remove(BinaryTreeNode node, const E &theE);
 };
 
 
