@@ -2,7 +2,7 @@
  * ChainQueue.h
  *
  *  Created on: 2015年8月4日
- *      Author: acer1
+ *      Author: sulvto
  */
 
 #ifndef CHAINQUEUE_H_

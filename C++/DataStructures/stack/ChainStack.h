@@ -2,7 +2,7 @@
  * ChainStack.h
  *
  *  Created on: 2015年7月25日
- *      Author: acer1
+ *      Author: sulvto
  */
 
 #ifndef CHAINSTACK_H_
@@ -55,9 +55,9 @@ public:
 		return stackTop->element;
 	}
 
-	void pop();
+	T pop();
 
-	void puch(const T& element);
+	void push(const T& element);
 
 	void print();
 };
@@ -72,19 +72,21 @@ ChainStack<T>::~ChainStack() {
 }
 
 template<class T>
-void ChainStack<T>::puch(const T&element) {
+void ChainStack<T>::push(const T&element) {
 	stackTop = new ChainNode<T>(element, stackTop);
 	length++;
 }
 
 template<class T>
-void ChainStack<T>::pop() {
+T ChainStack<T>::pop() {
 	if (length == 0)
 		throw "NULL";
+
+	T r =  stackTop->element;
 	ChainNode<T>* tempNode = stackTop->next;
-	delete stackTop;
 	stackTop = tempNode;
 	length--;
+	return r;
 }
 
 template<class T>

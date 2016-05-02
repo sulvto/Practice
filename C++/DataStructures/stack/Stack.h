@@ -20,9 +20,9 @@ public:
 	//返回栈顶元素的引用
 	virtual T& top()=0;
 	//删除栈顶元素
-	virtual void pop()=0;
+	virtual T pop()=0;
 	//将元素压入栈顶
-	virtual void puch(const T& element) =0;
+	virtual void push(const T& element) =0;
 
 };
 

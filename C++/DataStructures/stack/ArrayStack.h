@@ -2,7 +2,7 @@
  * ArrayStack.h
  *
  *  Created on: 2015年7月21日
- *      Author: acer1
+ *      Author: sulvto
  */
 
 #ifndef ARRAYSTACK_H_
@@ -10,81 +10,83 @@
 
 #include <iostream>
 #include "Stack.h"
+
 using namespace std;
 
 template<class T>
-class ArrayStack: public Stack<T> {
+class ArrayStack : public Stack<T> {
 private:
-	int topIndex; //top
-	int length; //Stack length
-	T* stack; //Array
+    int topIndex; //top
+    int length; //Stack length
+    T *stack; //Array
 
 public:
 
-	ArrayStack(int init = 10);
-	~ArrayStack() {
-		delete[] stack;
-	}
+    ArrayStack(int init = 10);
 
-	bool empty() const {
-		return topIndex == -1;
-	}
+    ~ArrayStack() {
+        delete[] stack;
+    }
 
-	int size() const {
-		return topIndex + 1;
-	}
+    bool empty() const {
+        return topIndex == -1;
+    }
 
-	T& top() {
-		if (topIndex == -1)
-			throw "NULL";
-		else
-			return stack[topIndex];
-	}
+    int size() const {
+        return topIndex + 1;
+    }
 
-	void pop() {
-		if (topIndex == -1) {
-			throw "NULL";
-		}
-		stack[topIndex--].~T();
-	}
+    T &top() {
+        if (topIndex == -1)
+            throw "NULL";
+        else
+            return stack[topIndex];
+    }
 
-	void puch(const T& element);
+    T pop() {
+        if (topIndex == -1) {
+            throw "NULL";
+        }
+        return stack[topIndex--];
+    }
 
-	void print();
+    void push(const T &element);
+
+    void print();
 
 };
 
 template<class T>
 ArrayStack<T>::ArrayStack(int init) {
-	if (init < 1)
-		throw "init error";
-	length = init;
-	stack = new T[length];
-	topIndex = -1;
+    if (init < 1)
+        throw "init error";
+    length = init;
+    stack = new T[length];
+    topIndex = -1;
 }
 
 
 template<class T>
-void ArrayStack<T>::puch(const T& element) {
-	if (topIndex == length - 1) {
-		T* t = new T[length * 2];
-		for (int i = 0; i < topIndex; ++i)
-			t[i] = stack[i];
-		stack = t;
-	}
-	stack[++topIndex] = element;
+void ArrayStack<T>::push(const T &element) {
+    if (topIndex == length - 1) {
+        T *t = new T[length * 2];
+        for (int i = 0; i < topIndex; ++i)
+            t[i] = stack[i];
+        stack = t;
+    }
+    stack[++topIndex] = element;
 }
 
 template<class T>
 void ArrayStack<T>::print() {
 
-	string temp;
-	temp = "[";
-	for (int i = 0; i <= topIndex; ++i)
-		temp += stack[i] + (i < topIndex ? " , " : "");
+    string temp;
+    temp = "[";
+    for (int i = 0; i <= topIndex; ++i)
+        temp += stack[i] + (i < topIndex ? " , " : "");
 
-	temp += "]";
-	cout << temp << endl;
+    temp += "]";
+    cout << temp << endl;
 }
 
 #endif /* ARRAYSTACK_H_ */
