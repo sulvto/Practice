@@ -2,15 +2,11 @@
  * BinaryTreeNode.h
  *
  *  Created on: 2015年8月6日
- *      Author: acer1
+ *      Author: sulvto
  */
 
 #ifndef BINARYTREENODE_H_
 #define BINARYTREENODE_H_
-
-#include <iostream>
-
-using namespace std;
 
 template<class T>
 class BinaryTreeNode {
