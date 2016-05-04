@@ -18,8 +18,14 @@ public:
     BTree(int _t);
 
 //    void traverse();
+    BTreeNode *search(E e) {
+        return root == NULL ? NULL : root->search(e);
+    };
 
     void insert(E e);
+
+    void remove(E e);
+
 };
 
 #endif //DATASTRUCTURES_BTREE_H

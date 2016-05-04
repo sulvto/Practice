@@ -30,4 +30,11 @@ void BTree::insert(E &e) {
     }
 }
 
-
+template <class E>
+void BTree::remove(E e) {
+    if (root == NULL) {
+        return;
+    }
+    root->remove(e);
+    // TODO
+}
