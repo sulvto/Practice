@@ -12,25 +12,32 @@ class AVLTree : BinarySearchTree<E> {
 private:
     BinaryTreeNode<E> *root;
     int treeSize;
+
+    void print(BinaryTreeNode<E> *node);
+
 public:
 
 
-    BinaryTreeNode<E> *leftLeftRotation(BinaryTreeNode node);
+    BinaryTreeNode<E> *leftLeftRotation(BinaryTreeNode<E> node);
 
-    BinaryTreeNode<E> *leftRightRotation(BinaryTreeNode node);
+    BinaryTreeNode<E> *leftRightRotation(BinaryTreeNode<E> node);
 
-    BinaryTreeNode<E> *rightLeftRotation(BinaryTreeNode node);
+    BinaryTreeNode<E> *rightLeftRotation(BinaryTreeNode<E> node);
 
-    BinaryTreeNode<E> *rightRightRotation(BinaryTreeNode node);
+    BinaryTreeNode<E> *rightRightRotation(BinaryTreeNode<E> node);
 
 
-    virtual void remove(const E &) = 0;
+    void remove(const E e);
 
-    virtual void insert(E &) = 0;
+    void insert(const E e);
 
-    virtual void insert(BinaryTreeNode<E> node, const E &);
+    void insert(BinaryTreeNode<E> node, const E e);
 
-    virtual void remove(BinaryTreeNode node, const E &theE);
+    void remove(BinaryTreeNode<E> node, const E e);
+
+
+    void print();
+
 };
 
 

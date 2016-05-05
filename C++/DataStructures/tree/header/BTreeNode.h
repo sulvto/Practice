@@ -5,6 +5,10 @@
 #ifndef DATASTRUCTURES_NTREENODE_H
 #define DATASTRUCTURES_NTREENODE_H
 
+#include <iostream>
+
+using namespace std;
+
 template<class E>
 struct BTreeNode {
     E *keys; //array
@@ -52,7 +56,7 @@ public:
             }
             //child is full
             if (child[i + 1]->n == 2 * t - 1) {
-                child[i + 1]->splitChild(i + 1, child[i + 1]);
+                splitChild(i + 1, child[i + 1]);
                 if (keys[i + 1] < e) {
                     i++;
                 }
@@ -138,9 +142,7 @@ public:
                     child[i]->remove(e);
                 };
             }
-
         }
-
     }
 
     void fill(int index) {
@@ -163,7 +165,26 @@ public:
             cNode->n++;
             sNode->n--;
         } else if (index != n && child[index + 1]->n == t) {
+            BTreeNode *cNode = child[index];
+            BTreeNode *sNode = child[index + 1];
 
+            cNode->keys[cNode->n] = keys[index];
+            if (!cNode->leaf) {
+                cNode->child[cNode->n + 1] = sNode->child[0];
+            }
+
+            keys[index] = sNode->keys[0];
+
+            for (int i = 1; i < sNode->n; i++) {
+                sNode->keys[i - 1] = sNode->keys[i];
+            }
+            if (!sNode->leaf) {
+                for (int i = 1; i < sNode->n; i++) {
+                    sNode->child[i - 1] = sNode->child[i];
+                }
+            }
+            cNode->n++;
+            sNode->n--;
         } else {
             if (index != n) {
                 merge(index);
@@ -199,6 +220,34 @@ public:
         n--;
         delete sNode;
     }
+
+    void print(int l, bool end) {
+
+        for (int i = t*l; i > 0; i--) {
+            cout << " ";
+        }
+        cout << "|";
+        for (int i = 0; i < n; i++) {
+            cout << keys[i] << (i == n - 1 ? "" : ",");
+        }
+        cout << "|";
+        if (end) {
+            cout << endl;
+        }
+        for (int i = 0; i <= 2*t; i++) {
+            if (child[i] != NULL) {
+                child[i]->print(l - 1, end && child[i + 1] == NULL);
+
+                for (int i2 = t; i2> 0; i2--) {
+                    cout << " ";
+                }
+            }
+        }
+        if (end) {
+            cout << "========endl========" << endl;
+        }
+    }
+
 };
 
 

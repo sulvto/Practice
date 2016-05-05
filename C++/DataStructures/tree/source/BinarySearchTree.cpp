@@ -2,16 +2,17 @@
 // Created by qinchao on 16-4-26.
 //
 #include "../header/BinarySearchTree.h"
+#include <iostream>
 
 template<class E>
-E *BinarySearchTree<E>::find(const E &theE) const {
+E *BinarySearchTree<E>::find(const E e) const {
     BinaryTreeNode<E> *p = root;
     while (p != NULL) {
-        if (theE < p->element) {
+        if (e < p->element) {
             p = p->leftChild;
-        } else if (theE > p->element) {
+        } else if (e > p->element) {
             p = p->rightChild;
-        } else if (theE == p->element) {
+        } else if (e == p->element) {
             return &p->element;
         }
     }
@@ -19,24 +20,24 @@ E *BinarySearchTree<E>::find(const E &theE) const {
 }
 
 template<class E>
-void BinarySearchTree::insert(const E &theE) {
+void BinarySearchTree<E>::insert(const E e) {
     BinaryTreeNode<E> *p = root, *temp = NULL;
 
     while (p != NULL) {
         temp = p;
-        if (theE.first < p->element) {
+        if (e.first < p->element) {
             p = p->leftChild;
-        } else if (theE.first > p->element) {
+        } else if (e.first > p->element) {
             p = p->rightChild;
         } else {
-            p->element.second = theE.second;
+            p->element.second = e.second;
             return;
         }
     }
-    BinaryTreeNode<E> *newNode = new BinaryTreeNode(theE);
+    BinaryTreeNode<E> *newNode = new BinaryTreeNode<E>(e);
 
     if (temp != NULL) {
-        if (theE.first < temp->element) {
+        if (e.first < temp->element) {
             temp->leftChild = newNode;
         } else {
             temp->rightChild = newNode;
@@ -49,13 +50,14 @@ void BinarySearchTree::insert(const E &theE) {
 
 
 template<class E>
-void BinarySearchTree::remove(const E &theE) {
-    BinaryTreeNode<E> *target = root, *ptarget = NULL;
+void BinarySearchTree<E>::remove(const E e) {
+    BinaryTreeNode<E> *target = root;
+    BinaryTreeNode<E> *ptarget = NULL;
     while (target != NULL) {
         ptarget = target;
-        if (theE < target->element) {
+        if (e < target->element) {
             target = target->leftChild;
-        } else if (theE > target->element) {
+        } else if (e > target->element) {
             target = target->rightChild;
         } else {
             break;

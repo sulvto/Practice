@@ -36,14 +36,14 @@ public:
         return topIndex + 1;
     }
 
-    T &top() {
+    T *top() {
         if (topIndex == -1)
             throw "NULL";
         else
             return stack[topIndex];
     }
 
-    T pop() {
+    T *pop() {
         if (topIndex == -1) {
             throw "NULL";
         }

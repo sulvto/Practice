@@ -8,7 +8,7 @@
 #include <cassert>
 
 
-int main() {
+int TestQueue() {
     ArrayQueue<string> arrayQueue(10);
     arrayQueue.push("Array");
     arrayQueue.push("Queue");

@@ -18,11 +18,11 @@ private:
 
 public:
 
-    virtual E *find(const E &) const;
+     E *find(const E e) const;
 
-    virtual void remove(const E &) = 0;
+     void remove(const E e) ;
 
-    virtual void insert(const E &) = 0;
+     void insert(const E e) ;
 
 };
 

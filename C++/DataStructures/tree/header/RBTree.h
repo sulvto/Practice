@@ -72,9 +72,9 @@ public:
     BinaryTreeNode<pair<E, NodeColor>> *rightRotation(BinaryTreeNode<pair<E, NodeColor>> node);
 
 
-    virtual void remove(const E &) = 0;
+    void remove(const E e);
 
-    virtual void insert(E &) = 0;
+    void insert(E e);
 };
 
 

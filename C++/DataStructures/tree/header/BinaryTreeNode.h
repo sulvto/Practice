@@ -7,13 +7,15 @@
 
 #ifndef BINARYTREENODE_H_
 #define BINARYTREENODE_H_
+#include <iostream>
 
 template<class T>
 class BinaryTreeNode {
 
 public:
     T element;
-    BinaryTreeNode<T> *leftChild, *rightChild;
+    BinaryTreeNode<T> *leftChild;
+    BinaryTreeNode<T> *rightChild;
 
     BinaryTreeNode() {
         leftChild = rightChild = NULL;
