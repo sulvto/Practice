@@ -20,16 +20,15 @@ int main() {
     bTree->insert("a1");
     bTree->insert("a2");
     bTree->insert("a3");
-    bTree->print();
-
     bTree->insert("a4");
-    bTree->print();
     bTree->insert("a5");
-    bTree->print();
     bTree->insert("a6");
-    bTree->print();
+    bTree->insert("a7");
 
+    bTree->insert("a8");
 
-//    linkedBinaryTree->preOrder(linkedBinaryTree->root);
+    bTree->insert("a9");
+    bTree->remove("a8");
+    // linkedBinaryTree->preOrder(linkedBinaryTree->root);
     return 0;
 }

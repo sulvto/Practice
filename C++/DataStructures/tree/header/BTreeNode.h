@@ -6,6 +6,9 @@
 #define DATASTRUCTURES_NTREENODE_H
 
 #include <iostream>
+#include "../../queue/ArrayQueue.h"
+#include "BTree.h"
+#include "../../queue/ChainQueue.h"
 
 using namespace std;
 
@@ -14,10 +17,12 @@ struct BTreeNode {
     E *keys; //array
     // Minimum degree
     int t;
-    BTreeNode **child;
+    BTreeNode<E> **child;
     int n; // Current number of keys
     bool leaf;
 public:
+    BTreeNode();
+
     BTreeNode(int _t, bool _leaf) {
         t = _t;
         leaf = _leaf;
@@ -82,7 +87,7 @@ public:
         }
         child[i + 1] = z;
 
-        for (int j = n; j >= i; j--) {
+        for (int j = n - 1; j >= i; j--) {
             keys[j + 1] = keys[j];
         }
         keys[i] = y->keys[t - 1];
@@ -219,33 +224,6 @@ public:
         cNode->n += sNode->n + 1;
         n--;
         delete sNode;
-    }
-
-    void print(int l, bool end) {
-
-        for (int i = t*l; i > 0; i--) {
-            cout << " ";
-        }
-        cout << "|";
-        for (int i = 0; i < n; i++) {
-            cout << keys[i] << (i == n - 1 ? "" : ",");
-        }
-        cout << "|";
-        if (end) {
-            cout << endl;
-        }
-        for (int i = 0; i <= 2*t; i++) {
-            if (child[i] != NULL) {
-                child[i]->print(l - 1, end && child[i + 1] == NULL);
-
-                for (int i2 = t; i2> 0; i2--) {
-                    cout << " ";
-                }
-            }
-        }
-        if (end) {
-            cout << "========endl========" << endl;
-        }
     }
 
 };

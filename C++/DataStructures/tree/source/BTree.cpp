@@ -49,18 +49,3 @@ void BTree<E>::remove(E e) {
     // TODO
 }
 
-template <class E>
-void BTree<E>::print() {
-    if (root == NULL) {
-        cout << "empty" << endl;
-    } else {
-        BTreeNode<E> *node = root;
-        int i = 0;
-
-        while (!node->leaf) {
-            node = node->child[0];
-            i++;
-        }
-        root->print(i, true);
-    }
-}

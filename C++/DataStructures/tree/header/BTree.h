@@ -26,7 +26,6 @@ public:
 
     void remove(E e);
 
-    void print();
 };
 
 #endif //DATASTRUCTURES_BTREE_H
