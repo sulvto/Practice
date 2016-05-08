@@ -20,7 +20,7 @@ enum class NodeColor {
 
 
 template<class E>
-class RBTree : BinarySearchTree<pair<E, NodeColor>> {
+class RBTree {
 private:
     BinaryTreeNode<pair<E, NodeColor>> *root;
     int treeSize;
