@@ -7,6 +7,7 @@
 
 #ifndef BINARYTREENODE_H_
 #define BINARYTREENODE_H_
+
 #include <iostream>
 
 template<class T>

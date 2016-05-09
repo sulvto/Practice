@@ -12,7 +12,7 @@
 #define DATASTRUCTURES_RBTREE_H
 
 #include "BinarySearchTree.h"
-#include "../../stack/ArrayStack.h"
+#include "../stack/ArrayStack.h"
 
 enum class NodeColor {
     red, black
@@ -20,7 +20,7 @@ enum class NodeColor {
 
 
 template<class E>
-class RBTree {
+class RBTree : BinarySearchTree<pair<E, NodeColor>> {
 private:
     BinaryTreeNode<pair<E, NodeColor>> *root;
     int treeSize;

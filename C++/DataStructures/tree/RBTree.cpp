@@ -2,8 +2,8 @@
 // Created by sulvto on 16-5-1.
 //
 
-#include "../header/BinaryTreeNode.h"
-#include "../header/RBTree.h"
+#include "BinaryTreeNode.h"
+#include "RBTree.h"
 
 
 template<class E>
@@ -116,13 +116,15 @@ void RBTree<E>::insertCase1(ArrayStack<BinaryTreeNode<pair<E, NodeColor>>> *pare
 
 template<class E>
 void RBTree<E>::insert(const E e) {
-    ArrayStack<BinaryTreeNode<pair<E, NodeColor>>> parentStack;
-    BinaryTreeNode<pair<E, NodeColor>> *temp = root;
+
+    ArrayStack *parentStack = new ArrayStack();
+
+    BinaryTreeNode <pair<E, NodeColor>> *temp = root;
     if (root == NULL) {
         root = new BinaryTreeNode<pair<E, NodeColor>>(make_pair(e, NodeColor::red));
     } else {
         while (temp != NULL) {
-            parentStack.push(*temp);
+            parentStack->push(*temp);
             if (e > temp->element) {
                 temp = temp->rightChild;
             } else {
@@ -132,7 +134,7 @@ void RBTree<E>::insert(const E e) {
         temp = new BinaryTreeNode<pair<E, NodeColor>>(make_pair(e, NodeColor::red));
     }
 
-    insertCase1(&parentStack, temp);
+    insertCase1(parentStack, temp);
 
 }
 

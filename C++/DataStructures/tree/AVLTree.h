@@ -8,7 +8,7 @@
 #include "BinarySearchTree.h"
 
 template<class E>
-class AVLTree{
+class AVLTree : BinarySearchTree<E> {
 private:
     BinaryTreeNode<E> *root;
     int treeSize;

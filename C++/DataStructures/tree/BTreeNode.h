@@ -6,9 +6,9 @@
 #define DATASTRUCTURES_NTREENODE_H
 
 #include <iostream>
-#include "../../queue/ArrayQueue.h"
+#include "../queue/ArrayQueue.h"
 #include "BTree.h"
-#include "../../queue/ChainQueue.h"
+#include "../queue/ChainQueue.h"
 
 using namespace std;
 

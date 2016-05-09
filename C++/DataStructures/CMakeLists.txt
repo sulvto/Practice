@@ -3,5 +3,5 @@ project(DataStructures)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp tree/header/BinarySearchTree.h tree/source/LinkedBinaryTree.cpp tree/header/LinkedBinaryTree.h Dictionary.h tree/header/LinkedBinaryTree.h tree/header/BinaryTree.h tree/header/BinaryTreeNode.h tree/source/BinarySearchTree.cpp tree/header/AVLTree.h tree/source/AVLTree.cpp tree/header/RBTree.h tree/source/RBTree.cpp stack/ArrayStack.h stack/ChainStack.h queue/TestQueue.cpp tree/header/BTree.h tree/source/BTree.cpp tree/header/BTreeNode.h)
+set(SOURCE_FILES main.cpp tree/BinarySearchTree.h tree/LinkedBinaryTree.cpp tree/LinkedBinaryTree.h Dictionary.h tree/LinkedBinaryTree.h tree/BinaryTree.h tree/BinaryTreeNode.h tree/BinarySearchTree.cpp tree/AVLTree.h tree/AVLTree.cpp tree/RBTree.h tree/RBTree.cpp stack/ArrayStack.h stack/ChainStack.h queue/TestQueue.cpp tree/BTree.h tree/BTree.cpp tree/BTreeNode.h)
 add_executable(DataStructures ${SOURCE_FILES})

@@ -6,7 +6,7 @@
 #include <iostream>
 
 #include <stddef.h>
-#include "../header/BTree.h"
+#include "BTree.h"
 
 using namespace std;
 

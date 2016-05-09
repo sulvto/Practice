@@ -1,7 +1,7 @@
 //
 // Created by qinchao on 16-4-26.
 //
-#include "../header/BinarySearchTree.h"
+#include "BinarySearchTree.h"
 #include <iostream>
 
 template<class E>

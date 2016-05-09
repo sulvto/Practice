@@ -1,7 +1,7 @@
 //
 // Created by sulvto on 16-4-29.
 //
-#include "../header/AVLTree.h"
+#include "AVLTree.h"
 
 
 template<class E>

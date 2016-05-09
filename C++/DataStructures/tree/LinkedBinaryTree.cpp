@@ -2,9 +2,9 @@
 // Created by sulvto on 16-4-26.
 //
 
-#include "../header/BinaryTree.h"
-#include "../header/BinaryTreeNode.h"
-#include "../header/LinkedBinaryTree.h"
+#include "BinaryTree.h"
+#include "BinaryTreeNode.h"
+#include "LinkedBinaryTree.h"
 
 template<class T>
 void LinkedBinaryTree<T>::print(BinaryTreeNode<T> node) const {

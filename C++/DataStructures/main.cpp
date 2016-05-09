@@ -1,21 +1,32 @@
 #include <iostream>
 
-#include "tree/source/BTree.cpp"
-#include "tree/header/AVLTree.h"
+#include "tree/BTree.cpp"
+#include "tree/AVLTree.cpp"
+#include "tree/RBTree.cpp"
 
 using namespace std;
 
-int main() {
-//    AVLTree<string> *avlTree = new AVLTree<string>();
-//    avlTree->insert("a");
-//    avlTree->insert("av");
-//    avlTree->insert("aqrv");
-//    avlTree->insert("avaq");
-//    avlTree->insert("avtq3");
-//    avlTree->print();
+void testRBTree() {
+    RBTree<string> *rbTree = new RBTree<string>();
+    rbTree->insert("a1");
+    rbTree->insert("a2");
+    rbTree->insert("a3");
+    rbTree->insert("a4");
+}
 
 
-//    LinkedBinaryTree<int> linkedBinaryTree;
+void testAVLTree() {
+
+    AVLTree<string> *avlTree = new AVLTree<string>();
+    avlTree->insert("a");
+    avlTree->insert("av");
+    avlTree->insert("aqrv");
+    avlTree->insert("avaq");
+    avlTree->insert("avtq3");
+    avlTree->print();
+}
+
+void testBTree() {
     BTree<string> *bTree = new BTree<string>(2);
     bTree->insert("a1");
     bTree->insert("a2");
@@ -29,6 +40,16 @@ int main() {
 
     bTree->insert("a9");
     bTree->remove("a8");
+}
+
+
+int main() {
+
+
+    testRBTree();
+
+//    LinkedBinaryTree<int> linkedBinaryTree;
+
     // linkedBinaryTree->preOrder(linkedBinaryTree->root);
     return 0;
 }
