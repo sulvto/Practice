@@ -18,13 +18,10 @@ import java.util.concurrent.TimeUnit;
 public class Application {
 
     public static void main(String[] args) throws InterruptedException {
-        ApplicationContext context =
+        AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(Application.class);
+        context.start();
         MessagePrinter printer = context.getBean(MessagePrinter.class);
         printer.printMessage();
-
-        while (true) {
-            TimeUnit.SECONDS.sleep(5);
-        }
     }
 }
