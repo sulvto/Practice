@@ -14,7 +14,7 @@ public class OperationTest {
         double x = 10;
         double y= 10;
         for (Operation operation:
-             Operation.values()) {
+             BasicOperation.values()) {
             System.out.printf("%f %s %f = %f%n",x,operation,y,operation.apply(x, y));
         }
     }
