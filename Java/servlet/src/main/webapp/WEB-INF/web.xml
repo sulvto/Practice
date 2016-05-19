@@ -8,7 +8,7 @@
 	
 	<servlet>
 		<servlet-name>RegistHttpServlet</servlet-name>
-		<servlet-class>cn.itcast.cd.request.RegistHttpServlet</servlet-class>
+		<servlet-class>me.qinchao.request.RegistHttpServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegistHttpServlet</servlet-name>
@@ -18,26 +18,16 @@
 	
 	<servlet>
 		<servlet-name>RequestHttpServlet</servlet-name>
-		<servlet-class>cn.itcast.cd.request.RequestHttpServlet</servlet-class>
+		<servlet-class>me.qinchao.request.RequestHttpServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RequestHttpServlet</servlet-name>
 		<url-pattern>/request</url-pattern>		
 	</servlet-mapping>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	<servlet>
 		<servlet-name>HelloServlet</servlet-name>
-		<servlet-class>cn.itcast.cd.hello.HelloServlet</servlet-class>
+		<servlet-class>me.qinchao.hello.HelloServlet</servlet-class>
 	</servlet>
 	
 	<servlet-mapping>
@@ -48,7 +38,7 @@
 	
 	<servlet>
 		<servlet-name>HelloServletConfig</servlet-name>
-		<servlet-class>cn.itcast.cd.hello.HelloServletConfig</servlet-class>
+		<servlet-class>me.qinchao.hello.HelloServletConfig</servlet-class>
 		
 		<init-param>
 			<param-name>language</param-name>

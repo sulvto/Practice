@@ -1,4 +1,4 @@
-package cn.itcast.cd.hello;
+package me.qinchao.hello;
 
 import java.io.IOException;
 import java.util.Enumeration;
