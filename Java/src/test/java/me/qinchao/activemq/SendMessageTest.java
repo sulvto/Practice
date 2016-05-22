@@ -16,18 +16,17 @@ public class SendMessageTest {
         CountDownLatch countDownLatch = new CountDownLatch(2);
         new Thread(() -> {
             try {
-                new SendMessage().sendMessage();
+                new SendAndReceive().sendMessage();
             } catch (JMSException e) {
                 e.printStackTrace();
             } finally {
                 countDownLatch.countDown();
             }
-
         }).start();
 
         new Thread(() -> {
             try {
-                new SendMessage().receiveMessage();
+                new SendAndReceive().receiveMessage();
             } catch (JMSException e) {
                 e.printStackTrace();
             } finally {
@@ -40,12 +39,12 @@ public class SendMessageTest {
 
     @Test
     public void sendMessage() throws Exception {
-        new SendMessage().sendMessage();
+        new SendAndReceive().sendMessage();
     }
 
     @Test
     public void receiveMessage() throws Exception {
-        new SendMessage().receiveMessage();
+        new SendAndReceive().receiveMessage();
     }
 
 }

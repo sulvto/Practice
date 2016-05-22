@@ -8,14 +8,17 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by sulvto on 16-5-22.
  */
-public class SendMessage {
+public class SendAndReceive {
     private final String QUEUE_NAME = "FirstQueue";
+    private Connection connection;
 
+    public SendAndReceive() throws JMSException {
+        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
+        connection = activeMQConnectionFactory.createConnection("admin", "admin");
+        connection.start();
+    }
 
     void sendMessage() throws JMSException {
-        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
-        Connection connection = activeMQConnectionFactory.createConnection("admin", "admin");
-        connection.start();
         Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
         Queue firstQueue = session.createQueue(QUEUE_NAME);
 
@@ -34,13 +37,10 @@ public class SendMessage {
         }
 
         session.commit();
-        connection.close();
     }
 
     void receiveMessage() throws JMSException {
-        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
-        Connection connection = activeMQConnectionFactory.createConnection("admin", "admin");
-        connection.start();
+
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         Queue firstQueue = session.createQueue(QUEUE_NAME);
@@ -57,11 +57,14 @@ public class SendMessage {
                 } catch (InterruptedException e) {
                 }
             }
-
         }
 
-        connection.close();
     }
 
+    @Override
+    protected void finalize() throws Throwable {
 
+        connection.close();
+        super.finalize();
+    }
 }
