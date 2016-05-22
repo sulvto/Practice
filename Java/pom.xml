@@ -24,6 +24,14 @@
     </properties>
     <dependencies>
 
+        <!--activemq-->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>5.13.3</version>
+        </dependency>
+
+        <!-- protostuff -->
         <dependency>
             <groupId>io.protostuff</groupId>
             <artifactId>protostuff-core</artifactId>
@@ -37,11 +45,13 @@
         </dependency>
 
 
+        <!--netty-->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
             <version>5.0.0.Alpha1</version>
         </dependency>
+
 
         <!--zookeeper-->
         <dependency>
