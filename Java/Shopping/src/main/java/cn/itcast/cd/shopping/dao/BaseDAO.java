@@ -52,7 +52,7 @@ abstract public class BaseDAO {
 		newParams.addAll(qo.getParams());
 		newParams.add((pList.getCurrentPage()-1)*pList.getPageSize());//第一个?
 		newParams.add(pList.getPageSize());
-		List listData = this.query(sql, rsh, newParams.toArray());
+		List listData =  this.query(sql, rsh, newParams.toArray());
 		pList.setListData(listData);//设置结果集数据
 		//===================================================
 		//2:查询结果总数
