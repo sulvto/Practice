@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-	<bean name="productDirDAO" class="cn.itcast.cd.shopping.dao.impl.ProductDirDAOImpl"/>
-	<bean name="productDAO" class="cn.itcast.cd.shopping.dao.impl.ProductDAOImpl"/>
-	<bean name="userDAO" class="cn.itcast.cd.shopping.dao.impl.UserDAOImpl"/>
+	<bean name="productDirDAO" class="me.qinchao.shopping.dao.impl.ProductDirDAOImpl"/>
+	<bean name="productDAO" class="me.qinchao.shopping.dao.impl.ProductDAOImpl"/>
+	<bean name="userDAO" class="me.qinchao.shopping.dao.impl.UserDAOImpl"/>
 </beans>
