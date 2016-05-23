@@ -37,7 +37,7 @@ public class ProductDirServiceImpl implements IProductDirService {
 
 	@Override
 	public List<ProductDir> getByType(Integer num) {
-		String sql = "SELECT * FROM t_productDir LIMIT 0,?";
+		String sql = "SELECT * FROM t_productdir LIMIT 0,?";
 		return dao.query(sql, num);
 	}
 }

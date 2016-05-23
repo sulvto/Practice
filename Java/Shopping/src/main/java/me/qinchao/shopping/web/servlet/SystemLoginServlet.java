@@ -31,11 +31,11 @@ public class SystemLoginServlet extends BaseServlet {
 		//1.接受请求参数
 		String username = req.getParameter("username");//唯一
 		String password = req.getParameter("password");
+		System.out.println("u "+username);
 		System.out.println("p "+password);
 		String type = req.getParameter("type");
 		String ip = req.getRemoteAddr();
 		//2.调用业务方法处理请求:检查登录
-		System.out.println(type);
 		try {
 			User user = service.checkUser(username,password,ip);
 			String result = "{\"success\":true,\"msg\":\"登陆成功\",\"type\":\""+type+"\"}";

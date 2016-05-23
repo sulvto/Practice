@@ -45,8 +45,8 @@ public class UserDAOImpl extends BaseDAO implements IUserDAO {
 	}
 
 	public User getUserByUsername(String username) {
-		String sql = "SELECT * FROM t_user WHERE username = ? AND type != ?";
-		return super.query(sql, new BeanHandler<User>(User.class), username,1);
+		String sql = "SELECT * FROM t_user WHERE username = ?";
+		return super.query(sql, new BeanHandler<User>(User.class), username);
 	}
 
 	@Override

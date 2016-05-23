@@ -114,6 +114,7 @@ public class ProductServlet extends BaseServlet {
 			Product pro = dao.get(Long.valueOf(id));
 			req.setAttribute("pro", pro);
 		}
+		req.setAttribute("dirs", productDirDAO.getAll());
 		super.forward("/WEB-INF/views/Product/edit.jsp", req, resp);
 	}
 
@@ -135,8 +136,9 @@ public class ProductServlet extends BaseServlet {
 		ProductDir dir = new ProductDir();
 		dir.setId(Long.valueOf(dirId));
 		pro.setDir(dir);
-
-		if (dir.getId() != null) {
+		System.out.println(pro);
+		if (pro.getId() != null) {
+			System.out.println("update");
 			dao.update(pro);
 		} else {
 			System.out.println("save");

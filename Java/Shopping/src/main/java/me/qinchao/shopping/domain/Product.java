@@ -23,43 +23,52 @@ public class Product {
 	private Double cutOff = 1.0;// 折扣
 	private Date inputDate = new Date();// 录入时间
 	private Integer status = 0;// 商品状态(0:热卖中/1:下架了.....)
-	
-	
-	
-	
+
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getSn() {
 		return sn;
 	}
+
 	public void setSn(String sn) {
 		this.sn = sn;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public BigDecimal getMarketPrice() {
 		return marketPrice;
 	}
+
 	public void setMarketPrice(BigDecimal marketPrice) {
 		this.marketPrice = marketPrice;
 	}
+
 	public BigDecimal getCostPrice() {
 		return costPrice;
 	}
+
 	public void setCostPrice(BigDecimal costPrice) {
 		this.costPrice = costPrice;
 	}
+
 	public BigDecimal getSalePrice() {
 		return salePrice;
 	}
+
 	public void setSalePrice(BigDecimal salePrice) {
 		this.salePrice = salePrice;
 	}
@@ -67,75 +76,99 @@ public class Product {
 	public String getPlace() {
 		return place;
 	}
+
 	public void setPlace(String place) {
 		this.place = place;
 	}
+
 	public String getModel() {
 		return model;
 	}
+
 	public void setModel(String model) {
 		this.model = model;
 	}
+
 	public Integer getNum() {
 		return num;
 	}
+
 	public void setNum(Integer num) {
 		this.num = num;
 	}
+
 	public String getIntro() {
 		return intro;
 	}
+
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
+
 	public String getBigPic() {
 		return bigPic;
 	}
+
 	public void setBigPic(String bigPic) {
 		this.bigPic = bigPic;
 	}
+
 	public String getSmallPic() {
 		return smallPic;
 	}
+
 	public void setSmallPic(String smallPic) {
 		this.smallPic = smallPic;
 	}
+
 	public ProductDir getDir() {
 		return dir;
 	}
+
 	public void setDir(ProductDir dir) {
 		this.dir = dir;
 	}
+
 	public Integer getViewTimes() {
 		return viewTimes;
 	}
+
 	public void setViewTimes(Integer viewTimes) {
 		this.viewTimes = viewTimes;
 	}
+
 	public Boolean getRecommended() {
 		return recommended;
 	}
+
 	public void setRecommended(Boolean recommended) {
 		this.recommended = recommended;
 	}
+
 	public Double getCutOff() {
 		return cutOff;
 	}
+
 	public void setCutOff(Double cutOff) {
 		this.cutOff = cutOff;
 	}
+
 	public Date getInputDate() {
 		return inputDate;
 	}
+
 	public void setInputDate(Date inputDate) {
 		this.inputDate = inputDate;
 	}
+
 	public Integer getStatus() {
 		return status;
 	}
+
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", sn=" + sn + ", name=" + name
