@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cd.qin.pss.domain">
+
+	<class name="me.qinchao.pss.domain.Role">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<set name="resources" table="role_resource">
+			<key column="role_id" />
+			<many-to-many class="me.qinchao.pss.domain.Resource" column="resource_id" />
+		</set>
+		<set name="menus" table="role_menu">
+			<key column="role_id" />
+			<many-to-many class="me.qinchao.pss.domain.Menu" column="menu_id" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cd.qin.pss.domain">
+
+	<class name="me.qinchao.pss.domain.StockIncomeBill">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<!-- private Employee auditor; -->
+		<!-- private Employee buyer; -->
+		<!-- private Employee inputUser; -->
+		<!-- private Supplier suppiler; -->
+		<!-- private List<PurchaseBillItem> items; -->
+		<property name="vdate" />
+		<property name="totalAmount" />
+		<property name="totalNum" />
+		<property name="inputTime" />
+		<property name="auditorTime" />
+		<property name="status" />
+		<many-to-one name="auditor" column="auditor_id" />
+		<many-to-one name="keeper" column="keeper_id" />
+		<many-to-one name="inputUser" column="inputUser_id"
+			not-null="true" />
+		<many-to-one name="depot" column="depot_id" not-null="true"></many-to-one>
+		<many-to-one name="supplier" class="me.qinchao.pss.domain.Supplier" column="supplier_id"
+					 not-null="true"></many-to-one>
+		<!-- // 一般组合关系使用List -->
+		<!-- private List<PurchaseBillItem> items = new ArrayList<PurchaseBillItem>(); -->
+		<!-- inverse="true"表示自己放弃管理bill_id的值，由多方管理 -->
+		<!-- cascade="all"级联save-update,delete -->
+		<!-- delete-orphan在一方删除多方的数据：父亲删除某一个儿子 -->
+		<bag name="items" inverse="true" cascade="all-delete-orphan">
+			<!-- 必须PurchaseBillItem.hbm.xml里面定义外键一致 -->
+			<key column="bill_id" />
+			<one-to-many class="me.qinchao.pss.domain.PurchaseBillItem" />
+		</bag>
+	</class>
+</hibernate-mapping>

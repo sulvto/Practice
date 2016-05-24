@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.ui.theme" value="simple" />
+
+	<package name="default" namespace="/" extends="struts-default,json-default">
+		<!-- 拦截器栈组 -->
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="me.qinchao.pss.web.interceptor.LoginInterceptor"></interceptor>
+			<!-- 自定义一个拦截器栈 -->
+			<interceptor-stack name="pssStack">
+				<interceptor-ref name="store">
+					<!-- 重定向之后会把addActionMessage丢失,加入这个拦截器就不会丢失 -->
+					<param name="operationMode">AUTOMATIC</param>
+				</interceptor-ref>
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="paramsPrepareParamsStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- 修改默认的连接器栈 -->
+		<default-interceptor-ref name="pssStack"></default-interceptor-ref>
+		<global-results>
+			<result name="unauthorized">/WEB-INF/pages/unauthorized.html</result>
+			<result name="login">/WEB-INF/pages/login.jsp</result>
+			<result name="main" type="redirectAction">main</result>
+			<result name="ajaxResult" type="json">
+				<!-- 默认输出当前action的gettter属性为json字符串 -->
+				<!-- 先改变默认的输出对象，配置参数root -->
+				<param name="root">#map</param>
+				<!-- 排除null的属性不输出 -->
+				<param name="excludeNullProperties">true</param>
+			</result>
+			<!-- 文件下载 -->
+			<result name="download" type="stream">
+				<!-- tomcat/conf/web.xml -->
+				<param name="contentType">application/vnd.ms-excel</param>
+				<!-- public InputStream getInputStream() { -->
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">filename="${fileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<!-- 文件上传 -->
+			<!-- <result name="upload" type="stream"> -->
+			<!-- <param name="contentType">application/vnd.ms-excel</param> -->
+			<!-- <param name="inputName">inputStream</param> -->
+			<!-- <param name="contentDisposition">filename="${fileName}"</param> -->
+			<!-- <param name="bufferSize">4096</param> -->
+			<!-- </result> -->
+
+		</global-results>
+		<action name="login_*" class="loginAction"
+			method="{1}" />
+		<action name="main">
+			<result>/WEB-INF/pages/main.jsp</result>
+		</action>
+		<action name="right">
+			<result>/WEB-INF/pages/right.jsp</result>
+		</action>
+		<action name="left" class="me.qinchao.pss.web.LeftAction" />
+		<action name="employee_*" class="employeeAction"
+			method="{1}">
+			<result>WEB-INF/pages/employee/employee.jsp</result>
+			<result name="input">/WEB-INF/pages/employee/employee-input.jsp
+			</result>
+			<result name="reload" type="redirectAction">
+				<param name="actionName">employee</param>
+				<param name="baseQuery.currentPage">${baseQuery.currentPage}</param>
+				<param name="baseQuery.pageSize">${baseQuery.pageSize}</param>
+				<param name="baseQuery.name">${baseQuery.name}</param>
+				<param name="baseQuery.dept">${baseQuery.dept}</param>
+			</result>
+		</action>
+		<action name="*_*" class="{1}Action" method="{2}">
+			<result>WEB-INF/pages/{1}/{1}.jsp</result>
+			<result name="input">/WEB-INF/pages/{1}/{1}-input.jsp</result>
+			<result name="{2}">/WEB-INF/pages/{1}/{1}-{2}.jsp</result>
+			<result name="reload" type="redirectAction">
+				<param name="actionName">{1}</param>
+				<param name="baseQuery.currentPage">${baseQuery.currentPage}</param>
+				<param name="baseQuery.pageSize">${baseQuery.pageSize}</param>
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cd.qin.pss.domain">
+	<!-- private Long id; -->
+	<!-- private String name; -->
+	<!-- private String color; -->
+	<!-- private String pic; -->
+	<!-- private BigDecimal costPrice; -->
+	<!-- private BigDecimal salePrice; -->
+	<!-- public ProductType types; -->
+	<!-- public SystemDictionaryDetail theSystemDictionaryDetail; -->
+
+	<class name="me.qinchao.pss.domain.Product">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<property name="color" />
+		<property name="pic" />
+		<property name="costPrice" />
+		<property name="salePrice" />
+		<many-to-one name="types" class="me.qinchao.pss.domain.ProductType" column="types_id"></many-to-one>
+		<!-- private SystemDictionaryDetail unit;// 数据字典明细：单位 -->
+		<many-to-one name="unit" column="unit_id" not-null="true" />
+		<!-- private SystemDictionaryDetail brand;// 数据字典明细：品牌 -->
+		<many-to-one name="brand" column="brand_id" not-null="true" />
+
+	</class>
+</hibernate-mapping>
