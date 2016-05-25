@@ -13,7 +13,7 @@
 		</property>
 	</bean>
 	<!-- 定义触发时间 -->
-	<bean id="doTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="doTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail">
 			<ref bean="jobtask" />
 		</property>
