@@ -4,11 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -48,11 +44,14 @@ public class EmployeeAction extends CRUDAction<Employee> {
 	@InputConfig(methodName = "input")
 	public String save() throws Exception {
 		logger.debug("save");
+		System.out.println(employee);
 		for (Long id : ids) {
 			Role role = new Role(id);
 			System.out.println("role: " + role);
 			employee.getRoles().add(role);
 		}
+		System.out.println(employee);
+
 		if (employee.getDepartment() != null
 				&& employee.getDepartment().getId() == -1) {
 			employee.setDepartment(null);

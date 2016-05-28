@@ -46,7 +46,6 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
 
 	public void update(T t) {
 		baseDao.update(t);
-
 	}
 
 	public void delete(Serializable id) {

@@ -12,8 +12,11 @@ import me.qinchao.pss.web.BaseAction;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginInterceptor extends AbstractInterceptor {
+	private final static Logger LOGGER = LoggerFactory.getLogger(LoginInterceptor.class);
 
 	private static final long serialVersionUID = 1L;
 	private IEmployeeService employeeService;
@@ -34,7 +37,7 @@ public class LoginInterceptor extends AbstractInterceptor {
 		// (Employee) invocation.getInvocationContext()
 		// .getSession().get(BaseAction.LOGIN_USER);
 		if (employee == null) {
-			System.out.println("未登录");
+			LOGGER.debug("未登录");
 			return Action.LOGIN;
 		}
 		// 拦截权限
@@ -43,27 +46,27 @@ public class LoginInterceptor extends AbstractInterceptor {
 		String methodName = invocation.getProxy().getMethod();
 		String classMathodName = className + "." + methodName;
 		String allClassMethodName = className + ".ALL";
-		System.out.println("employee: " + employee.getName()
+		LOGGER.debug("employee: " + employee.getName()
 				+ "  classMathodName: " + classMathodName);
-		System.out.println("className: " + className + "   methodName: "
+		LOGGER.debug("className: " + className + "   methodName: "
 				+ methodName + "   classMathodName: " + classMathodName
 				+ "   allClassMethodName: " + allClassMethodName);
 		List<String> allMathods = employeeService.getAllResourceMethods();
 		if (allMathods.contains(classMathodName)
 				|| allMathods.contains(allClassMethodName)) {
-			System.out.println("需要权限");
+			LOGGER.debug("需要权限");
 			List<String> findResourceMehtods = employeeService
 					.findResourceMehtodsByLoginUser(employee);
-			System.out.println(findResourceMehtods);
+			LOGGER.debug(findResourceMehtods.toString());
 			if (findResourceMehtods.contains(classMathodName)
 					|| findResourceMehtods.contains(allClassMethodName)) {
-				System.out.println("  有权限");
+				LOGGER.debug("  有权限");
 			} else {
-				System.out.println("  没有权限");
+				LOGGER.debug("  没有权限");
 				return "unauthorized";
 			}
 		} else {
-			System.out.println("不需要权限");
+			LOGGER.debug("不需要权限");
 		}
 		return invocation.invoke();
 	}

@@ -17,6 +17,7 @@
 		scope="prototype">
 		<property name="employeeService" ref="employeeService" />
 		<property name="departmentService" ref="departmentService" />
+		<property name="roleService" ref="roleService" />
 	</bean>
 
 </beans>
