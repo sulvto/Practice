@@ -3,14 +3,13 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="me.qinchao.pss.domain">
 
-	<class name="SystemDictionaryType">
-		<id name="id">
-			<generator class="native" />
-		</id>
-		<property name="name" />
-		<property name="sn" />
-	</class>
-
+    <class name="SystemDictionaryType" table="systemdictionarytype">
+        <id name="id">
+            <generator class="native"/>
+        </id>
+        <property name="name"/>
+        <property name="sn"/>
+    </class>
 
 
 </hibernate-mapping>

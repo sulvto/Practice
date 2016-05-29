@@ -10,12 +10,12 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-	<bean id="stockIncomeBillItemService" class="me.qinchao.pss.service.impl.StockIncomeBillItemServiceImpl"
+	<bean id="purchaseBillItemService" class="me.qinchao.pss.service.impl.PurchaseBillItemServiceImpl"
 		parent="baseService" />
 
- 	<bean id="purchaseBillItemAction" class="me.qinchao.pss.web.StockIncomeBillItemAction"
- 		scope="prototype">
- 		<property name="stockIncomeBillItemService" ref="stockIncomeBillItemService" />
- 	</bean>
+	<bean id="purchaseBillAction" class="me.qinchao.pss.web.PurchaseBillItemAction"
+		scope="prototype">
+		<property name="purchaseBillItemService" ref="purchaseBillItemService" />
+	</bean>
 
 </beans>

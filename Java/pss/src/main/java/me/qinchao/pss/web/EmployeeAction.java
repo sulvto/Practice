@@ -43,7 +43,7 @@ public class EmployeeAction extends CRUDAction<Employee> {
     @Override
     @InputConfig(methodName = "input")
     public String save() throws Exception {
-        logger.info("save");
+        logger.info("save"); employee.getRoles().clear();
         for (Long id : ids) {
             employee.getRoles().add(new Role(id));
         }

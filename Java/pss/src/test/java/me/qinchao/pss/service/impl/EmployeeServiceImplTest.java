@@ -4,6 +4,7 @@ import me.qinchao.pss.domain.Employee;
 import me.qinchao.pss.domain.Role;
 import me.qinchao.pss.service.BaseServiceTest;
 import me.qinchao.pss.service.IEmployeeService;
+import me.qinchao.pss.service.IRoleService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -21,11 +22,17 @@ public class EmployeeServiceImplTest extends BaseServiceTest<Employee> {
     private final static Logger LOGGER = LoggerFactory.getLogger(EmployeeServiceImplTest.class);
     @Autowired
     private IEmployeeService employeeService;
+    @Autowired
+    private IRoleService roleService;
 
     @Test
     public void save() {
-        Employee t = new Employee("namaafe", "name");t.setId(19999L);
-        t.getRoles().add(new Role(1L));
+        Employee t = new Employee("na9877afhvse", "namoe");
+        Role e = new Role(1L);
+        e.setId(5L);
+        e.setName("cgrt");
+        t.getRoles().add(e);
+//        roleService.save(e);
         employeeService.save(t);
         Employee byLogin = employeeService.findByLogin("namaafe", "name");
         System.out.println(byLogin);

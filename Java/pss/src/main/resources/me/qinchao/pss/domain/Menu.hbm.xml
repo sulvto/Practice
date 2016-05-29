@@ -3,7 +3,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="me.qinchao.pss.domain">
 
-	<class name="Menu" table="Menu">
+	<class name="Menu" table="menu">
 		<id name="id">
 			<generator class="native" />
 		</id>

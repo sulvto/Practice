@@ -11,7 +11,7 @@
 	<!-- public ProductType types; -->
 	<!-- public SystemDictionaryDetail theSystemDictionaryDetail; -->
 
-	<class name="Product">
+	<class name="Product" table="product">
 		<id name="id">
 			<generator class="native" />
 		</id>

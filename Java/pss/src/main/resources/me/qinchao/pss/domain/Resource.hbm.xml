@@ -4,7 +4,7 @@
 
 <hibernate-mapping package="me.qinchao.pss.domain">
 
-	<class name="Resource">
+	<class name="Resource" table="resource">
 		<id name="id">
 			<generator class="native" />
 		</id>
