@@ -1,0 +1,5 @@
+firstIndex/
+将删除 .gitignore
+将删除 src/main/java/cd/itcast/ssh/query/
+将删除 src/main/webapp/WEB-INF/classes/cd/itcast/ssh/query/
+将删除 src/test/
