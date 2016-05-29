@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping  package="me.qinchao.domain">
+
+<class name="Department" table="department">
+		<id name="id" >
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<property name="provice" />
+		<property name="city" />
+		<property name="street" />
+		<property name="sn" length="4" />
+<!-- 		<property name="manager" column="manager_id"></property> -->
+		</class>
+</hibernate-mapping>
