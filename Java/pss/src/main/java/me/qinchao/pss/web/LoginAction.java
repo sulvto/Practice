@@ -39,7 +39,6 @@ public class LoginAction extends BaseAction {
 		if (employee != null) {
 			ServletActionContext.getContext().getSession()
 					.put(LOGIN_USER, employee);
-			System.out.println("----->  main");
 			return MAIN;
 		}
 		return LOGIN;

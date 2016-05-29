@@ -3,7 +3,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="me.qinchao.pss.domain">
 
-	<class name="me.qinchao.pss.domain.PurchaseBill">
+	<class name="PurchaseBill">
 		<id name="id">
 			<generator class="native" />
 		</id>
@@ -17,7 +17,7 @@
 		<many-to-one name="buyer" column="buyer_id" not-null="true" />
 		<many-to-one name="inputUser" column="inputUser_id"
 			not-null="true" />
-		<many-to-one name="supplier" class="me.qinchao.pss.domain.Supplier" column="supplier_id"
+		<many-to-one name="supplier" class="Supplier" column="supplier_id"
 					 not-null="true"></many-to-one>
 		<!-- // 一般组合关系使用List -->
 		<!-- private List<PurchaseBillItem> items = new ArrayList<PurchaseBillItem>(); -->
@@ -27,7 +27,7 @@
 		<bag name="items" inverse="true" cascade="all-delete-orphan">
 			<!-- 必须PurchaseBillItem.hbm.xml里面定义外键一致 -->
 			<key column="bill_id" />
-			<one-to-many class="me.qinchao.pss.domain.PurchaseBillItem" />
+			<one-to-many class="PurchaseBillItem" />
 		</bag>
 	</class>
 </hibernate-mapping>

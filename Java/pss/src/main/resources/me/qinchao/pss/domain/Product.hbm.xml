@@ -11,7 +11,7 @@
 	<!-- public ProductType types; -->
 	<!-- public SystemDictionaryDetail theSystemDictionaryDetail; -->
 
-	<class name="me.qinchao.pss.domain.Product">
+	<class name="Product">
 		<id name="id">
 			<generator class="native" />
 		</id>
@@ -20,7 +20,7 @@
 		<property name="pic" />
 		<property name="costPrice" />
 		<property name="salePrice" />
-		<many-to-one name="types" class="me.qinchao.pss.domain.ProductType" column="types_id"></many-to-one>
+		<many-to-one name="types" class="ProductType" column="types_id"></many-to-one>
 		<!-- private SystemDictionaryDetail unit;// 数据字典明细：单位 -->
 		<many-to-one name="unit" column="unit_id" not-null="true" />
 		<!-- private SystemDictionaryDetail brand;// 数据字典明细：品牌 -->

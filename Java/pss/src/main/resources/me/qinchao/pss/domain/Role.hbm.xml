@@ -3,18 +3,18 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="me.qinchao.pss.domain">
 
-	<class name="me.qinchao.pss.domain.Role">
+	<class name="Role" table="Role">
 		<id name="id">
 			<generator class="native" />
 		</id>
 		<property name="name" />
 		<set name="resources" table="RoleResource">
 			<key column="role_id" />
-			<many-to-many class="me.qinchao.pss.domain.Resource" column="resource_id" />
+			<many-to-many class="Resource" column="resource_id" />
 		</set>
 		<set name="menus" table="RoleMenu">
 			<key column="role_id" />
-			<many-to-many class="me.qinchao.pss.domain.Menu" column="menu_id" />
+			<many-to-many class="Menu" column="menu_id" />
 		</set>
 	</class>
 </hibernate-mapping>

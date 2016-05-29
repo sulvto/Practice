@@ -4,7 +4,7 @@
 
 <hibernate-mapping package="me.qinchao.pss.domain">
 
-	<class name="me.qinchao.pss.domain.Employee">
+	<class name="Employee" table="Employee">
 		<id name="id">
 			<generator class="native" />
 		</id>
@@ -12,12 +12,12 @@
 		<property name="password" />
 		<property name="email" />
 		<property name="age" />
-		<many-to-one name="department" class="me.qinchao.pss.domain.Department" column="department_id" />
+		<many-to-one lazy="false" name="department" class="Department" column="department_id" />
 		<!-- // 单向多对多：当前角色拥有的资源列表 -->
 		<!-- private Set<Role> roles = new HashSet<Role>(); -->
-		<set name="roles" table="EmployeeRole">
+		<set name="roles" lazy="false" table="EmployeeRole">
 			<key column="employee_id" />
-			<many-to-many class="me.qinchao.pss.domain.Role" column="role_id" />
+			<many-to-many class="Role" column="role_id" />
 		</set>
 	</class>
 </hibernate-mapping>
