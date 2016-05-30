@@ -10,15 +10,15 @@
 	<!-- <bean id="baseDAO" abstract="true"> <property name="sessionFactory" 
 		ref="sessionFactory" /> </bean> -->
 
-	<bean id="genericDAO" class="cd.itcast.ssh.dao.impl.AbstractGenericDAOImpl"
+	<bean id="genericDAO" class="me.qinchao.dao.impl.AbstractGenericDAOImpl"
 		abstract="true">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="cityDAO" class="cd.itcast.ssh.dao.impl.CityDAOImpl" parent="genericDAO" />
-	<bean id="tradeDAO" class="cd.itcast.ssh.dao.impl.TradeDAOImpl" parent="genericDAO" />
-	<bean id="companyTypeDAO" class="cd.itcast.ssh.dao.impl.CompanyTypeDAOImpl" parent="genericDAO" />
-	<bean id="companyDAO" class="cd.itcast.ssh.dao.impl.CompanyDAOImpl" parent="genericDAO" />
-	<bean id="salaryLevelDAO" class="cd.itcast.ssh.dao.impl.SalaryLevelDAOImpl" parent="genericDAO" />
-	<bean id="jobApplyDAO" class="cd.itcast.ssh.dao.impl.JobApplyDAOImpl" parent="genericDAO" />
+	<bean id="cityDAO" class="me.qinchao.dao.impl.CityDAOImpl" parent="genericDAO" />
+	<bean id="tradeDAO" class="me.qinchao.dao.impl.TradeDAOImpl" parent="genericDAO" />
+	<bean id="companyTypeDAO" class="me.qinchao.dao.impl.CompanyTypeDAOImpl" parent="genericDAO" />
+	<bean id="companyDAO" class="me.qinchao.dao.impl.CompanyDAOImpl" parent="genericDAO" />
+	<bean id="salaryLevelDAO" class="me.qinchao.dao.impl.SalaryLevelDAOImpl" parent="genericDAO" />
+	<bean id="jobApplyDAO" class="me.qinchao.dao.impl.JobApplyDAOImpl" parent="genericDAO" />
 </beans>

@@ -23,7 +23,7 @@
 	<context:property-placeholder location="classpath:db.properties" />
 
 	<!-- 创建datasource,因为hibernate在spring里面也是用的datasource连接数据库 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
@@ -49,12 +49,12 @@
 		</property>
 		<property name="mappingResources">
 			<list>
-				<value>cd/itcast/ssh/domain/City.hbm.xml</value>
-				<value>cd/itcast/ssh/domain/CompanyType.hbm.xml</value>
-				<value>cd/itcast/ssh/domain/Company.hbm.xml</value>
-				<value>cd/itcast/ssh/domain/Trade.hbm.xml</value>
-				<value>cd/itcast/ssh/domain/SalaryLevel.hbm.xml</value>
-				<value>cd/itcast/ssh/domain/JobApply.hbm.xml</value>
+				<value>me/qinchao/domain/City.hbm.xml</value>
+				<value>me/qinchao/domain/CompanyType.hbm.xml</value>
+				<value>me/qinchao/domain/Company.hbm.xml</value>
+				<value>me/qinchao/domain/Trade.hbm.xml</value>
+				<value>me/qinchao/domain/SalaryLevel.hbm.xml</value>
+				<value>me/qinchao/domain/JobApply.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

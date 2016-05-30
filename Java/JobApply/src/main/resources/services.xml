@@ -7,22 +7,22 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<bean id="cityService" class="cd.itcast.ssh.service.impl.CityServiceImpl">
+	<bean id="cityService" class="me.qinchao.service.impl.CityServiceImpl">
 		<property name="dao" ref="cityDAO" />
 	</bean>
-	<bean id="tradeService" class="cd.itcast.ssh.service.impl.TradeServiceImpl">
+	<bean id="tradeService" class="me.qinchao.service.impl.TradeServiceImpl">
 		<property name="dao" ref="tradeDAO" />
 	</bean>
-	<bean id="salaryLevelService" class="cd.itcast.ssh.service.impl.SalaryLevelServiceImpl">
+	<bean id="salaryLevelService" class="me.qinchao.service.impl.SalaryLevelServiceImpl">
 		<property name="dao" ref="salaryLevelDAO" />
 	</bean>
-	<bean id="companyTypeService" class="cd.itcast.ssh.service.impl.CompanyTypeServiceImpl">
+	<bean id="companyTypeService" class="me.qinchao.service.impl.CompanyTypeServiceImpl">
 		<property name="dao" ref="companyTypeDAO" />
 	</bean>
-	<bean id="companyService" class="cd.itcast.ssh.service.impl.CompanyServiceImpl">
+	<bean id="companyService" class="me.qinchao.service.impl.CompanyServiceImpl">
 		<property name="dao" ref="companyDAO" />
 	</bean>
-	<bean id="jobApplyService" class="cd.itcast.ssh.service.impl.JobApplyServiceImpl">
+	<bean id="jobApplyService" class="me.qinchao.service.impl.JobApplyServiceImpl">
 		<property name="dao" ref="jobApplyDAO" />
 	</bean>
 </beans>

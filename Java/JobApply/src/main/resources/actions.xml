@@ -7,31 +7,31 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<bean id="cityAction" class="cd.itcast.ssh.web.action.CityAction" scope="prototype">
+	<bean id="cityAction" class="me.qinchao.web.action.CityAction" scope="prototype">
 		<property name="service" ref="cityService" />
 	</bean>
-	<bean id="tradeAction" class="cd.itcast.ssh.web.action.TradeAction" scope="prototype">
+	<bean id="tradeAction" class="me.qinchao.web.action.TradeAction" scope="prototype">
 		<property name="service" ref="tradeService" />
 	</bean>
-	<bean id="salaryLevelAction" class="cd.itcast.ssh.web.action.SalaryLevelAction" scope="prototype">
+	<bean id="salaryLevelAction" class="me.qinchao.web.action.SalaryLevelAction" scope="prototype">
 		<property name="service" ref="salaryLevelService" />
 	</bean>
-	<bean id="companyTypeAction" class="cd.itcast.ssh.web.action.CompanyTypeAction" scope="prototype">
+	<bean id="companyTypeAction" class="me.qinchao.web.action.CompanyTypeAction" scope="prototype">
 		<property name="service" ref="companyTypeService" />
 	</bean>
-	<bean id="companyAction" class="cd.itcast.ssh.web.action.CompanyAction" scope="prototype">
+	<bean id="companyAction" class="me.qinchao.web.action.CompanyAction" scope="prototype">
 		<property name="service" ref="companyService" />
 		<property name="companyTypeService" ref="companyTypeService" />
 	</bean>
 	
-	<bean id="jobApplyAction" class="cd.itcast.ssh.web.action.JobApplyAction" scope="prototype">
+	<bean id="jobApplyAction" class="me.qinchao.web.action.JobApplyAction" scope="prototype">
 		<property name="service" ref="jobApplyService" />
 		<property name="companyService" ref="companyService" />
 		<property name="tradeService" ref="tradeService" />
 		<property name="cityService" ref="cityService" />
 		<property name="salaryLevelService" ref="salaryLevelService" />
 	</bean>
-	<bean id="jobApplySearchAction" class="cd.itcast.ssh.web.action.JobApplySearchAction" scope="prototype">
+	<bean id="jobApplySearchAction" class="me.qinchao.web.action.JobApplySearchAction" scope="prototype">
 		<property name="service" ref="jobApplyService" />
 		<property name="companyTypeService" ref="companyTypeService" />
 		<property name="tradeService" ref="tradeService" />
