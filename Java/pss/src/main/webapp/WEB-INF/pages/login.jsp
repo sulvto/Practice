@@ -8,6 +8,11 @@
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 <title>蓝源进销存(教学版)-系统登录页</title>
 <script type="text/javascript">
+
+	if(top!==window){
+		top.location.href = window.location.href;
+	}
+
 	function login_submit() {
 		document.forms[0].submit();
 	}

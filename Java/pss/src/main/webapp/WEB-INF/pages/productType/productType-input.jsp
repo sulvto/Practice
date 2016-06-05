@@ -50,14 +50,12 @@
 						<s:hidden name="baseQuery.currentPage" />
 						<s:hidden name="baseQuery.pageSize" />
 						<s:hidden name="id" />
-						<s:textfield name="name" label="名称" />
-<%-- 						<s:if test="id==null"> --%>
-<%-- 							<s:textfield name="password" label="密码" /> --%>
-<%-- 						</s:if> --%>
-<%-- 						<s:textfield name="age" label="年龄" /> --%>
-<%-- 						<s:textfield name="email" label="邮箱" /> --%>
-<%-- 						<s:select list="#dept" name="department.id" listKey="id" --%>
-<%-- 							listValue="name" headerKey="-1" headerValue="-请选择-" label="部门"></s:select> --%>
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr bgcolor="#FFFFFF">
+								<td width="22%" align="center">名称</td>
+								<td width="29%"><s:textfield name="name" label="名称"/></td>
+							</tr>
+						</table>
 					</s:form>
 				</div>
 				<div class="order-botton">

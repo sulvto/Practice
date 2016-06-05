@@ -34,8 +34,6 @@ public class LoginInterceptor extends AbstractInterceptor {
         // 拦截登录
         Employee employee = (Employee) ServletActionContext.getRequest()
                 .getSession().getAttribute(BaseAction.LOGIN_USER);
-        // (Employee) invocation.getInvocationContext()
-        // .getSession().get(BaseAction.LOGIN_USER);
         if (employee == null) {
             LOGGER.debug("未登录");
             return Action.LOGIN;
