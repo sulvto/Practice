@@ -14,7 +14,7 @@
 		<property name="auditorTime" />
 		<property name="status" />
 		<many-to-one name="auditor" column="auditor_id" />
-		<many-to-one name="buyer" column="buyer_id" not-null="true" />
+		<many-to-one name="buyer" column="buyer_id" />
 		<many-to-one name="inputUser" column="inputUser_id"
 			not-null="true" />
 		<many-to-one name="supplier" class="Supplier" column="supplier_id"

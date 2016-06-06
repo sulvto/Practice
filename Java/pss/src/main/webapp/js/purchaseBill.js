@@ -1,7 +1,6 @@
 $()
 		.ready(
 				function() {
-					// alert(1);
 					$("#purchaseBillForm").validate({
 
 						rules : {
@@ -21,7 +20,6 @@ $()
 					});
 
 					$("#itemTable img[code=searchProudct]").click(function() {
-						// alert("ssss");
 						var vReturnValue = window.showModalDialog("product_bill.action","","dialogHeight:550px;dialogWidth:850px;center:1;dialogTop:100px");
 						if (vReturnValue) {
 							var tr = $(this).closest("tr");
@@ -33,7 +31,6 @@ $()
 						}
 					});
 					$("#addItem").click(function() {
-						alert("克隆   清空");
 						// alert($("#itemTable tr:last").html());
 						// clone(true)克隆tr true-事件也克隆
 						var newTr = $("#itemTable tr:last").clone(true);
@@ -47,7 +44,6 @@ $()
 					});
 
 					$("#submitBtn").click(function() {
-						alert("ks");
 						 var flag = false;
 						$("#itemTable tr:gt(0)").each(function(inedx, item) {
 							// 把控件的name属性的索引进行修改
@@ -83,7 +79,6 @@ $()
 							}
 						
 						});
-						alert("js");
 						if(!flag) {
 							$("#purchaseBillForm").submit();
 						}

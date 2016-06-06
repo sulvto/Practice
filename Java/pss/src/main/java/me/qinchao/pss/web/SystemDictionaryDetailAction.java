@@ -23,7 +23,7 @@ public class SystemDictionaryDetailAction extends CRUDAction<SystemDictionaryDet
 
 	@Override
 	protected void list() {
-		logger.debug("List");
+		System.out.println("List");
 		// putContext("dept", departmentService.getAll());
 		this.pageResult = systemDictionaryDetailService.findPageResult(baseQuery);
 	}

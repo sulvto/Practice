@@ -56,14 +56,21 @@
                             <td width="29%"><s:textfield name="name" label="名称"/></td>
                         </tr>
                         <tr bgcolor="#FFFFFF">
-                            <td width="22%" align="center">resources</td>
+                            <td width="22%" align="center">资源</td>
                             <td width="29%">
-                                <s:checkboxlist list="#allResources" name="ids" listKey="id" listValue="name"
+                                <s:checkboxlist list="#allResources" name="resourceIds" listKey="id" listValue="name"
                                                 label="resources">
                                 </s:checkboxlist>
                             </td>
                         </tr>
-
+                        <tr bgcolor="#FFFFFF">
+                            <td width="22%" align="center">菜单</td>
+                            <td width="29%">
+                                <s:checkboxlist list="#allMenus" name="menuIds" listKey="id" listValue="name"
+                                                label="menus">
+                                </s:checkboxlist>
+                            </td>
+                        </tr>
                     </table>
                 </s:form>
             </div>

@@ -7,7 +7,13 @@ public class Menu {
 	private String icon;
 	private String url;
 	private Menu parent;
+	public Menu() {
 
+	}
+
+	public Menu(Long id) {
+		this.id = id;
+	}
 	// 额外添加输出属性
 	public boolean getIsParent() {
 		return parent == null;
@@ -59,8 +65,7 @@ public class Menu {
 
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + ", name=" + name + ", icon=" + icon
-				+ ", url=" + url + "]";
+		return this.name;
 	}
 
 }

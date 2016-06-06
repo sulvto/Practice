@@ -13,7 +13,7 @@
 	<bean id="purchaseBillItemService" class="me.qinchao.pss.service.impl.PurchaseBillItemServiceImpl"
 		parent="baseService" />
 
-	<bean id="purchaseBillAction" class="me.qinchao.pss.web.PurchaseBillItemAction"
+	<bean id="purchaseBillItemAction" class="me.qinchao.pss.web.PurchaseBillItemAction"
 		scope="prototype">
 		<property name="purchaseBillItemService" ref="purchaseBillItemService" />
 	</bean>

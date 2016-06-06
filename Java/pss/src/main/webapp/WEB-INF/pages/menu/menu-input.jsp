@@ -63,6 +63,16 @@
                             <td width="22%" align="center">icon：</td>
                             <td width="29%"><s:textfield name="icon"/></td>
                         </tr>
+                        <tr>
+                            <td width="22%" align="center">父菜单：</td>
+                            <td width="29%">
+                                <s:select
+                                        list="#allMenu" name="parent.id" listKey="id" listValue="name"
+                                        headerKey="-1" headerValue="-请选择-"
+                                        label="父菜单"></s:select></td>
+                            </td>
+                        </tr>
+
                     </table>
                 </s:form>
             </div>

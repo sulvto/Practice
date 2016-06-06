@@ -24,6 +24,7 @@ public class ProductTypeAction extends CRUDAction<ProductType> {
 	@Override
 	protected void list() {
 		logger.debug("List");
+		putContext("allProductType",productTypeService.getAll());
 		this.pageResult = productTypeService.findPageResult(baseQuery);
 	}
 

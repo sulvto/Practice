@@ -24,7 +24,7 @@ public class ResourceAction extends CRUDAction<Resource> {
 	@Override
 	protected void list() {
 		logger.debug("List");
-		System.out.println("liat");
+		System.out.println("List");
 		// putContext("ids", pageResult.getRows().get(arg0).getAll());
 		this.pageResult = resourceService.findPageResult(baseQuery);
 		System.out.println(pageResult);

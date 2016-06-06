@@ -55,6 +55,16 @@
 								<td width="22%" align="center">名称</td>
 								<td width="29%"><s:textfield name="name" label="名称"/></td>
 							</tr>
+							<tr bgcolor="#FFFFFF">
+								<td width="22%" align="center">描述</td>
+								<td width="29%"><s:textfield name="descs" label="描述"/></td>
+							</tr>
+							<tr bgcolor="#FFFFFF">
+								<td width="22%" align="center">父类型</td>
+								<td width="29%"><s:select
+										list="#allProductType" name="parent.id" listKey="id" listValue="name"
+										label="父类型"></s:select></td>
+							</tr>
 						</table>
 					</s:form>
 				</div>

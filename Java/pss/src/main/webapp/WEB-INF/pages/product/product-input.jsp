@@ -15,7 +15,6 @@
     <script type="text/javascript" src="js/product.js"></script>
     <title>成都蓝源进销存系统(教学版)-product编辑界面</title>
     <script type="text/javascript">
-        console.log(111);
         function submit() {
             document.forms[0].submit();
         }
@@ -25,8 +24,7 @@
         }
         function reset() {
 
-            $(
-                    "input[name!='id'][name!='baseQuery.pageSize'][name!='baseQuery.currentPage']")
+            $( "input[name!='id'][name!='baseQuery.pageSize'][name!='baseQuery.currentPage']")
                     .val("");
             $("select").val("-1");
         }
@@ -105,13 +103,6 @@
                         </tr>
                     </table>
 
-                    <%-- 						<s:if test="id==null"> --%>
-                    <%-- 							<s:textfield name="password" label="密码" /> --%>
-                    <%-- 						</s:if> --%>
-                    <%-- 						<s:textfield name="age" label="年龄" /> --%>
-                    <%-- 						<s:textfield name="email" label="邮箱" /> --%>
-                    <%-- 						<s:select list="#dept" name="department.id" listKey="id" --%>
-                    <%-- 							listValue="name" headerKey="-1" headerValue="-请选择-" label="部门"></s:select> --%>
                 </s:form>
             </div>
             <div class="order-botton">

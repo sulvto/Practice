@@ -17,6 +17,7 @@
 		scope="prototype">
 		<property name="roleService" ref="roleService" />
 		<property name="resourceService" ref="resourceService" />
+		<property name="menuService" ref="menuService" />
 	</bean>
 
 </beans>

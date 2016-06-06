@@ -21,6 +21,7 @@ public class StockIncomeBillAction extends CRUDAction<StockIncomeBill> {
 	@Override
 	protected void list() {
 		logger.debug("List");
+		System.out.println("StockIncomeBillList");
 		// putContext("alldept", departmentService.getAll());
 		this.pageResult = stockIncomeBillService.findPageResult(baseQuery);
 	}
@@ -64,7 +65,7 @@ public class StockIncomeBillAction extends CRUDAction<StockIncomeBill> {
 
 	@Override
 	public String input() throws Exception {
-		logger.debug("input");
+		System.out.println("input");
 //		putContext("dept", departmentService.getAll());
 		return INPUT;
 	}

@@ -26,8 +26,7 @@
 	}
 	function reset() {
 
-		$(
-				"input[name!='id'][name!='baseQuery.pageSize'][name!='baseQuery.currentPage']")
+		$("input[name!='id'][name!='baseQuery.pageSize'][name!='baseQuery.currentPage']")
 				.val("");
 		$("select").val("-1");
 	}
@@ -62,11 +61,15 @@
 							</tr>
 							<tr bgcolor="#FFFFFF">
 								<td height="30" align="center">供应商列表</td>
-								<td><s:select list="#allSuppliers" name="supplier.id"
-										listValue="name" listKey="id" /></td>
+								<td>
+									<s:select list="#allSuppliers" name="supplier.id"
+											listValue="name"  listKey="id" />
+								</td>
 								<td height="30" align="center">采购员列表</td>
-								<td><s:select list="#allBuyers" name="buyer.id"
-										listValue="name" listKey="id" /></td>
+								<td>
+									<s:select list="#allBuyers" name="buyer.id"
+											  listValue="name" listKey="id" />
+								</td>
 							</tr>
 						</table>
 						<table id="itemTable" width="100%" border="0" cellpadding="0"

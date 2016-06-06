@@ -46,7 +46,8 @@
 					style="background: url(images/table_bg.gif) repeat-x;">
 					<td width="13%" height="30">编号</td>
 					<td width="16%">名称</td>
-					<td width="15%">resources</td>
+					<td width="15%">资源</td>
+					<td width="15%">菜单</td>
 					<td width="16%">操作</td>
 				</tr>
 				<s:iterator value="pageResult.rows" >
@@ -54,6 +55,7 @@
 						<td height="28">${id}</td>
 						<td>${name}</td>
 						<td>${resources}</td>
+						<td>${menus}</td>
 						<td><img src="images/icon_3.gif" /> <span
 							style="line-height: 12px; text-align: center;"> <a
 								class="xiu" href="#" onclick="updateDomain('role',${id});">修改</a></span>

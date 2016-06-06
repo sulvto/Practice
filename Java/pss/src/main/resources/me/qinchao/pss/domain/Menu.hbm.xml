@@ -10,7 +10,7 @@
 		<property name="name" />
 		<property name="icon" />
 		<property name="url" />
-		<many-to-one name="parent" column="parent_id"></many-to-one>
+		<many-to-one lazy="false" name="parent" class="Menu" column="parent_id"></many-to-one>
 		<!-- private String icon; -->
 		<!-- private String url; -->
 		<!-- private Menu parent; -->
