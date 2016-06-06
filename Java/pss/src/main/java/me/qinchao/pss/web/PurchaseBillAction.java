@@ -113,7 +113,7 @@ public class PurchaseBillAction extends CRUDAction<PurchaseBill> {
             purchaseBill = purchaseBillService.get(id);
             purchaseBill.setSupplier(null);
             purchaseBill.setBuyer(null);
-            //映射文件的cascade="dll-delete-orphan"
+            //映射文件的cascade="all-delete-orphan"
             purchaseBill.getItems().clear();
 
         }

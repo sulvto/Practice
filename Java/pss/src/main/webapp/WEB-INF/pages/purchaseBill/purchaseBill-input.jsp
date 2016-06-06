@@ -21,8 +21,7 @@
 		document.forms[0].submit();
 	}
 	function cancel() {
-		// 		alert("ssss"); 
-		window.history.back();//获取浏览器缓存对象 
+		window.history.back();//获取浏览器缓存对象
 	}
 	function reset() {
 

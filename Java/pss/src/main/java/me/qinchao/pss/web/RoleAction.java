@@ -95,6 +95,7 @@ public class RoleAction extends CRUDAction<Role> {
         } else {
             role = roleService.get(id);// 持久状态
             role.getResources().clear();
+            role.getMenus().clear();
         }
     }
 

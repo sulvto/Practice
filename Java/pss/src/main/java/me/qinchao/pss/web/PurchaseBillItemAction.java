@@ -78,7 +78,6 @@ public class PurchaseBillItemAction extends CRUDAction<PurchaseBillItem> {
 	@Override
 	public void list() {
 		logger.debug("List");
-		System.out.println("PurchaseBillItemList");
 		this.pageResult = purchaseBillItemService.findPageResult(baseQuery);
 	}
 

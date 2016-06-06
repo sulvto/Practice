@@ -18,12 +18,15 @@ $()
 							}
 						}
 					});
-
+  
 					$("#itemTable img[code=searchProudct]").click(function() {
+						if(!window.showModalDialog) {
+							alert('请切换Firefox浏览器');
+							return;
+						}
 						var vReturnValue = window.showModalDialog("product_bill.action","","dialogHeight:550px;dialogWidth:850px;center:1;dialogTop:100px");
 						if (vReturnValue) {
 							var tr = $(this).closest("tr");
-							// alert(tr.html());
 							tr.find("input[code=productId]").val(vReturnValue.id);
 							tr.find("input[code=productName]").val(vReturnValue.name);
 							tr.find("input[code=itemPrice]").val(vReturnValue.costPrice);
@@ -31,7 +34,6 @@ $()
 						}
 					});
 					$("#addItem").click(function() {
-						// alert($("#itemTable tr:last").html());
 						// clone(true)克隆tr true-事件也克隆
 						var newTr = $("#itemTable tr:last").clone(true);
 						newTr.find("input[code=productId]").val("");
@@ -40,6 +42,8 @@ $()
 						newTr.find("input[code=itemNum]").val("");
 						newTr.find("td[code=itemAmount]").html("");
 						newTr.find("td[code=productColor]").html("");
+						newTr.find("td[code=itemDescs]").html("");
+
 						$("#itemTable").append(newTr);
 					});
 
@@ -96,9 +100,6 @@ $()
 						var itemNum = tr.find("input[code=itemNum]").val();
 						var amount = (itemNum*itemPrice).toFixed(2);
 //						<td code="itemAmount"></td>
-//						alert(itemPrice);
-//						alert(itemNum);
-//						alert(amount);
 						tr.find("td[code=itemAmount]").html(amount);
 					});
 				});

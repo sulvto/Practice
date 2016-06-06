@@ -63,6 +63,7 @@
 								<td width="22%" align="center">父类型</td>
 								<td width="29%"><s:select
 										list="#allProductType" name="parent.id" listKey="id" listValue="name"
+										headerKey="-1" headerValue="-请选择-"
 										label="父类型"></s:select></td>
 							</tr>
 						</table>

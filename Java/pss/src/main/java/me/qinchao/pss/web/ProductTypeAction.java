@@ -24,7 +24,6 @@ public class ProductTypeAction extends CRUDAction<ProductType> {
 	@Override
 	protected void list() {
 		logger.debug("List");
-		putContext("allProductType",productTypeService.getAll());
 		this.pageResult = productTypeService.findPageResult(baseQuery);
 	}
 
@@ -32,7 +31,10 @@ public class ProductTypeAction extends CRUDAction<ProductType> {
 	@InputConfig(methodName = "input")
 	public String save() throws Exception {
 		logger.debug("save");
-
+		if (productType.getParent() != null
+				&& productType.getParent().getId() == -1) {
+			productType.setParent(null);
+		}
 		if (id != null) {
 			productTypeService.update(productType);
 		} else {
@@ -67,7 +69,7 @@ public class ProductTypeAction extends CRUDAction<ProductType> {
 	@Override
 	public String input() throws Exception {
 		logger.debug("input");
-//		putContext("dept", departmentService.getAll());
+		putContext("allProductType",productTypeService.getAll());
 		return INPUT;
 	}
 

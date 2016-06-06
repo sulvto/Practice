@@ -43,11 +43,10 @@ public class EmployeeAction extends CRUDAction<Employee> {
     @Override
     @InputConfig(methodName = "input")
     public String save() throws Exception {
-        logger.info("save"); employee.getRoles().clear();
+        logger.info("save");
         for (Long id : ids) {
             employee.getRoles().add(new Role(id));
         }
-        logger.info(employee.toString());
 
         if (employee.getDepartment() != null
                 && employee.getDepartment().getId() == -1) {
@@ -190,7 +189,7 @@ public class EmployeeAction extends CRUDAction<Employee> {
             strings[2] = employee.getPassword();
             strings[3] = employee.getEmail();
             strings[4] = employee.getAge().toString();
-            strings[5] = employee.getDepartment().getName();
+            strings[5] = employee.getDepartment()!=null?employee.getDepartment().getName():"";
             list.add(strings);
         }
         this.inputStream = employeeService.exp(heads, list);
