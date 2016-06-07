@@ -27,7 +27,6 @@ public enum HibarnateUtil {
 	}
 
 	public void close() {
-		System.out.println(00000000000000);
 		Session session = threadLocal.get();
 		if (session != null && session.isOpen()) {
 			session.close();
