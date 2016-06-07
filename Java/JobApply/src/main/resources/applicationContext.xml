@@ -15,8 +15,6 @@
 
 	<import resource="classpath:daos.xml" />
 	<import resource="classpath:services.xml" />
-
-
 	<import resource="classpath:actions.xml" />
 
 	<!-- 加载连接信息的properties文件 -->
@@ -49,12 +47,12 @@
 		</property>
 		<property name="mappingResources">
 			<list>
-				<value>me/qinchao/domain/City.hbm.xml</value>
-				<value>me/qinchao/domain/CompanyType.hbm.xml</value>
-				<value>me/qinchao/domain/Company.hbm.xml</value>
-				<value>me/qinchao/domain/Trade.hbm.xml</value>
-				<value>me/qinchao/domain/SalaryLevel.hbm.xml</value>
-				<value>me/qinchao/domain/JobApply.hbm.xml</value>
+				<value>me.qinchao.domain/City.hbm.xml</value>
+				<value>me.qinchao.domain/CompanyType.hbm.xml</value>
+				<value>me.qinchao.domain/Company.hbm.xml</value>
+				<value>me.qinchao.domain/Trade.hbm.xml</value>
+				<value>me.qinchao.domain/SalaryLevel.hbm.xml</value>
+				<value>me.qinchao.domain/JobApply.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -67,5 +65,5 @@
 
 	<!-- 开启声明式事务管理 -->
 	<tx:annotation-driven transaction-manager="transcationManager" 
-		/> 
+		/>
 </beans>

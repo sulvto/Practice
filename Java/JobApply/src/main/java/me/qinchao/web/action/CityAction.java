@@ -9,37 +9,44 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class CityAction  extends ActionSupport {
 	private static final long serialVersionUID = 1L;
-	private City city;
+
+	private ICityService cityService;
+
+	private City city = new City();
 	private Long id;
 	private List<City> citys;
 
-	private ICityService service;
 
-
+	public void setCityService(ICityService cityService) {
+		System.out.println(cityService);
+		this.cityService = cityService;
+	}
 
 
 	public String list() {
-		this.citys = this.service.listCitys();
+		this.citys = this.cityService.listCitys();
 		return "list";
 	}
 
 	public String edit() {
 		if (id != null)
-			this.city = this.service.getCity(id);
+			this.city = this.cityService.getCity(id);
 		return INPUT;
 	}
 
 	public String update() {
+		System.out.println(this.cityService);
+
 		if (this.city.getId() != null)
-			this.service.updateCity(city);
+			this.cityService.updateCity(city);
 		else
-			this.service.saveCity(city);
+			this.cityService.saveCity(city);
 		return SUCCESS;
 	}
 
 	public String delete() {
 		if (this.id != null) {
-			this.service.deleteCity(id);
+			this.cityService.deleteCity(id);
 		}
 		return SUCCESS;
 	}
@@ -64,8 +71,8 @@ public class CityAction  extends ActionSupport {
 		this.id = id;
 	}
 
-	public void setService(ICityService service) {
-		this.service = service;
+	public ICityService getCityService() {
+		return cityService;
 	}
-	
+
 }

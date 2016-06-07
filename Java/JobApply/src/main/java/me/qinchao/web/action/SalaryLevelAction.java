@@ -13,33 +13,33 @@ public class SalaryLevelAction  extends ActionSupport {
 	private Long id;
 	private List<SalaryLevel> salaryLevels;
 
-	private ISalaryLevelService service;
+	private ISalaryLevelService salaryLevelService;
 
 
 
 
 	public String list() {
-		this.salaryLevels = this.service.listSalaryLevels();
+		this.salaryLevels = this.salaryLevelService.listSalaryLevels();
 		return "list";
 	}
 
 	public String edit() {
 		if (id != null)
-			this.salaryLevel = this.service.getSalaryLevel(id);
+			this.salaryLevel = this.salaryLevelService.getSalaryLevel(id);
 		return INPUT;
 	}
 
 	public String update() {
 		if (this.salaryLevel.getId() != null)
-			this.service.updateSalaryLevel(salaryLevel);
+			this.salaryLevelService.updateSalaryLevel(salaryLevel);
 		else
-			this.service.saveSalaryLevel(salaryLevel);
+			this.salaryLevelService.saveSalaryLevel(salaryLevel);
 		return SUCCESS;
 	}
 
 	public String delete() {
 		if (this.id != null) {
-			this.service.deleteSalaryLevel(id);
+			this.salaryLevelService.deleteSalaryLevel(id);
 		}
 		return SUCCESS;
 	}
@@ -64,8 +64,7 @@ public class SalaryLevelAction  extends ActionSupport {
 		this.id = id;
 	}
 
-	public void setService(ISalaryLevelService service) {
-		this.service = service;
+	public void setSalaryLevelService(ISalaryLevelService salaryLevelService) {
+		this.salaryLevelService = salaryLevelService;
 	}
-	
 }

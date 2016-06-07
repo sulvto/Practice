@@ -27,7 +27,7 @@ public class JobApplyAction extends ActionSupport {
 	private List<Trade> trades;
 	private List<SalaryLevel> salayLevels;
 
-	private IJobApplyService service;
+	private IJobApplyService jobApplyService;
 	private ICityService cityService;
 	private ITradeService tradeService;
 	private ICompanyService companyService;
@@ -36,12 +36,12 @@ public class JobApplyAction extends ActionSupport {
 	private List<Job> job;
 
 	public String view() {
-		jobApply = service.getJobApply(id);
+		jobApply = this.jobApplyService.getJobApply(id);
 		return "view";
 	}
 
 	public String list() {
-		this.jobApplys = this.service.listJobApplys();
+		this.jobApplys = this.jobApplyService.listJobApplys();
 		return "list";
 	}
 
@@ -51,27 +51,27 @@ public class JobApplyAction extends ActionSupport {
 		salayLevels = salaryLevelService.listSalaryLevels();
 		companys = companyService.listCompanys();
 		if (id != null)
-			this.jobApply = this.service.getJobApply(id);
+			this.jobApply = this.jobApplyService.getJobApply(id);
 		return INPUT;
 	}
 
 	public String update() {
 		if (this.jobApply.getId() != null)
-			this.service.updateJobApply(jobApply);
+			this.jobApplyService.updateJobApply(jobApply);
 		else
-			this.service.saveJobApply(jobApply);
+			this.jobApplyService.saveJobApply(jobApply);
 		return SUCCESS;
 	}
 
 	public String search() {
-		this.job = this.service.search(keywords);
+		this.job = this.jobApplyService.search(keywords);
 		ActionContext.getContext().put("jobs", job.size());
 		ActionContext.getContext().put("keywords", keywords);
 		return "search";
 	}
 
 	public String recreateIndex() {
-		this.service.createIndex();
+		this.jobApplyService.createIndex();
 		return "success";
 	}
 
@@ -81,7 +81,7 @@ public class JobApplyAction extends ActionSupport {
 
 	public String delete() {
 		if (this.id != null) {
-			this.service.deleteJobApply(id);
+			this.jobApplyService.deleteJobApply(id);
 		}
 		return SUCCESS;
 	}
@@ -106,8 +106,8 @@ public class JobApplyAction extends ActionSupport {
 		this.id = id;
 	}
 
-	public void setService(IJobApplyService service) {
-		this.service = service;
+	public void setJobApplyService(IJobApplyService jobApplyService) {
+		this.jobApplyService = jobApplyService;
 	}
 
 	public List<Company> getCompanys() {

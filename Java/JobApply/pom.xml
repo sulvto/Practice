@@ -21,6 +21,7 @@
         <aspectj.version>1.8.6</aspectj.version>
         <lucene.version>3.0.1</lucene.version>
         <apache.commons.version>3.4</apache.commons.version>
+        <struts.version>2.3.15</struts.version>
 
     </properties>
     <dependencies>
@@ -33,8 +34,8 @@
 
         <dependency>
             <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-core</artifactId>
-            <version>2.3.15.3</version>
+            <artifactId>struts2-spring-plugin</artifactId>
+            <version>${struts.version}</version>
         </dependency>
 
         <dependency>
@@ -50,10 +51,11 @@
         </dependency>
 
         <!--<dependency>-->
-        <!--<groupId>org.wltea.ik-analyzer</groupId>-->
-        <!--<artifactId>ik-analyzer</artifactId>-->
-        <!--<version>3.2.8</version>-->
+            <!--<groupId>org.wltea.ik-analyzer</groupId>-->
+            <!--<artifactId>ik-analyzer</artifactId>-->
+            <!--<version>3.2.8</version>-->
         <!--</dependency>-->
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -63,7 +65,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
-            <version>${apache.commons.version}</version>
+            <version>2.1</version>
         </dependency>
 
         <dependency>
@@ -90,39 +92,54 @@
             <version>${lucene.version}</version>
         </dependency>
         <!--springframework-->
+
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
+            <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
+            <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
             <version>${spring.version}</version>
         </dependency>
 

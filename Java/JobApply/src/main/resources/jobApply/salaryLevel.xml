@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
 	<package name="salaryLevel" namespace="/" extends="struts-default">
-		<action name="salaryLevel_*" method="{1}" class="salaryLevelAction">
+		<action name="salaryLevel_*" method="{1}" class="me.qinchao.web.action.SalaryLevelAction">
 			<result name="list">/WEB-INF/jsps/salaryLevel/list.jsp</result>
 			<result name="input">/WEB-INF/jsps/salaryLevel/edit.jsp</result>
 			<result name="success" type="redirectAction">salaryLevel_list</result>

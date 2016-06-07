@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
 	<package name="trade" namespace="/" extends="struts-default">
-		<action name="trade_*" method="{1}" class="tradeAction">
+		<action name="trade_*" method="{1}" class="me.qinchao.web.action.TradeAction">
 			<result name="list">/WEB-INF/jsps/trade/list.jsp</result>
 			<result name="input">/WEB-INF/jsps/trade/edit.jsp</result>
 			<result name="success" type="redirectAction">trade_list</result>

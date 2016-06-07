@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
 	<package name="companyType" namespace="/" extends="struts-default">
-		<action name="companyType_*" method="{1}" class="companyTypeAction">
+		<action name="companyType_*" method="{1}" class="me.qinchao.web.action.CompanyTypeAction">
 			<result name="list">/WEB-INF/jsps/companyType/list.jsp</result>
 			<result name="input">/WEB-INF/jsps/companyType/edit.jsp</result>
 			<result name="success" type="redirectAction">companyType_list</result>

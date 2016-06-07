@@ -13,33 +13,33 @@ public class CompanyTypeAction  extends ActionSupport {
 	private Long id;
 	private List<CompanyType> companyTypes;
 
-	private ICompanyTypeService service;
+	private ICompanyTypeService companyTypeService;
 
 
 
 
 	public String list() {
-		this.companyTypes = this.service.listCompanyTypes();
+		this.companyTypes = this.companyTypeService.listCompanyTypes();
 		return "list";
 	}
 
 	public String edit() {
 		if (id != null)
-			this.companyType = this.service.getCompanyType(id);
+			this.companyType = this.companyTypeService.getCompanyType(id);
 		return INPUT;
 	}
 
 	public String update() {
 		if (this.companyType.getId() != null)
-			this.service.updateCompanyType(companyType);
+			this.companyTypeService.updateCompanyType(companyType);
 		else
-			this.service.saveCompanyType(companyType);
+			this.companyTypeService.saveCompanyType(companyType);
 		return SUCCESS;
 	}
 
 	public String delete() {
 		if (this.id != null) {
-			this.service.deleteCompanyType(id);
+			this.companyTypeService.deleteCompanyType(id);
 		}
 		return SUCCESS;
 	}
@@ -64,8 +64,8 @@ public class CompanyTypeAction  extends ActionSupport {
 		this.id = id;
 	}
 
-	public void setService(ICompanyTypeService service) {
-		this.service = service;
+	public void setCompanyTypeService(ICompanyTypeService companyTypeService) {
+		this.companyTypeService = companyTypeService;
 	}
-	
+
 }

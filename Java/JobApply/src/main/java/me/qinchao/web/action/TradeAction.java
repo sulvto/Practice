@@ -13,33 +13,33 @@ public class TradeAction  extends ActionSupport {
 	private Long id;
 	private List<Trade> trades;
 
-	private ITradeService service;
+	private ITradeService tradeService;
 
 
 
 
 	public String list() {
-		this.trades = this.service.listTrades();
+		this.trades = this.tradeService.listTrades();
 		return "list";
 	}
 
 	public String edit() {
 		if (id != null)
-			this.trade = this.service.getTrade(id);
+			this.trade = this.tradeService.getTrade(id);
 		return INPUT;
 	}
 
 	public String update() {
 		if (this.trade.getId() != null)
-			this.service.updateTrade(trade);
+			this.tradeService.updateTrade(trade);
 		else
-			this.service.saveTrade(trade);
+			this.tradeService.saveTrade(trade);
 		return SUCCESS;
 	}
 
 	public String delete() {
 		if (this.id != null) {
-			this.service.deleteTrade(id);
+			this.tradeService.deleteTrade(id);
 		}
 		return SUCCESS;
 	}
@@ -64,8 +64,11 @@ public class TradeAction  extends ActionSupport {
 		this.id = id;
 	}
 
-	public void setService(ITradeService service) {
-		this.service = service;
+	public ITradeService getTradeService() {
+		return tradeService;
 	}
-	
+
+	public void setTradeService(ITradeService tradeService) {
+		this.tradeService = tradeService;
+	}
 }

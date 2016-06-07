@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.1.7.dtd">
 <struts>
 	<package name="jobApply" namespace="/" extends="struts-default">
-		<action name="jobApply_*" method="{1}" class="jobApplyAction">
+		<action name="jobApply_*" method="{1}" class="me.qinchao.web.action.JobApplyAction">
 			<result name="list">/WEB-INF/jsps/jobApply/list.jsp</result>
 			<result name="input">/WEB-INF/jsps/jobApply/edit.jsp</result>
 			<result name="view">/WEB-INF/jsps/jobApply/view.jsp</result>

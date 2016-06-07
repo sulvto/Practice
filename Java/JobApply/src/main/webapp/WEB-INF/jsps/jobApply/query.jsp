@@ -24,16 +24,14 @@
 <!-- <center > -->
 	<s:if test="%{#jobs==0}">抱歉,未找到任何结果...</s:if><s:else>搜索到${jobs}条结果...</s:else>
 	<fieldset  style="width: 800px">
-<%-- 	<legend><s:if test="%{#jobs==0}">抱歉,未找到任何结果...</s:if><s:else>搜索到${jobs}条结果...</s:else></legend> --%>
 	<s:iterator value="job">
 		<tr>
-<%-- 			<td><s:property value="id" /></td> --%>
 			<a href="#"><u><td><s:property value="title"  escapeHtml="false" /></td></u></a><br>
 			<td><s:property value="company"  escapeHtml="false" /></td> -
 			<td><s:property value="city"  escapeHtml="false"/></td><br>
 			<td><s:property value="content" escapeHtml="false" /></td><br>
-			<td><s:property value="companyType" /></td>
-			<td><s:property value="trade" /></td>
+			<td><s:property value="companyType" escapeHtml="false"/></td>
+			<td><s:property value="trade" escapeHtml="false"/></td>
 			<td><s:property value="salaryLevel" /></td>
 			<td><a
 				href="<s:url action="#"><s:param name="id" value="id"/></s:url>">屏蔽</a>
