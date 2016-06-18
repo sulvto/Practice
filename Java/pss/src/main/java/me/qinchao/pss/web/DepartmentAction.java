@@ -24,7 +24,6 @@ public class DepartmentAction extends CRUDAction<Department> {
 	@Override
 	protected void list() {
 		logger.debug("List");
-		System.out.println(baseQuery);
 		// putContext("dept", departmentService.getAll());
 		this.pageResult = departmentService.findPageResult(baseQuery);
 	}

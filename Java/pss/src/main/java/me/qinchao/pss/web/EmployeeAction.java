@@ -34,7 +34,8 @@ public class EmployeeAction extends CRUDAction<Employee> {
 
     @Override
     protected void list() {
-        logger.debug("List");
+        logger.error("List");
+        logger.debug("==================================================");
         logger.info(baseQuery.toString());
         putContext("allDepts", departmentService.getAll());
         this.pageResult = employeeService.findPageResult(baseQuery);
@@ -159,7 +160,6 @@ public class EmployeeAction extends CRUDAction<Employee> {
             for (Role role : roles) {
                 ids[index++] = role.getId();
             }
-            System.out.println(ids);
         }
     }
 
