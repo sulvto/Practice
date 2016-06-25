@@ -8,10 +8,8 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.NIOFSDirectory;
@@ -62,9 +60,8 @@ public class Lucene6_1 {
         Directory directory = new NIOFSDirectory(Paths.get(indexPath));
         IndexReader indexReader = DirectoryReader.open(directory);
         IndexSearcher searcher = new IndexSearcher(indexReader);
-        Analyzer a = new IKAnalyzer();// 中文分词器
-        QueryParser parser = new QueryParser(Version.LUCENE_30, "content", a);
-        Query query = parser.parse(searchKey);
+        Analyzer analyzer = new IKAnalyzer();// 中文分词器
+        Query query = new QueryParser("title", analyzer).parse(searchKey);
 
         TopDocs search = searcher.search(query, 10);
         System.out.println("lucene本次共搜索到" + search.totalHits + "个结果...");
