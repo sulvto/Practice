@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <substitutionProperty name="log.base" value="logs"/>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%-5level %-10(%d{HH:mm:ss.SSS}) %c : %L 行-%msg%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="errorLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.base}/error.log</file>
+        <encoder>
+            <pattern>%-5level %-10(%d{HH:mm:ss.SSS}) %c : %L 行-%msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.base}/%d{yyyy-MM-dd}/error-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <MaxHistory>10</MaxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>4MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <append>true</append>
+        <prudent>false</prudent>
+    </appender>
+    <appender name="appLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.base}/app.log</file>
+        <encoder>
+            <pattern>%-5level %-10(%d{HH:mm:ss.SSS}) %c : %L 行-%msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.base}/%d{yyyy-MM-dd}/app-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <MaxHistory>10</MaxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>4MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <append>true</append>
+        <prudent>false</prudent>
+    </appender>
+    <!--<logger name="org.springframework.ui.freemarker" level="DEBUG"/>-->
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.apache.http" level="ERROR"/>
+    <logger name="org.thymeleaf" level="ERROR"/>
+    <logger name="freemarker" level="ERROR"/>
+
+    <root level="INFO">
+        <appender-ref ref="appLogFile"/>
+        <appender-ref ref="errorLogFile"/>
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>
