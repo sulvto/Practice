@@ -1,8 +1,10 @@
-package me.qinchao.me.qinchao.con;
+package me.qinchao.controller;
 
+import com.google.common.cache.CacheBuilder;
 import me.qinchao.common.Constants;
 import me.qinchao.domain.User;
 import me.qinchao.service.OAuthService;
+import me.qinchao.service.Oauth2ClientService;
 import me.qinchao.service.UserService;
 import org.apache.oltu.oauth2.as.issuer.MD5Generator;
 import org.apache.oltu.oauth2.as.issuer.OAuthIssuer;
@@ -20,21 +22,16 @@ import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.WebApplicationContext;
 
-import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 /**
  * Created by sulvto on 16-6-28.
@@ -45,6 +42,8 @@ public class OAuthAuthorizeController {
     private UserService userService;
     @Autowired
     private OAuthService oAuthService;
+    @Autowired
+    private Oauth2ClientService oauth2ClientService;
 
     @RequestMapping("/authorize")
     public Object authorize(Model model, HttpServletRequest request)
@@ -67,12 +66,12 @@ public class OAuthAuthorizeController {
             //如果用户没有登录，跳转到登陆页面
             if (currentUser == null) {
                 if (!login(request)) {
+                    model.addAttribute("oauth2Client", oauth2ClientService.find(oauthRequest.getClientId()));
                     return "oauth/login";
                 } else {
                     currentUser = (User) request.getSession().getAttribute(Constants.LOGIN_USER);
                 }
             }
-            int userId = currentUser.getId();
 
             //生成授权码
             String authorizationCode = null;
@@ -81,7 +80,7 @@ public class OAuthAuthorizeController {
             if (responseType.equals(ResponseType.CODE.toString())) {
                 OAuthIssuerImpl oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
                 authorizationCode = oauthIssuerImpl.authorizationCode();
-                oAuthService.addAuthCode(authorizationCode, userId);
+                oAuthService.addAuthCode(authorizationCode, currentUser);
             }
             //进行OAuth响应构建
             OAuthASResponse.OAuthAuthorizationResponseBuilder builder =
@@ -118,22 +117,12 @@ public class OAuthAuthorizeController {
             //构建OAuth请求
             OAuthTokenRequest oauthRequest = new OAuthTokenRequest(request);
 
-            //检查提交的客户端id是否正确
-            if (!oAuthService.checkClientId(oauthRequest.getClientId())) {
+            //检查提交的客户端id,KEY是否正确
+            if (!oAuthService.checkClient(oauthRequest.getClientId(),oauthRequest.getClientSecret())) {
                 OAuthResponse response = OAuthASResponse
                         .errorResponse(HttpServletResponse.SC_BAD_REQUEST)
                         .setError(OAuthError.TokenResponse.INVALID_CLIENT)
                         .setErrorDescription(Constants.INVALID_CLIENT_DESCRIPTION)
-                        .buildJSONMessage();
-                return newResponseEntity(response);
-            }
-
-            // 检查客户端安全KEY是否正确
-            if (!oAuthService.checkClientSecret(oauthRequest.getClientSecret())) {
-                OAuthResponse response = OAuthASResponse
-                        .errorResponse(HttpServletResponse.SC_UNAUTHORIZED)
-                        .setError(OAuthError.TokenResponse.UNAUTHORIZED_CLIENT)
-                        .setErrorDescription(Constants.UNAUTHORIZED_CLIENT_DESCRIPTION)
                         .buildJSONMessage();
                 return newResponseEntity(response);
             }
@@ -146,7 +135,7 @@ public class OAuthAuthorizeController {
                     OAuthResponse response = OAuthASResponse
                             .errorResponse(HttpServletResponse.SC_BAD_REQUEST)
                             .setError(OAuthError.TokenResponse.INVALID_GRANT)
-                            .setErrorDescription("错误的授权码")
+                            .setErrorDescription(Constants.INVALID_GRANT_DESCRIPTION)
                             .buildJSONMessage();
                     return newResponseEntity(response);
                 }
@@ -156,7 +145,7 @@ public class OAuthAuthorizeController {
             OAuthIssuer oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
             final String accessToken = oauthIssuerImpl.accessToken();
             oAuthService.addAccessToken(accessToken,
-                    oAuthService.getUserIdByAuthCode(authCode));
+                    oAuthService.getUserByAuthCode(authCode));
 
             //生成OAuth响应
             OAuthResponse response = OAuthASResponse
@@ -194,7 +183,8 @@ public class OAuthAuthorizeController {
 
         User user = userService.loginCheck(username, password);
         if (user == null) {
-            request.setAttribute("error", "登录失败");
+            request.setAttribute("error", "授权失败");
+            request.setAttribute("username", username);
             return false;
         } else {
             request.getSession().setAttribute(Constants.LOGIN_USER, user);
