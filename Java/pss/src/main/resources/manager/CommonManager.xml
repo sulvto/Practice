@@ -16,8 +16,13 @@
 	<!-- bean属性继承 -->
 	<bean id="baseService" abstract="true" p:baseDao-ref="baseDao" />
 
+	<bean id="oauth2LoginService" class="me.qinchao.pss.service.impl.Oauth2LoginServiceImpl">
+		<property name="employeeService" ref="employeeService"/>
+	</bean>
+
 	<bean id="loginAction" class="me.qinchao.pss.web.LoginAction" scope="prototype">
 		<property name="employeeService" ref="employeeService" />
+		<property name="oauth2LoginService" ref="oauth2LoginService"/>
 	</bean>
 
 </beans>

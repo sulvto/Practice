@@ -9,6 +9,8 @@ public interface IEmployeeService extends IBaseService<Employee> {
 
 	Employee findByLogin(String name, String password);
 
+	Employee findByUid(Long uid);
+
 	List<String> getAllResourceMethods();
 
 	List<String> findResourceMehtodsByLoginUser(Employee employee);

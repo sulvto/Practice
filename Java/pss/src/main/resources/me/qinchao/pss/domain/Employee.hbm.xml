@@ -8,6 +8,7 @@
 		<id name="id">
 			<generator class="native" />
 		</id>
+		<property name="uid" unique="true"/>
 		<property name="name" />
 		<property name="password" />
 		<property name="email" />

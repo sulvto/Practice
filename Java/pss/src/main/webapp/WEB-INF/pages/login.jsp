@@ -27,6 +27,10 @@
 <%-- 					<s:fielderror /> --%>
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
+                            <td></td>
+                            <td colspan="2"><a href="http://127.0.0.1:8443/oauth2/authorize?response_type=code&client_id=aaaa&&redirect_uri=http://localhost:8080/login_oauth2Login.action">OAuth login</a>
+                            </td></tr>
+						<tr>
 							<td width="19%" height="28">用户名：</td>
 							<td colspan="2"><input name="name" type="text" size="18"
 								value="admin" /></td>

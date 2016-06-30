@@ -6,6 +6,8 @@ import java.util.Set;
 //员工
 public class Employee {
 	private Long id;
+	//
+	private Long uid;
 	private String name;
 	private String password;
 	private String email;
@@ -79,6 +81,14 @@ public class Employee {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Long getUid() {
+		return uid;
+	}
+
+	public void setUid(Long uid) {
+		this.uid = uid;
 	}
 
 	@Override
