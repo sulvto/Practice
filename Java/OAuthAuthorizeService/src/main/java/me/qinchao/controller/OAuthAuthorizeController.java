@@ -37,6 +37,7 @@ import java.net.URISyntaxException;
  * Created by sulvto on 16-6-28.
  */
 @Controller
+@RequestMapping("/oauth2")
 public class OAuthAuthorizeController {
     @Autowired
     private UserService userService;
@@ -118,7 +119,7 @@ public class OAuthAuthorizeController {
             OAuthTokenRequest oauthRequest = new OAuthTokenRequest(request);
 
             //检查提交的客户端id,KEY是否正确
-            if (!oAuthService.checkClient(oauthRequest.getClientId(),oauthRequest.getClientSecret())) {
+            if (!oAuthService.checkClient(oauthRequest.getClientId(), oauthRequest.getClientSecret())) {
                 OAuthResponse response = OAuthASResponse
                         .errorResponse(HttpServletResponse.SC_BAD_REQUEST)
                         .setError(OAuthError.TokenResponse.INVALID_CLIENT)
@@ -144,13 +145,16 @@ public class OAuthAuthorizeController {
             //生成Access Token
             OAuthIssuer oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
             final String accessToken = oauthIssuerImpl.accessToken();
+            User user = oAuthService.getUserByAuthCode(authCode);
             oAuthService.addAccessToken(accessToken,
-                    oAuthService.getUserByAuthCode(authCode));
+                    user);
 
             //生成OAuth响应
             OAuthResponse response = OAuthASResponse
                     .tokenResponse(HttpServletResponse.SC_OK)
                     .setAccessToken(accessToken)
+                    .setParam("uid", user.getId() + "")
+                    .setParam("username", user.getUsername() + "")
                     .setExpiresIn(String.valueOf(oAuthService.getExpireIn()))
                     .buildJSONMessage();
 

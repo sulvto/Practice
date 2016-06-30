@@ -2,6 +2,7 @@ package me.qinchao.service.impl;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
 import me.qinchao.domain.User;
 import me.qinchao.service.OAuthService;
 import me.qinchao.service.Oauth2ClientService;
@@ -15,8 +16,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class OAuthServiceImpl implements OAuthService {
-    Cache<String, User> accessTokenCache = CacheBuilder.newBuilder().refreshAfterWrite(7, TimeUnit.DAYS).build();
-    Cache<String, User> authCodeCache = CacheBuilder.newBuilder().expireAfterAccess(1, TimeUnit.HOURS).build();
+   private Cache<String, User> accessTokenCache = CacheBuilder.newBuilder().expireAfterAccess(7, TimeUnit.DAYS).build();
+   private Cache<String, User> authCodeCache = CacheBuilder.newBuilder().expireAfterAccess(1, TimeUnit.HOURS).build();
 
     @Autowired
     private Oauth2ClientService oauth2ClientService;

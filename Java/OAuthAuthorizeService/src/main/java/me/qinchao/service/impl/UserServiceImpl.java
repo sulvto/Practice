@@ -28,13 +28,13 @@ public class UserServiceImpl implements UserService {
         user2.setUsername("admin2");
         user2.setPassword("admin2");
         user2.setAge(100);
-        user2.setId(1);
+        user2.setId(2);
 
         User user3 = new User();
         user3.setUsername("admin3");
         user3.setPassword("admin3");
         user3.setAge(100);
-        user3.setId(1);
+        user3.setId(3);
 
         userList.add(user1);
         userList.add(user2);
@@ -46,8 +46,10 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userList.stream().filter(user -> user.getUsername().equals(username) && user.getPassword().equals(password)).findAny();
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            user.setPassword(null);
-            return user;
+            User copyUser = new User();
+            copyUser.setUsername(username);
+            copyUser.setId(user.getId());
+            return copyUser;
         } else {
             return null;
         }
