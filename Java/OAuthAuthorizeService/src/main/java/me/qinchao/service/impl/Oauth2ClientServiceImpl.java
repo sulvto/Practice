@@ -40,7 +40,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
 
     @Override
     public List<Oauth2Client> findAll() {
-        List<Oauth2Client> clientList = new ArrayList();
+        List<Oauth2Client> clientList = new ArrayList<>();
         Collections.copy(clientList, oauth2ClientList);
         return clientList;
     }
