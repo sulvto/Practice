@@ -11,7 +11,6 @@ public class DepartmentQuery extends BaseQuery {
 
 	@Override
 	public void addWhere() {
-//		System.out.println("dept " + dept);
 		if (StringUtils.isNotBlank(name)) {
 			addWhere(" o.name like ? ", "%" + name + "%");
 		}

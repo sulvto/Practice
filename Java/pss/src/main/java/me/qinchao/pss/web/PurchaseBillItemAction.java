@@ -37,10 +37,10 @@ public class PurchaseBillItemAction extends CRUDAction<PurchaseBillItem> {
 			baseQuery.setStatus(null);
 		}
 
-		System.out.println(baseQuery.getGroupBy());
+		logger.debug(baseQuery.getGroupBy());
 		List<Object[]> list = purchaseBillItemService.findGroupBy(baseQuery);
 		putContext("list", list);
-		System.out.println("list " + list.size());
+		logger.debug("list " + list.size());
 		return SUCCESS;
 	}
 

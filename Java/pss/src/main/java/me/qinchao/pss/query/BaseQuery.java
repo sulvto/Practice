@@ -1,10 +1,14 @@
 package me.qinchao.pss.query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseQuery {
+	private final Logger logger = LoggerFactory.getLogger(BaseQuery.class);
 	private StringBuilder hql;
 	private StringBuilder countHql;
 	private List paramList = new ArrayList();
@@ -29,9 +33,8 @@ public abstract class BaseQuery {
 			countHql.append(" AND ").append(where);
 			whereHql.append(" AND ").append(where);
 		}
-		System.out.println(whereHql.toString());
+		logger .debug(whereHql.toString());
 		paramList.addAll(Arrays.asList(objects));
-		// System.out.println("paramList:" + paramList);
 	}
 
 	private boolean flag;

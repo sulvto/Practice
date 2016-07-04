@@ -23,7 +23,7 @@ public class SupplierAction extends CRUDAction<Supplier> {
 
 	@Override
 	protected void list() {
-		System.out.println("List");
+		logger.debug("List");
 		// putContext("dept", departmentService.getAll());
 		this.pageResult = supplierService.findPageResult(baseQuery);
 	}

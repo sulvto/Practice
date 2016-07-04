@@ -54,11 +54,11 @@ public class ${entityDomain}Action extends CRUDAction<${entityDomain}> {
 		if (id != null) {
 			try {
 				${lowerEntityDomain}Service.delete(id);
-				System.out.println("删除成功");
+				logger.debug("删除成功");
 				map.put("success", true);
 				map.put("msg", "删除成功");			
-			} catch (Exception e) {	
-				System.out.println("异常");
+			} catch (Exception e) {
+				logger.debug("异常");
 				map.put("msg", "异常 " + e.getMessage());
 			}
 		} else {

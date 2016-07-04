@@ -31,11 +31,8 @@ public class EmployeeAction0 extends BaseAction {
 
 	@Override
 	public String execute() throws Exception {
-		System.out.println("111111111111   " + baseQuery.getCurrentPage());
-		// System.out.println(baseQuery.getName());
 		putContext("dept", departmentService.getAll());
 		this.pageResult = employeeService.findPageResult(baseQuery);
-		// System.out.println("111111111111   " + pageResult.getRows());
 		return SUCCESS;
 	}
 

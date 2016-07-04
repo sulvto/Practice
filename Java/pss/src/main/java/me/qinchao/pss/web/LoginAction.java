@@ -49,7 +49,6 @@ public class LoginAction extends BaseAction {
     public String checkLogin() throws Exception {
         logger.debug("checkLogin name:  " + name + " password:  " + password);
         Employee employee = employeeService.findByLogin(name, password);
-        System.out.println(employee);
 
         if (employee != null) {
             ServletActionContext.getContext().getSession()

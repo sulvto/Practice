@@ -95,11 +95,11 @@ public class PurchaseBillAction extends CRUDAction<PurchaseBill> {
         logger.debug("input");
         // 供应商列表
         List<Supplier> supplierList = supplierService.getAll();
-        System.out.println("供应商列表"+supplierList.size());
+        logger.debug("供应商列表"+supplierList.size());
         putContext("allSuppliers", supplierList);
         // 采购员列表
         List<Employee> buyers = employeeService.getBuyers();
-        System.out.println("采购员列表"+buyers.size());
+        logger.debug("采购员列表"+buyers.size());
         putContext("allBuyers", buyers);
         return INPUT;
     }

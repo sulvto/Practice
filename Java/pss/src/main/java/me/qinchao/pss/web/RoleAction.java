@@ -41,7 +41,7 @@ public class RoleAction extends CRUDAction<Role> {
         logger.debug("save");
         for (Long id : resourceIds) {
             Resource resource = new Resource(id);
-            System.out.println("resource: " + resource);
+            logger.debug("resource: " + resource);
             role.getResources().add(resource);
         }
         for (Long id : menuIds) {
