@@ -1,11 +1,9 @@
-package me.qinchao.activemq;
+package me.qinchao;
 
 import org.junit.Test;
 
 import javax.jms.JMSException;
 import java.util.concurrent.CountDownLatch;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by sulvto on 16-5-22.

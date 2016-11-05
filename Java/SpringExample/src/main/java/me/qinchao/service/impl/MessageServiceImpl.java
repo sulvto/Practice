@@ -1,6 +1,6 @@
-package me.qinchao.spring.service.impl;
+package me.qinchao.service.impl;
 
-import me.qinchao.spring.service.MessageService;
+import me.qinchao.service.MessageService;
 import org.springframework.stereotype.Component;
 
 /**

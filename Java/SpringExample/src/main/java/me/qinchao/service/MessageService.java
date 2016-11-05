@@ -1,4 +1,4 @@
-package me.qinchao.spring.service;
+package me.qinchao.service;
 
 /**
  * Created by SULVTO on 16-3-15.

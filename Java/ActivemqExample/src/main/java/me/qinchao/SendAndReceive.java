@@ -1,4 +1,4 @@
-package me.qinchao.activemq;
+package me.qinchao;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 

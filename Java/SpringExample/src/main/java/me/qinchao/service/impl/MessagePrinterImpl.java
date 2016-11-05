@@ -1,7 +1,7 @@
-package me.qinchao.spring.service.impl;
+package me.qinchao.service.impl;
 
-import me.qinchao.spring.service.MessagePrinter;
-import me.qinchao.spring.service.MessageService;
+import me.qinchao.service.MessagePrinter;
+import me.qinchao.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -2,19 +2,11 @@ package me.qinchao.redis;
 
 import me.qinchao.redis.dao.IUserDao;
 import me.qinchao.redis.dao.impl.UserDaoImpl;
-import me.qinchao.spring.service.MessagePrinter;
-import org.eclipse.jetty.server.Authentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-
-import javax.annotation.Resource;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by SULVTO on 16-3-15.
