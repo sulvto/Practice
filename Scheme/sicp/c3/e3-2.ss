@@ -1,0 +1,16 @@
+(define (make-monitored f)
+    (let ((counter 0))
+        (lambda (v)
+	    (cond ((eq? v 'how-many-calls?) counter)
+		  ((eq? v 'reset-count) (set! counter 0))
+		  (else (begin (set! counter (+ counter 1)) 
+			    (f v)))))))
+
+(define s (make-monitored (lambda (x)(/ x 10))))
+
+(s 100)
+(s 'how-many-calls?)
+(s 'reset-count)
+(s 1000)
+(s 200)
+(s 'how-many-calls?)
