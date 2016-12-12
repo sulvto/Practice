@@ -181,10 +181,95 @@
 (define (application? exp (tagged-list exp 'apply)))
 
 (define (opreator exp) (car exp))
+
 (define (operands exp) (cdr exp))
-;;TODO
+
+(define (no-operands? ops) (null? ops))
+
+(define (first-operand ops) (car ops))
+
+(define (rest-operands ops) (cdr ops))
+
+(define (list-of-values exps env)
+    (if (no-operands? exps)
+	'() 
+	(cons (eval (first-operand exps) env)
+	      (list-of-values (rest-operands exps) env))))
+
+(define (make-frame vars vals)
+    (cons vars vals))
+
+(define (extend-environment vars vals base-env)
+    (if (= (length vars) (length vals))
+	(cons (make-frame vars vals) base-env)
+	(if (<  (length vars) (length vals))
+	    (error "Too many arguments supplied" vars vals)
+	    (error "Too few arguments supplied" vars vals))))
+
+(define (setup-environment)
+    (let ((initial-env (extend-environment (primitive-procedure-names)
+					   (primitive-procedure-objects)
+					   the-empty-environment)))
+	(define-variable! 'true true initial-env)
+	(define-variable! 'false false initial-env)
+	initial-env))
+
+(define primitive-procedures 
+    (list (list 'car car)
+	  (list 'cdr cdr)
+	  (list 'null? null?)
+	  (list 'cons cons)))
+
+(define (primitive-procedure-names)
+    (map car primitive-procedures))
+
+(define (primitive-procedure-objects)
+    (map (lambda (proc) (list 'primitive (cdr proc))) 
+	 primitive-procedures))
+
+(define (define-variable! var val env) 
+    (let ((frame (first-frame env)))
+	(define (scan vars vals)
+	    (cond ((null? vars) (add-binding-to-frame! var val frame))
+		  ((eq? var (car vars)) (set-car! vals val))
+		  (else (scan (cdr vars) (cdr vals)))))
+	(scan (frame-variables frame) (frame-values frame))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define input-prompt ";;; M-EVAL input:")
+(define output-prompt ";;; M-EVAL value:")
+
+(define (driver-loop)
+    (prompt-for-input input-prompt)
+    (let ((input (read)))
+        (let ((output (eval input the-global-environment)))
+	    (announce-output output-prompt)
+	    (user-print output)))
+    (driver-loop))
+
+(define (prompt-for-input string)
+    (newline) (newline) (display string) (newline))
+
+(define (announce-output string)
+    (newline) (display string) (newline))
+
+(define (user-print object)
+    (if (compound-procedure? object)
+	(display (list 'compound-procedure
+			(procedure-parameters object)
+			(procedure-body object)
+			'<procedure-env>))
+	(display object)))
+
+(define the-global-environment (setup-environment))
+
+(driver-loop)
 
 
+
+
+    
 
 
 
