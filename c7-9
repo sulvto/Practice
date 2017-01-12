@@ -1,0 +1,45 @@
+assume cs:codesg,de:datasg,ss:stacksg
+
+datasg segment
+  db '1. display'               ;dbyte
+  db '2. brows'
+  db '3. replace'
+  db '4. modify'
+datasg ends
+
+stacksg segment
+  dw 0,0,0,0,0,0,0,0
+stacksg ends
+
+codesg segment
+  start:mov ax,stacksg
+        mov ss,ax
+        mov sp,16
+        mov ax,datasg
+        mov ds,ax
+        mov bx,0
+        
+        mov cx,4                 ;loop 4
+
+  l0:   push cx
+        mov si,3
+        mov cx,4                 ;loop 4
+
+  l2：  mov al,[bx+si]
+        add al,11011111b         ;[a-z] -> [A-Z]
+        mov [bx+si],al
+        inc si
+        loop l2
+
+        add bx,16
+        pop cx
+        loop l0
+        
+        mov ax,4c00h             ;??
+        int 21H                  ;??
+        
+codesg engs
+
+end start
+
+    
