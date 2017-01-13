@@ -10,9 +10,47 @@ assume cs:codesg
     dw 3,7,9,13,28,38,130,220,476,778,1001,1442,2258,2793,4037,5635,8226
     dw 11542,14430,15257,17800
   data ends
- 
+
+  ;db byte
+  ;dw word
+  ;dd double word 
+
   table segment
-    db 21 dup ('year sume ne ?? ')
+    dw 21 dup ('year sume ne ?? ')
   table ends
 
-  ;TODO
+  stacksg segment
+    dw 0,0,0
+  stacksg ends
+
+  codesg segment
+    start:mov ax,stacksg
+          mov ss,ax
+          mov sp:3
+          mov ax,data
+          mov ds,ax
+          mov cx,21
+          mov bx,21
+          mov si,0
+          mov di,0
+
+    l:    mov ax,ds:[bx+si]
+          mov dx,ds:[bx+si+2]
+          div word ptr ds:[bx+di+105]
+          push ds
+          push ax
+          mov ax,table
+          mov ds,ax
+          pop ax
+          mov ds:[si],ax
+          pop ds
+          add si,4
+          add di,2
+          inc bx
+          loop l
+          
+          mov ax,4c00h
+          int 21H
+  codesg ends
+
+ end start 
