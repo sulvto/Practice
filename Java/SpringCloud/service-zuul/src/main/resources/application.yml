@@ -1,0 +1,20 @@
+server:
+  port: 8765
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8760/eureka
+
+spring:
+  application:
+    name: service-zuul
+
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: eureka-consumer-ribbon-hystrix
+    api-b:
+      path: /api-b/**
+      serviceId: eureka-consumer-feign-hystrix
