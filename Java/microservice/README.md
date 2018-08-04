@@ -22,6 +22,11 @@
 # 环境
 
 #### harbor
+修改 harbor.cfg  hostname = hub.qinchao.me:8080
+修改 docker-compose.yml volumes 修改到当前目录, 修改 port
+修改 data 目录权限 chmod 755 ./data
+密码在 harbor.cfg
+
 
 #### thrift (0.10.0)
 

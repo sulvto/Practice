@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-mvn package
+mvn clean package
 
-docker build -t user-edge-service:latest .
+docker build -t hub.qinchao.me/microservice/user-edge-service:latest .
+docker push hub.qinchao.me/microservice/user-edge-service:latest

@@ -1,4 +1,4 @@
-FROM python-base:latest
+FROM hub.qinchao.me/microservice/python-base:latest
 
 MAINTAINER sulvto
 

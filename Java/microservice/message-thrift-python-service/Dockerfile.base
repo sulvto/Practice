@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM hub.qinchao.me/microservice/python:3.6
 
 MAINTAINER sulvto
 

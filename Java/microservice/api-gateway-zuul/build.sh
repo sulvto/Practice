@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-docker build -t api-gateway-zuul:latest .
+mvn clean package
+
+docker build -t hub.qinchao.me/microservice/api-gateway-zuul:latest .
+docker push hub.qinchao.me/microservice/api-gateway-zuul:latest

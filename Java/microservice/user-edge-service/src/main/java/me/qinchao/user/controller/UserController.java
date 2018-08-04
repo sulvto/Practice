@@ -30,7 +30,13 @@ public class UserController {
     @Autowired
     private RedisClient redisClient;
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
     public Response login(@RequestParam(value = "username") String username,
                           @RequestParam(value = "password") String password) {
         UserInfo userInfo;
