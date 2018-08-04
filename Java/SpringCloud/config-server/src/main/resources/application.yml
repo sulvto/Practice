@@ -13,8 +13,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/sulvto
-          searchPaths: respo
-          username: sulvto
+          uri: https://github.com/sulvto/test
+          searchPaths: config-repo
+          username:
           password:
-      label: master
