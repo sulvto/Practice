@@ -1,0 +1,7 @@
+service:
+  port: 8081
+
+spring:
+  dubbo:
+    application:
+      name: course-edge-service
