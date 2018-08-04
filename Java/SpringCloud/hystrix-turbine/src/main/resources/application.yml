@@ -1,0 +1,18 @@
+server:
+  port: 8769
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8760/eureka
+
+turbine:
+  aggregator:
+    clusterConfig: default
+  app-config: eureka-consumer-feign-hystrix, eureka-consumer-ribbon-hystrix, service-hi
+  cluster-name-expression: new String("default")
+
+
+spring:
+  application:
+    name: hystrix-turbine

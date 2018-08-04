@@ -29,6 +29,7 @@
         <module>eureka-consumer-feign-hystrix</module>
         <module>hystrix-dashboard</module>
         <module>service-hi</module>
+        <module>hystrix-turbine</module>
     </modules>
 
     <properties>
