@@ -32,4 +32,5 @@ public class UserServiceImpl implements UserService.Iface {
     public void registerUser(UserInfo userinfo) throws TException {
         userMapper.registerUserById(userinfo);
     }
+
 }

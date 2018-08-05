@@ -77,7 +77,7 @@ public abstract class LoginFilter implements Filter {
     private UserDTO authentication(String token) {
         HttpClient httpClient = HttpClientBuilder.create().build();
 
-        String uri = "http://user-edge-service:8082/user/authentication";
+        String uri = "http://127.0.0.1:8082/user/authentication";
         HttpPost post = new HttpPost(uri);
         post.addHeader("token", token);
 

@@ -1,5 +1,6 @@
 package me.qinchao.course.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import me.qinchao.course.mapper.CourseMapper;
 import me.qinchao.course.service.dto.CourseDTO;
 import me.qinchao.thrift.user.UserInfo;
@@ -7,7 +8,6 @@ import me.qinchao.thrift.user.dto.TeacherDTO;
 import org.apache.thrift.TException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class CourseServiceImpl implements ICourseService {
     public List<CourseDTO> courseList() {
         List<CourseDTO> courseList = courseMapper.courseList();
         if (courseList != null) {
-            courseList.stream().forEach(course->{
+            courseList.forEach(course->{
                 Integer teacherId = courseMapper.getCourseTeacher(course.getId());
                 if (teacherId != null) {
                     try {

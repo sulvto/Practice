@@ -1,5 +1,6 @@
-package me.qinchao;
+package me.qinchao.course;
 
+import me.qinchao.course.filter.CourseFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -9,14 +10,14 @@ import org.springframework.context.annotation.Bean;
  * Created by sulvto on 18-8-4.
  */
 @SpringBootApplication
-public class Application {
+public class CourseEdgeServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(CourseEdgeServiceApplication.class, args);
     }
 
     @Bean
-    private FilterRegistrationBean filterRegistrationBean() {
+    public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         CourseFilter courseFilter = new CourseFilter();
         filterRegistrationBean.setFilter(courseFilter);

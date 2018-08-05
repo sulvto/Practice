@@ -11,6 +11,7 @@ import org.apache.thrift.TException;
 import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -21,7 +22,7 @@ import java.util.Random;
 /**
  * Created by sulvto on 18-8-2.
  */
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
@@ -43,7 +44,7 @@ public class UserController {
         try {
             userInfo = serviceProvider.getUserService().getUserByName(username);
         } catch (TException e) {
-            return Response.USERNAME_PASSWORD_INVALID;
+            return Response.exception(e);
         }
         if (userInfo == null) {
             return Response.USERNAME_PASSWORD_INVALID;
@@ -72,7 +73,7 @@ public class UserController {
 
         try {
 
-            boolean result = false;
+            boolean result;
             if (StringUtils.isNotBlank(mobile)) {
                 result = serviceProvider.getMessageService().sendMobileMessage(mobile, message + code);
                 redisClient.set(mobile, code);

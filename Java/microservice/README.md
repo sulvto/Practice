@@ -30,6 +30,10 @@
 
 #### thrift (0.10.0)
 
+#### redis
+进入Docker容器redis的客户端
+docker exec -it 容器ID redis-cli
+
 #### [docker-machine](https://docs.docker.com/v17.12/machine/)
 
 ```bash

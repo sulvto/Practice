@@ -1,9 +1,11 @@
 package me.qinchao.thrift.user.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by sulvto on 18-8-3.
  */
-public class UserDTO {
+public class UserDTO implements Serializable {
     private int id;
     private String username;
     private String password;

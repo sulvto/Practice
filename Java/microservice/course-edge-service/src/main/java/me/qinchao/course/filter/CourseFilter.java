@@ -1,4 +1,4 @@
-package me.qinchao;
+package me.qinchao.course.filter;
 
 import me.qinchao.thrift.user.dto.UserDTO;
 import me.qinchao.user.client.LoginFilter;

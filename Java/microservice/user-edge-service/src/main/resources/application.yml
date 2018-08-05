@@ -4,10 +4,10 @@ server:
 
 thrift:
   user:
-    ip: user-service
+    ip: ${userService.address}
     port: 7911
   message:
-    ip: message-service
+    ip: ${messageService.address}
     port: 9090
 
 spring:
@@ -15,3 +15,4 @@ spring:
     host: ${redis.address}
     port: 6379
     timeout: 30000
+    password: "mypassword"

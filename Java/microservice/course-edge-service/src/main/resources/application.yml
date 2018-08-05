@@ -1,7 +1,15 @@
-service:
+server:
   port: 8081
 
 spring:
   dubbo:
     application:
       name: course-edge-service
+    registry:
+      address: zookeeper://${zookeeper.address}:2181
+    scan: me.qinchao.course
+
+user:
+  egde:
+    service:
+      address: ${userService.address}:8082
