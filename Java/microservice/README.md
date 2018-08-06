@@ -49,3 +49,14 @@ docker-machine scp ./mesos-master.sh vbox-server-0:/home/docker/
 ```
 
 
+#### gitlab
+
+修改ssh端口（如果主机端口使用的不是22端口）
+修改文件：${GITLAB_DIR}/config/gitlab.rb 找到这一行：# gitlab_rails['gitlab_shell_ssh_port'] = 22 把22修改为你的宿主机端口（这里是2222）。然后将注释去掉。
+
+重新启动 gitlab 容器
+
+#### Jenkins
+全局安全配置
+	登录用户可以做任何事
+  		匿名用户具有可读权限
