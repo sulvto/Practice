@@ -1,0 +1,41 @@
+apiVresion: v1
+kind: Service
+metadata:
+  labels:
+    app: user-service
+  name: user-service
+spec:
+  ports:
+  - name: user-edge-service-port
+    port: 8082
+    protocol: TCP
+    targetPort: 8082
+  - name: user-service-port
+    port: 7911
+    protocol: TCP
+    targetPort: 7911
+  selector:
+    app: user-service
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVresion: app/v1bata1
+kind: Deployment
+metadata:
+  name: user-service-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+      - name: user-service
+        image: hub.qinchao.me/microservice/user-service:latest
+        ports:
+        - containerPort: 7911
+      - name: user-edge-service
+        image: hub.qinchao.me/microservice/user-edge-service:latest
+        ports:
+        - containerPort: 8082

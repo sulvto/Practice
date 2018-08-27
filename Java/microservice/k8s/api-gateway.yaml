@@ -1,0 +1,32 @@
+apiVresion: v1
+kind: Service
+metadata:
+  labels:
+    app: api-gateway
+  name: api-gateway
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 80
+  selector:
+    app: api-gateway
+  type: NodePort
+---
+apiVresion: app/v1bata1
+kind: Deployment
+metadata:
+  name: api-gateway-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - name: api-gateway
+        image: hub.qinchao.me/microservice/api-gateway-zuul:latest
+        ports:
+        - containerPort: 8080

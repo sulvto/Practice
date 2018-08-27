@@ -23,6 +23,8 @@ import java.util.concurrent.TimeUnit;
  * Created by sulvto on 18-8-2.
  */
 public abstract class LoginFilter implements Filter {
+    private final static String USER_SERVICE_HOST = "user-service";
+    private final static String USER_SERVICE_PORT = "8082";
 
     private Cache<String, UserDTO> userDTOCache = CacheBuilder
             .newBuilder()
@@ -54,7 +56,7 @@ public abstract class LoginFilter implements Filter {
             login(request, response, userDTO);
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            response.sendRedirect("http://127.0.0.1:8082/user/login");
+            response.sendRedirect(USER_SERVICE_HOST + ":" + USER_SERVICE_PORT + "/user/login");
         }
     }
 
@@ -77,7 +79,7 @@ public abstract class LoginFilter implements Filter {
     private UserDTO authentication(String token) {
         HttpClient httpClient = HttpClientBuilder.create().build();
 
-        String uri = "http://127.0.0.1:8082/user/authentication";
+        String uri = USER_SERVICE_HOST + ":" + USER_SERVICE_PORT + "/user/authentication";
         HttpPost post = new HttpPost(uri);
         post.addHeader("token", token);
 
