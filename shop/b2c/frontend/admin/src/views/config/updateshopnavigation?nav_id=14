@@ -1,0 +1,1352 @@
+<html><head>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1">
+			<title>大鵬系統 - 网站管理</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/public/admin/images/admin_icon.ico" media="screen">
+	<link rel="stylesheet" type="text/css" href="/public/static/blue/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/public/static/blue/css/ns_blue_common.css">
+	<link rel="stylesheet" type="text/css" href="/public/static/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/public/static/simple-switch/css/simple.switch.three.css">
+	<link rel="stylesheet" type="text/css" href="/public/admin/css/selectric.css">
+	<style>
+	.Switch_FlatRadius.On span.switch-open{background-color: #126AE4;border-color: #126AE4;}
+	#copyright_meta a{color:#333;}
+	.fa-wechat-applet:before{content:'';display:inline-block;width:20px;height:20px;background:#FFF url(/public/static/images/wechat_applet.png) no-repeat;background-size: 100%;}
+	</style>
+	<script src="/public/static/js/jquery-1.8.1.min.js"></script>
+	<script src="/public/static/blue/bootstrap/js/bootstrap.js"></script>
+	<script src="/public/static/bootstrap/js/bootstrapSwitch.js"></script>
+	<script src="/public/static/simple-switch/js/simple.switch.js"></script>
+	<script src="/public/static/js/jquery.unobtrusive-ajax.min.js"></script>
+	<script src="/public/static/js/common.js"></script>
+	<script src="/public/static/js/seller.js"></script>
+	<script src="/public/static/js/load_task.js"></script>
+	<script src="/public/static/js/load_bottom.js" type="text/javascript"></script>
+	<script src="/public/admin/js/layer/layer.js"></script><link rel="stylesheet" href="/public/admin/js/layer/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+	<script src="/public/admin/js/jquery-ui.min.js"></script>
+	<script src="/public/admin/js/ns_tool.js"></script>
+	<script src="/public/admin/js/jquery.selectric.js"></script>
+	<link rel="stylesheet" type="text/css" href="/public/static/blue/css/ns_table_style.css">
+	
+	<script>
+	/**
+	 * Niushop商城系统 - 团队十年电商经验汇集巨献!
+	 * ========================================================= Copy right
+	 * 2015-2025 山西牛酷信息科技有限公司, 保留所有权利。
+	 * ---------------------------------------------- 官方网址:
+	 * http://www.niushop.com.cn 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用。
+	 * 任何企业和个人不允许对程序代码以任何形式任何目的再发布。
+	 * =========================================================
+	 * 
+	 * @author : 小学生王永杰 
+	 * @date : 2016年12月16日 16:17:13
+	 * @version : v1.0.0.0 商品发布中的第二步，编辑商品信息
+	 */
+	var PLATFORM_NAME = "大鵬系統";
+	var ADMINIMG = "/public/admin/images";//后台图片请求路径
+	var ADMINMAIN = "http://showfx.niuteam.cn/admin";//后台请求路径
+	var SHOPMAIN = "http://showfx.niuteam.cn";//PC端请求路径
+	var APPMAIN = "http://showfx.niuteam.cn/wap";//手机端请求路径
+	var UPLOAD = "";//上传文件根目录
+	var PAGESIZE = "14";//分页显示页数
+	var ROOT = "";//根目录
+	var ADDONS = "/addons";
+	var STATIC = "/public/static";
+	
+	//上传文件路径
+	var UPLOADGOODS = 'upload/goods/';//存放商品图片
+	var UPLOADGOODSSKU = 'upload/goods_sku/';//存放商品SKU
+	var UPLOADGOODSBRAND = 'upload/goods_brand/';//存放商品品牌图
+	var UPLOADGOODSGROUP = 'upload/goods_group/';////存放商品分组图片
+	var UPLOADGOODSCATEGORY = 'upload/goods_category/';////存放商品分类图片
+	var UPLOADCOMMON = 'upload/common/';//存放公共图片、网站logo、独立图片、没有任何关联的图片
+	var UPLOADAVATOR = 'upload/avator/';//存放用户头像
+	var UPLOADPAY = 'upload/pay/';//存放支付生成的二维码图片
+	var UPLOADADV = 'upload/image_collection/';//存放广告位图片
+	var UPLOADEXPRESS = 'upload/express/';//存放物流图片
+	var UPLOADCMS = 'upload/cms/';//存放文章图片
+	var UPLOADVIDEO = 'upload/video/';//存放视频文件
+	var UPLOADGOODSVIDEO = "upload/goods_video";//存放商品视频
+	var UPLOADFILE = "upload/upload_file/";//存放文件
+	var UPLOADWATERMARK = "upload/upload_watermark/";//存放水印图片
+</script>
+	
+<script src="/public/admin/js/art_dialog.source.js"></script>
+<script src="/public/admin/js/iframe_tools.source.js"></script>
+<script src="/public/admin/js/material_managedialog.js"></script>
+<link rel="stylesheet" type="text/css" href="/public/admin/css/defau.css">
+<style type="text/css">
+</style>
+
+	</head>
+<body>
+<input type="hidden" id="niushop_rewrite_model" value="1">
+<input type="hidden" id="niushop_url_model" value="1">
+<input type="hidden" id="niushop_admin_model" value="admin">
+<script>
+function __URL(url){
+	url = url.replace('http://showfx.niuteam.cn', '');
+	url = url.replace('http://showfx.niuteam.cn/wap', 'wap');
+	url = url.replace('http://showfx.niuteam.cn/admin', $("#niushop_admin_model"));
+	if(url == ''|| url == null){
+		return 'http://showfx.niuteam.cn';
+	}else{
+		var str=url.substring(0, 1);
+		if(str=='/' || str=="\\"){
+			url=url.substring(1, url.length);
+		}
+		if($("#niushop_rewrite_model").val()==1 || $("#niushop_rewrite_model").val()==true){
+			return 'http://showfx.niuteam.cn/'+url;
+		}
+		var action_array = url.split('?');
+		//检测是否是pathinfo模式
+		url_model = $("#niushop_url_model").val();
+		if(url_model==1 || url_model==true){
+			var base_url = 'http://showfx.niuteam.cn/'+action_array[0];
+			var tag = '?';
+		}else{
+			var base_url = 'http://showfx.niuteam.cn?s=/'+ action_array[0];
+			var tag = '&';
+		}
+		if(action_array[1] != '' && action_array[1] != null){
+			return base_url + tag + action_array[1];
+		}else{
+			return base_url;
+		}
+	}
+}
+
+//处理图片路径
+function __IMG(img_path){
+	var path = "";
+	if(img_path != undefined && img_path != ""){
+		if(img_path.indexOf("http://") == -1 && img_path.indexOf("https://") == -1){
+			path = UPLOAD+"\/"+img_path;
+		}else{
+			path = img_path;
+		}
+	}
+	return path;
+}
+</script>
+<article class="ns-base-article">
+
+	<header class="ns-base-header">
+		<div class="ns-logo" onclick="location.href='index.html';"></div>
+		<div class="ns-search">
+			<div class="nav-menu js-nav">
+				<img src="/public/static/blue/img/nav_menu.png" title="导航管理">
+			</div>
+			<div class="ns-navigation-management">
+				<div class="ns-navigation-title">
+					<h4>导航管理</h4>
+					<span>x</span>
+				</div>
+				<div style="height:40px;"></div>
+								<dl>
+					<dt>首页</dt>
+										<dd>
+						<a href="/index/index.html">欢迎页</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>商品</dt>
+										<dd>
+						<a href="/goods/goodslist.html">商品列表</a>
+					</dd>
+										<dd>
+						<a href="/goods/addgoods.html">商品发布</a>
+					</dd>
+										<dd>
+						<a href="/goods/goodscategorylist.html">商品分类</a>
+					</dd>
+										<dd>
+						<a href="/goods/goodsbrandlist.html">商品品牌</a>
+					</dd>
+										<dd>
+						<a href="/goods/goodsgrouplist.html">商品标签</a>
+					</dd>
+										<dd>
+						<a href="/goods/goodsspeclist.html">商品规格</a>
+					</dd>
+										<dd>
+						<a href="/member/supplierlist.html">供货商</a>
+					</dd>
+										<dd>
+						<a href="/goods/attributelist.html">商品类型</a>
+					</dd>
+										<dd>
+						<a href="/saleservice/consultlist.html">咨询管理</a>
+					</dd>
+										<dd>
+						<a href="/goods/goodscomment.html">商品评价</a>
+					</dd>
+										<dd>
+						<a href="/system/albumlist.html">相册管理</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>订单</dt>
+										<dd>
+						<a href="/order/orderlist.html">订单列表</a>
+					</dd>
+										<dd>
+						<a href="/order/virtualorderlist.html">虚拟订单</a>
+					</dd>
+										<dd>
+						<a href="/tuangou/pintuanOrderList.html">拼团订单</a>
+					</dd>
+										<dd>
+						<a href="/orderpresell/orderPresellList.html">预售订单</a>
+					</dd>
+										<dd>
+						<a href="/Order/bargainOrder.html">砍价订单</a>
+					</dd>
+										<dd>
+						<a href="/order/invoiceList.html">发票管理</a>
+					</dd>
+										<dd>
+						<a href="/Order/customerServiceList.html">售后服务</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>营销</dt>
+										<dd>
+						<a href="/promotion/coupontypelist.html">优惠券</a>
+					</dd>
+										<dd>
+						<a href="/promotion/pointconfig.html">积分管理</a>
+					</dd>
+										<dd>
+						<a href="/promotion/giftlist.html">赠品</a>
+					</dd>
+										<dd>
+						<a href="/promotion/mansonglist.html">满减送</a>
+					</dd>
+										<dd>
+						<a href="/Bargain/index.html">砍价活动</a>
+					</dd>
+										<dd>
+						<a href="/promotion/getdiscountlist.html">限时折扣</a>
+					</dd>
+										<dd>
+						<a href="/promotion/combopackagepromotionlist.html">组合套餐</a>
+					</dd>
+										<dd>
+						<a href="/promotion/fullshipping.html">满额包邮</a>
+					</dd>
+										<dd>
+						<a href="/promotion/integral.html">奖励规则</a>
+					</dd>
+										<dd>
+						<a href="/Promotion/promotionGamesList.html">互动游戏</a>
+					</dd>
+										<dd>
+						<a href="/Promotion/groupBuyList.html">团购</a>
+					</dd>
+										<dd>
+						<a href="/tuangou/pintuanlist.html">拼团</a>
+					</dd>
+										<dd>
+						<a href="/promotion/topiclist.html">专题活动</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>会员</dt>
+										<dd>
+						<a href="/member/memberlist.html">会员列表</a>
+					</dd>
+										<dd>
+						<a href="/member/memberlevellist.html">会员等级</a>
+					</dd>
+										<dd>
+						<a href="/member/usercommissionwithdrawlist.html">会员提现</a>
+					</dd>
+										<dd>
+						<a href="/member/pointlist.html">积分管理</a>
+					</dd>
+										<dd>
+						<a href="/member/accountlist.html">余额管理</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>数据</dt>
+										<dd>
+						<a href="/account/shopsalesaccount.html">销售概况</a>
+					</dd>
+										<dd>
+						<a href="/account/shopgoodssaleslist.html">商品分析</a>
+					</dd>
+										<dd>
+						<a href="/account/shopgoodsgroupsalecount.html">同行热卖</a>
+					</dd>
+										<dd>
+						<a href="/account/shopreport.html">运营报告</a>
+					</dd>
+										<dd>
+						<a href="/account/shopgoodssalesrank.html">销售排行</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>微信</dt>
+										<dd>
+						<a href="/wchat/appletConfig.html">微信小程序管理</a>
+					</dd>
+										<dd>
+						<a href="/wchat/config.html">公众号管理</a>
+					</dd>
+										<dd>
+						<a href="/wchat/menu.html">微信菜单管理</a>
+					</dd>
+										<dd>
+						<a href="/wchat/weixinqrcodetemplate.html">推广二维码管理</a>
+					</dd>
+										<dd>
+						<a href="/wchat/replayconfig.html">回复设置</a>
+					</dd>
+										<dd>
+						<a href="/wchat/materialmessage.html">消息素材管理</a>
+					</dd>
+										<dd>
+						<a href="/wchat/shareconfig.html">分享内容设置</a>
+					</dd>
+										<dd>
+						<a href="/wchat/menu_wchat.html?addons=wxtemplatemsg">模板消息设置</a>
+					</dd>
+										<dd>
+						<a href="/member/weixinfanslist.html">粉丝列表</a>
+					</dd>
+										<dd>
+						<a href="/wchat/keyConcernConfig.html">一键关注设置</a>
+					</dd>
+										<dd>
+						<a href="/Wchat/fansMessageManage.html">客服管理</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>佣金</dt>
+										<dd>
+						<a href="/Commission/userAccountList.html">推广员佣金</a>
+					</dd>
+										<dd>
+						<a href="/Commission/commissionDistributionList.html">三级分销</a>
+					</dd>
+										<dd>
+						<a href="/Commission/commissionPartnerList.html">股东分红</a>
+					</dd>
+										<dd>
+						<a href="/Commission/commissionRegionAgentList.html">区域代理</a>
+					</dd>
+										<dd>
+						<a href="/Commission/commissionPartnerGlobalList.html">全球分红</a>
+					</dd>
+										<dd>
+						<a href="/Commission/userCommissionWithdrawList.html">会员提现</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>网站</dt>
+										<dd>
+						<a href="/config/usernotice.html">首页公告</a>
+					</dd>
+										<dd>
+						<a href="/config/shopnavigationlist.html">导航管理</a>
+					</dd>
+										<dd>
+						<a href="/system/goodscategoryblock.html">商品楼层</a>
+					</dd>
+										<dd>
+						<a href="/config/pctemplate.html">店铺装修</a>
+					</dd>
+										<dd>
+						<a href="/config/searchconfig.html">搜索</a>
+					</dd>
+										<dd>
+						<a href="/system/shopadvlist.html">广告管理</a>
+					</dd>
+										<dd>
+						<a href="/cms/articlelist.html">文章管理</a>
+					</dd>
+										<dd>
+						<a href="/cms/topiclist.html">专题列表</a>
+					</dd>
+										<dd>
+						<a href="/config/helpdocument.html">站点帮助</a>
+					</dd>
+										<dd>
+						<a href="/config/linklist.html">友情链接</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>分销</dt>
+										<dd>
+						<a href="/Distribution/promoterList.html">推广员管理</a>
+					</dd>
+										<dd>
+						<a href="/Distribution/goodsCommissionRateList.html">商品分销</a>
+					</dd>
+										<dd>
+						<a href="/Distribution/threeLevelDistributionConfig.html">三级分销</a>
+					</dd>
+										<dd>
+						<a href="/Distribution/regionalAgent.html">区域代理</a>
+					</dd>
+										<dd>
+						<a href="/Distribution/shareholderDividendsConfig.html">股东分红</a>
+					</dd>
+										<dd>
+						<a href="/Distribution/globalBonusPoolConfig.html">全球分红</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>设置</dt>
+										<dd>
+						<a href="/config/webconfig.html">基础设置</a>
+					</dd>
+										<dd>
+						<a href="/config/shopset.html">交易设置</a>
+					</dd>
+										<dd>
+						<a href="/express/expresscompany.html">配送管理</a>
+					</dd>
+										<dd>
+						<a href="/dbdatabase/databaselist.html">数据库管理</a>
+					</dd>
+										<dd>
+						<a href="/auth/userlist.html">管理员列表</a>
+					</dd>
+										<dd>
+						<a href="/Verification/index.html">核销设置</a>
+					</dd>
+									</dl>
+								<dl>
+					<dt>系统</dt>
+										<dd>
+						<a href="/upgrade/onlineupdate.html">在线更新</a>
+					</dd>
+										<dd>
+						<a href="/upgrade/devolutioninfo.html">授权信息</a>
+					</dd>
+										<dd>
+						<a href="/extend/addonslist.html">插件管理</a>
+					</dd>
+										<dd>
+						<a href="/extend/hookslist.html">钩子管理</a>
+					</dd>
+									</dl>
+							</div>
+			<div class="ns-search-block">
+				<i class="fa fa-search" title="搜索"></i>
+				<span>搜索</span>
+				<div class="mask-layer-search">
+					<input type="text" id="search_goods" placeholder="搜索">
+					<a href="javascript:search();"><img src="/public/static/blue/img/enter.png"></a>
+				</div>
+			</div>
+		</div>
+		<nav>
+			<ul>
+								<li onclick="location.href='/index/index.html';">
+					<span>首页</span>
+									</li>
+								<li onclick="location.href='/goods/goodslist.html';">
+					<span>商品</span>
+									</li>
+								<li onclick="location.href='/order/orderlist.html';">
+					<span>订单</span>
+									</li>
+								<li onclick="location.href='/promotion/coupontypelist.html';">
+					<span>营销</span>
+									</li>
+								<li onclick="location.href='/member/memberlist.html';">
+					<span>会员</span>
+									</li>
+								<li onclick="location.href='/account/shopsalesaccount.html';">
+					<span>数据</span>
+									</li>
+								<li onclick="location.href='/wchat/config.html';">
+					<span>微信</span>
+									</li>
+								<li onclick="location.href='/Commission/userAccountList.html';">
+					<span>佣金</span>
+									</li>
+								<li class="selected" onclick="location.href='/config/usernotice.html';">
+					<span>网站</span>
+									</li>
+				
+								<li onclick="location.href='/Distribution/promoterList.html';">
+					<span>分销</span>
+									</li>
+								<li onclick="location.href='/config/webconfig.html';">
+					<span>设置</span>
+									</li>
+								<li onclick="location.href='/upgrade/onlineupdate.html';">
+					<span>系统</span>
+									</li>
+							</ul>
+		</nav>
+		<div class="ns-base-tool">
+			<i class="i-home" title="前台首页"><a href="" target="_blank"></a></i>
+			<i class="i-close" title="退出登录"><a href="/login/logout.html"></a></i>
+			<i class="ns-vertical-bar"></i>
+			<div class="ns-help">
+				<div class="logo">
+								<img src="/public/static/blue/img/user_admin_blue.png" width="30">
+								</div>
+				<span>admin</span>
+				<i class="fa fa-angle-down"></i>
+				<ul>
+					<li>
+						<img src="/public/static/blue/img/add_favorites.png">
+						<a href="#edit-password" data-toggle="modal" title="修改密码">修改密码</a>
+					</li>
+					<li title="清理缓存" onclick="delcache()">
+						<img src="/public/static/blue/img/clear_the_cache.png">
+						<a href="javascript:;">清理缓存</a>
+					</li>
+					<li title="加入收藏" onclick="addFavorite()">
+						<img src="/public/static/blue/img/add_favorites.png">
+						<a href="javascript:;">加入收藏</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	
+	<aside class="ns-base-aside">
+		<div class="ns-main-block">
+			
+			<h3 style="margin-top:50px;">
+									<span class="网站">网站</span>
+					<i class="fa fa-caret-down"></i>
+							</h3>
+			
+			<nav>
+				<ul>
+										<li onclick="location.href='/config/usernotice.html';" title="首页公告">首页公告</li>
+										<li class="selected" onclick="location.href='/config/shopnavigationlist.html';" title="导航管理">导航管理</li>
+										<li onclick="location.href='/system/goodscategoryblock.html';" title="商品楼层">商品楼层</li>
+										<li onclick="location.href='/config/pctemplate.html';" title="店铺装修">店铺装修</li>
+										<li onclick="location.href='/config/searchconfig.html';" title="搜索">搜索</li>
+										<li onclick="location.href='/system/shopadvlist.html';" title="广告管理">广告管理</li>
+										<li onclick="location.href='/cms/articlelist.html';" title="文章管理">文章管理</li>
+										<li onclick="location.href='/cms/topiclist.html';" title="专题列表">专题列表</li>
+										<li onclick="location.href='/config/helpdocument.html';" title="站点帮助">站点帮助</li>
+										<li onclick="location.href='/config/linklist.html';" title="友情链接">友情链接</li>
+										<!-- 快捷菜单列表 -->
+									</ul>
+				<!-- 快捷菜单设置按钮 -->
+							</nav>
+			
+			<div style="height:50px;"></div>
+			
+			<div id="bottom_copyright">
+				<footer style="display: none;">
+					<img id="copyright_logo" src="/public/static/blue/img/logo.png">
+<!-- 					<p> -->
+<!-- 						<span id="copyright_desc"></span> -->
+<!-- 						<br/> -->
+<!-- 						<a id="copyright_companyname" style="color: #333" target="_blank"></a> -->
+<!-- 						<br/> -->
+<!-- 						<span id="copyright_meta"></span> -->
+<!-- 					</p> -->
+				</footer>
+			</div>
+		</div>
+	</aside>
+	
+	<section class="ns-base-section">
+		
+		
+		
+		<div style="position:relative;margin:0;">
+			<!-- 面包屑导航 -->
+						<div class="breadcrumb-nav">
+				<a href="index.html">大鵬系統</a>
+									<i class="fa fa-angle-right"></i>
+					<a href="/config/usernotice.html">网站</a>
+									<i class="fa fa-angle-right"></i>
+					<!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/config/updateshopnavigation -->
+					<a href="javascript:;" style="color:#999;">修改导航</a>
+							</div>
+						<!-- 三级导航菜单 -->
+			
+							
+			<div class="right-side-operation">
+				<ul>
+					
+					
+<!-- 					style="display:none;" style="display:block;" -->
+					<li>
+						<a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+						<div class="popover">
+							<div class="arrow"></div>
+							<div class="popover-content">
+								<div>
+																		<h4>操作提示</h4>
+									<p>修改导航</p>
+									<hr>
+																		<h4>功能提示</h4>
+									<p class="function-prompts"></p>
+								</div>
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		
+		<!-- 操作提示 -->
+		
+<!-- 		 -->
+		<div class="ns-warm-prompt" style="display:none;">
+			<div class="alert alert-info">
+				<button type="button" class="close">×</button>
+				<h4>
+<!-- 					{1block name="alert_info"} -->
+<!-- 					<i class="fa fa-info-circle"></i> -->
+<!-- 					<span class="operating-hints">操作提示</span> -->
+<!-- 						 -->
+<!-- 						<span>修改导航</span> -->
+<!-- 						 -->
+<!-- 					{1/block} -->
+				</h4>
+			</div>
+		</div>
+		
+		
+		<div class="ns-main">
+			
+<div class="span1"></div>
+<div class="set-style">
+	<dl>
+		<dt><span style="color:red;margin-right:10px;">*</span>导航名称：</dt>
+		<dd><input id="nav_title" type="text" value="领券中心" name="title" class="input-common"></dd>
+	</dl>
+	<dl>
+		<dt>排序号：</dt>
+		<dd><input id="sort" type="number" value="0" name="" min="0" class="input-common harf"></dd>
+	</dl>
+	<dl>
+		<dt>所属类型：</dt>
+		<dd>
+			<div id="position_type">
+				<label for="navigationtype1" class="radio inline normal">
+				<i class="radio-common selected"><input type="radio" value="1" name="navigationtype" id="navigationtype1" checked="checked"></i>
+				<span>PC端</span>
+				</label>
+				<label for="navigationtype2" class="radio inline normal">
+				<i class="radio-common "><input type="radio" value="2" name="navigationtype" id="navigationtype2"></i>
+				<span>手机端</span>
+				</label>
+			</div>
+		</dd>
+	</dl>
+	<dl>
+		<dt><span style="color:red;margin-right:10px;">*</span>链接地址：</dt>
+		<dd>
+			<label for="url_type1" class="radio inline normal">
+			<i class="radio-common selected"><input type="radio" value="0" name="url_type" id="url_type1" checked="checked"></i>
+			<span>商城模块</span>
+			</label>
+			<label for="url_type2" class="radio inline normal">
+			<i class="radio-common "><input type="radio" value="1" name="url_type" id="url_type2"></i>
+			<span>自定义链接</span>
+			</label>
+		</dd>
+	</dl>
+	<dl>
+		<dt></dt>
+		<dd>
+			<div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select id="shopNavModel" class="select-common" style="" tabindex="-1">
+				<option value="">请选择</option>
+								<option value="/index">首页</option>
+								<option value="/index/discount">限时折扣</option>
+								<option value="/goods/brandlist">品牌列表</option>
+								<option value="/goods/integralcenter">积分中心</option>
+								<option value="/goods/promotionZone">标签专区</option>
+								<option value="/goods/couponlist" selected="">领券中心</option>
+								<option value="goods/groupBuyingArea">团购专区</option>
+								<option value="goods/promotionTopic">专题活动</option>
+							</select></div><div class="selectric"><span class="selectric-label">领券中心</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="" title="请选择">请选择</li><li data-index="1" class="" title="首页">首页</li><li data-index="2" class="" title="限时折扣">限时折扣</li><li data-index="3" class="" title="品牌列表">品牌列表</li><li data-index="4" class="" title="积分中心">积分中心</li><li data-index="5" class="" title="标签专区">标签专区</li><li data-index="6" class="selected" title="领券中心">领券中心</li><li data-index="7" class="" title="团购专区">团购专区</li><li data-index="8" class="last" title="专题活动">专题活动</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+			<span style="display: none;" id="nav_url">
+				<input type="text" value="/goods/couponlist" name="nav_url" class="input-common">
+				<span style="line-height: 28px;color: #999;">如：http://www.niushop.com.cn/</span>
+			</span>
+			
+		</dd>
+	</dl>
+	<dl>
+		<dt>是否新窗口打开：</dt>
+		<dd>
+			<p>
+				<input id="is_blank" type="checkbox" class="checkbox" simpleswitch="0" result="false" style="display: none;"><div class="Switch Switch_FlatRadius" id="Switch0"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+			</p>
+		</dd>
+	</dl>
+	<dl>
+		<dt>是否显示：</dt>
+		<dd>
+			<p>
+				<input id="is_show" type="checkbox" class="checkbox" checked="" simpleswitch="1" result="true" style="display: none;"><div class="Switch Switch_FlatRadius On" id="Switch1"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+			</p>
+		</dd>
+	</dl>
+	<dl>
+		<dt>导航图标：</dt>
+		<dd>
+			<div class="upload-btn-common">
+				<div>
+					<input class="input-file" name="file_upload" id="uploadImg" type="file" onchange="imgUpload(this);">
+					<input type="hidden" id="logo" value="">
+				</div>
+				<input type="text" id="text_logo" class="input-common" readonly="readonly" value="">
+				<em>上传</em>
+				
+				<img id="preview_logo" src="/public/static/blue/img/upload-common-select.png" data-html="true" data-container="body" data-placement="top" data-trigger="manual">
+			</div>
+
+			<p class="hint">
+				<span>建议使用<i class="important-note">宽86</i>像素-<i class="important-note">高86</i>像素内的<i class="important-note">JPG</i>或<i class="important-note">PNG</i>正方形图片</span>
+			</p>
+		</dd>
+	</dl>
+	<dl>
+		<dt></dt>
+		<dd>
+			<button class="btn-common btn-big" onclick="save()">保存</button>
+			<button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
+		</dd>
+	</dl>
+</div>
+<input type="hidden" id="nav_id" value="14">
+
+			<script type="text/javascript" src="/public/static/js/jquery.cookie.js"></script>
+<script src="/public/static/js/page.js"></script>
+<div class="page" id="turn-ul" style="display: none;">
+	<div class="pagination">
+		<ul>
+			<li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+			<li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+			<li><a id="prevPage" class="page-disable">上一页</a></li>
+			<li id="pageNumber"></li>
+			<li id="JslastPage">
+				
+			</li>
+			<li><a id="nextPage">下一页</a></li>
+			<li><a id="lastPage">末页</a></li>
+			<li class="total-data">共0条</li>
+			<!-- <li class="page-count">共0页</li> -->
+			<li class="according-number">
+				跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
+			</li>
+		</ul>
+	</div>
+</div>
+<input type="hidden" id="page_count">
+<input type="hidden" id="page_size">
+<script>
+/**
+ * 保存当前的页面
+ * 创建时间：2017年8月30日 19:29:20
+ */
+function savePage(index){
+	var json = { page_index : index, show_number : $("#showNumber").val(), url :  window.location.href };
+	$.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+ 	//console.log(json);
+}
+
+$(function() {
+	try{
+		
+		$("#turn-ul").show();//显示分页
+		var history_url = "";
+		var json = { page_index : 1, show_number : 14, url :  window.location.href };
+		var history_json = "";//用于临时保存分页数据
+		if($.cookie('page_cookie') != undefined && $.cookie('page_cookie') != "" && $.cookie('page_cookie') != '""'){
+			
+			var cookie = eval("(" + $.cookie('page_cookie') + ")");
+			if(cookie !=undefined && cookie != ""){
+				json.page_index = cookie.page_index;
+				if(cookie.show_number != undefined && cookie.show_number != "") json.show_number = cookie.show_number;
+				else json.show_number = 14;
+				history_url = cookie.url;
+				history_json = cookie;
+			}
+			
+		}else{
+			
+			savePage(json.page_index);
+			
+		}
+		if(history_url != undefined && history_url != "" && history_url != json.url && json.page_index != 1){
+			
+			//如果页面发生了跳转，还原操作
+			json.page_index = 1;
+			json.show_number = 14;
+			json.url = history_url;
+ 			//console.log("如果页面发生了跳转，还原操作");
+			$.cookie('page_cookie',JSON.stringify(json),{ path: '/' });
+		}
+
+ 		//console.log($.cookie('page_cookie'));
+		$("#showNumber").val(json.show_number);
+		if(json.page_index != 1) jumpNumber = json.page_index;
+		LoadingInfo(json.page_index);//通过此方法调用分页类
+		
+	}catch(e){
+		
+		$("#turn-ul").hide();
+		//当前页面没有分页，进行还原操作
+		$.cookie('page_cookie',JSON.stringify(history_json),{ path: '/' });
+//		console.error(e);
+ 		//console.log("当前页面没有分页，进行还原操作");
+ 		//console.log($.cookie('page_cookie'));
+	}
+	
+	//首页
+	$("#beginPage").click(function() {
+		if(jumpNumber!=1){
+			jumpNumber = 1;
+			LoadingInfo(1);
+			savePage(1);
+			changeClass("begin");
+		}
+		return false;
+	});
+
+	//上一页
+	$("#prevPage").click(function() {
+		var obj = $(".currentPage");
+		var index = parseInt(obj.text()) - 1;
+		if (index > 0) {
+			obj.removeClass("currentPage");
+			obj.prev().addClass("currentPage");
+			jumpNumber = index;
+			LoadingInfo(index);
+			savePage(index);
+			//判断是否是第一页
+			if (index == 1) {
+				changeClass("prev");
+			} else {
+				changeClass();
+			}
+		}
+		return false;
+	});
+
+	//下一页
+	$("#nextPage").click(function() {
+		var obj = $(".currentPage");
+		//当前页加一（下一页）
+		var index = parseInt(obj.text()) + 1;
+		if (index <= $("#page_count").val()) {
+			jumpNumber = index;
+			LoadingInfo(index);
+			savePage(index);
+			obj.removeClass("currentPage");
+			obj.next().addClass("currentPage");
+			//判断是否是最后一页
+			if (index == $("#page_count").val()) {
+				changeClass("next");
+			} else {
+				changeClass();
+			}
+		}
+		return false;
+	});
+
+	//末页
+	$("#lastPage").click(function() {
+		jumpNumber = $("#page_count").val();
+		if(jumpNumber>1){
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+			$("#pageNumber a:eq("+ (parseInt($("#page_count").val()) - 1) + ")").text($("#page_count").val());
+			changeClass("next");
+		}
+		return false;
+	});
+
+	//每页显示页数
+	$("#showNumber").blur(function(){
+		if(isNaN($(this).val())){
+			$("#showNumber").val(20);
+			jumpNumber = 1;
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+			return;
+		}
+		if($(this).val().indexOf(".") != -1){
+			var index = $(this).val().indexOf(".");
+			$("#showNumber").val($(this).val().substr(0,index));
+			jumpNumber = 1;
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+			return;
+		}
+		if(parseInt($(this).val())<=0){
+			jumpNumber = 1;
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+			return;
+		}
+		//页数没有变化的话，就不要再执行查询
+		if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 			jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+			$(this).attr("data-default",$(this).val());
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+		}
+		return false;
+	}).keyup(function(event){
+		if(event.keyCode == 13){
+			if(isNaN($(this).val())){
+				$("#showNumber").val(20);
+				jumpNumber = 1;
+				LoadingInfo(jumpNumber);
+				savePage(jumpNumber);
+			}
+			//页数没有变化的话，就不要再执行查询
+			if(parseInt($(this).val()) != $(this).attr("data-default")){
+// 				jumpNumber = 1;//设置每页显示的页数，并且设置到第一页
+				$(this).attr("data-default",$(this).val());
+				//总数据数量
+				var total_count = parseInt($(".total-data").attr("data-total-count"));
+				//计算用户输入的页数是否超过当前页数
+				var curr_count = Math.ceil(total_count/parseInt($(this).val()));
+				if( curr_count !=0 && curr_count < jumpNumber){
+					jumpNumber = curr_count;//输入的页数超过了，没有那么多
+				}
+				LoadingInfo(jumpNumber);
+				savePage(jumpNumber);
+			}
+		}
+		return false;
+	});
+
+	// 跳转到某页
+	$("#skipPage").blur(function(){
+		if(isNaN($(this).val()) || $(this).val().length == 0){
+			$("#showNumber").val(20);
+			jumpNumber = 1;
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+			return;
+		}
+		if(parseInt($(this).val())<=0){
+			jumpNumber = 1;
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+			return;
+		}
+		if(parseInt($(this).val()) > $("#page_count").val()){
+			jumpNumber = $("#page_count").val();
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+			$(this).val(jumpNumber);
+			return;
+		}
+		if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+			return;
+		}
+		jumpNumber = $(this).val();
+		LoadingInfo(jumpNumber);
+		savePage(jumpNumber);		
+	}).keyup(function(event){
+		if(event.keyCode == 13){
+			if(isNaN($(this).val())){
+				$("#showNumber").val(20);
+				jumpNumber = 1;
+				LoadingInfo(jumpNumber);
+				savePage(jumpNumber);
+			}
+			if(parseInt($(this).val())<=0){
+				jumpNumber = 1;
+				LoadingInfo(jumpNumber);
+				savePage(jumpNumber);
+				return;
+			}
+			if(parseInt($(this).val()) > $("#page_count").val()){
+				jumpNumber = $("#page_count").val();
+				LoadingInfo(jumpNumber);
+				savePage(jumpNumber);
+				$(this).val(jumpNumber);
+				return;
+			}
+			if(parseInt($(this).val()) == parseInt($(this).attr("data-curr-page"))){
+				return;
+			}
+			jumpNumber = $(this).val();
+			LoadingInfo(jumpNumber);
+			savePage(jumpNumber);
+		}
+		return false;
+	});
+});
+
+//跳转页面
+function JumpForPage(obj) {
+	jumpNumber = $(obj).text();
+	LoadingInfo($(obj).text());
+	savePage($(obj).text());
+	$(".currentPage").removeClass("currentPage");
+	$(obj).addClass("currentPage");
+	if (jumpNumber == 1) {
+		changeClass("prev");
+	} else if (jumpNumber < parseInt($("#page_count").val())) {
+		changeClass();
+	} else if (jumpNumber == parseInt($("#page_count").val())) {
+		changeClass("next");
+	}
+}
+</script>
+		</div>
+		
+	</section>
+	
+</article>
+
+<!-- 公共的操作提示弹出框 common-success：成功，common-warning：警告，common-error：错误，-->
+<div class="common-tip-message js-common-tip">
+	<div class="tip-container">
+		<span class="inner"></span>
+	</div>
+</div>
+
+<!--修改密码弹出框 -->
+<div id="edit-password" class="modal hide fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="width:562px;top:50%;margin-top:-180.5px;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3>修改密码</h3>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="pwd0" style="width: 160px;"><span class="color-red">*</span>原密码</label>
+				<div class="controls" style="margin-left: 180px;">
+					<input type="password" id="pwd0" placeholder="请输入原密码" class="input-common">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="pwd1" style="width: 160px;"><span class="color-red">*</span>新密码</label>
+				<div class="controls" style="margin-left: 180px;">
+					<input type="password" id="pwd1" placeholder="请输入新密码" class="input-common">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="pwd2" style="width: 160px;"><span class="color-red">*</span>再次输入密码</label>
+				<div class="controls" style="margin-left: 180px;">
+					<input type="password" id="pwd2" placeholder="请输入确认密码" class="input-common">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div style="text-align: center; height: 20px;" id="show"></div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn-common btn-big" onclick="submitPassword()" style="display:inline-block;">保存</button>
+		<button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
+	</div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="/public/admin/css/jquery-ui-private.css">
+<script>
+var platform_shopname= 'Niushop开源商城';
+</script>
+<script type="text/javascript" src="/public/admin/js/jquery-ui-private.js" charset="utf-8"></script>
+<script type="text/javascript" src="/public/admin/js/jquery.timers.js"></script>
+<div id="dialog"></div>
+<script type="text/javascript">
+function showMessage(type, message,url,time){
+	if(url == undefined){
+		url = '';
+	}
+	if(time == undefined){
+		time = 2;
+	}
+	//成功之后的跳转
+	if(type == 'success'){
+		$( "#dialog").dialog({
+			buttons: {
+				"确定,#0059d6,#fff": function() {
+					$(this).dialog('close');
+				}
+			},
+			contentText:message,
+			time:time,
+			timeHref: url,
+			msgType : type
+		});
+	}
+	//失败之后的跳转
+	if(type == 'error'){
+		$( "#dialog").dialog({
+			buttons: {
+				"确定,#0059d6,#fff": function() {
+					$(this).dialog('close');
+				}
+			},
+			time:time,
+			contentText:message,
+			timeHref: url,
+			msgType : type
+		});
+	}
+}
+
+function showConfirm(content){
+	$( "#dialog").dialog({
+		buttons: {
+			"确定": function() {
+				$(this).dialog('close');
+				return 1;
+			},
+			"取消,#f5f5f5,#666": function() {
+				$(this).dialog('close');
+				return 0;
+			}
+		},
+		contentText:content,
+	});
+}
+</script>
+<script src="/public/admin/js/ns_common_base.js"></script>
+<script src="/public/static/blue/js/ns_common_blue.js"></script>
+<script>
+	window.onload = function(){
+
+	}
+$(function(){
+	
+	$(".ns-third-menu ul .btn-more").toggle(
+		function(){
+			$(".ns-third-menu ul").animate({height:"84px"},300);
+		},
+		function(){
+			$(".ns-third-menu ul").animate({height:"42px"},300);
+		}
+	);
+	
+	//公共下拉框
+	$('.select-common').selectric();
+	
+	//公共复选框点击切换样式
+	$(".checkbox-common").live("click",function(){
+		var checkbox = $(this).children("input");
+		if(checkbox.is(":checked")) $(this).addClass("selected");
+		else $(this).removeClass("selected");
+	});
+	
+	//鼠标浮上查看预览上传的图片
+	$(".upload-btn-common>img,#preview_adv").live("mouseover",function(){
+		var curr = $(this);
+		var src = curr.attr("data-src");
+		if(src){
+			//alert(src);
+			var contents = '<img src="'+src+'" style="width: 100px;height: auto;display:block;margin:0 auto;">';
+			//鼠标每次浮上图片时，要销毁之前的事件绑定
+			curr.popover("destroy");
+			
+			//重新配置弹出框内容
+			curr.popover({ content : contents });
+
+			//显示
+			curr.popover("show");
+		}
+	});
+	
+	//鼠标离开隐藏预览上传的图片
+	$(".upload-btn-common>img,#preview_adv").live("mouseout",function(){
+		var curr = $(this);
+		//隐藏
+		if($(".popover.top").is(":visible") && curr.attr("data-src")) curr.popover("hide");
+	});
+
+	//公共单选框点击切换样式
+	$(".radio-common").live("click",function(){
+		var radio = $(this).children("input");
+		var name = radio.attr("name");
+		if(radio.is(":checked")){
+			$(".radio-common>input[type='radio'][name='" + name + "']").parent().removeClass("selected");
+			$(this).addClass("selected");
+		}else{
+			$(this).removeClass("selected");
+		}
+	});
+
+	//顶部导航管理显示隐藏
+	$(".ns-navigation-title>span").click(function(){
+		$(".ns-navigation-management").slideUp(400);
+	});
+	
+	$(".js-nav").toggle(function(){
+		$(".ns-navigation-management").slideDown(400);
+	},function(){
+		$(".ns-navigation-management").slideUp(400);
+	});
+	
+	//搜索展开
+	$(".ns-search-block").hover(function(){
+		if($(this).children(".mask-layer-search").is(":hidden")) $(this).children(".mask-layer-search").fadeIn(300);
+	},function(){
+		if($(this).children(".mask-layer-search").is(":visible")) $(this).children(".mask-layer-search").fadeOut(300);
+	});
+	
+	$(".ns-base-tool .ns-help").hover(function(){
+		if($(this).children("ul").is(":hidden")) $(this).children("ul").fadeIn(250);
+	},function(){
+		if($(this).children("ul").is(":visible")) $(this).children("ul").fadeOut(250);
+	});
+	
+});
+
+function addFavorite() {
+	var url = window.location;
+	var title = document.title;
+	var ua = navigator.userAgent.toLowerCase();
+	if (ua.indexOf("360se") > -1) {
+		alert("由于360浏览器功能限制，请按 Ctrl+D 手动收藏！");
+	}else if (ua.indexOf("msie 8") > -1) {
+		window.external.AddToFavoritesBar(url, title); //IE8
+	}
+	else if (document.all) {
+		try{
+			window.external.addFavorite(url, title);
+		}catch(e){
+			alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+		}
+	}else if (window.sidebar) {
+		window.sidebar.addPanel(title, url, "");
+	}else {
+		alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
+	}
+}
+
+</script>
+
+<script src="/public/static/js/ajax_file_upload.js" type="text/javascript"></script>
+<script src="/public/static/js/file_upload.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	var nav_type = "0";
+	if(nav_type == "1") $(".selectric-select-common").hide();
+	
+	var navigationtype="1";
+	$('#navigationtype'+navigationtype).attr('checked','checked').parent().addClass('selected');
+
+	$("input[type='radio'][name='navigationtype']").click(function(){
+		var type = $(this).val();
+		var url_type = $("[name='url_type']:checked").val();
+		if(url_type == 0){
+			switchUseType(type);
+		}
+	})
+});
+
+function save(){
+	var nav_title=$("#nav_title").val();
+	var nav_id=$("#nav_id").val();
+	var sort=$("#sort").val();
+	var type=$("input[name='navigationtype']:checked").val();
+	if(nav_title == ''){
+		showTip("导航名称不能为空","warning");
+		$("#nav_title").focus();
+		return false;
+	}
+	if(sort==''){
+		$("#sort").val(0);
+	}
+	if(nav_url == ''){
+		showTip("链接地址不能为空","warning");
+		$("#nav_url").focus();
+		return false;
+	}
+	var url_type = $("input[name=url_type]:checked").val();
+	if(url_type == 0){
+		var nav_url=$("#shopNavModel").val();
+		var template_name = $("#shopNavModel option:selected").text();
+	}else if(url_type == 1){
+		var nav_url=$("input[name=nav_url]").val();
+		var template_name = '';
+	}
+	if(nav_url == ''){
+		showTip("链接地址不能为空","warning");
+		return false; 
+	}
+	var is_blank = $("#is_blank").prop('checked') ? 1 : 0 ;
+	var is_show = $("#is_show").prop('checked') ? 1 : 0 ;
+	var nav_icon = $("#logo").val();
+	$.ajax({
+		type:"post",
+		url:"http://showfx.niuteam.cn/admin/config/updateshopnavigation.html",
+		data:{
+			'nav_id':nav_id,
+			'nav_title':nav_title,
+			'sort':sort,
+			'nav_url':nav_url,
+			'type':type,
+			'nav_type' : url_type,
+			'is_blank' : is_blank,
+			'template_name' : template_name,
+			'nav_icon' : nav_icon,
+			'is_show' : is_show
+		},
+		success:function(data){
+			if (data["code"] > 0) {
+				showTip(data["message"],'success');
+				location.href=__URL("http://showfx.niuteam.cn/admin/config/shopnavigationlist");
+			}else{
+				showTip(data["message"],'error');
+			}
+		}
+	});
+}
+
+$("#url_type1").click(function(){
+	$(".selectric-select-common").show();
+	$("#nav_url").hide();
+})
+$("#url_type2").click(function(){
+	$(".selectric-select-common").hide();
+	$("#nav_url").show();
+})
+
+function imgUpload(event) {
+	var fileid = $(event).attr("id");
+	var data = { 'file_path' : UPLOADCOMMON };
+	var id = $(event).next().attr("id");
+	uploadFile(fileid,data,function(res){
+		if(res.code){
+			$("#"+id).val(res.data);
+			$("#text_" + id).val(res.data);
+			$("#preview_" + id).attr("data-src",__IMG(res.data));
+			showTip(res.message,"success");
+		}else{
+			showTip(res.message,"error");
+		}
+	});
+}
+
+// 切换
+function switchUseType(use_type){
+	var shopNavTemplateJson = '[{"template_id":1,"template_name":"\u9996\u9875","template_url":"\/index","is_use":1,"use_type":1,"create_time":1497706628,"applet_template":""},{"template_id":2,"template_name":"\u9650\u65f6\u6298\u6263","template_url":"\/index\/discount","is_use":1,"use_type":1,"create_time":1497706628,"applet_template":""},{"template_id":3,"template_name":"\u54c1\u724c\u5217\u8868","template_url":"\/goods\/brandlist","is_use":1,"use_type":1,"create_time":1497706628,"applet_template":""},{"template_id":4,"template_name":"\u79ef\u5206\u4e2d\u5fc3","template_url":"\/goods\/integralcenter","is_use":1,"use_type":1,"create_time":1500721307,"applet_template":""},{"template_id":5,"template_name":"\u6807\u7b7e\u4e13\u533a","template_url":"\/goods\/promotionZone","is_use":1,"use_type":1,"create_time":1500717235,"applet_template":""},{"template_id":6,"template_name":"\u9886\u5238\u4e2d\u5fc3","template_url":"\/goods\/couponlist","is_use":1,"use_type":1,"create_time":1527317482,"applet_template":""},{"template_id":7,"template_name":"\u56e2\u8d2d\u4e13\u533a","template_url":"goods\/groupBuyingArea","is_use":1,"use_type":1,"create_time":1527317654,"applet_template":""},{"template_id":8,"template_name":"\u4e13\u9898\u6d3b\u52a8","template_url":"goods\/promotionTopic","is_use":1,"use_type":1,"create_time":1527317654,"applet_template":""},{"template_id":9,"template_name":"\u9996\u9875","template_url":"\/index","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":10,"template_name":"\u5546\u54c1\u5206\u7c7b","template_url":"\/goods\/goodsClassificationList","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":11,"template_name":"\u9650\u65f6\u6298\u6263","template_url":"\/index\/discount","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":12,"template_name":"\u54c1\u724c\u4e13\u533a","template_url":"\/goods\/brandlist","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":13,"template_name":"\u6807\u7b7e\u4e13\u533a","template_url":"\/goods\/promotionzone","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":14,"template_name":"\u4f1a\u5458\u4e2d\u5fc3","template_url":"\/member\/index","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":15,"template_name":"\u62fc\u56e2\u4e13\u533a","template_url":"\/goods\/spellingGroupZone","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":16,"template_name":"\u4e13\u9898\u6d3b\u52a8","template_url":"\/goods\/promotionTopic","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":17,"template_name":"\u56e2\u8d2d\u4e13\u533a","template_url":"\/goods\/groupBuyingArea","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":18,"template_name":"\u8d2d\u7269\u8f66","template_url":"\/goods\/cart","is_use":1,"use_type":2,"create_time":1527317666,"applet_template":""},{"template_id":19,"template_name":"\u6587\u7ae0\u4e2d\u5fc3","template_url":"\/articlecenter\/index","is_use":1,"use_type":2,"create_time":1527317714,"applet_template":""},{"template_id":20,"template_name":"\u780d\u4ef7\u4e13\u533a","template_url":"\/goods\/bargainList","is_use":1,"use_type":2,"create_time":1527317714,"applet_template":""}]';
+	var shopNavTemplateArr = JSON.parse(shopNavTemplateJson);
+	var html = '<option value="">请选择</option>';
+	for (var i = 0; i < shopNavTemplateArr.length; i++) {
+		var item = shopNavTemplateArr[i];
+		if(item['use_type'] == use_type){
+			html += '<option value="'+item['template_url']+'">'+item['template_name']+'</option>';
+		}
+	}
+	$("#shopNavModel").html(html).selectric({
+		maxHeight: 500
+	});
+}
+</script>
+
+
+<div style="display: none; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; cursor: move; opacity: 0; background: rgb(255, 255, 255);"></div></body></html>

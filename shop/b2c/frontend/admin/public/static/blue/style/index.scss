@@ -1,0 +1,139 @@
+@CHARSET "UTF-8";
+/* 后台首页隐藏功能菜单	.ncsc-path */
+.tabmenu, .tabmenu_hr {
+	display: none;
+}
+
+.ns-main {
+	background: transparent;
+}
+
+.main {
+	margin: 0;
+}
+
+.home {
+	overflow: hidden;
+	color: #999;
+	margin-bottom: 20px;
+}
+
+.home article {
+	float: left;
+}
+
+.home article:FIRST-CHILD {
+	width: 40%;
+}
+
+.home article:LAST-CHILD {
+	width: 60%;
+}
+
+.home-shop, .home-info {
+	float: left;
+}
+
+.home-shop {
+	padding: 20px 30px 0px 40px;
+}
+
+.home-shop span {
+	margin-top: 5px;
+	display: block;
+	color: #0578c4;
+}
+
+.home-info {
+	width: 50%;
+}
+
+.home-info p {
+	margin: 8px 0;
+}
+
+.home-info p:FIRST-CHILD {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.home-info p:FIRST-CHILD span {
+	color: #333;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.home-info p:NTH-CHILD(2) span {
+	color: #666;
+}
+
+.last-login-time {
+	padding-top: 47px;
+}
+
+.level {
+	float: left;
+}
+
+.text-center {
+	text-align: center;
+}
+
+
+
+
+.promote-img, .promote-h5 {
+	float: left;
+}
+
+.promote-img {
+	padding: 0 10px;
+}
+
+.promote-h5 {
+	color: #fff;
+	width: 70%;
+	font-size: 20px;
+}
+
+.promote-h5 span {
+	color: #FFFF00;
+	font-size: 14px;
+	margin-left: 10px;
+}
+
+.promote-p {
+	color: #fff;
+	padding: 10px;
+	text-align: left;
+	font-size: 12px;
+}
+
+.snapup {
+	background: #FF8C8C;
+}
+
+.time-limit {
+	background: #33B5CC;
+}
+
+.full_present {
+	background: #FF984C;
+}
+
+.preferential-suit {
+	background: #33CDA6;
+}
+
+.black {
+	color: #666 !important;
+}
+
+.recommended_booth {
+	background: #EDC230;
+}
+
+.kims_volume {
+	background: #7ACE52;
+}
+
