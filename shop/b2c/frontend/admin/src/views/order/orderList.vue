@@ -6,7 +6,7 @@
             <div class="breadcrumb-nav">
                 <a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
                 <i class="fa fa-angle-right"></i>
-                <a href="http://b2c.niuteam.cn/admin/order/orderlist.html">订单</a>
+                <a href="/order/orderlist.html">订单</a>
                 <i class="fa fa-angle-right"></i>
                 <!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/order/orderlist -->
                 <a href="javascript:;" style="color:#999;">订单列表</a>
@@ -15,14 +15,14 @@
     
             <nav class="ns-third-menu">
                 <ul>
-                    <li class="selected" onclick="location.href='http://b2c.niuteam.cn/admin/Order/orderList.html';">全部</li>
-                    <li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=0';">待付款</li>
-                    <li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=1';">待发货</li>
-                    <li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=2';">已发货</li>
-                    <li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=3';">已收货</li>
-                    <li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=4';">已完成</li>
-                    <li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=5';">已关闭</li>
-                    <li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=-1';">退款中</li>
+                    <li class="selected" onclick="location.href='/Order/orderList.html';">全部</li>
+                    <li onclick="location.href='/order/orderlist.html?status=0';">待付款</li>
+                    <li onclick="location.href='/order/orderlist.html?status=1';">待发货</li>
+                    <li onclick="location.href='/order/orderlist.html?status=2';">已发货</li>
+                    <li onclick="location.href='/order/orderlist.html?status=3';">已收货</li>
+                    <li onclick="location.href='/order/orderlist.html?status=4';">已完成</li>
+                    <li onclick="location.href='/order/orderlist.html?status=5';">已关闭</li>
+                    <li onclick="location.href='/order/orderlist.html?status=-1';">退款中</li>
                 </ul>
             </nav>
     
@@ -231,7 +231,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=501">订单详情</a><a style="display:block;margin-bottom:5px;color:green" href="javascript:operation('delivery',501)">发货</a><a style="display:block;margin-bottom:5px;color:#666666"
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=501">订单详情</a><a style="display:block;margin-bottom:5px;color:green" href="javascript:operation('delivery',501)">发货</a><a style="display:block;margin-bottom:5px;color:#666666"
                                     href="javascript:operation('seller_memo',501)">备注</a><a style="display:block;margin-bottom:5px;color:#51A351" href="javascript:operation('update_address',501)">修改地址</a></td>
                         </tr>
                         <tr style="height:10px;">
@@ -264,7 +264,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=498">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',498)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=498">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',498)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',498)">删除订单</a>
                             </td>
@@ -299,7 +299,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=497">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',497)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=497">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',497)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',497)">删除订单</a>
                             </td>
@@ -336,7 +336,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=496">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',496)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=496">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',496)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('logistics',496)">查看物流</a>
                             </td>
@@ -373,7 +373,7 @@
                             <td rowspan="2">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="2" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=494">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',494)">备注</a>
+                            <td rowspan="2" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=494">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',494)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',494)">删除订单</a>
                             </td>
@@ -420,7 +420,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=493">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',493)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=493">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',493)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',493)">删除订单</a>
                             </td>
@@ -455,7 +455,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=492">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',492)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=492">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',492)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',492)">删除订单</a>
                             </td>
@@ -493,7 +493,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=491">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',491)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=491">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',491)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('logistics',491)">查看物流</a>
                             </td>
@@ -531,7 +531,7 @@
                             <td rowspan="2">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="2" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=490">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',490)">备注</a>
+                            <td rowspan="2" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=490">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',490)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',490)">删除订单</a>
                             </td>
@@ -579,7 +579,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=489">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',489)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=489">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',489)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('logistics',489)">查看物流</a>
                             </td>
@@ -614,7 +614,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=488">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',488)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=488">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',488)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',488)">删除订单</a>
                             </td>
@@ -651,7 +651,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=487">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',487)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=487">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',487)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',487)">删除订单</a>
                             </td>
@@ -688,7 +688,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=486">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',486)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=486">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',486)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('logistics',486)">查看物流</a>
                             </td>
@@ -723,7 +723,7 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=484">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',484)">备注</a>
+                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=484">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',484)">备注</a>
                                 <a
                                     style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',484)">删除订单</a>
                             </td>
@@ -1278,7 +1278,7 @@
     										</select>
                                 <span class="help-block" style="display: none;">请选择快递</span>
                             </div>
-                            <span><a href="http://b2c.niuteam.cn/admin/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
+                            <span><a href="/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
                         </div>
                     </form>
                     <div class="ordercontent">
@@ -1331,7 +1331,7 @@
     										</select>
                                 <span class="help-block" style="display: none;">请选择快递</span>
                             </div>
-                            <span><a href="http://b2c.niuteam.cn/admin/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
+                            <span><a href="/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
                         </div>
                     </form>
                     <div class="ordercontent">

@@ -140,7 +140,20 @@ import DistributionGlobalBonusPoolConfig from './views/distribution/globalBonusP
 
 import Setting from './views/setting/Index.vue'
 
-import ConfigWebConfig from './views/config/webConfig.vue'
+import SettingBase from './views/config/base/Index.vue'
+
+import SettingBaseWebConfig from './views/config/base/webConfig.vue'
+import SettingBaseSEOConfig from './views/config/base/seoConfig.vue'
+import SettingBaseCopyrightInfo from './views/config/base/copyrightInfo.vue'
+import SettingBaseVisitConfig from './views/config/base/visitConfig.vue'
+import SettingBaseRegisterAndVisit from './views/config/base/registerAndVisit.vue'
+import SettingBaseUploadConfig from './views/config/base/uploadConfig.vue'
+import SettingBaseCustomPseudoStaticRule from './views/config/base/customPseudoStaticRule.vue'
+import SettingBasePartyLogin from './views/config/base/partyLogin/list.vue'
+import SettingBaseNotify from './views/config/base/notify/list.vue'
+import SettingBaseCustomservice from './views/config/base/customService.vue'
+import SettingBaseMerchantService from './views/config/base/merchantService.vue'
+
 import ConfigShopSet from './views/config/shopSet.vue'
 import ExpressCompany from './views/express/expressCompany.vue'
 import Database from './views/database/backup.vue'
@@ -154,551 +167,618 @@ import ReturnSetting from './views/order/returnSetting.vue'
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history',
-	base: process.env.BASE_URL,
-	routes: [{
-		path: '/',
-		redirect: 'index.html'
-	},
-	{
-		path: '/index.html',
-		name: 'index',
-		component: Index
-	},
-	{
-		path: '/goods',
-		name: 'goods',
-		component: Goods,
-		children: [{
-			path: 'list.html',
-			name: 'goodsList',
-			component: GoodsList
-		}, {
-			path: 'add.html',
-			name: 'goodsAdd',
-			component: GoodsAdd
-		}, {
-			path: 'categorylist.html',
-			name: 'goodsCategoryList',
-			component: GoodsCategoryList
-		}, {
-			path: 'brandlist.html',
-			name: 'goodsBrandList',
-			component: GoodsBrandList
-		}, {
-			path: 'brandedit.html',
-			name: 'goodsBrandEdit',
-			component: GoodsBrandEdit
-		}, {
-			path: 'labellist.html',
-			name: 'goodsLabelList',
-			component: GoodsLabelList
-		}, {
-			path: 'labeledit.html',
-			name: 'goodsLabelEdit',
-			component: GoodsLabelEdit
-		}, {
-			path: 'speclist.html',
-			name: 'goodsSpecList',
-			component: GoodsSpecList
-		}, {
-			path: 'supplierlist.html',
-			name: 'supplierList',
-			component: SupplierList
-		}, {
-			path: 'supplieredit.html',
-			name: 'supplierEdit',
-			component: SupplierEdit
-		}, {
-			path: 'consult.html',
-			name: 'saleserviceConsult',
-			component: SaleserviceConsult
-		}, {
-			path: 'attributelist.html',
-			name: 'attributeList',
-			component: GoodsAttributeList
-		}, {
-			path: 'comment.html',
-			name: 'comment',
-			component: GoodsComment
-		}, {
-			path: 'albumlist.html',
-			name: 'systemAlbumList',
-			component: SystemAlbumList
-		}, {
-			path: 'albumpicturelist.html',
-			name: 'systemAlbumPictureList',
-			component: SystemAlbumPictureList
-		}]
-	},
-	{
-		path: '/order',
-		name: 'order',
-		component: Order,
-		children: [{
-			path: 'orderlist.html',
-			name: 'orderList',
-			component: OrderList
-		}, {
-			path: 'virtualorder.html',
-			name: 'virtualOrder',
-			component: VirtualOrder
-		}, {
-			path: 'bargainorder.html',
-			name: 'bargainOrder',
-			component: BargainOrder
-		}, {
-			path: 'invoicelist.html',
-			name: 'invoiceList',
-			component: OrderInvoiceList
-		}, {
-			path: 'customerservicelist.html',
-			name: 'customerServiceList',
-			component: OrderCustomerServiceList
-		}, {
-			path: 'customerservicedetail.html',
-			name: 'customerServiceDetail',
-			component: OrderCustomerServiceDetail
-		}]
-	},
-	{
-		path: '/tuangou',
-		name: 'tuangou',
-		component: Order,
-		children: [{
-			path: 'pintuanorderlist.html',
-			name: 'pintuanOrderList',
-			component: PintuanOrderList
-		}, {
-			path: 'pintuanlist.html',
-			name: 'pintuanList',
-			component: PintuanList
-		}]
-	},
-	{
-		path: '/bargain',
-		name: 'bargain',
-		component: Order,
-		children: [{
-			path: 'index.html',
-			name: 'bargainIndex',
-			component: BargainIndex
-		}, {
-			path: 'pintuanlist.html',
-			name: 'pintuanList',
-			component: PintuanList
-		}]
-	},
-	{
-		path: '/promotion',
-		name: 'promotion',
-		component: Promotion,
-		children: [{
-			path: 'coupontypelist.html',
-			name: 'couponTypeList',
-			component: PromotionCouponTypeList
-		}, {
-			path: 'pointconfig.html',
-			name: 'pointconfig',
-			component: PromotionPointconfig
-		}, {
-			path: 'giftlist.html',
-			name: 'giftList',
-			component: PromotionGiftList
-		}, {
-			path: 'giftedit.html',
-			name: 'giftEdit',
-			component: PromotionGiftEdit
-		}, {
-			path: 'giftrecords.html',
-			name: 'giftRecords',
-			component: PromotionGiftRecords
-		}, {
-			path: 'mansonglist.html',
-			name: 'mansongList',
-			component: PromotionMansongList
-		}, {
-			path: 'discountlist.html',
-			name: 'discountList',
-			component: PromotionDiscountList
-		}, {
-			path: 'discountedit.html',
-			name: 'discountEdit',
-			component: PromotionDiscountEdit
-		}, {
-			path: 'combopackagelist.html',
-			name: 'combopackageList',
-			component: PromotionCombopackageList
-		}, {
-			path: 'combopackageedit.html',
-			name: 'combopackageEdit',
-			component: PromotionCombopackageEdit
-		}, {
-			path: 'fullshipping.html',
-			name: 'fullshipping',
-			component: PromotionFullshipping
-		}, {
-			path: 'integral.html',
-			name: 'integral',
-			component: PromotionIntegral
-		}, {
-			path: 'gameslist.html',
-			name: 'gamesList',
-			component: PromotionGamesList
-		}, {
-			path: 'gamesedit.html',
-			name: 'gamesEdit',
-			component: PromotionGamesEdit
-		}, {
-			path: 'gamestypelist.html',
-			name: 'gamesTypeList',
-			component: PromotionGamesTypeList
-		}, {
-			path: 'groupbuylist.html',
-			name: 'groupBuyList',
-			component: PromotionGroupBuyList
-		}, {
-			path: 'groupbuyedit.html',
-			name: 'groupBuyEdit',
-			component: PromotionGroupBuyEdit
-		}, {
-			path: 'topiclist.html',
-			name: 'topicList',
-			component: PromotionTopicList
-		}, {
-			path: 'topicedit.html',
-			name: 'topicEdit',
-			component: PromotionTopicEdit
-		}]
-	},
-	{
-		path: '/orderpresell',
-		name: 'orderPresell',
-		component: Order,
-		children: [{
-			path: 'list.html',
-			name: 'orderPresellList',
-			component: OrderPresellList
-		}, {
-			path: 'detail.html',
-			name: 'orderPresellDetail',
-			component: OrderPresellDetail
-		}]
-	},
-	{
-		path: '/member',
-		name: 'member',
-		component: Member,
-		children: [{
-			path: 'memberlist.html',
-			name: 'memberList',
-			component: MemberList
-		}, {
-			path: 'memberlevellist.html',
-			name: 'memberLevelList',
-			component: MemberLevelList
-		}, {
-			path: 'memberpointlist.html',
-			name: 'MemberPointList',
-			component: MemberPointList
-		}, {
-			path: 'memberusercommissionwithdrawlist.html',
-			name: 'memberUserCommissionWithdrawList',
-			component: MemberUserCommissionWithdrawList
-		}, {
-			path: 'memberaccountlist.html',
-			name: 'memberAccountList',
-			component: MemberAccountList
-		}]
-	},
-	{
-		path: '/account',
-		name: 'account',
-		component: Account,
-		children: [{
-			path: 'shopsalesaccount.html',
-			name: 'shopsalesaccount',
-			component: AccountShopSalesAccount
-		}, {
-			path: 'shopgoodssaleslist.html',
-			name: 'shopGoodsSalesList',
-			component: AccountShopGoodsSalesList
-		}, {
-			path: 'shopgoodsgroupsalecount.html',
-			name: 'shopGoodsGroupSaleCount',
-			component: AccountShopGoodsGroupSaleCount
-		}, {
-			path: 'shopreport.html',
-			name: 'shopReport',
-			component: AccountShopReport
-		}, {
-			path: 'shopgoodssalesrank.html',
-			name: 'shopGoodsSalesRank',
-			component: AccountShopGoodsSalesRank
-		}]
-	},
-	{
-		path: '/upgrade',
-		name: 'upgrade',
-		component: Upgrade,
-		children: [{
-			path: 'onlineupdate.html',
-			name: 'onlineUpdate',
-			component: UpgradeOnlineUpdate
-		}, {
-			path: 'devolutioninfo.html',
-			name: 'devolutionInfo',
-			component: UpgradeDevolutionInfo
-		}]
-	},
-	{
-		path: '/extend',
-		name: 'extend',
-		component: Upgrade,
-		children: [{
-			path: 'addonslist.html',
-			name: 'addonsList',
-			component: ExtendAddonsList
-		}, {
-			path: 'hookslist.html',
-			name: 'hooksList',
-			component: ExtendHooksList
-		}, {
-			path: 'hooksedit.html',
-			name: 'hooksEdit',
-			component: ExtendHooksEdit
-		}]
-	},
-	{
-		path: '/wchat',
-		name: 'wchat',
-		component: Wchat,
-		children: [{
-			path: 'appletconfig.html',
-			name: 'appletConfig',
-			component: WchatAppletConfig
-		}, {
-			path: 'config.html',
-			name: 'config',
-			component: WchatConfig
-		}, {
-			path: 'menu.html',
-			name: 'menu',
-			component: WchatMenu
-		}, {
-			path: 'weixinqrcodetemplate.html',
-			name: 'qrcodeTemplate',
-			component: WchatQrcodeTemplate
-		}, {
-			path: 'replayconfig.html',
-			name: 'replayConfig',
-			component: WchatReplayConfig
-		}, {
-			path: 'materialmessage.html',
-			name: 'materialMessage',
-			component: WchatMaterialMessage
-		}, {
-			path: 'shareconfig.html',
-			name: 'shareConfig',
-			component: WchatShareConfig
-		}, {
-			path: 'keyconcernconfig.html',
-			name: 'keyConcernConfig',
-			component: WchatKeyConcernConfig
-		}, {
-			path: 'fansmessagemanage.html',
-			name: 'fansMessageManage',
-			component: WchatFansMessageManage
-		}]
-	}, {
-		path: '/menu',
-		name: 'menu',
-		component: Wchat,
-		children: [{
-			path: 'addonmenu.html',
-			name: 'addonMenu',
-			component: MenuAddonMenu
-		}]
-	}, {
-		path: '/member',
-		name: 'member',
-		component: Wchat,
-		children: [{
-			path: 'weixinfanslist.html',
-			name: 'weixinFansList',
-			component: MemberWeixinFansList
-		}]
-	}, {
-		path: '/commission',
-		name: 'commission',
-		component: Commission,
-		children: [{
-			path: 'userAccountList.html',
-			name: 'userAccountList',
-			component: CommissionUserAccountList
-		}, {
-			path: 'distributionList.html',
-			name: 'distributionList',
-			component: CommissionDistributionList
-		}, {
-			path: 'partnerList.html',
-			name: 'partnerList',
-			component: CommissionPartnerList
-		}, {
-			path: 'regionAgentList.html',
-			name: 'regionAgentList',
-			component: CommissionRegionAgentList
-		}, {
-			path: 'partnerGlobalList.html',
-			name: 'partnerGlobalList',
-			component: CommissionPartnerGlobalList
-		}, {
-			path: 'userCommissionWithdrawList.html',
-			name: 'userCommissionWithdrawList',
-			component: CommissionUserCommissionWithdrawList
-		}]
-	}, {
-		path: '/config',
-		name: 'config',
-		component: Config,
-		children: [{
-			path: 'userNotice.html',
-			name: 'userNotice',
-			component: ConfigUserNotice
-		}, {
-			path: 'shopNavigationList.html',
-			name: 'shopNavigationList',
-			component: ConfigShopNavigationList
-		}, {
-			path: 'pcTemplate.html',
-			name: 'pcTemplate',
-			component: ConfigPcTemplate
-		}, {
-			path: 'searchConfig.html',
-			name: 'searchConfig',
-			component: ConfigSearchConfig
-		}, {
-			path: 'helpDocument.html',
-			name: 'helpDocument',
-			component: ConfigHelpDocumentList
-		}, {
-			path: 'linkList.html',
-			name: 'linkList',
-			component: ConfigLinkList
-		}]
-	}, {
-		path: '/cms',
-		name: 'cms',
-		component: Config,
-		children: [{
-			path: 'topicList.html',
-			name: 'topicList',
-			component: CmsTopicList
-		}, {
-			path: 'articleList.html',
-			name: 'articleList',
-			component: CmsArticleList
-		}]
-	}, {
-		path: '/system',
-		name: 'system',
-		component: Config,
-		children: [{
-			path: 'adsList.html',
-			name: 'adsList',
-			component: SystemAdsList
-		}, {
-			path: 'goodsCategoryBlock.html',
-			name: 'goodsCategoryBlock',
-			component: SystemGoodsCategoryBlock
-		}]
-	}, {
-		path: '/distribution',
-		name: 'distribution',
-		component: Distribution,
-		children: [{
-			path: 'promoterList.html',
-			name: 'promoterList',
-			component: DistributionPromoterList
-		}, {
-			path: 'goodsCommissionRateList.html',
-			name: 'goodsCommissionRateList',
-			component: DistributionGoodsCommissionRateList
-		}, {
-			path: 'threeLevelDistributionConfig.html',
-			name: 'threeLevelDistributionConfig',
-			component: DistributionThreeLevelDistributionConfig
-		}, {
-			path: 'regionalAgent.html',
-			name: 'regionalAgent',
-			component: DistributionRegionalAgent
-		}, {
-			path: 'shareholderDividendsConfig.html',
-			name: 'shareholderDividendsConfig',
-			component: DistributionShareholderDividendsConfig
-		}, {
-			path: 'globalBonusPoolConfig.html',
-			name: 'globalBonusPoolConfig',
-			component: DistributionGlobalBonusPoolConfig
-		}]
-	}, {
-		path: '/config',
-		name: 'config',
-		component: Setting,
-		children: [{
-			path: 'webConfig.html',
-			name: 'webConfig',
-			component: ConfigWebConfig
-		}, {
-			path: 'shopSet.html',
-			name: 'shopSet',
-			component: ConfigShopSet
-		}]
-	}, {
-		path: '/express',
-		name: 'express',
-		component: Setting,
-		children: [{
-			path: 'expressCompany.html',
-			name: 'expressCompany',
-			component: ExpressCompany
-		}]
-	}, {
-		path: '/database',
-		name: 'database',
-		component: Setting,
-		children: [{
-			path: 'index.html',
-			name: 'databaseIndex',
-			component: Database
-		}]
-	}, {
-		path: '/auth',
-		name: 'auth',
-		component: Setting,
-		children: [{
-			path: 'userList.html',
-			name: 'userList',
-			component: AuthUserList
-		}]
-	}, {
-		path: '/verification',
-		name: 'verification',
-		component: Setting,
-		children: [{
-			path: 'index.html',
-			name: 'verificationIndex',
-			component: Verification
-		}]
-	}
-		// {
-		//   path: '/about',
-		//   name: 'about',
-		//   // route level code-splitting
-		//   // this generates a separate chunk (about.[hash].js) for this route
-		//   // which is lazy-loaded when the route is visited.
-		//   component: () =>
-		//     import( /* webpackChunkName: "about" */ './views/About.vue')
-		// }
-	]
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [{
+        path: '/',
+        redirect: 'index.html'
+    },
+    {
+        path: '/index.html',
+        name: '首页',
+        component: Index
+    },
+    {
+        path: '/goods',
+        name: '商品',
+        component: Goods,
+        children: [{
+            path: 'list.html',
+            name: 'goodsList',
+            component: GoodsList
+        }, {
+            path: 'add.html',
+            name: 'goodsAdd',
+            component: GoodsAdd
+        }, {
+            path: 'categorylist.html',
+            name: 'goodsCategoryList',
+            component: GoodsCategoryList
+        }, {
+            path: 'brandlist.html',
+            name: 'goodsBrandList',
+            component: GoodsBrandList
+        }, {
+            path: 'brandedit.html',
+            name: 'goodsBrandEdit',
+            component: GoodsBrandEdit
+        }, {
+            path: 'labellist.html',
+            name: 'goodsLabelList',
+            component: GoodsLabelList
+        }, {
+            path: 'labeledit.html',
+            name: 'goodsLabelEdit',
+            component: GoodsLabelEdit
+        }, {
+            path: 'speclist.html',
+            name: 'goodsSpecList',
+            component: GoodsSpecList
+        }, {
+            path: 'supplierlist.html',
+            name: 'supplierList',
+            component: SupplierList
+        }, {
+            path: 'supplieredit.html',
+            name: 'supplierEdit',
+            component: SupplierEdit
+        }, {
+            path: 'consult.html',
+            name: 'saleserviceConsult',
+            component: SaleserviceConsult
+        }, {
+            path: 'attributelist.html',
+            name: 'attributeList',
+            component: GoodsAttributeList
+        }, {
+            path: 'comment.html',
+            name: 'comment',
+            component: GoodsComment
+        }, {
+            path: 'albumlist.html',
+            name: 'systemAlbumList',
+            component: SystemAlbumList
+        }, {
+            path: 'albumpicturelist.html',
+            name: 'systemAlbumPictureList',
+            component: SystemAlbumPictureList
+        }]
+    },
+    {
+        path: '/order',
+        name: '订单',
+        component: Order,
+        children: [{
+            path: 'orderlist.html',
+            name: 'orderList',
+            component: OrderList
+        }, {
+            path: 'virtualorder.html',
+            name: 'virtualOrder',
+            component: VirtualOrder
+        }, {
+            path: 'bargainorder.html',
+            name: 'bargainOrder',
+            component: BargainOrder
+        }, {
+            path: 'invoicelist.html',
+            name: 'invoiceList',
+            component: OrderInvoiceList
+        }, {
+            path: 'customerservicelist.html',
+            name: 'customerServiceList',
+            component: OrderCustomerServiceList
+        }, {
+            path: 'customerservicedetail.html',
+            name: 'customerServiceDetail',
+            component: OrderCustomerServiceDetail
+        }]
+    },
+    {
+        path: '/tuangou',
+        name: 'tuangou',
+        component: Order,
+        children: [{
+            path: 'pintuanorderlist.html',
+            name: 'pintuanOrderList',
+            component: PintuanOrderList
+        }, {
+            path: 'pintuanlist.html',
+            name: 'pintuanList',
+            component: PintuanList
+        }]
+    },
+    {
+        path: '/bargain',
+        name: 'bargain',
+        component: Order,
+        children: [{
+            path: 'index.html',
+            name: 'bargainIndex',
+            component: BargainIndex
+        }, {
+            path: 'pintuanlist.html',
+            name: 'pintuanList',
+            component: PintuanList
+        }]
+    },
+    {
+        path: '/promotion',
+        name: 'promotion',
+        component: Promotion,
+        children: [{
+            path: 'coupontypelist.html',
+            name: 'couponTypeList',
+            component: PromotionCouponTypeList
+        }, {
+            path: 'pointconfig.html',
+            name: 'pointconfig',
+            component: PromotionPointconfig
+        }, {
+            path: 'giftlist.html',
+            name: 'giftList',
+            component: PromotionGiftList
+        }, {
+            path: 'giftedit.html',
+            name: 'giftEdit',
+            component: PromotionGiftEdit
+        }, {
+            path: 'giftrecords.html',
+            name: 'giftRecords',
+            component: PromotionGiftRecords
+        }, {
+            path: 'mansonglist.html',
+            name: 'mansongList',
+            component: PromotionMansongList
+        }, {
+            path: 'discountlist.html',
+            name: 'discountList',
+            component: PromotionDiscountList
+        }, {
+            path: 'discountedit.html',
+            name: 'discountEdit',
+            component: PromotionDiscountEdit
+        }, {
+            path: 'combopackagelist.html',
+            name: 'combopackageList',
+            component: PromotionCombopackageList
+        }, {
+            path: 'combopackageedit.html',
+            name: 'combopackageEdit',
+            component: PromotionCombopackageEdit
+        }, {
+            path: 'fullshipping.html',
+            name: 'fullshipping',
+            component: PromotionFullshipping
+        }, {
+            path: 'integral.html',
+            name: 'integral',
+            component: PromotionIntegral
+        }, {
+            path: 'gameslist.html',
+            name: 'gamesList',
+            component: PromotionGamesList
+        }, {
+            path: 'gamesedit.html',
+            name: 'gamesEdit',
+            component: PromotionGamesEdit
+        }, {
+            path: 'gamestypelist.html',
+            name: 'gamesTypeList',
+            component: PromotionGamesTypeList
+        }, {
+            path: 'groupbuylist.html',
+            name: 'groupBuyList',
+            component: PromotionGroupBuyList
+        }, {
+            path: 'groupbuyedit.html',
+            name: 'groupBuyEdit',
+            component: PromotionGroupBuyEdit
+        }, {
+            path: 'topiclist.html',
+            name: 'topicList',
+            component: PromotionTopicList
+        }, {
+            path: 'topicedit.html',
+            name: 'topicEdit',
+            component: PromotionTopicEdit
+        }]
+    },
+    {
+        path: '/orderpresell',
+        name: 'orderPresell',
+        component: Order,
+        children: [{
+            path: 'list.html',
+            name: 'orderPresellList',
+            component: OrderPresellList
+        }, {
+            path: 'detail.html',
+            name: 'orderPresellDetail',
+            component: OrderPresellDetail
+        }]
+    },
+    {
+        path: '/member',
+        name: '会员',
+        component: Member,
+        children: [{
+            path: 'memberlist.html',
+            name: 'memberList',
+            component: MemberList
+        }, {
+            path: 'memberlevellist.html',
+            name: 'memberLevelList',
+            component: MemberLevelList
+        }, {
+            path: 'memberpointlist.html',
+            name: 'MemberPointList',
+            component: MemberPointList
+        }, {
+            path: 'memberusercommissionwithdrawlist.html',
+            name: 'memberUserCommissionWithdrawList',
+            component: MemberUserCommissionWithdrawList
+        }, {
+            path: 'memberaccountlist.html',
+            name: 'memberAccountList',
+            component: MemberAccountList
+        }]
+    },
+    {
+        path: '/account',
+        name: '数据',
+        component: Account,
+        children: [{
+            path: 'shopsalesaccount.html',
+            name: 'shopsalesaccount',
+            component: AccountShopSalesAccount
+        }, {
+            path: 'shopgoodssaleslist.html',
+            name: 'shopGoodsSalesList',
+            component: AccountShopGoodsSalesList
+        }, {
+            path: 'shopgoodsgroupsalecount.html',
+            name: 'shopGoodsGroupSaleCount',
+            component: AccountShopGoodsGroupSaleCount
+        }, {
+            path: 'shopreport.html',
+            name: 'shopReport',
+            component: AccountShopReport
+        }, {
+            path: 'shopgoodssalesrank.html',
+            name: 'shopGoodsSalesRank',
+            component: AccountShopGoodsSalesRank
+        }]
+    },
+    {
+        path: '/upgrade',
+        name: '系统',
+        component: Upgrade,
+        children: [{
+            path: 'onlineupdate.html',
+            name: '线上更新',
+            component: UpgradeOnlineUpdate
+        }, {
+            path: 'devolutioninfo.html',
+            name: 'devolutionInfo',
+            component: UpgradeDevolutionInfo
+        }]
+    },
+    {
+        path: '/extend',
+        name: 'extend',
+        component: Upgrade,
+        children: [{
+            path: 'addonslist.html',
+            name: 'addonsList',
+            component: ExtendAddonsList
+        }, {
+            path: 'hookslist.html',
+            name: 'hooksList',
+            component: ExtendHooksList
+        }, {
+            path: 'hooksedit.html',
+            name: 'hooksEdit',
+            component: ExtendHooksEdit
+        }]
+    },
+    {
+        path: '/wchat',
+        name: '微信',
+        component: Wchat,
+        children: [{
+            path: 'appletconfig.html',
+            name: 'appletConfig',
+            component: WchatAppletConfig
+        }, {
+            path: 'config.html',
+            name: 'config',
+            component: WchatConfig
+        }, {
+            path: 'menu.html',
+            name: 'menu',
+            component: WchatMenu
+        }, {
+            path: 'weixinqrcodetemplate.html',
+            name: 'qrcodeTemplate',
+            component: WchatQrcodeTemplate
+        }, {
+            path: 'replayconfig.html',
+            name: 'replayConfig',
+            component: WchatReplayConfig
+        }, {
+            path: 'materialmessage.html',
+            name: 'materialMessage',
+            component: WchatMaterialMessage
+        }, {
+            path: 'shareconfig.html',
+            name: 'shareConfig',
+            component: WchatShareConfig
+        }, {
+            path: 'keyconcernconfig.html',
+            name: 'keyConcernConfig',
+            component: WchatKeyConcernConfig
+        }, {
+            path: 'fansmessagemanage.html',
+            name: 'fansMessageManage',
+            component: WchatFansMessageManage
+        }]
+    }, {
+        path: '/menu',
+        name: 'menu',
+        component: Wchat,
+        children: [{
+            path: 'addonmenu.html',
+            name: 'addonMenu',
+            component: MenuAddonMenu
+        }]
+    }, {
+        path: '/member',
+        name: 'member',
+        component: Wchat,
+        children: [{
+            path: 'weixinfanslist.html',
+            name: 'weixinFansList',
+            component: MemberWeixinFansList
+        }]
+    }, {
+        path: '/commission',
+        name: 'commission',
+        component: Commission,
+        children: [{
+            path: 'userAccountList.html',
+            name: 'userAccountList',
+            component: CommissionUserAccountList
+        }, {
+            path: 'distributionList.html',
+            name: 'distributionList',
+            component: CommissionDistributionList
+        }, {
+            path: 'partnerList.html',
+            name: 'partnerList',
+            component: CommissionPartnerList
+        }, {
+            path: 'regionAgentList.html',
+            name: 'regionAgentList',
+            component: CommissionRegionAgentList
+        }, {
+            path: 'partnerGlobalList.html',
+            name: 'partnerGlobalList',
+            component: CommissionPartnerGlobalList
+        }, {
+            path: 'userCommissionWithdrawList.html',
+            name: 'userCommissionWithdrawList',
+            component: CommissionUserCommissionWithdrawList
+        }]
+    }, {
+        path: '/config',
+        name: '网站',
+        component: Config,
+        children: [{
+            path: 'userNotice.html',
+            name: 'userNotice',
+            component: ConfigUserNotice
+        }, {
+            path: 'shopNavigationList.html',
+            name: 'shopNavigationList',
+            component: ConfigShopNavigationList
+        }, {
+            path: 'pcTemplate.html',
+            name: 'pcTemplate',
+            component: ConfigPcTemplate
+        }, {
+            path: 'searchConfig.html',
+            name: 'searchConfig',
+            component: ConfigSearchConfig
+        }, {
+            path: 'helpDocument.html',
+            name: 'helpDocument',
+            component: ConfigHelpDocumentList
+        }, {
+            path: 'linkList.html',
+            name: 'linkList',
+            component: ConfigLinkList
+        }]
+    }, {
+        path: '/cms',
+        name: 'cms',
+        component: Config,
+        children: [{
+            path: 'topicList.html',
+            name: 'topicList',
+            component: CmsTopicList
+        }, {
+            path: 'articleList.html',
+            name: 'articleList',
+            component: CmsArticleList
+        }]
+    }, {
+        path: '/system',
+        name: 'system',
+        component: Config,
+        children: [{
+            path: 'adsList.html',
+            name: 'adsList',
+            component: SystemAdsList
+        }, {
+            path: 'goodsCategoryBlock.html',
+            name: 'goodsCategoryBlock',
+            component: SystemGoodsCategoryBlock
+        }]
+    }, {
+        path: '/distribution',
+        name: 'distribution',
+        component: Distribution,
+        children: [{
+            path: 'promoterList.html',
+            name: 'promoterList',
+            component: DistributionPromoterList
+        }, {
+            path: 'goodsCommissionRateList.html',
+            name: 'goodsCommissionRateList',
+            component: DistributionGoodsCommissionRateList
+        }, {
+            path: 'threeLevelDistributionConfig.html',
+            name: 'threeLevelDistributionConfig',
+            component: DistributionThreeLevelDistributionConfig
+        }, {
+            path: 'regionalAgent.html',
+            name: 'regionalAgent',
+            component: DistributionRegionalAgent
+        }, {
+            path: 'shareholderDividendsConfig.html',
+            name: 'shareholderDividendsConfig',
+            component: DistributionShareholderDividendsConfig
+        }, {
+            path: 'globalBonusPoolConfig.html',
+            name: 'globalBonusPoolConfig',
+            component: DistributionGlobalBonusPoolConfig
+        }]
+    }, {
+        path: '/config',
+        name: '设置',
+        component: Setting,
+        children: [{
+            path: 'base',
+            name: '基础设置',
+            component: SettingBase,
+            children: [
+                {
+                    path: '/',
+                    redirect:"webConfig.html"
+                },
+                {
+                    path: 'webConfig.html',
+                    name: '网站设置',
+                    component: SettingBaseWebConfig
+                },
+                {
+                    path: 'seoConfig.html',
+                    name: 'SEO设置',
+                    component: SettingBaseSEOConfig
+                },
+                {
+                    path: 'copyrightInfo.html',
+                    name: '版权',
+                    component: SettingBaseCopyrightInfo
+                },
+                {
+                    path: 'visitConfig.html',
+                    name: '运营',
+                    component: SettingBaseVisitConfig
+                },
+                {
+                    path: 'registerAndVisit.html',
+                    name: '注册与访问',
+                    component: SettingBaseRegisterAndVisit
+                },
+                {
+                    path: 'uploadConfig.html',
+                    name: '上传设置',
+                    component: SettingBaseUploadConfig
+                },
+                {
+                    path: 'customPseudoStaticRule.html',
+                    name: '伪静态路由',
+                    component: SettingBaseCustomPseudoStaticRule
+                },
+                {
+                    path: 'partyLogin.html',
+                    name: '第三方登录',
+                    component: SettingBasePartyLogin
+                },
+                {
+                    path: 'notifyindex.html',
+                    name: '通知系统',
+                    component: SettingBaseNotify
+                },
+                {
+                    path: 'customService.html',
+                    name: '客服',
+                    component: SettingBaseCustomservice
+                },
+                {
+                    path: 'merchantService.html',
+                    name: '商家服务',
+                    component: SettingBasMerchantService
+                }
+            ]
+        },{
+            
+            path: 'transaction',
+            name: '交易设置',
+            component: SettingTransaction,
+            children:[{
+                path: 'shopSet.html',
+                name: 'shopSet',
+                component: ConfigShopConfig
+            }]
+        }]
+    }, {
+        path: '/express',
+        name: 'express',
+        component: Setting,
+        children: [{
+            path: 'expressCompany.html',
+            name: 'expressCompany',
+            component: ExpressCompany
+        }]
+    }, {
+        path: '/database',
+        name: 'database',
+        component: Setting,
+        children: [{
+            path: 'index.html',
+            name: 'databaseIndex',
+            component: Database
+        }]
+    }, {
+        path: '/auth',
+        name: 'auth',
+        component: Setting,
+        children: [{
+            path: 'userList.html',
+            name: 'userList',
+            component: AuthUserList
+        }]
+    }, {
+        path: '/verification',
+        name: 'verification',
+        component: Setting,
+        children: [{
+            path: 'index.html',
+            name: 'verificationIndex',
+            component: Verification
+        }]
+    }
+        // {
+        //   path: '/about',
+        //   name: 'about',
+        //   // route level code-splitting
+        //   // this generates a separate chunk (about.[hash].js) for this route
+        //   // which is lazy-loaded when the route is visited.
+        //   component: () =>
+        //     import( /* webpackChunkName: "about" */ './views/About.vue')
+        // }
+    ]
 })

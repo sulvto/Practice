@@ -9,7 +9,7 @@
 						<div class="breadcrumb-nav">
 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
 									<i class="fa fa-angle-right"></i>
-					<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html">商品</a>
+					<a href="/goods/goodslist.html">商品</a>
 									<i class="fa fa-angle-right"></i>
 					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/saleservice/consultlist -->
 					<a href="javascript:;" style="color:#999;">咨询管理</a>
@@ -18,9 +18,9 @@
 			
 								<nav class="ns-third-menu">
 					<ul>
-												<li class="selected" onclick="location.href='http://b2c.niuteam.cn/admin/Saleservice/consultList.html';">全部咨询</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/Saleservice/consultList.html?type=to_reply';">未回复咨询</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/Saleservice/consultList.html?type=replied';">已回复咨询</li>
+												<li class="selected" onclick="location.href='/Saleservice/consultList.html';">全部咨询</li>
+													<li onclick="location.href='/Saleservice/consultList.html?type=to_reply';">未回复咨询</li>
+													<li onclick="location.href='/Saleservice/consultList.html?type=replied';">已回复咨询</li>
 											</ul>
 				</nav>
 							

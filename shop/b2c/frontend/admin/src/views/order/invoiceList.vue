@@ -8,7 +8,7 @@
 						<div class="breadcrumb-nav">
 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
 									<i class="fa fa-angle-right"></i>
-					<a href="http://b2c.niuteam.cn/admin/order/orderlist.html">订单</a>
+					<a href="/order/orderlist.html">订单</a>
 									<i class="fa fa-angle-right"></i>
 					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/order/invoiceList -->
 					<a href="javascript:;" style="color:#999;">发票管理</a>
@@ -97,7 +97,7 @@
 			<th>操作</th>
 		</tr>
 	</thead>
-	<tbody><tr align="center"><td></td><td align="left"><a href="http://b2c.niuteam.cn/admin/order/orderdetail?order_id=122">2018060510540001</a></td><td align="left">admin</td><td align="right" class="right-indent">20919.71</td><td align="left">423423</td><td align="left">恩都是多</td><td align="left">34423</td><td>2018-06-05 10:54:04</td><td></td></tr></tbody>
+	<tbody><tr align="center"><td></td><td align="left"><a href="/order/orderdetail?order_id=122">2018060510540001</a></td><td align="left">admin</td><td align="right" class="right-indent">20919.71</td><td align="left">423423</td><td align="left">恩都是多</td><td align="left">34423</td><td>2018-06-05 10:54:04</td><td></td></tr></tbody>
 </table>
 
 <div class="page" id="turn-ul" style="">

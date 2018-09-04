@@ -6,7 +6,7 @@
 			<div class="breadcrumb-nav">
 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
 				<i class="fa fa-angle-right"></i>
-				<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html">商品</a>
+				<a href="/goods/goodslist.html">商品</a>
 				<i class="fa fa-angle-right"></i>
 				<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/goods/goodslist -->
 				<a href="javascript:;" style="color:#999;">商品列表</a>
@@ -15,10 +15,10 @@
 	
 			<nav class="ns-third-menu">
 				<ul>
-					<li class="selected" onclick="location.href='http://b2c.niuteam.cn/admin/goods/goodslist.html';">出售中</li>
-					<li onclick="location.href='http://b2c.niuteam.cn/admin/goods/goodslist.html?state_type=2';">已下架</li>
-					<li onclick="location.href='http://b2c.niuteam.cn/admin/goods/goodslist.html?stock_warning=1';">库存预警</li>
-					<li onclick="location.href='http://b2c.niuteam.cn/admin/goods/recyclelist.html';">回收站</li>
+					<li class="selected" onclick="location.href='/goods/goodslist.html';">出售中</li>
+					<li onclick="location.href='/goods/goodslist.html?state_type=2';">已下架</li>
+					<li onclick="location.href='/goods/goodslist.html?stock_warning=1';">库存预警</li>
+					<li onclick="location.href='/goods/recyclelist.html';">回收站</li>
 				</ul>
 			</nav>
 	
@@ -73,7 +73,7 @@
 				<tbody>
 					<tr>
 						<th align="left">
-							<a class="btn-common" href="http://b2c.niuteam.cn/admin/goods/addgoods.html">发布商品</a>
+							<a class="btn-common" href="/goods/addgoods.html">发布商品</a>
 							<a class="btn-common-white" href="javascript:batchDelete()">批量删除</a>
 							<a class="btn-common-white upstore" href="javascript:goodsIdCount('online')">上架</a>
 							<a class="btn-common-white downstore" href="javascript:goodsIdCount('offline')">下架</a>
@@ -304,7 +304,7 @@
 										<div class="cell"><input class="input-common input-common-sort" goods_id="157" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 									</td>
 									<td>
-										<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=157" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(157);" title="复制商品">复制</a><a href="javascript:deleteGoods(157)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(157,'offline')">下架</a><br>
+										<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=157" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(157);" title="复制商品">复制</a><a href="javascript:deleteGoods(157)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(157,'offline')">下架</a><br>
 											<a href="javascript:showMemberDiscount(157)">设置会员折扣</a>
 										</div>
 									</td>
@@ -348,7 +348,7 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="155" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=155" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(155);" title="复制商品">复制</a><a href="javascript:deleteGoods(155)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(155,'offline')">下架</a><br>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=155" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(155);" title="复制商品">复制</a><a href="javascript:deleteGoods(155)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(155,'offline')">下架</a><br>
 										<a href="javascript:showMemberDiscount(155)">设置会员折扣</a>
 									</div>
 								</td>
@@ -392,8 +392,8 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="154" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=154" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(154);" title="复制商品">复制</a><a href="javascript:deleteGoods(154)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(154,'offline')">下架</a><br>
-										<a href="javascript:showMemberDiscount(154)">设置会员折扣</a><br><a href="http://b2c.niuteam.cn/admin/goods/virtualGoodsList?goods_id=154" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=154" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(154);" title="复制商品">复制</a><a href="javascript:deleteGoods(154)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(154,'offline')">下架</a><br>
+										<a href="javascript:showMemberDiscount(154)">设置会员折扣</a><br><a href="/goods/virtualGoodsList?goods_id=154" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
 								</td>
 							</tr>
 							<tr class="tr-title">
@@ -433,7 +433,7 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="152" value="20" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=152" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(152);" title="复制商品">复制</a><a href="javascript:deleteGoods(152)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(152,'offline')">下架</a><br>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=152" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(152);" title="复制商品">复制</a><a href="javascript:deleteGoods(152)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(152,'offline')">下架</a><br>
 										<a href="javascript:showMemberDiscount(152)">设置会员折扣</a>
 									</div>
 								</td>
@@ -475,7 +475,7 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="151" value="2" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=151" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(151);" title="复制商品">复制</a><a href="javascript:deleteGoods(151)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(151,'offline')">下架</a><br>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=151" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(151);" title="复制商品">复制</a><a href="javascript:deleteGoods(151)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(151,'offline')">下架</a><br>
 										<a href="javascript:showMemberDiscount(151)">设置会员折扣</a>
 									</div>
 								</td>
@@ -519,7 +519,7 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="150" value="2" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=150" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(150);" title="复制商品">复制</a><a href="javascript:deleteGoods(150)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(150,'offline')">下架</a><br>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=150" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(150);" title="复制商品">复制</a><a href="javascript:deleteGoods(150)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(150,'offline')">下架</a><br>
 										<a href="javascript:showMemberDiscount(150)">设置会员折扣</a>
 									</div>
 								</td>
@@ -561,8 +561,8 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="149" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=149" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(149);" title="复制商品">复制</a><a href="javascript:deleteGoods(149)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(149,'offline')">下架</a><br>
-										<a href="javascript:showMemberDiscount(149)">设置会员折扣</a><br><a href="http://b2c.niuteam.cn/admin/goods/virtualGoodsList?goods_id=149" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=149" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(149);" title="复制商品">复制</a><a href="javascript:deleteGoods(149)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(149,'offline')">下架</a><br>
+										<a href="javascript:showMemberDiscount(149)">设置会员折扣</a><br><a href="/goods/virtualGoodsList?goods_id=149" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
 								</td>
 							</tr>
 							<tr class="tr-title">
@@ -602,7 +602,7 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="148" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=148" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(148);" title="复制商品">复制</a><a href="javascript:deleteGoods(148)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(148,'offline')">下架</a><br>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=148" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(148);" title="复制商品">复制</a><a href="javascript:deleteGoods(148)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(148,'offline')">下架</a><br>
 										<a href="javascript:showMemberDiscount(148)">设置会员折扣</a>
 									</div>
 								</td>
@@ -644,7 +644,7 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="147" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=147" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(147);" title="复制商品">复制</a><a href="javascript:deleteGoods(147)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(147,'offline')">下架</a><br>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=147" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(147);" title="复制商品">复制</a><a href="javascript:deleteGoods(147)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(147,'offline')">下架</a><br>
 										<a href="javascript:showMemberDiscount(147)">设置会员折扣</a>
 									</div>
 								</td>
@@ -682,7 +682,7 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="143" value="111" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=143" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(143);" title="复制商品">复制</a><a href="javascript:deleteGoods(143)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(143,'offline')">下架</a><br>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=143" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(143);" title="复制商品">复制</a><a href="javascript:deleteGoods(143)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(143,'offline')">下架</a><br>
 										<a href="javascript:showMemberDiscount(143)">设置会员折扣</a>
 									</div>
 								</td>
@@ -720,8 +720,8 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="141" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=141" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(141);" title="复制商品">复制</a><a href="javascript:deleteGoods(141)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(141,'offline')">下架</a><br>
-										<a href="javascript:showMemberDiscount(141)">设置会员折扣</a><br><a href="http://b2c.niuteam.cn/admin/goods/virtualGoodsList?goods_id=141" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=141" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(141);" title="复制商品">复制</a><a href="javascript:deleteGoods(141)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(141,'offline')">下架</a><br>
+										<a href="javascript:showMemberDiscount(141)">设置会员折扣</a><br><a href="/goods/virtualGoodsList?goods_id=141" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
 								</td>
 							</tr>
 							<tr class="tr-title">
@@ -757,8 +757,8 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="139" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=139" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(139);" title="复制商品">复制</a><a href="javascript:deleteGoods(139)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(139,'offline')">下架</a><br>
-										<a href="javascript:showMemberDiscount(139)">设置会员折扣</a><br><a href="http://b2c.niuteam.cn/admin/goods/virtualGoodsList?goods_id=139" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=139" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(139);" title="复制商品">复制</a><a href="javascript:deleteGoods(139)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(139,'offline')">下架</a><br>
+										<a href="javascript:showMemberDiscount(139)">设置会员折扣</a><br><a href="/goods/virtualGoodsList?goods_id=139" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
 								</td>
 							</tr>
 							<tr class="tr-title">
@@ -794,7 +794,7 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="136" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=136" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(136);" title="复制商品">复制</a><a href="javascript:deleteGoods(136)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(136,'offline')">下架</a><br>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=136" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(136);" title="复制商品">复制</a><a href="javascript:deleteGoods(136)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(136,'offline')">下架</a><br>
 										<a href="javascript:showMemberDiscount(136)">设置会员折扣</a>
 									</div>
 								</td>
@@ -832,8 +832,8 @@
 									<div class="cell"><input class="input-common input-common-sort" goods_id="135" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
 								</td>
 								<td>
-									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="http://b2c.niuteam.cn/admin/goods/addgoods?step=2&amp;goodsId=135" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(135);" title="复制商品">复制</a><a href="javascript:deleteGoods(135)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(135,'offline')">下架</a><br>
-										<a href="javascript:showMemberDiscount(135)">设置会员折扣</a><br><a href="http://b2c.niuteam.cn/admin/goods/virtualGoodsList?goods_id=135" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
+									<div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=135" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(135);" title="复制商品">复制</a><a href="javascript:deleteGoods(135)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(135,'offline')">下架</a><br>
+										<a href="javascript:showMemberDiscount(135)">设置会员折扣</a><br><a href="/goods/virtualGoodsList?goods_id=135" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
 								</td>
 							</tr>
 						</tbody>

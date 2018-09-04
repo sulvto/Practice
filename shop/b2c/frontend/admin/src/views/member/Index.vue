@@ -1,13 +1,12 @@
 <template>
 	<div>
-		<Sidebar :menu-list="menuList" />
 		<router-view/>
 	</div>
 </template>
 
 <script>
 	// @ is an alias to /src
-	import Sidebar from "@/components/TheSidebar.vue";
+	// import Sidebar from "@/components/TheSidebar.vue";
 	
 	export default {
 		name: "member",
@@ -38,7 +37,7 @@
 			};
 		},
 		components: {
-			Sidebar
+			// Sidebar
 		}
 	};
 </script>

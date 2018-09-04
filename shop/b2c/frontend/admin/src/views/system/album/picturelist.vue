@@ -9,7 +9,7 @@
 						<div class="breadcrumb-nav">
 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
 									<i class="fa fa-angle-right"></i>
-					<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html">商品</a>
+					<a href="/goods/goodslist.html">商品</a>
 									<i class="fa fa-angle-right"></i>
 					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/system/albumpicturelist -->
 					<a href="javascript:;" style="color:#999;">图片管理</a>
@@ -18,8 +18,8 @@
 			
 								<nav class="ns-third-menu">
 					<ul>
-												<li onclick="location.href='http://b2c.niuteam.cn/admin/System/albumList.html';">相册</li>
-													<li class="selected" onclick="location.href='http://b2c.niuteam.cn/admin/System/albumPictureList.html?album_id=36';">图片</li>
+												<li onclick="location.href='/System/albumList.html';">相册</li>
+													<li class="selected" onclick="location.href='/System/albumPictureList.html?album_id=36';">图片</li>
 											</ul>
 				</nav>
 							

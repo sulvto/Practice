@@ -8,7 +8,7 @@
             <div class="breadcrumb-nav">
                 <a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
                 <i class="fa fa-angle-right"></i>
-                <a href="http://b2c.niuteam.cn/admin/goods/goodslist.html">商品</a>
+                <a href="/goods/goodslist.html">商品</a>
                 <i class="fa fa-angle-right"></i>
                 <!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/goods/goodsbrandlist -->
                 <a href="javascript:;" style="color:#999;">商品品牌</a>
@@ -111,7 +111,7 @@
                             <a href="javascript:;" class="is_visible" is_visible="1" onclick="updatetype(2, this)"><img src="/public/admin/images/checked.png" alt="" width="15"></a>
                         </td>
                         <td style="text-align: center;"><input type="number" onchange="updatesort(2,this)" class="sort input-common input-common-sort" name="categorySort" value="1"></td>
-                        <td><a href="http://b2c.niuteam.cn/admin/goods/updategoodsbrand?brand_id=2">修改</a> <a href="javascript:delBrand(2)">删除</a></td>
+                        <td><a href="/goods/updategoodsbrand?brand_id=2">修改</a> <a href="javascript:delBrand(2)">删除</a></td>
                     </tr>
                     <tr align="center">
                         <td><i class="checkbox-common"><input name="sub" type="checkbox" value="4"></i></td>
@@ -122,7 +122,7 @@
                             <a href="javascript:;" class="is_visible" is_visible="1" onclick="updatetype(4, this)"><img src="/public/admin/images/checked.png" alt="" width="15"></a>
                         </td>
                         <td style="text-align: center;"><input type="number" onchange="updatesort(4,this)" class="sort input-common input-common-sort" name="categorySort" value="1"></td>
-                        <td><a href="http://b2c.niuteam.cn/admin/goods/updategoodsbrand?brand_id=4">修改</a> <a href="javascript:delBrand(4)">删除</a></td>
+                        <td><a href="/goods/updategoodsbrand?brand_id=4">修改</a> <a href="javascript:delBrand(4)">删除</a></td>
                     </tr>
                     <tr align="center">
                         <td><i class="checkbox-common"><input name="sub" type="checkbox" value="5"></i></td>
@@ -133,7 +133,7 @@
                             <a href="javascript:;" class="is_visible" is_visible="1" onclick="updatetype(5, this)"><img src="/public/admin/images/checked.png" alt="" width="15"></a>
                         </td>
                         <td style="text-align: center;"><input type="number" onchange="updatesort(5,this)" class="sort input-common input-common-sort" name="categorySort" value="1"></td>
-                        <td><a href="http://b2c.niuteam.cn/admin/goods/updategoodsbrand?brand_id=5">修改</a> <a href="javascript:delBrand(5)">删除</a></td>
+                        <td><a href="/goods/updategoodsbrand?brand_id=5">修改</a> <a href="javascript:delBrand(5)">删除</a></td>
                     </tr>
                 </tbody>
             </table>

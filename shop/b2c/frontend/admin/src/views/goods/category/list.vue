@@ -9,7 +9,7 @@
 						<div class="breadcrumb-nav">
 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
 									<i class="fa fa-angle-right"></i>
-					<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html">商品</a>
+					<a href="/goods/goodslist.html">商品</a>
 									<i class="fa fa-angle-right"></i>
 					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/goods/goodscategorylist -->
 					<a href="javascript:;" style="color:#999;">商品分类</a>
@@ -64,7 +64,7 @@
 		<div class="ns-main">
 			
 <div class="options-btn">
-	<button class="btn-common btn-small" onclick="location.href='http://b2c.niuteam.cn/admin/goods/addgoodscategory.html';">添加商品分类</button>
+	<button class="btn-common btn-small" onclick="location.href='/goods/addgoodscategory.html';">添加商品分类</button>
 </div>
 <table class="table-class">
 	<colgroup>
@@ -105,7 +105,7 @@
 			<td style="text-align: center;">否</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="3" fieldname="sort" value="3" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=3">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=3">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(3)">删除</a>
 			</td>
 		</tr>
@@ -126,7 +126,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="153" fieldname="sort" value="0" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=153">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=153">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(153)">删除</a>
 				</td>
 			</tr>
@@ -140,7 +140,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="154" fieldname="sort" value="0" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=154">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=154">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(154)">删除</a>
 					</td>
 				</tr>
@@ -158,7 +158,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="161" fieldname="sort" value="0" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=161">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=161">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(161)">删除</a>
 				</td>
 			</tr>
@@ -179,7 +179,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="21" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=21">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=21">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(21)">删除</a>
 				</td>
 			</tr>
@@ -193,7 +193,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="73" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=73">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=73">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(73)">删除</a>
 					</td>
 				</tr>
@@ -206,7 +206,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="74" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=74">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=74">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(74)">删除</a>
 					</td>
 				</tr>
@@ -219,7 +219,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="75" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=75">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=75">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(75)">删除</a>
 					</td>
 				</tr>
@@ -239,7 +239,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="22" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=22">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=22">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(22)">删除</a>
 				</td>
 			</tr>
@@ -253,7 +253,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="76" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=76">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=76">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(76)">删除</a>
 					</td>
 				</tr>
@@ -266,7 +266,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="77" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=77">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=77">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(77)">删除</a>
 					</td>
 				</tr>
@@ -279,7 +279,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="78" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=78">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=78">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(78)">删除</a>
 					</td>
 				</tr>
@@ -299,7 +299,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="23" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=23">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=23">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(23)">删除</a>
 				</td>
 			</tr>
@@ -313,7 +313,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="79" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=79">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=79">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(79)">删除</a>
 					</td>
 				</tr>
@@ -326,7 +326,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="80" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=80">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=80">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(80)">删除</a>
 					</td>
 				</tr>
@@ -339,7 +339,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="81" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=81">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=81">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(81)">删除</a>
 					</td>
 				</tr>
@@ -360,7 +360,7 @@
 			<td style="text-align: center;">否</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="4" fieldname="sort" value="4" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=4">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=4">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(4)">删除</a>
 			</td>
 		</tr>
@@ -381,7 +381,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="24" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=24">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=24">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(24)">删除</a>
 				</td>
 			</tr>
@@ -395,7 +395,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="82" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=82">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=82">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(82)">删除</a>
 					</td>
 				</tr>
@@ -408,7 +408,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="83" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=83">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=83">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(83)">删除</a>
 					</td>
 				</tr>
@@ -421,7 +421,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="84" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=84">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=84">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(84)">删除</a>
 					</td>
 				</tr>
@@ -441,7 +441,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="25" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=25">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=25">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(25)">删除</a>
 				</td>
 			</tr>
@@ -455,7 +455,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="85" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=85">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=85">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(85)">删除</a>
 					</td>
 				</tr>
@@ -468,7 +468,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="86" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=86">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=86">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(86)">删除</a>
 					</td>
 				</tr>
@@ -481,7 +481,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="87" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=87">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=87">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(87)">删除</a>
 					</td>
 				</tr>
@@ -501,7 +501,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="26" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=26">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=26">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(26)">删除</a>
 				</td>
 			</tr>
@@ -515,7 +515,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="88" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=88">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=88">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(88)">删除</a>
 					</td>
 				</tr>
@@ -528,7 +528,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="89" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=89">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=89">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(89)">删除</a>
 					</td>
 				</tr>
@@ -541,7 +541,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="90" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=90">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=90">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(90)">删除</a>
 					</td>
 				</tr>
@@ -562,7 +562,7 @@
 			<td style="text-align: center;">否</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="5" fieldname="sort" value="5" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=5">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=5">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(5)">删除</a>
 			</td>
 		</tr>
@@ -583,7 +583,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="27" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=27">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=27">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(27)">删除</a>
 				</td>
 			</tr>
@@ -597,7 +597,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="91" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=91">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=91">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(91)">删除</a>
 					</td>
 				</tr>
@@ -610,7 +610,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="92" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=92">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=92">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(92)">删除</a>
 					</td>
 				</tr>
@@ -623,7 +623,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="93" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=93">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=93">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(93)">删除</a>
 					</td>
 				</tr>
@@ -643,7 +643,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="28" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=28">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=28">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(28)">删除</a>
 				</td>
 			</tr>
@@ -657,7 +657,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="94" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=94">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=94">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(94)">删除</a>
 					</td>
 				</tr>
@@ -670,7 +670,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="95" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=95">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=95">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(95)">删除</a>
 					</td>
 				</tr>
@@ -683,7 +683,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="96" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=96">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=96">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(96)">删除</a>
 					</td>
 				</tr>
@@ -703,7 +703,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="29" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=29">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=29">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(29)">删除</a>
 				</td>
 			</tr>
@@ -717,7 +717,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="97" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=97">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=97">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(97)">删除</a>
 					</td>
 				</tr>
@@ -730,7 +730,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="98" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=98">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=98">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(98)">删除</a>
 					</td>
 				</tr>
@@ -743,7 +743,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="99" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=99">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=99">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(99)">删除</a>
 					</td>
 				</tr>
@@ -764,7 +764,7 @@
 			<td style="text-align: center;">否</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="146" fieldname="sort" value="5" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=146">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=146">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(146)">删除</a>
 			</td>
 		</tr>
@@ -785,7 +785,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="147" fieldname="sort" value="0" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=147">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=147">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(147)">删除</a>
 				</td>
 			</tr>
@@ -799,7 +799,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="149" fieldname="sort" value="0" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=149">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=149">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(149)">删除</a>
 					</td>
 				</tr>
@@ -812,7 +812,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="151" fieldname="sort" value="0" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=151">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=151">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(151)">删除</a>
 					</td>
 				</tr>
@@ -825,7 +825,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="152" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=152">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=152">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(152)">删除</a>
 					</td>
 				</tr>
@@ -843,7 +843,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="148" fieldname="sort" value="0" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=148">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=148">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(148)">删除</a>
 				</td>
 			</tr>
@@ -865,7 +865,7 @@
 			<td style="text-align: center;">否</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="6" fieldname="sort" value="6" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=6">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=6">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(6)">删除</a>
 			</td>
 		</tr>
@@ -886,7 +886,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="30" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=30">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=30">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(30)">删除</a>
 				</td>
 			</tr>
@@ -900,7 +900,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="100" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=100">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=100">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(100)">删除</a>
 					</td>
 				</tr>
@@ -913,7 +913,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="101" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=101">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=101">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(101)">删除</a>
 					</td>
 				</tr>
@@ -926,7 +926,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="102" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=102">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=102">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(102)">删除</a>
 					</td>
 				</tr>
@@ -946,7 +946,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="31" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=31">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=31">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(31)">删除</a>
 				</td>
 			</tr>
@@ -960,7 +960,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="103" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=103">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=103">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(103)">删除</a>
 					</td>
 				</tr>
@@ -973,7 +973,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="104" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=104">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=104">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(104)">删除</a>
 					</td>
 				</tr>
@@ -986,7 +986,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="105" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=105">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=105">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(105)">删除</a>
 					</td>
 				</tr>
@@ -1006,7 +1006,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="32" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=32">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=32">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(32)">删除</a>
 				</td>
 			</tr>
@@ -1020,7 +1020,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="106" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=106">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=106">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(106)">删除</a>
 					</td>
 				</tr>
@@ -1033,7 +1033,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="107" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=107">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=107">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(107)">删除</a>
 					</td>
 				</tr>
@@ -1046,7 +1046,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="108" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=108">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=108">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(108)">删除</a>
 					</td>
 				</tr>
@@ -1067,7 +1067,7 @@
 			<td style="text-align: center;">否</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="7" fieldname="sort" value="7" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=7">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=7">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(7)">删除</a>
 			</td>
 		</tr>
@@ -1088,7 +1088,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="33" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=33">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=33">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(33)">删除</a>
 				</td>
 			</tr>
@@ -1102,7 +1102,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="109" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=109">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=109">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(109)">删除</a>
 					</td>
 				</tr>
@@ -1115,7 +1115,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="110" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=110">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=110">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(110)">删除</a>
 					</td>
 				</tr>
@@ -1128,7 +1128,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="111" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=111">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=111">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(111)">删除</a>
 					</td>
 				</tr>
@@ -1148,7 +1148,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="35" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=35">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=35">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(35)">删除</a>
 				</td>
 			</tr>
@@ -1162,7 +1162,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="112" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=112">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=112">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(112)">删除</a>
 					</td>
 				</tr>
@@ -1175,7 +1175,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="113" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=113">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=113">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(113)">删除</a>
 					</td>
 				</tr>
@@ -1188,7 +1188,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="114" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=114">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=114">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(114)">删除</a>
 					</td>
 				</tr>
@@ -1208,7 +1208,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="36" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=36">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=36">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(36)">删除</a>
 				</td>
 			</tr>
@@ -1222,7 +1222,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="115" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=115">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=115">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(115)">删除</a>
 					</td>
 				</tr>
@@ -1235,7 +1235,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="116" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=116">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=116">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(116)">删除</a>
 					</td>
 				</tr>
@@ -1248,7 +1248,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="117" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=117">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=117">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(117)">删除</a>
 					</td>
 				</tr>
@@ -1269,7 +1269,7 @@
 			<td style="text-align: center;">是</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="8" fieldname="sort" value="8" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=8">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=8">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(8)">删除</a>
 			</td>
 		</tr>
@@ -1290,7 +1290,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="37" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=37">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=37">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(37)">删除</a>
 				</td>
 			</tr>
@@ -1304,7 +1304,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="118" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=118">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=118">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(118)">删除</a>
 					</td>
 				</tr>
@@ -1317,7 +1317,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="119" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=119">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=119">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(119)">删除</a>
 					</td>
 				</tr>
@@ -1330,7 +1330,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="120" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=120">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=120">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(120)">删除</a>
 					</td>
 				</tr>
@@ -1350,7 +1350,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="38" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=38">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=38">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(38)">删除</a>
 				</td>
 			</tr>
@@ -1364,7 +1364,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="121" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=121">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=121">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(121)">删除</a>
 					</td>
 				</tr>
@@ -1377,7 +1377,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="122" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=122">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=122">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(122)">删除</a>
 					</td>
 				</tr>
@@ -1390,7 +1390,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="123" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=123">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=123">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(123)">删除</a>
 					</td>
 				</tr>
@@ -1410,7 +1410,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="39" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=39">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=39">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(39)">删除</a>
 				</td>
 			</tr>
@@ -1424,7 +1424,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="124" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=124">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=124">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(124)">删除</a>
 					</td>
 				</tr>
@@ -1437,7 +1437,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="125" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=125">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=125">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(125)">删除</a>
 					</td>
 				</tr>
@@ -1450,7 +1450,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="126" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=126">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=126">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(126)">删除</a>
 					</td>
 				</tr>
@@ -1471,7 +1471,7 @@
 			<td style="text-align: center;">是</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="2" fieldname="sort" value="9" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=2">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=2">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(2)">删除</a>
 			</td>
 		</tr>
@@ -1490,7 +1490,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="135" fieldname="sort" value="0" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=135">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=135">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(135)">删除</a>
 				</td>
 			</tr>
@@ -1511,7 +1511,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="155" fieldname="sort" value="0" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=155">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=155">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(155)">删除</a>
 				</td>
 			</tr>
@@ -1525,7 +1525,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="159" fieldname="sort" value="0" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=159">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=159">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(159)">删除</a>
 					</td>
 				</tr>
@@ -1545,7 +1545,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="1" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=1">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=1">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(1)">删除</a>
 				</td>
 			</tr>
@@ -1559,7 +1559,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="14" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=14">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=14">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(14)">删除</a>
 					</td>
 				</tr>
@@ -1572,7 +1572,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="15" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=15">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=15">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(15)">删除</a>
 					</td>
 				</tr>
@@ -1585,7 +1585,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="16" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=16">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=16">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(16)">删除</a>
 					</td>
 				</tr>
@@ -1598,7 +1598,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="130" fieldname="sort" value="4" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=130">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=130">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(130)">删除</a>
 					</td>
 				</tr>
@@ -1618,7 +1618,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="17" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=17">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=17">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(17)">删除</a>
 				</td>
 			</tr>
@@ -1632,7 +1632,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="64" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=64">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=64">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(64)">删除</a>
 					</td>
 				</tr>
@@ -1645,7 +1645,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="65" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=65">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=65">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(65)">删除</a>
 					</td>
 				</tr>
@@ -1658,7 +1658,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="66" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=66">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=66">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(66)">删除</a>
 					</td>
 				</tr>
@@ -1678,7 +1678,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="18" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=18">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=18">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(18)">删除</a>
 				</td>
 			</tr>
@@ -1692,7 +1692,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="67" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=67">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=67">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(67)">删除</a>
 					</td>
 				</tr>
@@ -1705,7 +1705,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="68" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=68">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=68">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(68)">删除</a>
 					</td>
 				</tr>
@@ -1718,7 +1718,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="69" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=69">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=69">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(69)">删除</a>
 					</td>
 				</tr>
@@ -1731,7 +1731,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="160" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=160">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=160">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(160)">删除</a>
 					</td>
 				</tr>
@@ -1751,7 +1751,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="20" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=20">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=20">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(20)">删除</a>
 				</td>
 			</tr>
@@ -1765,7 +1765,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="70" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=70">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=70">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(70)">删除</a>
 					</td>
 				</tr>
@@ -1778,7 +1778,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="71" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=71">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=71">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(71)">删除</a>
 					</td>
 				</tr>
@@ -1791,7 +1791,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="72" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=72">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=72">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(72)">删除</a>
 					</td>
 				</tr>
@@ -1812,7 +1812,7 @@
 			<td style="text-align: center;">是</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="9" fieldname="sort" value="9" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=9">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=9">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(9)">删除</a>
 			</td>
 		</tr>
@@ -1831,7 +1831,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="40" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=40">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=40">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(40)">删除</a>
 				</td>
 			</tr>
@@ -1850,7 +1850,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="41" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=41">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=41">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(41)">删除</a>
 				</td>
 			</tr>
@@ -1869,7 +1869,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="42" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=42">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=42">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(42)">删除</a>
 				</td>
 			</tr>
@@ -1891,7 +1891,7 @@
 			<td style="text-align: center;">是</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="10" fieldname="sort" value="10" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=10">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=10">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(10)">删除</a>
 			</td>
 		</tr>
@@ -1910,7 +1910,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="43" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=43">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=43">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(43)">删除</a>
 				</td>
 			</tr>
@@ -1929,7 +1929,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="44" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=44">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=44">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(44)">删除</a>
 				</td>
 			</tr>
@@ -1948,7 +1948,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="45" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=45">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=45">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(45)">删除</a>
 				</td>
 			</tr>
@@ -1967,7 +1967,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="134" fieldname="sort" value="5" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=134">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=134">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(134)">删除</a>
 				</td>
 			</tr>
@@ -1989,7 +1989,7 @@
 			<td style="text-align: center;">是</td>
 			<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="11" fieldname="sort" value="11" size="1"></td>
 			<td style="text-align: center;">
-				<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=11">修改</a>
+				<a href="/goods/updategoodscategory.html?category_id=11">修改</a>
 				<a href="javascript:void(0);" onclick="delCategory(11)">删除</a>
 			</td>
 		</tr>
@@ -2010,7 +2010,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="46" fieldname="sort" value="1" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=46">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=46">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(46)">删除</a>
 				</td>
 			</tr>
@@ -2024,7 +2024,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="127" fieldname="sort" value="1" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=127">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=127">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(127)">删除</a>
 					</td>
 				</tr>
@@ -2037,7 +2037,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="128" fieldname="sort" value="2" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=128">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=128">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(128)">删除</a>
 					</td>
 				</tr>
@@ -2050,7 +2050,7 @@
 					<td style="text-align: center;">是</td>
 					<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="129" fieldname="sort" value="3" size="1"></td>
 					<td style="text-align: center;">
-						<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=129">修改</a>
+						<a href="/goods/updategoodscategory.html?category_id=129">修改</a>
 						<a href="javascript:void(0);" onclick="delCategory(129)">删除</a>
 					</td>
 				</tr>
@@ -2068,7 +2068,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="47" fieldname="sort" value="2" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=47">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=47">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(47)">删除</a>
 				</td>
 			</tr>
@@ -2087,7 +2087,7 @@
 				<td style="text-align: center;">是</td>
 				<td style="text-align: center;"><input type="number" class="sort input-common input-common-sort" fieldid="48" fieldname="sort" value="3" size="1"></td>
 				<td style="text-align: center;">
-					<a href="http://b2c.niuteam.cn/admin/goods/updategoodscategory.html?category_id=48">修改</a>
+					<a href="/goods/updategoodscategory.html?category_id=48">修改</a>
 					<a href="javascript:void(0);" onclick="delCategory(48)">删除</a>
 				</td>
 			</tr>

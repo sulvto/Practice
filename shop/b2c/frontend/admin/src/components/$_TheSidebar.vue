@@ -405,7 +405,7 @@
 				$("#set_shortcut_menu")
 					.css("margin-left", "-601px")
 					.modal("show");
-			}
+            }
 		},
 		props: {
 			menuList: Array,

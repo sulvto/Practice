@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<Sidebar :menu-list="menuList" :is-index="isIndex" />
 		<section class="ns-base-section">
 	
 			<div class="ns-notice">
@@ -15,7 +14,7 @@
 						<!-- 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a> -->
 						<!-- 				 -->
 						<!-- 				<i class="fa fa-angle-right"></i> -->
-						<!-- 				<a href="http://b2c.niuteam.cn/admin/index/index.html">首页</a> -->
+						<!-- 				<a href="/index/index.html">首页</a> -->
 						<!-- 				 -->
 						<!-- 				 -->
 						<!-- 				<i class="fa fa-angle-right"></i> -->
@@ -112,31 +111,31 @@
 					<div class="goods-state a-line">
 						<ul>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html?state=1">
+								<a href="/goods/goodslist.html?state=1">
 									<strong class="goods_sale_count">1</strong>
 									<span>出售中</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html?state=0">
+								<a href="/goods/goodslist.html?state=0">
 									<strong class="goods_audit_count">1</strong>
 									<span>仓库中</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/saleservice/consultlist.html?type=to_reply">
+								<a href="/saleservice/consultlist.html?type=to_reply">
 									<strong class="goods_consult_count">1</strong>
 									<span>待回复咨询</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/member/usercommissionwithdrawlist.html">
+								<a href="/member/usercommissionwithdrawlist.html">
 									<strong class="member_balance_withdraw">1</strong>
 									<span>会员提现审核</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html?stock_warning=1">
+								<a href="/goods/goodslist.html?stock_warning=1">
 									<strong class="stock_early_warning">1</strong>
 									<span>库存预警</span>
 								</a>
@@ -152,13 +151,13 @@
 					<div class="merchants-use">
 						<ul>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html"><img src="/static/blue/img/goods_management.png"><span>商品管理</span></a>
+								<a href="/goods/goodslist.html"><img src="/static/blue/img/goods_management.png"><span>商品管理</span></a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/promotion/coupontypelist.html"><img src="/static/blue/img/promotions.png"><span>促销方式</span></a>
+								<a href="/promotion/coupontypelist.html"><img src="/static/blue/img/promotions.png"><span>促销方式</span></a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/order/orderlist.html"><img src="/static/blue/img/order_after.png"><span>订单及售后</span></a>
+								<a href="/order/orderlist.html"><img src="/static/blue/img/order_after.png"><span>订单及售后</span></a>
 							</li>
 						</ul>
 					</div>
@@ -171,55 +170,55 @@
 					<div class="goods-state a-line order">
 						<ul>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/order/orderlist.html?status=0">
+								<a href="/order/orderlist.html?status=0">
 									<strong class="daifukuan">0</strong>
 									<span>待付款</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/order/orderlist.html?status=1">
+								<a href="/order/orderlist.html?status=1">
 									<strong class="daifahuo">1</strong>
 									<span>待发货</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/order/orderlist.html?status=2">
+								<a href="/order/orderlist.html?status=2">
 									<strong class="yifahuo">0</strong>
 									<span>已发货</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/order/orderlist.html?status=3">
+								<a href="/order/orderlist.html?status=3">
 									<strong class="yishouhuo">0</strong>
 									<span>已收货</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/order/orderlist.html?status=4">
+								<a href="/order/orderlist.html?status=4">
 									<strong class="yiwancheng">1</strong>
 									<span>已完成</span>
 								</a>
 							</li>
 							<!-- <li> 
-									<a href="http://b2c.niuteam.cn/admin/order/orderlist.html?status=5">
+									<a href="/order/orderlist.html?status=5">
 										<strong class="yiguanbi">0</strong>
 										<span>已关闭</span>
 									</a>
 								</li>  -->
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/order/orderlist.html?status=-1">
+								<a href="/order/orderlist.html?status=-1">
 									<strong class="tuikuanzhong">1</strong>
 									<span>退款中</span>
 								</a>
 							</li>
 							<li>
-								<a href="http://b2c.niuteam.cn/admin/order/customerServiceList.html">
+								<a href="/order/customerServiceList.html">
 									<strong class="customer">0</strong>
 									<span>售后待处理</span>
 								</a>
 							</li>
 							<!-- 			<li style="display: none;"> -->
-							<!-- 				<a href="http://b2c.niuteam.cn/admin/order/orderlist.html?status=-2"> -->
+							<!-- 				<a href="/order/orderlist.html?status=-2"> -->
 							<!-- 					<strong class="yituikuan">0</strong> -->
 							<!-- 					<span>已退款</span> -->
 							<!-- 				</a> -->
@@ -827,10 +826,6 @@
 </template>
 
 <script>
-	require("@/assets/style/index.scss");
-	
-	// @ is an alias to /src
-	import Sidebar from "@/components/TheSidebar.vue";
 	
 	export default {
 		name: "index",
@@ -862,7 +857,6 @@
 			};
 		},
 		components: {
-			Sidebar
 		}
 	};
 </script>

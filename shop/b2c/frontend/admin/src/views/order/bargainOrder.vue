@@ -9,7 +9,7 @@
 						<div class="breadcrumb-nav">
 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
 									<i class="fa fa-angle-right"></i>
-					<a href="http://b2c.niuteam.cn/admin/order/orderlist.html">订单</a>
+					<a href="/order/orderlist.html">订单</a>
 									<i class="fa fa-angle-right"></i>
 					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/Order/bargainOrder -->
 					<a href="javascript:;" style="color:#999;">砍价订单</a>
@@ -18,14 +18,14 @@
 			
 								<nav class="ns-third-menu">
 					<ul>
-												<li class="selected" onclick="location.href='http://b2c.niuteam.cn/admin/Order/orderList.html';">全部</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=0';">待付款</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=1';">待发货</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=2';">已发货</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=3';">已收货</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=4';">已完成</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=5';">已关闭</li>
-													<li onclick="location.href='http://b2c.niuteam.cn/admin/order/orderlist.html?status=-1';">退款中</li>
+												<li class="selected" onclick="location.href='/Order/orderList.html';">全部</li>
+													<li onclick="location.href='/order/orderlist.html?status=0';">待付款</li>
+													<li onclick="location.href='/order/orderlist.html?status=1';">待发货</li>
+													<li onclick="location.href='/order/orderlist.html?status=2';">已发货</li>
+													<li onclick="location.href='/order/orderlist.html?status=3';">已收货</li>
+													<li onclick="location.href='/order/orderlist.html?status=4';">已完成</li>
+													<li onclick="location.href='/order/orderlist.html?status=5';">已关闭</li>
+													<li onclick="location.href='/order/orderlist.html?status=-1';">退款中</li>
 											</ul>
 				</nav>
 							
@@ -173,7 +173,7 @@
 				<th>操作</th>
 			</tr>
 		</thead>
-		<tbody id="ajax-orderlist"><tr><td rowspan="1"><i class="checkbox-common"><input id="153137826366141000" type="checkbox" value="316" name="sub"></i></td><td><div style="font-size: 12px;color: #126AE4;margin-bottom:5px;"><span>订单编号：2018071214490001</span>&nbsp;<span>下单时间：2018-07-12 14:49:11</span></div><div class="product-img"><img src="/upload/goods/1499339438694.jpg"></div><div class="product-infor"><a href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=30" target="_blank" style="color:#333;">浴霸智能开关 触摸86型卫生间风暖通用防水4四五合一5开开关面板</a></div></td><td><div class="cell" style="display: inline-block;"><span>180.00元</span></div><div class="cell" style="display: inline-block;float:right;">1件</div><a href="http://b2c.niuteam.cn/admin/order/orderrefunddetail?itemid=347" style="margin:5px 0 10px 0;display:block;">退款已成功</a></td><td rowspan="1" style="text-align:center"><div class="cell"><b class="netprice" style="color: #FF6600;font-size: 14px;font-weight: normal;">144.00</b><br><span class="expressfee">(含配送费:0.00元)</span><br><span class="expressfee">线下支付</span></div></td><td rowspan="1" style="text-align:center"><div style="text-align:left;"><span class="expressfee">22222222</span><br><span class="expressfee">14725698564</span><br><span class="expressfee">广西壮族自治区&nbsp;河池市&nbsp;大化瑶族自治县&nbsp;22</span></div></td><td rowspan="1" style="text-align:center"><div class="cell">admin<br><i class="fa fa-mobile fa-2x" style="color:#666;"><i></i></i></div></td><td rowspan="1"><div class="business-status" style="text-align:center">已关闭<br></div></td><td rowspan="1"><div class="business-status" style="text-align:center">物流配送<br></div></td><td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/bargainOrderDetail?order_id=316">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',316)">备注</a><a style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',316)">删除订单</a></td></tr><tr style="height:10px;"><td style="border-bottom:solid #E1E6F0;border-width:0 0 1px 0;" colspan="10"></td></tr><tr><td rowspan="1"><i class="checkbox-common"><input id="152946198724741000" type="checkbox" value="217" name="sub"></i></td><td><div style="font-size: 12px;color: #126AE4;margin-bottom:5px;"><span>订单编号：2018062010330001</span>&nbsp;<span>下单时间：2018-06-20 10:33:07</span></div><div class="product-img"><img src="/upload/goods/20180609/8fae147e6438e98450112f0a6c39022f4.jpg"></div><div class="product-infor"><a href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=77" target="_blank" style="color:#333;">212313132</a><p class="specification" style="margin-bottom: 0px;"><span style="color:#8e8c8c;font-size:12px;">土豪金 </span></p><p class="specification"><span style="color:#8e8c8c;font-size:12px;">编码&nbsp;&nbsp;5</span></p></div></td><td><div class="cell" style="display: inline-block;"><span>5.00元</span></div><div class="cell" style="display: inline-block;float:right;">1件</div></td><td rowspan="1" style="text-align:center"><div class="cell"><b class="netprice" style="color: #FF6600;font-size: 14px;font-weight: normal;">0.50</b><br><span class="expressfee">(含配送费:0.00元)</span><br><span class="expressfee">微信支付</span></div></td><td rowspan="1" style="text-align:center"><div style="text-align:left;"><span class="expressfee">cqinter</span><br><span class="expressfee">18696529503</span><br><span class="expressfee">四川省&nbsp;巴中市&nbsp;通江县&nbsp;dddd</span></div></td><td rowspan="1" style="text-align:center"><div class="cell">cqinter<br><i class="fa fa-mobile fa-2x" style="color:#666;"><i></i></i></div></td><td rowspan="1"><div class="business-status" style="text-align:center">已关闭<br></div></td><td rowspan="1"><div class="business-status" style="text-align:center">物流配送<br></div></td><td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="http://b2c.niuteam.cn/admin/order/bargainOrderDetail?order_id=217">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',217)">备注</a><a style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',217)">删除订单</a></td></tr></tbody>
+		<tbody id="ajax-orderlist"><tr><td rowspan="1"><i class="checkbox-common"><input id="153137826366141000" type="checkbox" value="316" name="sub"></i></td><td><div style="font-size: 12px;color: #126AE4;margin-bottom:5px;"><span>订单编号：2018071214490001</span>&nbsp;<span>下单时间：2018-07-12 14:49:11</span></div><div class="product-img"><img src="/upload/goods/1499339438694.jpg"></div><div class="product-infor"><a href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=30" target="_blank" style="color:#333;">浴霸智能开关 触摸86型卫生间风暖通用防水4四五合一5开开关面板</a></div></td><td><div class="cell" style="display: inline-block;"><span>180.00元</span></div><div class="cell" style="display: inline-block;float:right;">1件</div><a href="/order/orderrefunddetail?itemid=347" style="margin:5px 0 10px 0;display:block;">退款已成功</a></td><td rowspan="1" style="text-align:center"><div class="cell"><b class="netprice" style="color: #FF6600;font-size: 14px;font-weight: normal;">144.00</b><br><span class="expressfee">(含配送费:0.00元)</span><br><span class="expressfee">线下支付</span></div></td><td rowspan="1" style="text-align:center"><div style="text-align:left;"><span class="expressfee">22222222</span><br><span class="expressfee">14725698564</span><br><span class="expressfee">广西壮族自治区&nbsp;河池市&nbsp;大化瑶族自治县&nbsp;22</span></div></td><td rowspan="1" style="text-align:center"><div class="cell">admin<br><i class="fa fa-mobile fa-2x" style="color:#666;"><i></i></i></div></td><td rowspan="1"><div class="business-status" style="text-align:center">已关闭<br></div></td><td rowspan="1"><div class="business-status" style="text-align:center">物流配送<br></div></td><td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/bargainOrderDetail?order_id=316">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',316)">备注</a><a style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',316)">删除订单</a></td></tr><tr style="height:10px;"><td style="border-bottom:solid #E1E6F0;border-width:0 0 1px 0;" colspan="10"></td></tr><tr><td rowspan="1"><i class="checkbox-common"><input id="152946198724741000" type="checkbox" value="217" name="sub"></i></td><td><div style="font-size: 12px;color: #126AE4;margin-bottom:5px;"><span>订单编号：2018062010330001</span>&nbsp;<span>下单时间：2018-06-20 10:33:07</span></div><div class="product-img"><img src="/upload/goods/20180609/8fae147e6438e98450112f0a6c39022f4.jpg"></div><div class="product-infor"><a href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=77" target="_blank" style="color:#333;">212313132</a><p class="specification" style="margin-bottom: 0px;"><span style="color:#8e8c8c;font-size:12px;">土豪金 </span></p><p class="specification"><span style="color:#8e8c8c;font-size:12px;">编码&nbsp;&nbsp;5</span></p></div></td><td><div class="cell" style="display: inline-block;"><span>5.00元</span></div><div class="cell" style="display: inline-block;float:right;">1件</div></td><td rowspan="1" style="text-align:center"><div class="cell"><b class="netprice" style="color: #FF6600;font-size: 14px;font-weight: normal;">0.50</b><br><span class="expressfee">(含配送费:0.00元)</span><br><span class="expressfee">微信支付</span></div></td><td rowspan="1" style="text-align:center"><div style="text-align:left;"><span class="expressfee">cqinter</span><br><span class="expressfee">18696529503</span><br><span class="expressfee">四川省&nbsp;巴中市&nbsp;通江县&nbsp;dddd</span></div></td><td rowspan="1" style="text-align:center"><div class="cell">cqinter<br><i class="fa fa-mobile fa-2x" style="color:#666;"><i></i></i></div></td><td rowspan="1"><div class="business-status" style="text-align:center">已关闭<br></div></td><td rowspan="1"><div class="business-status" style="text-align:center">物流配送<br></div></td><td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/bargainOrderDetail?order_id=217">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',217)">备注</a><a style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',217)">删除订单</a></td></tr></tbody>
 	</table>
 </div>
 
@@ -656,7 +656,7 @@
 										</select>
 					<span class="help-block" style="display: none;">请选择快递</span>
 				</div>
-				<span><a href="http://b2c.niuteam.cn/admin/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
+				<span><a href="/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
 			</div>
 		</form> 
 		<div class="ordercontent">
@@ -707,7 +707,7 @@
 										</select>
 					<span class="help-block" style="display: none;">请选择快递</span>
 				</div>
-				<span><a href="http://b2c.niuteam.cn/admin/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
+				<span><a href="/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
 			</div>
 		</form> 
 		<div class="ordercontent">

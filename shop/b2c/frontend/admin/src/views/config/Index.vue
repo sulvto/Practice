@@ -1,16 +1,22 @@
 <template>
   <div >
-      <Sidebar :menu-list="menuList" />
       <router-view/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Sidebar from "@/components/TheSidebar.vue";
 
 export default {
   name: "config",
+  watch :{
+        $route: {
+				handler: function(val, oldVal) {
+                    console.log('watch route', this.$route);
+				},
+				// 深度观察监听
+				deep: true
+			}
+  },
   data: function() {
     return {
       menuList: [
@@ -58,8 +64,12 @@ export default {
       ]
     };
   },
+  
   components: {
-    Sidebar
+  },
+
+  created () {
+        console.log('created route', this.$route);
   }
 };
 </script>

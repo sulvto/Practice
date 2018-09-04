@@ -9,7 +9,7 @@
 						<div class="breadcrumb-nav">
 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
 									<i class="fa fa-angle-right"></i>
-					<a href="http://b2c.niuteam.cn/admin/order/orderlist.html">订单</a>
+					<a href="/order/orderlist.html">订单</a>
 									<i class="fa fa-angle-right"></i>
 					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/Order/orderCustomerDetail -->
 					<a href="javascript:;" style="color:#999;">售后详情</a>

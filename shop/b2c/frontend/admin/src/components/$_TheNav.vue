@@ -24,241 +24,241 @@
 						<a hrfe="/goodslist.html">商品列表</a> |
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/goods/addgoods.html">商品发布</a>
+						<a href="/goods/addgoods.html">商品发布</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/goods/goodscategorylist.html">商品分类</a>
+						<a href="/goods/goodscategorylist.html">商品分类</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/goods/goodsbrandlist.html">商品品牌</a>
+						<a href="/goods/goodsbrandlist.html">商品品牌</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/goods/goodsgrouplist.html">商品标签</a>
+						<a href="/goods/goodsgrouplist.html">商品标签</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/goods/goodsspeclist.html">商品规格</a>
+						<a href="/goods/goodsspeclist.html">商品规格</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/member/supplierlist.html">供货商</a>
+						<a href="/member/supplierlist.html">供货商</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/goods/attributelist.html">商品类型</a>
+						<a href="/goods/attributelist.html">商品类型</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/saleservice/consultlist.html">咨询管理</a>
+						<a href="/saleservice/consultlist.html">咨询管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/goods/goodscomment.html">商品评价</a>
+						<a href="/goods/goodscomment.html">商品评价</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/system/albumlist.html">相册管理</a>
+						<a href="/system/albumlist.html">相册管理</a>
 					</dd>
 				</dl>
 				<dl>
 					<dt>订单</dt>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/order/orderlist.html">订单列表</a>
+						<a href="/order/orderlist.html">订单列表</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/order/virtualorderlist.html">虚拟订单</a>
+						<a href="/order/virtualorderlist.html">虚拟订单</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/tuangou/pintuanOrderList.html">拼团订单</a>
+						<a href="/tuangou/pintuanOrderList.html">拼团订单</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/orderpresell/orderPresellList.html">预售订单</a>
+						<a href="/orderpresell/orderPresellList.html">预售订单</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/Order/bargainOrder.html">砍价订单</a>
+						<a href="/Order/bargainOrder.html">砍价订单</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/order/invoiceList.html">发票管理</a>
+						<a href="/order/invoiceList.html">发票管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/Order/customerServiceList.html">售后服务</a>
+						<a href="/Order/customerServiceList.html">售后服务</a>
 					</dd>
 				</dl>
 				<dl>
 					<dt>营销</dt>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/coupontypelist.html">优惠券</a>
+						<a href="/promotion/coupontypelist.html">优惠券</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/pointconfig.html">积分管理</a>
+						<a href="/promotion/pointconfig.html">积分管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/giftlist.html">赠品</a>
+						<a href="/promotion/giftlist.html">赠品</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/mansonglist.html">满减送</a>
+						<a href="/promotion/mansonglist.html">满减送</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/Bargain/index.html">砍价活动</a>
+						<a href="/Bargain/index.html">砍价活动</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/getdiscountlist.html">限时折扣</a>
+						<a href="/promotion/getdiscountlist.html">限时折扣</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/combopackagepromotionlist.html">组合套餐</a>
+						<a href="/promotion/combopackagepromotionlist.html">组合套餐</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/fullshipping.html">满额包邮</a>
+						<a href="/promotion/fullshipping.html">满额包邮</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/integral.html">奖励规则</a>
+						<a href="/promotion/integral.html">奖励规则</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/Promotion/promotionGamesList.html">互动游戏</a>
+						<a href="/Promotion/promotionGamesList.html">互动游戏</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/Promotion/groupBuyList.html">团购</a>
+						<a href="/Promotion/groupBuyList.html">团购</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/tuangou/pintuanlist.html">拼团</a>
+						<a href="/tuangou/pintuanlist.html">拼团</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/promotion/topiclist.html">专题活动</a>
+						<a href="/promotion/topiclist.html">专题活动</a>
 					</dd>
 				</dl>
 				<dl>
 					<dt>会员</dt>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/member/memberlist.html">会员列表</a>
+						<a href="/member/memberlist.html">会员列表</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/member/memberlevellist.html">会员等级</a>
+						<a href="/member/memberlevellist.html">会员等级</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/member/usercommissionwithdrawlist.html">会员提现</a>
+						<a href="/member/usercommissionwithdrawlist.html">会员提现</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/member/pointlist.html">积分管理</a>
+						<a href="/member/pointlist.html">积分管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/member/accountlist.html">余额管理</a>
+						<a href="/member/accountlist.html">余额管理</a>
 					</dd>
 				</dl>
 				<dl>
 					<dt>数据</dt>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/account/shopsalesaccount.html">销售概况</a>
+						<a href="/account/shopsalesaccount.html">销售概况</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/account/shopgoodssaleslist.html">商品分析</a>
+						<a href="/account/shopgoodssaleslist.html">商品分析</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/account/shopgoodsgroupsalecount.html">同行热卖</a>
+						<a href="/account/shopgoodsgroupsalecount.html">同行热卖</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/account/shopreport.html">运营报告</a>
+						<a href="/account/shopreport.html">运营报告</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/account/shopgoodssalesrank.html">销售排行</a>
+						<a href="/account/shopgoodssalesrank.html">销售排行</a>
 					</dd>
 				</dl>
 				<dl>
 					<dt>微信</dt>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/appletConfig.html">微信小程序管理</a>
+						<a href="/wchat/appletConfig.html">微信小程序管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/config.html">公众号管理</a>
+						<a href="/wchat/config.html">公众号管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/menu.html">微信菜单管理</a>
+						<a href="/wchat/menu.html">微信菜单管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/weixinqrcodetemplate.html">推广二维码管理</a>
+						<a href="/wchat/weixinqrcodetemplate.html">推广二维码管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/replayconfig.html">回复设置</a>
+						<a href="/wchat/replayconfig.html">回复设置</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/materialmessage.html">消息素材管理</a>
+						<a href="/wchat/materialmessage.html">消息素材管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/shareconfig.html">分享内容设置</a>
+						<a href="/wchat/shareconfig.html">分享内容设置</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/menu_wchat.html?addons=wxtemplatemsg">模板消息设置</a>
+						<a href="/wchat/menu_wchat.html?addons=wxtemplatemsg">模板消息设置</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/member/weixinfanslist.html">粉丝列表</a>
+						<a href="/member/weixinfanslist.html">粉丝列表</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/wchat/keyConcernConfig.html">一键关注设置</a>
+						<a href="/wchat/keyConcernConfig.html">一键关注设置</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/Wchat/fansMessageManage.html">客服管理</a>
+						<a href="/Wchat/fansMessageManage.html">客服管理</a>
 					</dd>
 				</dl>
 				<dl>
 					<dt>网站</dt>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/config/usernotice.html">首页公告</a>
+						<a href="/config/usernotice.html">首页公告</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/config/shopnavigationlist.html">导航管理</a>
+						<a href="/config/shopnavigationlist.html">导航管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/system/goodscategoryblock.html">商品楼层</a>
+						<a href="/system/goodscategoryblock.html">商品楼层</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/config/pctemplate.html">店铺装修</a>
+						<a href="/config/pctemplate.html">店铺装修</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/config/searchconfig.html">搜索</a>
+						<a href="/config/searchconfig.html">搜索</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/system/shopadvlist.html">广告管理</a>
+						<a href="/system/shopadvlist.html">广告管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/cms/articlelist.html">文章管理</a>
+						<a href="/cms/articlelist.html">文章管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/cms/topiclist.html">专题列表</a>
+						<a href="/cms/topiclist.html">专题列表</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/config/helpdocument.html">站点帮助</a>
+						<a href="/config/helpdocument.html">站点帮助</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/config/linklist.html">友情链接</a>
+						<a href="/config/linklist.html">友情链接</a>
 					</dd>
 				</dl>
 				<dl>
 					<dt>设置</dt>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/config/webconfig.html">基础设置</a>
+						<a href="/config/webconfig.html">基础设置</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/config/shopset.html">交易设置</a>
+						<a href="/config/shopset.html">交易设置</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/express/expresscompany.html">配送管理</a>
+						<a href="/express/expresscompany.html">配送管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/dbdatabase/databaselist.html">数据库管理</a>
+						<a href="/dbdatabase/databaselist.html">数据库管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/auth/userlist.html">管理员列表</a>
+						<a href="/auth/userlist.html">管理员列表</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/Verification/index.html">核销设置</a>
+						<a href="/Verification/index.html">核销设置</a>
 					</dd>
 				</dl>
 				<dl>
 					<dt>系统</dt>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/upgrade/onlineupdate.html">在线更新</a>
+						<a href="/upgrade/onlineupdate.html">在线更新</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/upgrade/devolutioninfo.html">授权信息</a>
+						<a href="/upgrade/devolutioninfo.html">授权信息</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/extend/addonslist.html">插件管理</a>
+						<a href="/extend/addonslist.html">插件管理</a>
 					</dd>
 					<dd>
-						<a href="http://b2c.niuteam.cn/admin/extend/hookslist.html">钩子管理</a>
+						<a href="/extend/hookslist.html">钩子管理</a>
 					</dd>
 				</dl>
 			</div>
@@ -316,12 +316,12 @@
 	
 		<div class="ns-base-tool">
 			<i class="i-home" title="前台首页"><a href="http://b2c.niuteam.cn" target="_blank"></a></i>
-			<i class="i-close" title="退出登录"><a href="http://b2c.niuteam.cn/admin/login/logout.html"></a></i>
+			<i class="i-close" title="退出登录"><a href="/login/logout.html"></a></i>
 			<i class="ns-vertical-bar"></i>
 	
-			<div class="ns-help" @focus="showPCF=true" @blur="showPCF=true">
+			<div class="ns-help" @mouseenter="showPCF = true" @mouseleave="showPCF = false">
 				<div class="logo">
-					<img src="/upload/avator/19066be3c54be595a64df7138fde1a31_120_120.jpg">
+					<img src="/static/blue/img/user_admin_blue.png">
 				</div>
 				<span>admin</span>
 				<i class="fa fa-angle-down"></i>
@@ -341,10 +341,49 @@
 				</ul>
 			</div>
 		</div>
+
+        <div id="edit-password" class="modal hide fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 562px; top: 50%; margin-top: -180.5px; display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3>修改密码</h3>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="pwd0" style="width: 160px;"><span class="color-red">*</span>原密码</label>
+				<div class="controls" style="margin-left: 180px;">
+					<input type="password" id="pwd0" placeholder="请输入原密码" class="input-common">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="pwd1" style="width: 160px;"><span class="color-red">*</span>新密码</label>
+				<div class="controls" style="margin-left: 180px;">
+					<input type="password" id="pwd1" placeholder="请输入新密码" class="input-common">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="pwd2" style="width: 160px;"><span class="color-red">*</span>再次输入密码</label>
+				<div class="controls" style="margin-left: 180px;">
+					<input type="password" id="pwd2" placeholder="请输入确认密码" class="input-common">
+					<span class="help-block"></span>
+				</div>
+			</div>
+			<div style="text-align: center; height: 20px;" id="show"></div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn-common btn-big" onclick="submitPassword()" style="display:inline-block;">保存</button>
+		<button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
+	</div>
+</div>
 	</header>
 </template>
         
 <script>
+    
+
 	export default {
 		name: "Nav",
 		props: {},
@@ -360,7 +399,7 @@
 	
 		data: function() {
 			return {
-				showPCF: false
+                showPCF: false
 			};
 		},
 	
@@ -377,6 +416,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+    //     @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+
 	.ns-base-header {
 		background: #393939;
 		width: 100%;
@@ -494,7 +535,6 @@
 				width: 220px;
 				background: #ffffff;
 				box-shadow: 0px 0px 10px #999;
-				display: none;
 				li {
 					padding: 10px;
 					border-bottom: 1px solid #e1e1e1;

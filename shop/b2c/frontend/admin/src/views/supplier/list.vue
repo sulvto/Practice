@@ -9,7 +9,7 @@
 						<div class="breadcrumb-nav">
 				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
 									<i class="fa fa-angle-right"></i>
-					<a href="http://b2c.niuteam.cn/admin/goods/goodslist.html">商品</a>
+					<a href="/goods/goodslist.html">商品</a>
 									<i class="fa fa-angle-right"></i>
 					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/member/supplierlist -->
 					<a href="javascript:;" style="color:#999;">供货商</a>
@@ -67,7 +67,7 @@
 	<tbody><tr>
 		<th width="20%" style="text-align: left;">
 			<button class="btn-common-delete btn-small" onclick="batchDelete()" style="margin:0 5px 0 0 !important;">批量删除</button>
-			<button class="btn-common btn-small" onclick="location.href='http://b2c.niuteam.cn/admin/Member/addsupplier.html';" style="margin:0 5px 0 0 !important;">添加供货商</button>
+			<button class="btn-common btn-small" onclick="location.href='/Member/addsupplier.html';" style="margin:0 5px 0 0 !important;">添加供货商</button>
 		</th>
 		<th width="20%">
 			<input type="text" id="search_text" placeholder="输入代理商名称" class="input-common">
@@ -96,7 +96,7 @@
 			<th>操作</th>
 		</tr>
 	</thead>
-	<tbody><tr><td style="text-align:center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="1"></i></td><td align="left">小米供货商</td><td align="left">xm</td><td>11111</td><td align="left">1111</td><td align="left">奥术大师大多</td><td align="center"> <a href="http://b2c.niuteam.cn/admin/Member/updatesupplier?supplier_id=1">修改</a>&nbsp;&nbsp;&nbsp;<a href="javascript:deleteSupplier(1);">删除</a></td></tr><tr><td style="text-align:center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="2"></i></td><td align="left">三星供货商</td><td align="left">sx</td><td>23333</td><td align="left">3333</td><td align="left"></td><td align="center"> <a href="http://b2c.niuteam.cn/admin/Member/updatesupplier?supplier_id=2">修改</a>&nbsp;&nbsp;&nbsp;<a href="javascript:deleteSupplier(2);">删除</a></td></tr></tbody>
+	<tbody><tr><td style="text-align:center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="1"></i></td><td align="left">小米供货商</td><td align="left">xm</td><td>11111</td><td align="left">1111</td><td align="left">奥术大师大多</td><td align="center"> <a href="/Member/updatesupplier?supplier_id=1">修改</a>&nbsp;&nbsp;&nbsp;<a href="javascript:deleteSupplier(1);">删除</a></td></tr><tr><td style="text-align:center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="2"></i></td><td align="left">三星供货商</td><td align="left">sx</td><td>23333</td><td align="left">3333</td><td align="left"></td><td align="center"> <a href="/Member/updatesupplier?supplier_id=2">修改</a>&nbsp;&nbsp;&nbsp;<a href="javascript:deleteSupplier(2);">删除</a></td></tr></tbody>
 </table>
 
 <div class="page" id="turn-ul" style="">
