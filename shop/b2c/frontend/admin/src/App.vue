@@ -404,7 +404,7 @@
                 var result = null;
                 if (this.verticalMenu.children.length > 0) {
     
-                    var verticalMenuroute = this.$route.matched.find(route => this.verticalMenu.children.find(child => child.path === route.path));
+                    var verticalMenuroute = this.$route.matched.find(route => this.verticalMenu.children.find(child => child.name === route.name));
                     if (verticalMenuroute) {
                         result = verticalMenuroute.path;
                     }
@@ -802,7 +802,7 @@
                                 name: "基础设置"
                             },
                             {
-                                path: "/config/shopSet.html",
+                                path: "/config/transaction",
                                 name: "交易设置"
                             },
                             {

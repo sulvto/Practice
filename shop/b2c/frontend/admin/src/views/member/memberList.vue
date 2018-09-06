@@ -132,7 +132,7 @@
 							<a
 							    onclick="modify_password(86)">重置密码</a><br><a href="/member/newpath?member_id=86">查看足迹</a><a onclick="modify_user(86)">修改</a>&nbsp;<a onclick="delete_user(86)">删除</a><br></td>
 					</tr>
-					<tr align="center">
+					<!-- <tr align="center">
 						<td><i class="checkbox-common"><input name="sub" type="checkbox" value="85"></i></td>
 						<td align="left"><img src="/upload/web_common/419b57e5802bd1f3b8fdedb81fdb5fce_360_360.png" class="head-portrait">
 							<div style="float:left;"><label style="float:none;width:100%">用户名：<span>weibin123</span></label><label style="float:none;width:100%">昵称: <span>weibin123</span></label><label style="float:none;width:100%"><span>手机：--</span></label><label style="float:none;width:100%"><span>邮箱：--</span></label></div>
@@ -326,7 +326,7 @@
 						<td><a href="/member/accountdetail?member_id=71">账户明细</a><br><a onclick="recharge_point(71,100)">积分调整</a>&nbsp;&nbsp;<a onclick="recharge_balance(71,0.00)">余额调整</a><br><a onclick="lockuser(71)">设置锁定&nbsp;&nbsp;&nbsp;</a>
 							<a
 							    onclick="modify_password(71)">重置密码</a><br><a href="/member/newpath?member_id=71">查看足迹</a><a onclick="modify_user(71)">修改</a>&nbsp;<a onclick="delete_user(71)">删除</a><br></td>
-					</tr>
+					</tr> -->
 				</tbody>
 			</table>
 	
@@ -374,7 +374,7 @@
 			</div>
 	
 			<!-- 积分调整 -->
-			<div class="modal fade hide" id="recharge_point" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- <div class="modal fade hide" id="recharge_point" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -414,10 +414,10 @@
 					</div>
 				</div>
 	
-			</div>
+			</div> -->
 	
 			<!-- 添加会员 -->
-			<div class="modal fade hide" id="add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- <div class="modal fade hide" id="add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -526,7 +526,7 @@
 					</div>
 				</div>
 	
-			</div>
+			</div> -->
 	
 			<input type="hidden" id="modify_uid" class="">
 			<!-- 修改会员 -->
@@ -641,7 +641,7 @@
 			</div>
 	
 			<!-- 修改会员密码 -->
-			<div class="modal fade hide" id="modify_password" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- <div class="modal fade hide" id="modify_password" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -670,11 +670,11 @@
 					</div>
 				</div>
 	
-			</div>
+			</div> -->
 	
 	
 			<!-- 修改会员上级编号-->
-			<div class="modal fade hide" id="modify_pre_promoter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<!-- <div class="modal fade hide" id="modify_pre_promoter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -704,7 +704,7 @@
 				</div>
 	
 			</div>
-	
+	 -->
 			<div class="page" id="turn-ul" style="">
 				<div class="pagination">
 					<ul>

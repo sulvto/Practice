@@ -248,28 +248,6 @@
 	</dl>
 </div>
 
-<div class="page" id="turn-ul" style="display: none;">
-	<div class="pagination">
-		<ul>
-			<li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
-			<li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
-			<li><a id="prevPage" class="page-disable">上一页</a></li>
-			<li id="pageNumber"></li>
-			<li id="JslastPage">
-				
-			</li>
-			<li><a id="nextPage">下一页</a></li>
-			<li><a id="lastPage">末页</a></li>
-			<li class="total-data">共0条</li>
-			<!-- <li class="page-count">共0页</li> -->
-			<li class="according-number">
-				跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
-			</li>
-		</ul>
-	</div>
-</div>
-<input type="hidden" id="page_count">
-<input type="hidden" id="page_size">
 		</div>
 		
 	</section>

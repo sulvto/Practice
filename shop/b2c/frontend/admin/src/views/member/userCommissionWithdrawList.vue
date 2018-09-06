@@ -197,7 +197,7 @@
 </div>
 
 <!-- 拒绝提现申请 -->
-<div class="modal fade hide" id="recharge_balance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade hide" id="recharge_balance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<input type="hidden" id="balance_id">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -221,10 +221,10 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <!-- 提现详情模态框（Modal） -->
-<div class="modal fade hide" id="details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade hide" id="details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -272,7 +272,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <input type="hidden" id="uid" class="">
 <input type="hidden" id="status" class="">
 
