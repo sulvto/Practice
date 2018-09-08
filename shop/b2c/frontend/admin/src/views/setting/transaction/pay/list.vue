@@ -5,11 +5,11 @@
     <el-table-column
       label="支付方式">
       <template slot-scope="scope">
-
         <div class="table-logo"><img :src="scope.row.logo"></div>
-				<span class="table-pay">{{scope.row.name}}</span><br>
-				<span class="table-desc">{{scope.row.description}}
-				</span>
+        <span class="table-pay">{{scope.row.name}}</span><br>
+        <span class="table-desc">
+        {{scope.row.description}}
+        </span>
       </template>
     </el-table-column>
     <el-table-column
@@ -23,9 +23,9 @@
     <el-table-column label="操作"
       width="180">
       <template slot-scope="scope">
-          							<!-- <a href="/config/payconfig.html?type=wchat">配置</a> -->
-							<!-- <a href="/config/payaliconfig.html">配置</a> -->
-							<!-- <a href="/config/unionpayconfig.html">配置</a> -->
+        <!-- <a href="/config/payconfig.html?type=wchat">配置</a> -->
+        <!-- <a href="/config/payaliconfig.html">配置</a> -->
+        <!-- <a href="/config/unionpayconfig.html">配置</a> -->
 
         <el-button
           size="mini"
@@ -36,39 +36,45 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        tableData: [{
-          logo: '/admin/images/pay.png',
-          name: '支付宝支付',
-          status: true,
-          description: '该系统支持即时到账接口',
-          configLink:'/config/paymentConfig/aliPay.html'
-        },{
-          logo: '/admin/images/wchat.png',
-          name: '微信支付',
-          status: false,
-          description: '该系统支持微信网页支付和扫码支付',
-          configLink:'/config/paymentConfig/wchatPay.html'
-        },{
-          logo: '/admin/images/unionpay.png',
-          name: '银联卡支付',
-          status: false,
-          description: '该系统支持即时到账接口',
-          configLink:'/config/paymentConfig/unionPay.html'
-        }]
-      }
+
+import wchatImage from '@/assets/images/wchat.png'
+import aliPayImage from '@/assets/images/pay.png'
+import unionpayImage from '@/assets/images/unionpay.png'
+
+export default {
+
+  data () {
+    return {
+      tableData: [{
+        logo: aliPayImage,
+        name: '支付宝支付',
+        status: true,
+        description: '该系统支持即时到账接口',
+        configLink: '/config/paymentConfig/aliPay.html'
+      }, {
+        logo: wchatImage,
+        name: '微信支付',
+        status: false,
+        description: '该系统支持微信网页支付和扫码支付',
+        configLink: '/config/paymentConfig/wchatPay.html'
+      }, {
+        logo: unionpayImage,
+        name: '银联卡支付',
+        status: false,
+        description: '该系统支持即时到账接口',
+        configLink: '/config/paymentConfig/unionPay.html'
+      }]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
     },
-    methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
-      },
-      handleDelete(index, row) {
-        console.log(index, row);
-      }
+    handleDelete (index, row) {
+      console.log(index, row)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

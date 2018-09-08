@@ -1,19 +1,19 @@
 <template>
-         <router-view/>
+  <router-view/>
 </template>
 
 <script>
-    export default {
-        name: "BaseRouter",
+export default {
+  name: 'BaseRouter',
 
-        components: {},
+  components: {},
 
-        created() {
-        }
-    
-    };
+  created () {
+  }
+
+}
 </script>
 
 <style lang="scss">
-    
+
 </style>

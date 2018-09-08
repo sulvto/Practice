@@ -4,7 +4,7 @@
                                         <Nav/>
                                         <router-view/>
                                     </article> -->
-    
+
         <el-container>
             <el-header>
                 <el-row :gutter="20">
@@ -12,7 +12,7 @@
                         <div class="ns-logo" onclick="location.href='http://showfx.niuteam.cn/admin.html';"></div>
                         <div class="ns-search">
                             <div class="nav-menu js-nav">
-                                <img src="/public/static/blue/img/nav_menu.png" title="导航管理">
+                                <img src="@/assets/img/nav_menu.png" title="导航管理">
                             </div>
                             <div class="ns-navigation-management" style="display: none;">
                                 <div class="ns-navigation-title">
@@ -317,7 +317,7 @@
                                 <span>搜索</span>
                                 <div class="mask-layer-search" style="display: none;">
                                     <input type="text" id="search_goods" placeholder="搜索">
-                                    <a href="javascript:search();"><img src="/public/static/blue/img/enter.png"></a>
+                                    <a href="javascript:search();"><img src="@/assets/img/enter.png"></a>
                                 </div>
                             </div>
                         </div>
@@ -343,13 +343,13 @@
                             <el-menu-item-group >
                                 <el-menu-item v-for="item in verticalMenu.children" :key="item.path" :index="item.path">{{item.name}}</el-menu-item>
                             </el-menu-item-group>
-                          
+
                         </el-submenu>
                         <el-menu-item index="2" v-show="verticalMenu.isHome">
                             <i class="el-icon-circle-plus"></i>
                             <span slot="title">常用功能</span>
                         </el-menu-item>
-                       
+
                     </el-menu>
                 </el-aside>
                 <el-main>
@@ -376,7 +376,7 @@
 
                         </el-col>
                       </el-row>
-                        
+
 <br/>
 
                     <router-view/>
@@ -387,480 +387,493 @@
 </template>
 
 <script>
-    export default {
-        name: "app",
-        watch: {
-            $route: {
-                handler: function(val, oldVal) {
-                    console.log('watch route', this.$route);
-                    this.setBreadcrumb(val);
-                },
-                // 深度观察监听
-                deep: true
-            }
-        },
-        computed: {
-            activeVerticalMenuItem() {
-                var result = null;
-                if (this.verticalMenu.children.length > 0) {
-    
-                    var verticalMenuroute = this.$route.matched.find(route => this.verticalMenu.children.find(child => child.name === route.name));
-                    if (verticalMenuroute) {
-                        result = verticalMenuroute.path;
-                    }
-                }
-    
-                console.log('activeVerticalMenuItem', result, this.$route);
-                return result;
-            }
-        },
-        methods: {
-            handleSelect(path) {
-                this.verticalMenu = this.menuList.find(item => item.path === path);
-            },
-            handleOpen() {
-                console.log('handleOpen')
-            },
-            handleClose() {
-                console.log('handleClose');
-            },
-            open4() {
-                this.$alert('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
-                    dangerouslyUseHTMLString: true
-                });
-            },
-            setBreadcrumb(route) {
-                this.breadcrumb = [{
-                    name: "首页",
-                    path: "/index.html"
-                }];
-                if (route.matched.length > 1) {
-                    route.matched.forEach(item => this.breadcrumb.push(item));
-                }
-            }
-        },
-        data() {
-            return {
-                verticalMenu: {},
-                breadcrumb: [],
-                menuList: [{
-                        name: "首页",
-                        path: "/index.html",
-                        isHome: true,
-                        children: [{
-                                selected: true,
-                                path: "/index.html",
-                                name: "欢迎页"
-                            },
-                            {
-                                path: "/goods/add.html",
-                                name: "商品发布"
-                            },
-                            {
-                                path: "/goods/list.html",
-                                name: "商品列表"
-                            },
-                            {
-                                path: "/order/list.html",
-                                name: "订单列表"
-                            },
-                            {
-                                path: "/goods/comment.html",
-                                name: "商品评价"
-                            }
-                        ]
-                    },
-                    {
-                        name: "商品",
-                        path: "/goods/list.html",
-                        children:  [
-                            {
-                            selected: true,
-                            path: "/goods/list.html",
-                            name: "商品列表"
-                            },
-                            {
-                            path: "/goods/add.html",
-                            name: "商品发布"
-                            },
-                            {
-                            path: "/goods/categorylist.html",
-                            name: "商品分类"
-                            },
-                            {
-                            path: "/goods/brandlist.html",
-                            name: "商品品牌"
-                            },
-                            {
-                            path: "/goods/labellist.html",
-                            name: "商品标签"
-                            },
-                            {
-                            path: "/goods/speclist.html",
-                            name: "商品规格"
-                            },
-                            {
-                            path: "/goods/supplierlist.html",
-                            name: "供货商"
-                            },
-                            {
-                            path: "/goods/attributelist.html",
-                            name: "商品类型"
-                            },
-                            {
-                            path: "/goods/consult.html",
-                            name: "咨询管理"
-                            },
-                            {
-                            path: "/goods/comment.html",
-                            name: "商品评价"
-                            },
-                            {
-                            path: "/goods/albumlist.html",
-                            name: "相册管理"
-                            }
-                        ]
-                    },
-                    {
-                        name: "订单",
-                        path: "/order/orderlist.html",
-                        children: [{
-                                selected: true,
-                                path: "/order/orderlist.html",
-                                name: "订单列表"
-                            },
-                            {
-                                path: "/order/virtualorder.html",
-                                name: "虚拟订单"
-                            },
-                            {
-                                path: "/tuangou/pintuanorderlist.html",
-                                name: "拼团订单"
-                            },
-                            {
-                                path: "/orderpresell/list.html",
-                                name: "预售订单"
-                            },
-                            {
-                                path: "/order/bargainorder.html",
-                                name: "砍价订单"
-                            },
-                            {
-                                path: "/order/invoicelist.html",
-                                name: "发票管理"
-                            },
-                            {
-                                path: "/order/customerservicelist.html",
-                                name: "售后服务"
-                            }
-                        ]
-                    },
-                    {
-                        name: "营销",
-                        path: "/promotion/coupontypelist.html",
-                        children: [{
-                                selected: true,
-                                path: "/commission/userAccountList.html",
-                                name: "推广员佣金"
-                            },
-                            {
-                                path: "/commission/distributionList.html",
-                                name: "三级分销"
-                            },
-                            {
-                                path: "/commission/partnerList.html",
-                                name: "股东分红"
-                            },
-                            {
-                                path: "/commission/regionAgentList.html",
-                                name: "区域代理"
-                            },
-                            {
-                                path: "/commission/partnerGlobalList.html",
-                                name: "全球分红"
-                            },
-                            {
-                                path: "/commission/userCommissionWithdrawList.html",
-                                name: "会员提现"
-                            }
-                        ]
-                    },
-                    {
-                        name: "会员",
-                        path: "/member/memberlist.html",
-                        children: [{
-                                selected: true,
-                                path: "/member/memberlist.html",
-                                name: "会员列表"
-                            },
-                            {
-                                path: "/member/memberlevellist.html",
-                                name: "会员等级"
-                            },
-                            {
-                                path: "/member/usercommissionwithdrawlist.html",
-                                name: "会员提现"
-                            },
-                            {
-                                path: "/member/pointlist.html",
-                                name: "积分管理"
-                            },
-                            {
-                                path: "/member/accountlist.html",
-                                name: "余额管理"
-                            }
-                        ]
-                    },
-                    {
-                        name: "数据",
-                        path: "/account/shopsalesaccount.html",
-                        children: [{
-                                selected: true,
-                                path: "/account/shopsalesaccount.html",
-                                name: "销售概况"
-                            },
-                            {
-                                path: "/account/shopgoodssaleslist.html",
-                                name: "商品分析"
-                            },
-                            {
-                                path: "/account/shopgoodsgroupsalecount.html",
-                                name: "同行热卖"
-                            },
-                            {
-                                path: "/account/shopreport.html",
-                                name: "运营报告"
-                            },
-                            {
-                                path: "/account/shopgoodssalesrank.html",
-                                name: "销售排行"
-                            }
-                        ]
-                    },
-                    {
-                        name: "微信",
-                        path: "/wchat/config.html",
-                        children: [{
-                                selected: true,
-                                path: "/wchat/appletconfig.html",
-                                name: "微信小程序管理"
-                            },
-                            {
-                                path: "/wchat/config.html",
-                                name: "公众号管理"
-                            },
-                            {
-                                path: "/wchat/menu.html",
-                                name: "微信菜单管理"
-                            },
-                            {
-                                path: "/wchat/weixinqrcodetemplate.html",
-                                name: "推广二维码管理"
-                            },
-                            {
-                                path: "/wchat/replayconfig.html",
-                                name: "回复设置"
-                            },
-                            {
-                                path: "/wchat/materialmessage.html",
-                                name: "消息素材管理"
-                            },
-                            {
-                                path: "/wchat/shareconfig.html",
-                                name: "分享内容设置"
-                            },
-                            {
-                                path: "/menu/addonmenu.html",
-                                name: "模板消息设置"
-                            },
-                            {
-                                path: "/member/weixinfanslist.html",
-                                name: "粉丝列表"
-                            },
-                            {
-                                path: "/wchat/keyconcernconfig.html",
-                                name: "一键关注设置"
-                            },
-                            {
-                                path: "/wchat/fansmessagemanage.html",
-                                name: "客服管理"
-                            }
-                        ]
-                    },
-                    {
-                        name: "佣金",
-                        path: "/commission/userAccountList.html",
-                        children: [{
-                                selected: true,
-                                path: "/commission/userAccountList.html",
-                                name: "推广员佣金"
-                            },
-                            {
-                                path: "/commission/distributionList.html",
-                                name: "三级分销"
-                            },
-                            {
-                                path: "/commission/partnerList.html",
-                                name: "股东分红"
-                            },
-                            {
-                                path: "/commission/regionAgentList.html",
-                                name: "区域代理"
-                            },
-                            {
-                                path: "/commission/partnerGlobalList.html",
-                                name: "全球分红"
-                            },
-                            {
-                                path: "/commission/userCommissionWithdrawList.html",
-                                name: "会员提现"
-                            }
-                        ]
-                    },
-                    {
-                        name: "网站",
-                        path: "/config/usernotice.html",
-                        children: [{
-                                selected: true,
-                                path: "/config/userNotice.html",
-                                name: "首页公告"
-                            },
-                            {
-                                path: "/config/shopNavigationList.html",
-                                name: "导航管理"
-                            },
-                            {
-                                path: "/system/goodsCategoryBlock.html",
-                                name: "商品楼层"
-                            },
-                            {
-                                path: "/config/pcTemplate.html",
-                                name: "店铺装修"
-                            },
-                            {
-                                path: "/config/searchConfig.html",
-                                name: "搜索"
-                            },
-                            {
-                                path: "/system/adsList.html",
-                                name: "广告管理"
-                            },
-                            {
-                                path: "/cms/articleList.html",
-                                name: "文章管理"
-                            },
-                            {
-                                path: "/cms/topicList.html",
-                                name: "专题列表"
-                            },
-                            {
-                                path: "/config/helpDocument.html",
-                                name: "站点帮助"
-                            },
-                            {
-                                path: "/config/linkList.html",
-                                name: "友情链接"
-                            }
-                        ]
-                    },
-                    {
-                        name: "分销",
-                        path: "/distribution/promoterList.html",
-                        children: [{
-                                selected: true,
-                                path: "/distribution/promoterList.html",
-                                name: "推广员管理"
-                            },
-                            {
-                                path: "/distribution/goodsCommissionRateList.html",
-                                name: "商品分销"
-                            },
-                            {
-                                path: "/distribution/threeLevelDistributionConfig.html",
-                                name: "三级分销"
-                            },
-                            {
-                                path: "/distribution/regionalAgent.html",
-                                name: "区域代理"
-                            },
-                            {
-                                path: "/distribution/shareholderDividendsConfig.html",
-                                name: "股东分红"
-                            },
-                            {
-                                path: "/distribution/globalBonusPoolConfig.html",
-                                name: "全球分红"
-                            }
-                        ]
-                    },
-                    {
-                        name: "设置",
-                        path: "/config/base",
-                        children: [{
-                                selected: true,
-                                path: "/config/base",
-                                name: "基础设置"
-                            },
-                            {
-                                path: "/config/transaction",
-                                name: "交易设置"
-                            },
-                            {
-                                path: "/express/expressCompany.html",
-                                name: "配送管理"
-                            },
-                            {
-                                path: "/database/index.html",
-                                name: "数据库管理"
-                            },
-                            {
-                                path: "/auth/userList.html",
-                                name: "管理员列表"
-                            },
-                            {
-                                path: "/verification/index.html",
-                                name: "核销设置"
-                            }
-                        ]
-                    },
-                    {
-                        name: "系统",
-                        path: "/upgrade/onlineupdate.html",
-                        children: [{
-                                selected: true,
-                                path: "/upgrade/onlineupdate.html",
-                                name: "在线更新"
-                            },
-                            {
-                                path: "/upgrade/devolutioninfo.html",
-                                name: "授权信息"
-                            },
-                            {
-                                path: "/extend/addonslist.html",
-                                name: "插件管理"
-                            },
-                            {
-                                path: "/extend/hookslist.html",
-                                name: "钩子管理"
-                            }
-                        ]
-                    }
-                ]
-    
-    
-            }
-        },
-    
-        components: {},
-    
-        created() {
-            this.verticalMenu = this.menuList.find(item => item.name === this.$route.matched[0].name);
-            this.setBreadcrumb(this.$route);
-            console.log('created route', this.$route);
+export default {
+  name: 'app',
+  watch: {
+    $route: {
+      handler (val, oldVal) {
+        console.log('watch route', this.$route)
+        this.setBreadcrumb(val)
+      },
+      // 深度观察监听
+      deep: true
+    }
+  },
+  computed: {
+    activeVerticalMenuItem () {
+      var result = null
+      if (this.verticalMenu.children.length > 0) {
+        var verticalMenuroute = this.$route.matched.find(route =>
+          this.verticalMenu.children.find(child => child.name === route.name)
+        )
+        if (verticalMenuroute) {
+          result = verticalMenuroute.path
         }
-    };
+      }
+
+      console.log('activeVerticalMenuItem', result, this.$route)
+      return result
+    }
+  },
+  methods: {
+    handleSelect (path) {
+      this.verticalMenu = this.menuList.find(item => item.path === path)
+    },
+    handleOpen () {
+      console.log('handleOpen')
+    },
+    handleClose () {
+      console.log('handleClose')
+    },
+    open4 () {
+      this.$alert('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
+        dangerouslyUseHTMLString: true
+      })
+    },
+    setBreadcrumb (route) {
+      this.breadcrumb = [
+        {
+          name: '首页',
+          path: '/index.html'
+        }
+      ]
+      if (route.matched.length > 1) {
+        route.matched.forEach(item => this.breadcrumb.push(item))
+      }
+    }
+  },
+  data () {
+    return {
+      verticalMenu: {},
+      breadcrumb: [],
+      menuList: [
+        {
+          name: '首页',
+          path: '/index.html',
+          isHome: true,
+          children: [
+            {
+              selected: true,
+              path: '/index.html',
+              name: '欢迎页'
+            },
+            {
+              path: '/goods/add.html',
+              name: '商品发布'
+            },
+            {
+              path: '/goods/list.html',
+              name: '商品列表'
+            },
+            {
+              path: '/order/list.html',
+              name: '订单列表'
+            },
+            {
+              path: '/goods/comment.html',
+              name: '商品评价'
+            }
+          ]
+        },
+        {
+          name: '商品',
+          path: '/goods/list.html',
+          children: [
+            {
+              selected: true,
+              path: '/goods/list.html',
+              name: '商品列表'
+            },
+            {
+              path: '/goods/add.html',
+              name: '商品发布'
+            },
+            {
+              path: '/goods/categorylist.html',
+              name: '商品分类'
+            },
+            {
+              path: '/goods/brandlist.html',
+              name: '商品品牌'
+            },
+            {
+              path: '/goods/labellist.html',
+              name: '商品标签'
+            },
+            {
+              path: '/goods/speclist.html',
+              name: '商品规格'
+            },
+            {
+              path: '/goods/supplierlist.html',
+              name: '供货商'
+            },
+            {
+              path: '/goods/attributelist.html',
+              name: '商品类型'
+            },
+            {
+              path: '/goods/consult.html',
+              name: '咨询管理'
+            },
+            {
+              path: '/goods/comment.html',
+              name: '商品评价'
+            },
+            {
+              path: '/goods/albumlist.html',
+              name: '相册管理'
+            }
+          ]
+        },
+        {
+          name: '订单',
+          path: '/order/orderlist.html',
+          children: [
+            {
+              selected: true,
+              path: '/order/orderlist.html',
+              name: '订单列表'
+            },
+            {
+              path: '/order/virtualorder.html',
+              name: '虚拟订单'
+            },
+            {
+              path: '/tuangou/pintuanorderlist.html',
+              name: '拼团订单'
+            },
+            {
+              path: '/orderpresell/list.html',
+              name: '预售订单'
+            },
+            {
+              path: '/order/bargainorder.html',
+              name: '砍价订单'
+            },
+            {
+              path: '/order/invoicelist.html',
+              name: '发票管理'
+            },
+            {
+              path: '/order/customerservicelist.html',
+              name: '售后服务'
+            }
+          ]
+        },
+        {
+          name: '营销',
+          path: '/promotion/coupontypelist.html',
+          children: [
+            {
+              selected: true,
+              path: '/commission/userAccountList.html',
+              name: '推广员佣金'
+            },
+            {
+              path: '/commission/distributionList.html',
+              name: '三级分销'
+            },
+            {
+              path: '/commission/partnerList.html',
+              name: '股东分红'
+            },
+            {
+              path: '/commission/regionAgentList.html',
+              name: '区域代理'
+            },
+            {
+              path: '/commission/partnerGlobalList.html',
+              name: '全球分红'
+            },
+            {
+              path: '/commission/userCommissionWithdrawList.html',
+              name: '会员提现'
+            }
+          ]
+        },
+        {
+          name: '会员',
+          path: '/member/memberlist.html',
+          children: [
+            {
+              selected: true,
+              path: '/member/memberlist.html',
+              name: '会员列表'
+            },
+            {
+              path: '/member/memberlevellist.html',
+              name: '会员等级'
+            },
+            {
+              path: '/member/usercommissionwithdrawlist.html',
+              name: '会员提现'
+            },
+            {
+              path: '/member/pointlist.html',
+              name: '积分管理'
+            },
+            {
+              path: '/member/accountlist.html',
+              name: '余额管理'
+            }
+          ]
+        },
+        {
+          name: '数据',
+          path: '/account/shopsalesaccount.html',
+          children: [
+            {
+              selected: true,
+              path: '/account/shopsalesaccount.html',
+              name: '销售概况'
+            },
+            {
+              path: '/account/shopgoodssaleslist.html',
+              name: '商品分析'
+            },
+            {
+              path: '/account/shopgoodsgroupsalecount.html',
+              name: '同行热卖'
+            },
+            {
+              path: '/account/shopreport.html',
+              name: '运营报告'
+            },
+            {
+              path: '/account/shopgoodssalesrank.html',
+              name: '销售排行'
+            }
+          ]
+        },
+        {
+          name: '微信',
+          path: '/wchat/config.html',
+          children: [
+            {
+              selected: true,
+              path: '/wchat/appletconfig.html',
+              name: '微信小程序管理'
+            },
+            {
+              path: '/wchat/config.html',
+              name: '公众号管理'
+            },
+            {
+              path: '/wchat/menu.html',
+              name: '微信菜单管理'
+            },
+            {
+              path: '/wchat/weixinqrcodetemplate.html',
+              name: '推广二维码管理'
+            },
+            {
+              path: '/wchat/replayconfig.html',
+              name: '回复设置'
+            },
+            {
+              path: '/wchat/materialmessage.html',
+              name: '消息素材管理'
+            },
+            {
+              path: '/wchat/shareconfig.html',
+              name: '分享内容设置'
+            },
+            {
+              path: '/menu/addonmenu.html',
+              name: '模板消息设置'
+            },
+            {
+              path: '/member/weixinfanslist.html',
+              name: '粉丝列表'
+            },
+            {
+              path: '/wchat/keyconcernconfig.html',
+              name: '一键关注设置'
+            },
+            {
+              path: '/wchat/fansmessagemanage.html',
+              name: '客服管理'
+            }
+          ]
+        },
+        {
+          name: '佣金',
+          path: '/commission/userAccountList.html',
+          children: [
+            {
+              selected: true,
+              path: '/commission/userAccountList.html',
+              name: '推广员佣金'
+            },
+            {
+              path: '/commission/distributionList.html',
+              name: '三级分销'
+            },
+            {
+              path: '/commission/partnerList.html',
+              name: '股东分红'
+            },
+            {
+              path: '/commission/regionAgentList.html',
+              name: '区域代理'
+            },
+            {
+              path: '/commission/partnerGlobalList.html',
+              name: '全球分红'
+            },
+            {
+              path: '/commission/userCommissionWithdrawList.html',
+              name: '会员提现'
+            }
+          ]
+        },
+        {
+          name: '网站',
+          path: '/config/usernotice.html',
+          children: [
+            {
+              selected: true,
+              path: '/config/userNotice.html',
+              name: '首页公告'
+            },
+            {
+              path: '/config/shopNavigationList.html',
+              name: '导航管理'
+            },
+            {
+              path: '/system/goodsCategoryBlock.html',
+              name: '商品楼层'
+            },
+            {
+              path: '/config/pcTemplate.html',
+              name: '店铺装修'
+            },
+            {
+              path: '/config/searchConfig.html',
+              name: '搜索'
+            },
+            {
+              path: '/system/adsList.html',
+              name: '广告管理'
+            },
+            {
+              path: '/cms/articleList.html',
+              name: '文章管理'
+            },
+            {
+              path: '/cms/topicList.html',
+              name: '专题列表'
+            },
+            {
+              path: '/config/helpDocument.html',
+              name: '站点帮助'
+            },
+            {
+              path: '/config/linkList.html',
+              name: '友情链接'
+            }
+          ]
+        },
+        {
+          name: '分销',
+          path: '/distribution',
+          children: [
+            {
+              path: '/distribution/promoter',
+              name: '推广员管理'
+            },
+            {
+              path: '/distribution/goodsCommissionRateList.html',
+              name: '商品分销'
+            },
+            {
+              path: '/distribution/threeLevelDistributionConfig.html',
+              name: '三级分销'
+            },
+            {
+              path: '/distribution/regionalAgent.html',
+              name: '区域代理'
+            },
+            {
+              path: '/distribution/shareholderDividendsConfig.html',
+              name: '股东分红'
+            },
+            {
+              path: '/distribution/globalBonusPoolConfig.html',
+              name: '全球分红'
+            }
+          ]
+        },
+        {
+          name: '设置',
+          path: '/setting',
+          children: [
+            {
+              selected: true,
+              path: '/setting/base',
+              name: '基础设置'
+            },
+            {
+              path: '/setting/transaction',
+              name: '交易设置'
+            },
+            {
+              path: '/setting/delivery',
+              name: '配送管理'
+            },
+            {
+              path: '/setting/database',
+              name: '数据库管理'
+            },
+            {
+              path: '/setting/auth',
+              name: '管理员列表'
+            },
+            {
+              path: '/setting/verification',
+              name: '核销设置'
+            }
+          ]
+        },
+        {
+          name: '系统',
+          path: '/upgrade/onlineupdate.html',
+          children: [
+            {
+              selected: true,
+              path: '/upgrade/onlineupdate.html',
+              name: '在线更新'
+            },
+            {
+              path: '/upgrade/devolutioninfo.html',
+              name: '授权信息'
+            },
+            {
+              path: '/extend/addonslist.html',
+              name: '插件管理'
+            },
+            {
+              path: '/extend/hookslist.html',
+              name: '钩子管理'
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  components: {},
+
+  created () {
+    this.verticalMenu = this.menuList.find(
+      item => item.name === this.$route.matched[0].name
+    )
+    this.setBreadcrumb(this.$route)
+    console.log('created route', this.$route)
+  }
+}
 </script>
 
 <style lang="scss">
-    
 </style>

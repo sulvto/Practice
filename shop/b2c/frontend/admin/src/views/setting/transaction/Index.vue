@@ -7,54 +7,50 @@
 </template>
 
 <script>
-    export default {
-        name: "transaction",
-        methods: {
-            handleClick(tab) {
-                this.$router.push(tab.$attrs.path);
-            }
-        },
-        watch: {
-            $route: {
-                handler: function(val, oldVal) {
-                    console.log('watch route', this.$route);
-                },
-                // 深度观察监听
-                deep: true
-            }
-        },
-        data: function() {
-            return {
-                activeTabName: null,
-                tabs: [{
-                        path: "/config/transaction/shopConfig.html",
-                        name: "购物设置"
-                    },
-                    {
-                        path: "/config/transaction/paymentconfig.html",
-                        name: "支付配置"
-                    },
-                    {
-                        path: "/config/transaction/withdrawConfig.html",
-                        name: "提现设置"
-                    }
-                ]
-            };
-        },
+export default {
+  name: 'transaction',
+  methods: {
+    handleClick (tab) {
+      this.$router.push(tab.$attrs.path)
+    }
+  },
+  watch: {
+    $route: {
+      handler (val, oldVal) {
+        console.log('watch route', this.$route)
+      },
+      // 深度观察监听
+      deep: true
+    }
+  },
+  data () {
+    return {
+      activeTabName: null,
+      tabs: [{
+        path: '/setting/transaction/shopConfig.html',
+        name: '购物设置'
+      }, {
+        path: '/setting/transaction/paymentconfig.html',
+        name: '支付配置'
+      }, {
+        path: '/setting/transaction/withdrawConfig.html',
+        name: '提现设置'
+      }]
+    }
+  },
 
-        components: {},
+  components: {},
 
-        created() {
-            var currentTab = this.tabs.find(item=>item.path === this.$route.path);
-            if (currentTab) {
-                this.activeTabName = currentTab.name;
-            }
-            console.log('created route', this.$route);
-        }
-    
-    };
+  created () {
+    var currentTab = this.tabs.find(item => item.path === this.$route.path)
+    if (currentTab) {
+      this.activeTabName = currentTab.name
+    }
+    console.log('created route', this.$route)
+  }
+}
 </script>
 
 <style lang="scss">
-    
+
 </style>

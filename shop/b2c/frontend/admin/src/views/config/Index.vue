@@ -9,14 +9,15 @@
 export default {
   name: 'config',
   watch: {
-        $route: {
-				handler: function(val, oldVal) {
-                    console.log('watch route', this.$route);
-				},
-				// 深度观察监听
-				deep: true
-	}
+    $route: {
+      handler (val, oldVal) {
+        console.log('watch route', this.$route)
+      },
+      // 深度观察监听
+      deep: true
+    }
   },
+
   data () {
     return {
       menuList: [

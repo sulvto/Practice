@@ -1,22 +1,15 @@
 <template>
-	
+
 	<section class="ns-base-section">
-		
-		
-		
+
 		<div style="position:relative;margin:0;">
 			<!-- 面包屑导航 -->
 						<div class="breadcrumb-nav">
 				<a href="index.html">大鵬系統</a>
 							</div>
 						<!-- 三级导航菜单 -->
-			
-							
 			<div class="right-side-operation">
 				<ul>
-					
-					
-<!-- 					style="display:none;" style="display:block;" -->
 					<li>
 						<a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
 						<div class="popover">
@@ -33,24 +26,7 @@
 				</ul>
 			</div>
 		</div>
-		
-		<!-- 操作提示 -->
-		
-<!-- 		 -->
-		<div class="ns-warm-prompt" style="display:none;">
-			<div class="alert alert-info">
-				<button type="button" class="close">×</button>
-				<h4>
-<!-- 					{1block name="alert_info"} -->
-<!-- 					<i class="fa fa-info-circle"></i> -->
-<!-- 					<span class="operating-hints">操作提示</span> -->
-<!-- 						 -->
-<!-- 					{1/block} -->
-				</h4>
-			</div>
-		</div>
-		
-		
+
 		<div class="ns-main">
 			
 <div class="set-style">
@@ -156,28 +132,7 @@
 	</div>
 </div>
 
-
-<div class="page" id="turn-ul" style="">
-	<div class="pagination">
-		<ul>
-			<li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
-			<li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
-			<li><a id="prevPage" class="page-disable">上一页</a></li>
-			<li id="pageNumber"></li>
-			<li id="JslastPage"></li>
-			<li><a id="nextPage" class="page-disable">下一页</a></li>
-			<li><a id="lastPage" class="page-disable">末页</a></li>
-			<li class="total-data" data-total-count="0">共0条</li>
-			<!-- <li class="page-count">共0页</li> -->
-			<li class="according-number">
-				跳<input type="text" class="input-medium" id="skipPage" data-curr-page="0">页
-			</li>
-		</ul>
-	</div>
-</div>
-<input type="hidden" id="page_count" value="0">
-<input type="hidden" id="page_size" value="0">
 		</div>
-		
+
 	</section>
 </template>

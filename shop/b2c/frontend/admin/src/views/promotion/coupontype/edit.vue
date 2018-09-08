@@ -116,19 +116,19 @@
                     <el-radio label="领到券当日开始N天内有效"></el-radio>
                 </el-radio-group>
             </el-form-item>
-            <!-- TODO 有效时间？ -->
+            <!-- TODO: 有效时间？ -->
 
             <el-form-item label="是否允许首页显示">
                 <el-switch  active-text="开" inactive-text="关" v-model="coupontTypeFrom.isShow"></el-switch>
             </el-form-item>
-           
+
             <el-form-item label="参与商品">
                 <el-radio-group v-model="coupontTypeFrom.isAll">
                     <el-radio label="全部"></el-radio>
                     <el-radio label="部分"></el-radio>
                 </el-radio-group>
             </el-form-item>
-            <!-- TODO  部分？选择参与商品            -->
+            <!-- TODO:  部分？选择参与商品            -->
 
             <el-form-item>
                 <el-button type="primary" @click="submitForm('coupontTypeFrom')">保存</el-button>
@@ -155,7 +155,7 @@
         color: #999999;
         margin: 10px 0 0;
     }
-    
+
     .important-note {
         color: #ff6600;
         font-style: normal;

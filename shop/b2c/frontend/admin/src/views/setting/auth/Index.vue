@@ -1,5 +1,5 @@
 <template>
-    <TabsRouter tabs='tabs'/>
+    <TabsRouter :tabs='tabs'/>
 </template>
 
 <script>
@@ -11,16 +11,16 @@ export default {
     return {
       tabs: [
         {
-          path: '/config/transaction/shopConfig.html',
-          name: '购物设置'
+          path: '/setting/auth/userList.html',
+          name: '用户列表'
         },
         {
-          path: '/config/transaction/paymentconfig.html',
-          name: '支付配置'
+          path: '/setting/auth/group.html',
+          name: '权限组'
         },
         {
-          path: '/config/transaction/withdrawConfig.html',
-          name: '提现设置'
+          path: '/setting/auth/log.html',
+          name: '操作日志'
         }
       ]
     }

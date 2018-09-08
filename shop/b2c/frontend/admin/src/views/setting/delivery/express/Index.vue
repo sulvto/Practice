@@ -1,9 +1,9 @@
 <template>
-    <TabsRouter tabs='tabs'/>
+    <CardTabsRouter :tabs='tabs'/>
 </template>
 
 <script>
-import TabsRouter from '@/components/TabsRouter.vue'
+import CardTabsRouter from '@/components/CardTabsRouter.vue'
 
 export default {
   name: 'express',
@@ -11,19 +11,27 @@ export default {
     return {
       tabs: [
         {
+          path: '/setting/delivery/express/expressCompany.html',
+          name: '物流公司'
+        }, {
           path: '/setting/delivery/express',
-          name: '物流配送'
-        },
-        {
+          name: '地区管理'
+        }, {
+          path: '/setting/delivery/express/SellerAddress.html',
+          name: '商家地址'
+        }, {
           path: '/setting/delivery/express',
-          name: '门店自提'
+          name: '货到付款地区管理'
+        }, {
+          path: '/setting/delivery/express/expressMessage.html',
+          name: '物流跟踪设置'
         }
       ]
     }
   },
 
   components: {
-    TabsRouter
+    CardTabsRouter
   },
 
   created () {}

@@ -1,5 +1,5 @@
 <template>
-    <TabsRouter tabs='tabs'/>
+    <TabsRouter :tabs='tabs'/>
 </template>
 
 <script>

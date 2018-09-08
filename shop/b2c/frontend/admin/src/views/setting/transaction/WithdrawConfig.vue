@@ -30,7 +30,7 @@
                         <el-checkbox label="支付宝" value="alipay"></el-checkbox>
                 </el-checkbox-group>
             </el-form-item>
-                
+
             <el-form-item label="是否启用">
                    <el-radio-group v-model="withdrawConfigFrom.isOpen">
                     <el-radio label="启用" value="1"></el-radio>
@@ -46,29 +46,28 @@
 </template>
 
 <script>
-    export default {
-        name: "withdrawConfigFrom",
-        data() {
-            return {
-                withdrawConfigFrom: {
-                    account: []
-                }
-            };
-        }
-    };
+export default {
+  name: 'withdrawConfigFrom',
+  data () {
+    return {
+      withdrawConfigFrom: {
+        account: []
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-    .hint {
-        font-size: 12px;
-        line-height: 16px;
-        color: #999999;
-        margin: 10px 0 0;
-    }
-    
-    .important-note {
-        color: #ff6600;
-        font-style: normal;
-    }
-</style>
+.hint {
+  font-size: 12px;
+  line-height: 16px;
+  color: #999999;
+  margin: 10px 0 0;
+}
 
+.important-note {
+  color: #ff6600;
+  font-style: normal;
+}
+</style>

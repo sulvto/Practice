@@ -5,11 +5,17 @@
     <el-table-column
       label="第三方登录">
       <template slot-scope="scope">
-
-        <div class="table-logo"><img :src="scope.row.logo"></div>
-				<span class="table-pay">{{scope.row.name}}</span><br>
-				<span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
-				</span>
+        <div class="table-logo">
+          <img :src="scope.row.logo">
+        </div>
+        <span class="table-pay">
+          {{scope.row.name}}
+        </span>
+        <br>
+        <span class="table-desc">
+          提示：{{scope.row.tooltip}} 链接：
+          <a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
+        </span>
       </template>
     </el-table-column>
     <el-table-column
@@ -33,49 +39,49 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        tableData: [{
-          logo: '/admin/images/wchat.png',
-          name: '微信登录',
-          status: true,
-          tooltip: '使用该功能需申请微信开放平台网站应用',
-          link:'https://open.weixin.qq.com/'
-        },{
-          logo: '/admin/images/qq.png',
-          name: 'QQ登录',
-          status: false,
-          tooltip: '使用该功能需申请QQ互联',
-          link:'https://connect.qq.com/'
-        }]
-      }
+export default {
+  data () {
+    return {
+      tableData: [{
+        logo: '/admin/images/wchat.png',
+        name: '微信登录',
+        status: true,
+        tooltip: '使用该功能需申请微信开放平台网站应用',
+        link: 'https://open.weixin.qq.com/'
+      }, {
+        logo: '/admin/images/qq.png',
+        name: 'QQ登录',
+        status: false,
+        tooltip: '使用该功能需申请QQ互联',
+        link: 'https://connect.qq.com/'
+      }]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
     },
-    methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
-      },
-      handleDelete(index, row) {
-        console.log(index, row);
-      }
+    handleDelete (index, row) {
+      console.log(index, row)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
 .table-logo {
-      width: 75px;
-    float: left;
+  width: 75px;
+  float: left;
 }
 
 .table-pay {
-    display: inline-block;
-    width: 120px;
-    overflow: hidden;
-    margin-top: 7px;
+  display: inline-block;
+  width: 120px;
+  overflow: hidden;
+  margin-top: 7px;
 }
 
 .table-desc {
-      display: inline-block;
+  display: inline-block;
 }
 </style>

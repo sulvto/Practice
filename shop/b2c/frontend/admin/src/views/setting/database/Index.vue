@@ -1,5 +1,5 @@
 <template>
-    <TabsRouter tabs='tabs'/>
+    <TabsRouter :tabs='tabs'/>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
     return {
       tabs: [
         {
-          path: '/setting/database/baskup.html',
+          path: '/setting/database/backup.html',
           name: '数据库备份'
         },
         {

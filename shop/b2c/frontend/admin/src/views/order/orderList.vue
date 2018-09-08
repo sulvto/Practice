@@ -1,6 +1,6 @@
 <template>
   <section class="ns-base-section">
-    
+
         <div style="position:relative;margin:0;">
             <!-- 面包屑导航 -->
             <div class="breadcrumb-nav">
@@ -12,7 +12,7 @@
                 <a href="javascript:;" style="color:#999;">订单列表</a>
             </div>
             <!-- 三级导航菜单 -->
-    
+
             <nav class="ns-third-menu">
                 <ul>
                     <li class="selected" onclick="location.href='/Order/orderList.html';">全部</li>
@@ -25,12 +25,9 @@
                     <li onclick="location.href='/order/orderlist.html?status=-1';">退款中</li>
                 </ul>
             </nav>
-    
+
             <div class="right-side-operation">
                 <ul>
-    
-    
-                    <!-- 					style="display:none;" style="display:block;" -->
                     <li>
                         <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
                         <div class="popover">
@@ -46,32 +43,13 @@
                             </div>
                         </div>
                     </li>
-    
+
                 </ul>
             </div>
         </div>
-    
-        <!-- 操作提示 -->
-    
-        <!-- 		 -->
-        <div class="ns-warm-prompt" style="display:none;">
-            <div class="alert alert-info">
-                <button type="button" class="close">×</button>
-                <h4>
-                    <!-- 					{1block name="alert_info"} -->
-                    <!-- 					<i class="fa fa-info-circle"></i> -->
-                    <!-- 					<span class="operating-hints">操作提示</span> -->
-                    <!-- 						 -->
-                    <!-- 						<span>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2314&extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2314&extra=page%3D2</a></span> -->
-                    <!-- 						 -->
-                    <!-- 					{1/block} -->
-                </h4>
-            </div>
-        </div>
-    
-    
+
         <div class="ns-main">
-    
+
             <input type="hidden" id="order_id">
             <input type="hidden" id="print_select_ids">
             <input type="hidden" id="order_status" value="">
@@ -81,7 +59,7 @@
                         <tr>
                             <th align="left">
                                 <button onclick="dataExcel()" class="btn-common">导出数据</button>
-    
+
                                 <a class="btn-common-white" id="PrintOrder" href="javascript:;">
                                     <i class="fa fa-print"></i>
                                     <span>打印订单</span>
@@ -93,7 +71,7 @@
                                 <input type="text" id="endDate" placeholder="请选择结束日期" class="input-common middle" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
                                 <button class="btn-common-white more-search"><i class="fa fa-chevron-down"></i></button>
                                 <button onclick="searchData()" class="btn-common">搜索</button>
-    
+
                                 <!-- 更多搜索 -->
                                 <div class="more-search-container">
                                     <dl>
@@ -119,12 +97,12 @@
                                         <dd>
                                             <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
                                                 <div class="selectric-hide-select"><select id="payment_type" class="select-common middle" tabindex="-1">
-    								<option value="">全部</option>
-    								<option value="1">微信</option>
-    								<option value="2">支付宝</option>
-    								<option value="10">线下支付</option>
-    								<option value="4">货到付款</option>
-    							</select></div>
+                    <option value="">全部</option>
+                    <option value="1">微信</option>
+                    <option value="2">支付宝</option>
+                    <option value="10">线下支付</option>
+                    <option value="4">货到付款</option>
+                  </select></div>
                                                 <div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div>
                                                 <div class="selectric-items" tabindex="-1">
                                                     <div class="selectric-scroll">
@@ -144,11 +122,11 @@
                                         <dd>
                                             <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
                                                 <div class="selectric-hide-select"><select id="shipping_type" class="select-common middle" tabindex="-1">
-    								<option value="0">全部</option>
-    								<option value="1">物流配送</option>
-    								<option value="2">买家自提</option>
-    								<option value="3">本地配送</option>
-    							</select></div>
+                    <option value="0">全部</option>
+                    <option value="1">物流配送</option>
+                    <option value="2">买家自提</option>
+                    <option value="3">本地配送</option>
+                  </select></div>
                                                 <div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div>
                                                 <div class="selectric-items" tabindex="-1">
                                                     <div class="selectric-scroll">
@@ -171,7 +149,6 @@
                         </tr>
                     </tbody>
                 </table>
-    
                 <table class="table-class" id="ajax-orderlist">
                     <colgroup>
                         <col width="2%">
@@ -188,8 +165,8 @@
                         <tr align="center">
                             <th>
                                 <i class="checkbox-common">
-    						<input type="checkbox" onclick="CheckAll(this)" id="check">
-    					</i>
+                <input type="checkbox" onclick="CheckAll(this)" id="check">
+              </i>
                             </th>
                             <th>商品信息</th>
                             <th>商品清单</th>
@@ -731,9 +708,9 @@
                     </tbody>
                 </table>
             </div>
-    
+
             <div id="orderAction">
-    
+
                 <!-- 模态框（Modal） -->
                 <div id="edit-price" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 650px;overflow: overlay;">
                     <div class="modal-header">
@@ -792,7 +769,7 @@
                         <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
                     </div>
                 </div>
-    
+
                 <div class="modal hide fade" id="Delivery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="left:32%">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -831,17 +808,17 @@
                                 <div>
                                     <div style="margin-bottom:5px;">发货方式：</div>
                                     <label class="checkbox-inline" style="float:left;margin-right:30px;">
-    						<i class="radio-common">
-    							<input type="radio" name="shipping_type" id="shipping_type0" value="0">
-    						</i>
-    						<span>无需物流</span>
-    					</label>
+                <i class="radio-common">
+                  <input type="radio" name="shipping_type" id="shipping_type0" value="0">
+                </i>
+                <span>无需物流</span>
+              </label>
                                     <label class="checkbox-inline" style="float:left;">
-    						<i class="radio-common selected">
-    							<input type="radio" name="shipping_type" id="shipping_type1" value="1" checked="checked">
-    						</i>
-    						<span>需要物流</span>
-    					</label>
+                <i class="radio-common selected">
+                  <input type="radio" name="shipping_type" id="shipping_type1" value="1" checked="checked">
+                </i>
+                <span>需要物流</span>
+              </label>
                                 </div>
                                 <div style="clear:both;"></div>
                                 <div class="form-group" id="express_input" style="margin:5px 0 10px 0;">
@@ -850,7 +827,7 @@
                                 </div>
                                 <div id="receiver_info" style="clear:both;"></div>
                             </div>
-    
+
                             <div class="modal-footer">
                                 <input type="hidden" id="o2o_delivery_order_id">
                                 <button class="btn-common btn-big" onclick="orderDeliverySubmit()">保存</button>
@@ -859,7 +836,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <!-- 本地配送模态框 -->
                 <div class="modal hide fade" id="o2o_Delivery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="left:32%">
                     <div class="modal-dialog">
@@ -900,7 +877,7 @@
                                     <textarea class="remark textarea-common" style=" width: 440px;height: 80px;" maxlength="500"></textarea>
                                 </div>
                             </div>
-    
+
                             <div class="modal-footer">
                                 <input type="hidden" id="delivery_order_id">
                                 <button class="btn-common btn-big" onclick="o2oDeliverySubmit()">提交更改</button>
@@ -909,8 +886,7 @@
                         </div>
                     </div>
                 </div>
-    
-    
+
                 <!-- 自提模态 -->
                 <div class="modal hide fade" id="pickup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-365px; width: 700px;">
                     <div class="modal-dialog">
@@ -928,7 +904,7 @@
                                     </colgroup>
                                     <tbody></tbody>
                                 </table>
-    
+
                                 <div class="form-group">
                                     <div class="pick_title"><span class="required">*</span>提货人：</div>
                                     <div class="col-lg-4"><input type="text" id="pickup_name" class="form-control input-common" placeholder="请填写提货人姓名"></div>
@@ -941,9 +917,9 @@
                                     <div class="pick_title">备注：</div>
                                     <div class="col-lg-2"><textarea id="pickup_desc" class="textarea-common"></textarea></div>
                                 </div>
-    
+
                             </div>
-    
+
                             <div class="modal-footer">
                                 <input type="hidden" id="pickup_order_id">
                                 <button class="btn-common btn-big" onclick="orderPickupSubmit(pickup_order_id)">确认提货</button>
@@ -983,10 +959,11 @@
                                         <div class="selectric-wrapper selectric-select-common selectric-harf" style="width: 125px;">
                                             <div class="selectric-hide-select">
                                                 <select name="province" id="seleAreaNext" onchange="GetProvince();" class="select-common harf" tabindex="-1">
-    							
-    						                        <option value="-1">请选择省</option>
+
+                                        <option value="-1">请选择省</option>
                                                     <option value="34">台湾省</option>
-                                                    <option value="19">广东省</option><option value="20">广西壮族自治区</option><option value="21">海南省</option><option value="22">重庆市</option><option value="23">四川省</option><option value="24">贵州省</option><option value="25">云南省</option><option value="26">西藏自治区</option><option value="27">陕西省</option><option value="28">甘肃省</option><option value="29">青海省</option><option value="30">宁夏回族自治区</option><option value="31">新疆维吾尔自治区</option><option value="32">香港特别行政区</option><option value="33">澳门特别行政区</option><option value="18">湖南省</option><option value="17">湖北省</option><option value="2">天津市</option><option value="3">河北省</option><option value="4">山西省</option><option value="5">内蒙古自治区</option><option value="6">辽宁省</option><option value="7">吉林省</option><option value="8">黑龙江省</option><option value="9">上海市</option><option value="10">江苏省</option><option value="11">浙江省</option><option value="12">安徽省</option><option value="13">福建省</option><option value="14">江西省</option><option value="15">山东省</option><option value="16">河南省</option><option value="1">北京市</option>
+                                                    <option value="19">广东省</option>
+
                                                 </select>
                                             </div>
                                             <div class="selectric">
@@ -1037,12 +1014,12 @@
                                         </div>
                                     </div>
                                             <select name="city" id="seleAreaThird" onchange="getSelCity();" class="select-common harf">
-    							
-    						                        <option value="-1">请选择市</option>
+
+                                        <option value="-1">请选择市</option>
                                             </select>
                                             <select name="district" id="seleAreaFouth" class="select-common harf">
-    							                <option value="-1">请选择区/县</option>
-    						                </select>
+                                  <option value="-1">请选择区/县</option>
+                                </select>
                                     <input type="hidden" id="provinceid" value="-1">
                                     <input type="hidden" id="cityid">
                                     <input type="hidden" id="districtid">
@@ -1053,7 +1030,6 @@
                                 <div class="col-lg-4"><input type="text" id="address_detail" class="form-control input-common" style="width:350px"></div>
                             </div>
                         </div>
-    
                         <div class="modal-footer">
                             <input type="hidden" id="update_address_id">
                             <button type="button" class="btn-common btn-big" onclick="updateAddressSubmit(update_address_id)">修改</button>
@@ -1062,7 +1038,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- 模态框（Modal） -->
             <div class="modal fade hide" id="Memobox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:700px;left:45%;top:30%;">
                 <div class="modal-dialog">
@@ -1089,8 +1065,7 @@
                     </div>
                 </div>
             </div>
-    
-    
+
             <!-- 修改运单号 -->
             <div class="modal hide fade" id="update_express" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 700px; left: 45%; top: 30%; display: none;">
                 <div class="modal-dialog">
@@ -1103,7 +1078,7 @@
                             <div style="margin-bottom:5px;">发货方式：</div>
                             <label class="checkbox-inline" style="float:left;margin-right:30px;"><input type="radio" name="shipping_type_update" id="shipping_type2" value="0"> 无需物流</label>
                             <label class="checkbox-inline" style="float:left;"><input type="radio" name="shipping_type_update" id="shipping_type3" value="1" checked="checked"> 需要物流</label>
-    
+
                             <div style="clear:both;"></div>
                             <div class="form-group" id="update_express_input">
                                 <select class="form-control input-lg" id="update_divlogistics_express_company" style="margin-bottom:5px;margin-right:15px;float:left;"></select>
@@ -1112,7 +1087,7 @@
                             <div id="receiver_infos"></div>
                         </div>
                     </div>
-    
+
                     <div class="modal-footer">
                         <input type="hidden" id="order_goods_express_id">
                         <button class="btn-common btn-big" onclick="updateExpressAjax()">提交更改</button>
@@ -1120,18 +1095,7 @@
                     </div>
                 </div>
             </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
             <!-- 打印发货单 -->
             <div id="prite-send" class="modal hide fade" data-backdrop="static" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;">
                 <div class="modal-header">
@@ -1192,7 +1156,7 @@
                     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
                 </div>
             </div>
-    
+
             <!-- 打印出库单 -->
             <div id="print-billOfSales" class="modal hide fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;" data-backdrop="static">
                 <div class="modal-header">
@@ -1259,7 +1223,7 @@
                     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
                 </div>
             </div>
-    
+
             <!-- 打印快递单-->
             <div id="prite-send-express" class="modal hide fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;" data-backdrop="static">
                 <div class="modal-header">
@@ -1272,10 +1236,10 @@
                             <label class="control-label" for="express_select"><span class="color-red">*</span>选择快递</label>
                             <div class="controls">
                                 <select id="express_select" class="select-common">
-    										<option value="4">顺丰</option>
-    										<option value="5">cccc</option>
-    										<option value="6">中通快递</option>
-    										</select>
+                        <option value="4">顺丰</option>
+                        <option value="5">cccc</option>
+                        <option value="6">中通快递</option>
+                        </select>
                                 <span class="help-block" style="display: none;">请选择快递</span>
                             </div>
                             <span><a href="/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
@@ -1299,7 +1263,7 @@
                         <div class="data-table-body">
                             <table class="table table-border-row body-table">
                                 <tbody id="InvoiceList-express" colspan="3">
-    
+
                                 </tbody>
                             </table>
                         </div>
@@ -1312,7 +1276,7 @@
                     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
                 </div>
             </div>
-    
+
             <!-- 批量发货 -->
             <div id="not-shipped-order-list" role="dialog" class="modal hide fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" style="margin-left:-536px;border-radius: 0;">
                 <div class="modal-header">
@@ -1325,10 +1289,10 @@
                             <label class="control-label" for="express_select"><span class="color-red">*</span>选择快递</label>
                             <div class="controls">
                                 <select id="express_select_shipping" class="select-common">
-    										<option value="4">顺丰</option>
-    										<option value="5">cccc</option>
-    										<option value="6">中通快递</option>
-    										</select>
+                        <option value="4">顺丰</option>
+                        <option value="5">cccc</option>
+                        <option value="6">中通快递</option>
+                        </select>
                                 <span class="help-block" style="display: none;">请选择快递</span>
                             </div>
                             <span><a href="/express/expresscompany.html" class="goToConfigure" style="text-decoration: underline;">前去配置</a></span>
@@ -1350,7 +1314,7 @@
                         <div class="data-table-body">
                             <table class="table table-border-row body-table">
                                 <tbody id="notShippedOrderList">
-    
+
                                 </tbody>
                             </table>
                         </div>
@@ -1361,9 +1325,7 @@
                     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
                 </div>
             </div>
-    
-    
-    
+
             <div class="modal fade hide" id="confirmRefund" tabindex="-1" aria-labelledby="确认退款" aria-hidden="true" data-backdrop="static" style="width: 650px; overflow: overlay;top:50%;">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1372,7 +1334,7 @@
                             <h3>确认退款</h3>
                         </div>
                         <div class="modal-body">
-    
+
                             <div class="refunds-block">
                                 <label>退款金额：</label>
                                 <input type="text" id="refund_money_input" class="input-common" placeholder="请填写退款金额">
@@ -1394,7 +1356,7 @@
                                 <label class="w130">自动退还余额：</label>
                                 <span id="balance_refund">0.00元</span>
                             </div>
-    
+
                         </div>
                         <div class="modal-footer">
                             <!-- 温馨提示 -->
@@ -1417,7 +1379,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="js-confirmation"></div>
-    
+
                             <label>备注：</label>
                             <textarea rows="4" placeholder="退款备注，最多可输入200个字符。(如果不填，系统将会自动添加默认退款备注，格式为：订单编号:201710180000031，退款方式为:[微信支付]，退款金额:0.00元，退款余额:0.00元)" id="refund-remark"></textarea>
                             <div class="refunds-block js-confirmation-prompt"></div>
@@ -1504,40 +1466,16 @@
                     </div>
                 </div>
             </div>
-    
         </div>
-    
-    
-        <div class="page" id="turn-ul" style="">
-            <div class="pagination">
-                <ul>
-                    <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
-                    <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
-                    <li><a id="prevPage" class="page-disable">上一页</a></li>
-                    <li id="pageNumber"><a onclick="JumpForPage(this)" class="currentPage">1</a><a onclick="JumpForPage(this)">2</a><a onclick="JumpForPage(this)">3</a><a onclick="JumpForPage(this)">4</a><a onclick="JumpForPage(this)">5</a></li>
-                    <li id="JslastPage" style="display: inline-block;"><span class="ellipsis">···</span><a onclick="JumpForPage(this)">25</a></li>
-                    <li><a id="nextPage">下一页</a></li>
-                    <li><a id="lastPage">末页</a></li>
-                    <li class="total-data" data-total-count="347">共347条</li>
-                    <!-- <li class="page-count">共0页</li> -->
-                    <li class="according-number">
-                        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <input type="hidden" id="page_count" value="25">
-        <input type="hidden" id="page_size" value="14">
-    
   </section>
 </template>
 
 <script>
-require("@/assets/style/table.scss");
-require("@/assets/style/order/list.scss");
+require('@/assets/style/table.scss')
+require('@/assets/style/order/list.scss')
 
 export default {
-  name: "orderList",
+  name: 'orderList',
   components: {}
-};
+}
 </script>

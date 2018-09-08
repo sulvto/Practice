@@ -1,9 +1,9 @@
 <template>
-    <TabsRouter tabs='tabs' />
+    <CardTabsRouter :tabs='tabs'/>
 </template>
 
 <script>
-import TabsRouter from '@/components/TabsRouter.vue'
+import CardTabsRouter from '@/components/CardTabsRouter.vue'
 
 export default {
   name: 'pickuppoint',
@@ -12,22 +12,20 @@ export default {
       tabs: [
         {
           path: '/setting/delivery/pickuppoint/list.html',
-          name: '物流配送'
-        },
-        {
-          path: '/setting/delivery/pickuppoint/',
-          name: '门店自提'
-        },
-        {
-          path: '/setting/delivery/pickuppoint/',
-          name: '本地配送'
+          name: '门店管理'
+        }, {
+          path: '/setting/delivery/pickuppoint/freight.html',
+          name: '门店运费'
+        }, {
+          path: '/setting/delivery/pickuppoint/auditor.html',
+          name: '门店审核人员管理'
         }
       ]
     }
   },
 
   components: {
-      TabsRouter
+    CardTabsRouter
   },
 
   created () {}

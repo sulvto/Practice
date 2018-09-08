@@ -1,9 +1,9 @@
 <template>
-    <TabsRouter tabs='tabs'/>
+    <CardTabsRouter :tabs='tabs'/>
 </template>
 
 <script>
-import TabsRouter from '@/components/TabsRouter.vue'
+import CardTabsRouter from '@/components/CardTabsRouter.vue'
 
 export default {
   name: 'local',
@@ -12,22 +12,20 @@ export default {
       tabs: [
         {
           path: '/setting/delivery/local/userList.html',
-          name: '物流配送'
-        },
-        {
+          name: '配送人员'
+        }, {
           path: '/setting/delivery/local/config.html',
-          name: '门店自提'
-        },
-        {
+          name: '配送费用'
+        }, {
           path: '/setting/delivery/local/area.html',
-          name: '本地配送'
+          name: '配送地区'
         }
       ]
     }
   },
 
   components: {
-    TabsRouter
+    CardTabsRouter
   },
 
   created () {}

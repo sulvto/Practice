@@ -32,8 +32,8 @@ import OrderInvoiceList from '@/views/order/invoiceList.vue'
 import OrderCustomerServiceList from '@/views/order/customerService/list.vue'
 import OrderCustomerServiceDetail from '@/views/order/customerService/detail.vue'
 
-import PintuanList from '@/views/tuangou/list.vue'
-import PintuanOrderList from '@/views/tuangou/orderList.vue'
+import PintuanList from '@/views/tuangou/pintuanList.vue'
+import PintuanOrderList from '@/views/tuangou/pintuanOrderList.vue'
 
 import OrderPresellList from '@/views/orderPresell/list.vue'
 import OrderPresellDetail from '@/views/orderPresell/detail.vue'
@@ -123,7 +123,11 @@ import CmsArticleList from '@/views/cms/article/list.vue'
 import CmsTopicList from '@/views/cms/topicList.vue'
 
 import Distribution from '@/views/distribution/Index.vue'
-import DistributionPromoterList from '@/views/distribution/promoterList.vue'
+
+import DistributionPromoter from '@/views/distribution/promoter/Index.vue'
+import DistributionPromoterList from '@/views/distribution/promoter/List.vue'
+import DistributionPromoterVerifyList from '@/views/distribution/promoter/VerifyList.vue'
+
 import DistributionGoodsCommissionRateList from '@/views/distribution/goodsCommissionRateList.vue'
 import DistributionThreeLevelDistributionConfig from '@/views/distribution/threeLevelDistributionConfig.vue'
 import DistributionRegionalAgent from '@/views/distribution/regionalAgent.vue'
@@ -157,6 +161,7 @@ import SettingTransactionPaymentConfigUnionPay from '@/views/setting/transaction
 
 import SettingAuth from '@/views/setting/auth/Index.vue'
 import SettingAuthUserList from '@/views/setting/auth/user/list.vue'
+import SettingAuthUserEdit from '@/views/setting/auth/user/edit.vue'
 import SettingAuthGroup from '@/views/setting/auth/Group.vue'
 import SettingAuthLog from '@/views/setting/auth/Log.vue'
 
@@ -166,6 +171,10 @@ import SettingDatabaseRestore from '@/views/setting/database/restore.vue'
 
 import SettingDelivery from '@/views/setting/delivery/Index.vue'
 import SettingDeliveryExpress from '@/views/setting/delivery/express/Index.vue'
+import SettingDeliveryExpressCompany from '@/views/setting/delivery/express/expressCompany.vue'
+import SettingDeliveryExpressCompanyEdit from '@/views/setting/delivery/express/editExpressCompany.vue'
+import SettingDeliveryExpressSellerAddress from '@/views/setting/delivery/express/SellerAddress.vue'
+import SettingDeliveryExpressMessage from '@/views/setting/delivery/express/ExpressMessage.vue'
 
 import SettingDeliveryLocal from '@/views/setting/delivery/local/Index.vue'
 import SettingDeliveryLocalArea from '@/views/setting/delivery/local/area.vue'
@@ -178,7 +187,10 @@ import SettingDeliveryPickuppointFreight from '@/views/setting/delivery/pickuppo
 import SettingDeliveryPickuppointEdit from '@/views/setting/delivery/pickuppoint/Edit.vue'
 import SettingDeliveryPickuppointAuditor from '@/views/setting/delivery/pickuppoint/Auditor.vue'
 
-import Verification from '@/views/verification/index.vue'
+import SettingVerification from '@/views/setting/verification/Index.vue'
+import SettingVerificationList from '@/views/setting/verification/List.vue'
+import SettingVerificationRecords from '@/views/setting/verification/Records.vue'
+
 // import ReturnSetting from '@/views/order/returnSetting.vue'
 
 Vue.use(Router)
@@ -645,15 +657,30 @@ export default new Router({
       }]
     }, {
       path: '/distribution',
-      name: 'distribution',
+      name: '分销',
       component: Distribution,
       children: [{
-        path: 'promoterList.html',
-        name: 'promoterList',
-        component: DistributionPromoterList
+        path: '/',
+        redirect: 'promoter'
+      }, {
+        path: 'promoter',
+        name: '推广员管理',
+        component: DistributionPromoter,
+        children: [{
+          path: '/',
+          redirect: 'list.html'
+        }, {
+          path: 'list.html',
+          name: '推广员',
+          component: DistributionPromoterList
+        }, {
+          path: 'verifyList.html',
+          name: '待审核',
+          component: DistributionPromoterVerifyList
+        }]
       }, {
         path: 'goodsCommissionRateList.html',
-        name: 'goodsCommissionRateList',
+        name: '商品分销',
         component: DistributionGoodsCommissionRateList
       }, {
         path: 'threeLevelDistributionConfig.html',
@@ -677,6 +704,9 @@ export default new Router({
       name: '设置',
       component: Setting,
       children: [{
+        path: '/',
+        redirect: 'base'
+      }, {
         path: 'base',
         name: '基础设置',
         component: SettingBase,
@@ -684,8 +714,7 @@ export default new Router({
           {
             path: '/',
             redirect: 'webConfig.html'
-          },
-          {
+          }, {
             path: 'webConfig.html',
             name: '网站设置',
             component: SettingBaseWebConfig
@@ -786,8 +815,8 @@ export default new Router({
         }
         ]
       }, {
-        path: '/auth',
-        name: 'auth',
+        path: 'auth',
+        name: '管理员列表',
         component: SettingAuth,
         children: [{
           path: '/',
@@ -796,6 +825,10 @@ export default new Router({
           path: 'userList.html',
           name: '用户列表',
           component: SettingAuthUserList
+        }, {
+          path: 'userEdit.html',
+          name: '编辑用户',
+          component: SettingAuthUserEdit
         }, {
           path: 'group.html',
           name: '权限组',
@@ -806,8 +839,8 @@ export default new Router({
           component: SettingAuthLog
         }]
       }, {
-        path: '/database',
-        name: 'database',
+        path: 'database',
+        name: '数据库管理',
         component: SettingDatabase,
         children: [{
           path: '/',
@@ -822,12 +855,12 @@ export default new Router({
           component: SettingDatabaseRestore
         }]
       }, {
-        path: '/delivery',
+        path: 'delivery',
         name: '配送管理',
         component: SettingDelivery,
         children: [{
           path: '/',
-          redirect: 'backup.html'
+          redirect: 'express'
         }, {
           path: 'express',
           name: '物流配送',
@@ -838,23 +871,23 @@ export default new Router({
           }, {
             path: 'expressCompany.html',
             name: '物流公司',
-            component: SettingDeliveryExpress
+            component: SettingDeliveryExpressCompany
           }, {
             path: 'editExpressCompany.html',
             name: '地区管理',
-            component: SettingDeliveryExpress
+            component: SettingDeliveryExpressCompanyEdit
           }, {
-            path: 'editExpressCompany.html',
+            path: 'SellerAddress.html',
             name: '商家地址',
-            component: SettingDeliveryExpress
+            component: SettingDeliveryExpressSellerAddress
           }, {
             path: 'editExpressCompany.html',
             name: '货到付款地区管理',
             component: SettingDeliveryExpress
           }, {
-            path: 'editExpressCompany.html',
+            path: 'expressMessage.html',
             name: '物流跟踪设置',
-            component: SettingDeliveryExpress
+            component: SettingDeliveryExpressMessage
           }]
         }, {
           path: 'pickuppoint',
@@ -866,11 +899,11 @@ export default new Router({
           },
           {
             path: 'list.html',
-            name: '自提点管理',
+            name: '门店管理',
             component: SettingDeliveryPickuppointList
           }, {
             path: 'freight.html',
-            name: '自提点运费',
+            name: '门店运费',
             component: SettingDeliveryPickuppointFreight
           }, {
             path: 'auditor.html',
@@ -878,10 +911,9 @@ export default new Router({
             component: SettingDeliveryPickuppointAuditor
           }, {
             path: 'edit.html',
-            name: '添加自提点',
+            name: '添加门店',
             component: SettingDeliveryPickuppointEdit
-          }
-          ]
+          }]
         }, {
           path: 'local',
           name: '本地配送',
@@ -905,18 +937,23 @@ export default new Router({
           }
           ]
         }]
+      }, {
+        path: 'verification',
+        name: '核销设置',
+        component: SettingVerification,
+        children: [{
+          path: '/',
+          redirect: 'list.html'
+        }, {
+          path: 'list.html',
+          name: '核销人员',
+          component: SettingVerificationList
+        }, {
+          path: 'records.html',
+          name: '核销记录',
+          component: SettingVerificationRecords
+        }]
       }]
-    }, {
-      path: '/verification',
-      name: 'verification',
-      component: Setting,
-      children: [
-        {
-          path: 'index.html',
-          name: 'verificationIndex',
-          component: Verification
-        }
-      ]
     }
   ]
 })

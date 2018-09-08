@@ -1,136 +1,480 @@
 <template>
-	
-	<section class="ns-base-section">
-		
-		
-		
-		<div style="position:relative;margin:0;">
-			<!-- 面包屑导航 -->
-						<div class="breadcrumb-nav">
-				<a href="index.html">大鵬系統</a>
-									<i class="fa fa-angle-right"></i>
-					<a href="/config/webconfig.html">设置</a>
-									<i class="fa fa-angle-right"></i>
-					<!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/dbdatabase/databaselist -->
-					<a href="javascript:;" style="color:#999;">数据库管理</a>
-							</div>
-						<!-- 三级导航菜单 -->
-			
-								<nav class="ns-third-menu">
-					<ul>
-												<li class="selected" onclick="location.href='/dbdatabase/databaselist.html';">数据库备份</li>
-													<li onclick="location.href='/dbdatabase/importdatalist.html';">数据库恢复</li>
-											</ul>
-				</nav>
-							
-			<div class="right-side-operation">
-				<ul>
-					
-					
-<!-- 					style="display:none;" style="display:block;" -->
-					<li>
-						<a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-						<div class="popover">
-							<div class="arrow"></div>
-							<div class="popover-content">
-								<div>
-																		<h4>操作提示</h4>
-									<p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2385&amp;extra=page%3D1" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2385&amp;extra=page%3D1</a></p>
-									<hr>
-																		<h4>功能提示</h4>
-									<p class="function-prompts"></p>
-								</div>
-							</div>
-						</div>
-					</li>
-					
-				</ul>
-			</div>
-		</div>
-		
-		<!-- 操作提示 -->
-		
-<!-- 		 -->
-		<div class="ns-warm-prompt" style="display:none;">
-			<div class="alert alert-info">
-				<button type="button" class="close">×</button>
-				<h4>
-<!-- 					{1block name="alert_info"} -->
-<!-- 					<i class="fa fa-info-circle"></i> -->
-<!-- 					<span class="operating-hints">操作提示</span> -->
-<!-- 						 -->
-<!-- 						<span>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2385&extra=page%3D1" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&tid=2385&extra=page%3D1</a></span> -->
-<!-- 						 -->
-<!-- 					{1/block} -->
-				</h4>
-			</div>
-		</div>
-		
-		
-		<div class="ns-main">
-			
-<div class="mod-table">
-	<div class="mod-table-head">
-		<table class="mytable">
-			<tbody><tr>
-				<td width="2%" style="text-align: left;">
-					<button class="btn-common" onclick="batchDelete()">备份</button>
-					<button class="btn-common" onclick="makeTable(1)">修复</button>
-					<!-- <button class="btn-common" onclick="makeTable(2)">优化</button> -->
-				</td>
-			</tr>
-		</tbody></table>
+    <div>
+      <el-row :gutter="8">
+        <el-col :span="12">
+          <el-button type="primary" size="small">备份</el-button>
+          <el-button type="primary" size="small">修复</el-button>
+        </el-col>
 
-	
-		<table class="table-class">
-			 <colgroup>
-				<col style="width: 2%">
-				<col style="width: 30%;">
-				<col style="width: 21%;">
-				<col style="width: 21%;">
-				<col style="width: 16%;">
-				<col style="width: 10%;">
-			</colgroup>
-			<thead>
-				<tr align="center">
-					<th style="text-align: center;"><i class="checkbox-common"><input id="ckall" type="checkbox" onclick="CheckAll(this)"></i></th>
-					<th class="x-tab" align="left"><div class="iconbg-arrow up">表名</div></th>
-					<th class="x-tab" align="right"><div class="iconbg-arrow up">数据量<span class="row-30"></span></div></th>
-					<th class="x-tab" align="right"><div class="iconbg-arrow up">数据大小<span class="row-30"></span></div></th>
-					<th class="x-tab"><div class="iconbg-arrow up">创建时间</div></th>
-					<th class="x-tab">操作</th>
-				</tr>
-			</thead>
-			<tbody><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nc_cms_article"></i></td><td style="text-align:left;">nc_cms_article</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nc_cms_article');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nc_cms_article_class"></i></td><td style="text-align:left;">nc_cms_article_class</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nc_cms_article_class');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nc_cms_comment"></i></td><td style="text-align:left;">nc_cms_comment</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nc_cms_comment');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nc_cms_topic"></i></td><td style="text-align:left;">nc_cms_topic</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nc_cms_topic');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_commission_distribution"></i></td><td style="text-align:left;">nfx_commission_distribution</td><td align="right">80<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_commission_distribution');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_commission_partner"></i></td><td style="text-align:left;">nfx_commission_partner</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_commission_partner');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_commission_partner_global"></i></td><td style="text-align:left;">nfx_commission_partner_global</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_commission_partner_global');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_commission_partner_global_records"></i></td><td style="text-align:left;">nfx_commission_partner_global_records</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_commission_partner_global_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_commission_region_agent"></i></td><td style="text-align:left;">nfx_commission_region_agent</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_commission_region_agent');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_goods_commission_rate"></i></td><td style="text-align:left;">nfx_goods_commission_rate</td><td align="right">71<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_goods_commission_rate');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_partner"></i></td><td style="text-align:left;">nfx_partner</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_partner');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_partner_level"></i></td><td style="text-align:left;">nfx_partner_level</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_partner_level');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_promoter"></i></td><td style="text-align:left;">nfx_promoter</td><td align="right">64<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:44</td><td><a href="javascript:makeTable(1,'nfx_promoter');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_promoter_level"></i></td><td style="text-align:left;">nfx_promoter_level</td><td align="right">5<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_promoter_level');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_promoter_region_agent"></i></td><td style="text-align:left;">nfx_promoter_region_agent</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_promoter_region_agent');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_shop_commission_withdraw_config"></i></td><td style="text-align:left;">nfx_shop_commission_withdraw_config</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_shop_commission_withdraw_config');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_shop_config"></i></td><td style="text-align:left;">nfx_shop_config</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_shop_config');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_shop_member_association"></i></td><td style="text-align:left;">nfx_shop_member_association</td><td align="right">69<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_shop_member_association');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_shop_region_agent_config"></i></td><td style="text-align:left;">nfx_shop_region_agent_config</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_shop_region_agent_config');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_user_account"></i></td><td style="text-align:left;">nfx_user_account</td><td align="right">61<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_user_account');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_user_account_records"></i></td><td style="text-align:left;">nfx_user_account_records</td><td align="right">44<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_user_account_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_user_account_type"></i></td><td style="text-align:left;">nfx_user_account_type</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_user_account_type');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_user_bank_account"></i></td><td style="text-align:left;">nfx_user_bank_account</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_user_bank_account');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="nfx_user_commission_withdraw"></i></td><td style="text-align:left;">nfx_user_commission_withdraw</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'nfx_user_commission_withdraw');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_account"></i></td><td style="text-align:left;">ns_account</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'ns_account');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_account_assistant_records"></i></td><td style="text-align:left;">ns_account_assistant_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'ns_account_assistant_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_account_order_records"></i></td><td style="text-align:left;">ns_account_order_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:45</td><td><a href="javascript:makeTable(1,'ns_account_order_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_account_period"></i></td><td style="text-align:left;">ns_account_period</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_account_period');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_account_records"></i></td><td style="text-align:left;">ns_account_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_account_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_account_return_records"></i></td><td style="text-align:left;">ns_account_return_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_account_return_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_account_withdraw_records"></i></td><td style="text-align:left;">ns_account_withdraw_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_account_withdraw_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_account_withdraw_user_records"></i></td><td style="text-align:left;">ns_account_withdraw_user_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_account_withdraw_user_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_attribute"></i></td><td style="text-align:left;">ns_attribute</td><td align="right">5<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_attribute');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_attribute_value"></i></td><td style="text-align:left;">ns_attribute_value</td><td align="right">10<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_attribute_value');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_cart"></i></td><td style="text-align:left;">ns_cart</td><td align="right">17<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_cart');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_click_fabulous"></i></td><td style="text-align:left;">ns_click_fabulous</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_click_fabulous');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_combo_package_promotion"></i></td><td style="text-align:left;">ns_combo_package_promotion</td><td align="right">6<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_combo_package_promotion');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_consult"></i></td><td style="text-align:left;">ns_consult</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_consult');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_consult_type"></i></td><td style="text-align:left;">ns_consult_type</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_consult_type');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_coupon"></i></td><td style="text-align:left;">ns_coupon</td><td align="right">2213<span class="row-30"></span></td><td align="right">224KB<span class="row-30"></span></td><td>2018-08-11 15:44:46</td><td><a href="javascript:makeTable(1,'ns_coupon');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_coupon_goods"></i></td><td style="text-align:left;">ns_coupon_goods</td><td align="right">8<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:52</td><td><a href="javascript:makeTable(1,'ns_coupon_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_coupon_type"></i></td><td style="text-align:left;">ns_coupon_type</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-14 09:59:23</td><td><a href="javascript:makeTable(1,'ns_coupon_type');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_customer_service"></i></td><td style="text-align:left;">ns_customer_service</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:52</td><td><a href="javascript:makeTable(1,'ns_customer_service');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_customer_service_records"></i></td><td style="text-align:left;">ns_customer_service_records</td><td align="right">6<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:52</td><td><a href="javascript:makeTable(1,'ns_customer_service_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_express_company"></i></td><td style="text-align:left;">ns_express_company</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:52</td><td><a href="javascript:makeTable(1,'ns_express_company');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_express_shipping"></i></td><td style="text-align:left;">ns_express_shipping</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:52</td><td><a href="javascript:makeTable(1,'ns_express_shipping');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_express_shipping_items"></i></td><td style="text-align:left;">ns_express_shipping_items</td><td align="right">39<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:52</td><td><a href="javascript:makeTable(1,'ns_express_shipping_items');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_express_shipping_items_library"></i></td><td style="text-align:left;">ns_express_shipping_items_library</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-11 15:44:52</td><td><a href="javascript:makeTable(1,'ns_express_shipping_items_library');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_gift_grant_records"></i></td><td style="text-align:left;">ns_gift_grant_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_gift_grant_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods"></i></td><td style="text-align:left;">ns_goods</td><td align="right">47<span class="row-30"></span></td><td align="right">1.52MB<span class="row-30"></span></td><td>2018-08-14 09:59:24</td><td><a href="javascript:makeTable(1,'ns_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_attribute"></i></td><td style="text-align:left;">ns_goods_attribute</td><td align="right">77<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_attribute');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_attribute_deleted"></i></td><td style="text-align:left;">ns_goods_attribute_deleted</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_attribute_deleted');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_attribute_value"></i></td><td style="text-align:left;">ns_goods_attribute_value</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_attribute_value');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_brand"></i></td><td style="text-align:left;">ns_goods_brand</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_brand');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_browse"></i></td><td style="text-align:left;">ns_goods_browse</td><td align="right">222<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_browse');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_category"></i></td><td style="text-align:left;">ns_goods_category</td><td align="right">120<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_category');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_category_block"></i></td><td style="text-align:left;">ns_goods_category_block</td><td align="right">14<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_category_block');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_comment"></i></td><td style="text-align:left;">ns_goods_comment</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_comment');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_deleted"></i></td><td style="text-align:left;">ns_goods_deleted</td><td align="right">7<span class="row-30"></span></td><td align="right">48KB<span class="row-30"></span></td><td>2018-08-14 09:59:24</td><td><a href="javascript:makeTable(1,'ns_goods_deleted');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_evaluate"></i></td><td style="text-align:left;">ns_goods_evaluate</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_evaluate');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_group"></i></td><td style="text-align:left;">ns_goods_group</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_group');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_ladder_preferential"></i></td><td style="text-align:left;">ns_goods_ladder_preferential</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_ladder_preferential');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_member_discount"></i></td><td style="text-align:left;">ns_goods_member_discount</td><td align="right">16<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_member_discount');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_sku"></i></td><td style="text-align:left;">ns_goods_sku</td><td align="right">130<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_sku');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_sku_deleted"></i></td><td style="text-align:left;">ns_goods_sku_deleted</td><td align="right">251<span class="row-30"></span></td><td align="right">80KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_sku_deleted');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_sku_picture"></i></td><td style="text-align:left;">ns_goods_sku_picture</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:30</td><td><a href="javascript:makeTable(1,'ns_goods_sku_picture');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_sku_picture_delete"></i></td><td style="text-align:left;">ns_goods_sku_picture_delete</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_goods_sku_picture_delete');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_spec"></i></td><td style="text-align:left;">ns_goods_spec</td><td align="right">5<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_goods_spec');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_goods_spec_value"></i></td><td style="text-align:left;">ns_goods_spec_value</td><td align="right">27<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_goods_spec_value');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member"></i></td><td style="text-align:left;">ns_member</td><td align="right">50<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_account"></i></td><td style="text-align:left;">ns_member_account</td><td align="right">48<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_account');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_account_records"></i></td><td style="text-align:left;">ns_member_account_records</td><td align="right">164<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_account_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_balance_withdraw"></i></td><td style="text-align:left;">ns_member_balance_withdraw</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_balance_withdraw');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_bank_account"></i></td><td style="text-align:left;">ns_member_bank_account</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_bank_account');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_express_address"></i></td><td style="text-align:left;">ns_member_express_address</td><td align="right">14<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_express_address');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_favorites"></i></td><td style="text-align:left;">ns_member_favorites</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_favorites');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_gift"></i></td><td style="text-align:left;">ns_member_gift</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_gift');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_level"></i></td><td style="text-align:left;">ns_member_level</td><td align="right">4<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_level');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_recharge"></i></td><td style="text-align:left;">ns_member_recharge</td><td align="right">7<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_recharge');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_member_withdraw_setting"></i></td><td style="text-align:left;">ns_member_withdraw_setting</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_member_withdraw_setting');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_notice"></i></td><td style="text-align:left;">ns_notice</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_notice');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_o2o_distribution_area"></i></td><td style="text-align:left;">ns_o2o_distribution_area</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_o2o_distribution_area');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_o2o_distribution_config"></i></td><td style="text-align:left;">ns_o2o_distribution_config</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_o2o_distribution_config');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_o2o_distribution_user"></i></td><td style="text-align:left;">ns_o2o_distribution_user</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_o2o_distribution_user');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_o2o_order_delivery"></i></td><td style="text-align:left;">ns_o2o_order_delivery</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_o2o_order_delivery');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_offpay_area"></i></td><td style="text-align:left;">ns_offpay_area</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_offpay_area');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order"></i></td><td style="text-align:left;">ns_order</td><td align="right">115<span class="row-30"></span></td><td align="right">80KB<span class="row-30"></span></td><td>2018-08-14 09:58:29</td><td><a href="javascript:makeTable(1,'ns_order');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_action"></i></td><td style="text-align:left;">ns_order_action</td><td align="right">2<span class="row-30"></span></td><td align="right">1.58MB<span class="row-30"></span></td><td>2018-08-23 09:21:00</td><td><a href="javascript:makeTable(1,'ns_order_action');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_customer_account_records"></i></td><td style="text-align:left;">ns_order_customer_account_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_customer_account_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_goods"></i></td><td style="text-align:left;">ns_order_goods</td><td align="right">57<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_goods_express"></i></td><td style="text-align:left;">ns_order_goods_express</td><td align="right">18<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_goods_express');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_goods_promotion_details"></i></td><td style="text-align:left;">ns_order_goods_promotion_details</td><td align="right">9<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_goods_promotion_details');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_payment"></i></td><td style="text-align:left;">ns_order_payment</td><td align="right">85<span class="row-30"></span></td><td align="right">48KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_payment');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_pickup"></i></td><td style="text-align:left;">ns_order_pickup</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-14 09:58:29</td><td><a href="javascript:makeTable(1,'ns_order_pickup');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_presell"></i></td><td style="text-align:left;">ns_order_presell</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_presell');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_promotion_details"></i></td><td style="text-align:left;">ns_order_promotion_details</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_promotion_details');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_refund"></i></td><td style="text-align:left;">ns_order_refund</td><td align="right">34<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_refund');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_refund_account_records"></i></td><td style="text-align:left;">ns_order_refund_account_records</td><td align="right">8<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_refund_account_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_shipping_fee"></i></td><td style="text-align:left;">ns_order_shipping_fee</td><td align="right">7<span class="row-30"></span></td><td align="right">64KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_shipping_fee');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_shipping_fee_extend"></i></td><td style="text-align:left;">ns_order_shipping_fee_extend</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_shipping_fee_extend');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_order_shop_return"></i></td><td style="text-align:left;">ns_order_shop_return</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_order_shop_return');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_picked_up_auditor"></i></td><td style="text-align:left;">ns_picked_up_auditor</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-14 09:58:29</td><td><a href="javascript:makeTable(1,'ns_picked_up_auditor');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_pickup_point"></i></td><td style="text-align:left;">ns_pickup_point</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_pickup_point');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_platform_adv"></i></td><td style="text-align:left;">ns_platform_adv</td><td align="right">39<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_platform_adv');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_platform_adv_position"></i></td><td style="text-align:left;">ns_platform_adv_position</td><td align="right">34<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_platform_adv_position');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_platform_block"></i></td><td style="text-align:left;">ns_platform_block</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_platform_block');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_platform_goods_recommend"></i></td><td style="text-align:left;">ns_platform_goods_recommend</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_platform_goods_recommend');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_platform_goods_recommend_class"></i></td><td style="text-align:left;">ns_platform_goods_recommend_class</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_platform_goods_recommend_class');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_platform_help_class"></i></td><td style="text-align:left;">ns_platform_help_class</td><td align="right">5<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_platform_help_class');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_platform_help_document"></i></td><td style="text-align:left;">ns_platform_help_document</td><td align="right">16<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_platform_help_document');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_platform_link"></i></td><td style="text-align:left;">ns_platform_link</td><td align="right">1<span class="row-30"></span></td><td align="right">40B<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_platform_link');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_point_config"></i></td><td style="text-align:left;">ns_point_config</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_point_config');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_bargain"></i></td><td style="text-align:left;">ns_promotion_bargain</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_promotion_bargain');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_bargain_goods"></i></td><td style="text-align:left;">ns_promotion_bargain_goods</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:31</td><td><a href="javascript:makeTable(1,'ns_promotion_bargain_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_bargain_launch"></i></td><td style="text-align:left;">ns_promotion_bargain_launch</td><td align="right">6<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-14 09:59:24</td><td><a href="javascript:makeTable(1,'ns_promotion_bargain_launch');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_bargain_partake"></i></td><td style="text-align:left;">ns_promotion_bargain_partake</td><td align="right">28<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_bargain_partake');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_bundling"></i></td><td style="text-align:left;">ns_promotion_bundling</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_bundling');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_bundling_goods"></i></td><td style="text-align:left;">ns_promotion_bundling_goods</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_bundling_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_discount"></i></td><td style="text-align:left;">ns_promotion_discount</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_discount');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_discount_goods"></i></td><td style="text-align:left;">ns_promotion_discount_goods</td><td align="right">1<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_discount_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_full_mail"></i></td><td style="text-align:left;">ns_promotion_full_mail</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_full_mail');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_game_rule"></i></td><td style="text-align:left;">ns_promotion_game_rule</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_game_rule');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_game_type"></i></td><td style="text-align:left;">ns_promotion_game_type</td><td align="right">10<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_game_type');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_games"></i></td><td style="text-align:left;">ns_promotion_games</td><td align="right">1<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_games');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_games_winning_records"></i></td><td style="text-align:left;">ns_promotion_games_winning_records</td><td align="right">14<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_games_winning_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_gift"></i></td><td style="text-align:left;">ns_promotion_gift</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_gift');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_gift_goods"></i></td><td style="text-align:left;">ns_promotion_gift_goods</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_gift_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_gift_grant_records"></i></td><td style="text-align:left;">ns_promotion_gift_grant_records</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_gift_grant_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_group_buy"></i></td><td style="text-align:left;">ns_promotion_group_buy</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_group_buy');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_group_buy_ladder"></i></td><td style="text-align:left;">ns_promotion_group_buy_ladder</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_group_buy_ladder');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_mansong"></i></td><td style="text-align:left;">ns_promotion_mansong</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_mansong');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_mansong_goods"></i></td><td style="text-align:left;">ns_promotion_mansong_goods</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_mansong_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_mansong_rule"></i></td><td style="text-align:left;">ns_promotion_mansong_rule</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_mansong_rule');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_topic"></i></td><td style="text-align:left;">ns_promotion_topic</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_topic');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_topic_goods"></i></td><td style="text-align:left;">ns_promotion_topic_goods</td><td align="right">8<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_topic_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_promotion_tuangou"></i></td><td style="text-align:left;">ns_promotion_tuangou</td><td align="right">7<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_promotion_tuangou');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_reward_rule"></i></td><td style="text-align:left;">ns_reward_rule</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_reward_rule');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop"></i></td><td style="text-align:left;">ns_shop</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_account"></i></td><td style="text-align:left;">ns_shop_account</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_account');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_ad"></i></td><td style="text-align:left;">ns_shop_ad</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_ad');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_coin_records"></i></td><td style="text-align:left;">ns_shop_coin_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_coin_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_express_address"></i></td><td style="text-align:left;">ns_shop_express_address</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_express_address');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_group"></i></td><td style="text-align:left;">ns_shop_group</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_group');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_navigation"></i></td><td style="text-align:left;">ns_shop_navigation</td><td align="right">13<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_navigation');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_navigation_template"></i></td><td style="text-align:left;">ns_shop_navigation_template</td><td align="right">20<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_navigation_template');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_order_account_records"></i></td><td style="text-align:left;">ns_shop_order_account_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_order_account_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_shop_weixin_share"></i></td><td style="text-align:left;">ns_shop_weixin_share</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_shop_weixin_share');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_supplier"></i></td><td style="text-align:left;">ns_supplier</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_supplier');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_tuangou_group"></i></td><td style="text-align:left;">ns_tuangou_group</td><td align="right">4<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_tuangou_group');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_tuangou_type"></i></td><td style="text-align:left;">ns_tuangou_type</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_tuangou_type');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_verification_person"></i></td><td style="text-align:left;">ns_verification_person</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_verification_person');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_virtual_goods"></i></td><td style="text-align:left;">ns_virtual_goods</td><td align="right">9<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_virtual_goods');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_virtual_goods_group"></i></td><td style="text-align:left;">ns_virtual_goods_group</td><td align="right">4<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:32</td><td><a href="javascript:makeTable(1,'ns_virtual_goods_group');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_virtual_goods_type"></i></td><td style="text-align:left;">ns_virtual_goods_type</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'ns_virtual_goods_type');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="ns_virtual_goods_verification"></i></td><td style="text-align:left;">ns_virtual_goods_verification</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'ns_virtual_goods_verification');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_addons"></i></td><td style="text-align:left;">sys_addons</td><td align="right">1<span class="row-30"></span></td><td align="right">100B<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_addons');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_addons_weixin_template_msg"></i></td><td style="text-align:left;">sys_addons_weixin_template_msg</td><td align="right">14<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-04 17:45:40</td><td><a href="javascript:makeTable(1,'sys_addons_weixin_template_msg');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_album_class"></i></td><td style="text-align:left;">sys_album_class</td><td align="right">1<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_album_class');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_album_picture"></i></td><td style="text-align:left;">sys_album_picture</td><td align="right">126<span class="row-30"></span></td><td align="right">64KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_album_picture');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_applet_custom_template"></i></td><td style="text-align:left;">sys_applet_custom_template</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_applet_custom_template');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_area"></i></td><td style="text-align:left;">sys_area</td><td align="right">8<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_area');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_city"></i></td><td style="text-align:left;">sys_city</td><td align="right">345<span class="row-30"></span></td><td align="right">48KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_city');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_config"></i></td><td style="text-align:left;">sys_config</td><td align="right">56<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_config');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_custom_template"></i></td><td style="text-align:left;">sys_custom_template</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_custom_template');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_district"></i></td><td style="text-align:left;">sys_district</td><td align="right">2864<span class="row-30"></span></td><td align="right">160KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_district');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_hooks"></i></td><td style="text-align:left;">sys_hooks</td><td align="right">39<span class="row-30"></span></td><td align="right">2.58KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_hooks');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_instance"></i></td><td style="text-align:left;">sys_instance</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_instance');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_instance_type"></i></td><td style="text-align:left;">sys_instance_type</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_instance_type');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_module"></i></td><td style="text-align:left;">sys_module</td><td align="right">290<span class="row-30"></span></td><td align="right">80KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_module');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_notice"></i></td><td style="text-align:left;">sys_notice</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_notice');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_notice_records"></i></td><td style="text-align:left;">sys_notice_records</td><td align="right">16<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_notice_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_notice_template"></i></td><td style="text-align:left;">sys_notice_template</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_notice_template');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_notice_template_item"></i></td><td style="text-align:left;">sys_notice_template_item</td><td align="right">19<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-08-14 09:59:24</td><td><a href="javascript:makeTable(1,'sys_notice_template_item');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_notice_template_type"></i></td><td style="text-align:left;">sys_notice_template_type</td><td align="right">22<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_notice_template_type');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_province"></i></td><td style="text-align:left;">sys_province</td><td align="right">34<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_province');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_shortcut_menu"></i></td><td style="text-align:left;">sys_shortcut_menu</td><td align="right">6<span class="row-30"></span></td><td align="right">126B<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_shortcut_menu');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_url_route"></i></td><td style="text-align:left;">sys_url_route</td><td align="right">7<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_url_route');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_user"></i></td><td style="text-align:left;">sys_user</td><td align="right">49<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_user');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_user_admin"></i></td><td style="text-align:left;">sys_user_admin</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_user_admin');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_user_group"></i></td><td style="text-align:left;">sys_user_group</td><td align="right">2<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_user_group');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_user_log"></i></td><td style="text-align:left;">sys_user_log</td><td align="right">585<span class="row-30"></span></td><td align="right">112KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_user_log');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_version_devolution"></i></td><td style="text-align:left;">sys_version_devolution</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_version_devolution');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_version_patch"></i></td><td style="text-align:left;">sys_version_patch</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_version_patch');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_version_update_records"></i></td><td style="text-align:left;">sys_version_update_records</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_version_update_records');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_wap_custom_template"></i></td><td style="text-align:left;">sys_wap_custom_template</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_wap_custom_template');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_web_style"></i></td><td style="text-align:left;">sys_web_style</td><td align="right">3<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_web_style');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_website"></i></td><td style="text-align:left;">sys_website</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_website');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_auth"></i></td><td style="text-align:left;">sys_weixin_auth</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_auth');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_default_replay"></i></td><td style="text-align:left;">sys_weixin_default_replay</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_default_replay');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_fans"></i></td><td style="text-align:left;">sys_weixin_fans</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_fans');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_follow_replay"></i></td><td style="text-align:left;">sys_weixin_follow_replay</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_follow_replay');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_functions_button"></i></td><td style="text-align:left;">sys_weixin_functions_button</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_functions_button');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_instance_msg"></i></td><td style="text-align:left;">sys_weixin_instance_msg</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_instance_msg');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_key_replay"></i></td><td style="text-align:left;">sys_weixin_key_replay</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_key_replay');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_media"></i></td><td style="text-align:left;">sys_weixin_media</td><td align="right">1<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_media');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_media_item"></i></td><td style="text-align:left;">sys_weixin_media_item</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_media_item');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_menu"></i></td><td style="text-align:left;">sys_weixin_menu</td><td align="right">7<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_menu');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_msg_template"></i></td><td style="text-align:left;">sys_weixin_msg_template</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_msg_template');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_qrcode_template"></i></td><td style="text-align:left;">sys_weixin_qrcode_template</td><td align="right">7<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_qrcode_template');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_user_msg"></i></td><td style="text-align:left;">sys_weixin_user_msg</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_user_msg');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_weixin_user_msg_replay"></i></td><td style="text-align:left;">sys_weixin_user_msg_replay</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_weixin_user_msg_replay');">修复</a></td> </tr><tr align="center"><td style="text-align: center;"><i class="checkbox-common"><input name="sub" type="checkbox" value="sys_wexin_onekeysubscribe"></i></td><td style="text-align:left;">sys_wexin_onekeysubscribe</td><td align="right">0<span class="row-30"></span></td><td align="right">16KB<span class="row-30"></span></td><td>2018-07-02 15:32:33</td><td><a href="javascript:makeTable(1,'sys_wexin_onekeysubscribe');">修复</a></td> </tr></tbody>
-		</table>
+        <el-col :span="10">
+          </el-col>
+        <el-col :span="2">
+        </el-col>
+      </el-row>
 
-	</div>
-</div>
+      <br/>
 
+        <el-table border :data="tableData" style="width: 100%">
+            <el-table-column
+              type="selection"
+              width="35">
+            </el-table-column>
 
-<div class="page" id="turn-ul" style="display: none;">
-	<div class="pagination">
-		<ul>
-			<li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
-			<li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
-			<li><a id="prevPage" class="page-disable">上一页</a></li>
-			<li id="pageNumber"></li>
-			<li id="JslastPage">
-				
-			</li>
-			<li><a id="nextPage">下一页</a></li>
-			<li><a id="lastPage">末页</a></li>
-			<li class="total-data">共0条</li>
-			<!-- <li class="page-count">共0页</li> -->
-			<li class="according-number">
-				跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
-			</li>
-		</ul>
-	</div>
-</div>
-<input type="hidden" id="page_count">
-<input type="hidden" id="page_size">
-		</div>
-		
-	</section>
+            <el-table-column
+                  prop="tableName"
+                  label="表名">
+            </el-table-column>
+
+            <el-table-column
+                  prop="count"
+                  label="数据量"
+                  width="120">
+            </el-table-column>
+
+            <el-table-column
+                  prop="dataSize"
+                  label="数据大小"
+                  width="120">
+            </el-table-column>
+
+            <el-table-column
+                  prop="createDate"
+                  label="创建时间"
+                  width="140">
+            </el-table-column>
+
+            <el-table-column label="操作"
+                width="180">
+                <template slot-scope="scope">
+                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修复</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+  </div>
 </template>
+
+<script>
+export default {
+  name: 'backup',
+  data () {
+    return {
+      tableData: [{
+        tableName: 'nc_cms_article', count: 2, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nc_cms_article_class', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nc_cms_comment', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nc_cms_topic', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_commission_distribution', count: 80, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_commission_partner', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_commission_partner_global', count: 6, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_commission_partner_global_records', count: 3, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_commission_region_agent', count: 8, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_goods_commission_rate', count: 71, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_partner', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_partner_level', count: 2, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_promoter', count: 102, dataSize: '16KB', createDate: '2018-08-11 15:44:44'
+      }, {
+        tableName: 'nfx_promoter_level', count: 5, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_promoter_region_agent', count: 4, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_shop_commission_withdraw_config', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_shop_config', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_shop_member_association', count: 69, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_shop_region_agent_config', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_user_account', count: 61, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_user_account_records', count: 58, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_user_account_type', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_user_bank_account', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'nfx_user_commission_withdraw', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'ns_account', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'ns_account_assistant_records', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'ns_account_order_records', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:45'
+      }, {
+        tableName: 'ns_account_period', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_account_records', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_account_return_records', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_account_withdraw_records', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_account_withdraw_user_records', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_attribute', count: 5, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_attribute_value', count: 10, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_cart', count: 18, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_click_fabulous', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_combo_package_promotion', count: 6, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_consult', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_consult_type', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_coupon', count: 140999, dataSize: '></t.52MB', createDate: '2018-08-11 15:44:46'
+      }, {
+        tableName: 'ns_coupon_goods', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:52'
+      }, {
+        tableName: 'ns_coupon_type', count: 3, dataSize: '16KB', createDate: '2018-08-14 09:59:23'
+      }, {
+        tableName: 'ns_customer_service', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:52'
+      }, {
+        tableName: 'ns_customer_service_records', count: 6, dataSize: '16KB', createDate: '2018-08-11 15:44:52'
+      }, {
+        tableName: 'ns_express_company', count: 3, dataSize: '16KB', createDate: '2018-08-11 15:44:52'
+      }, {
+        tableName: 'ns_express_shipping', count: 3, dataSize: '16KB', createDate: '2018-08-11 15:44:52'
+      }, {
+        tableName: 'ns_express_shipping_items', count: 39, dataSize: '16KB', createDate: '2018-08-11 15:44:52'
+      }, {
+        tableName: 'ns_express_shipping_items_library', count: 0, dataSize: '16KB', createDate: '2018-08-11 15:44:52'
+      }, {
+        tableName: 'ns_gift_grant_records', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods', count: 46, dataSize: '1td>2018-08-14 09:59:weixin.qq.com/'
+      }, {
+        tableName: 'ns_goods_attribute', count: 80, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_attribute_deleted', count: 8, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_attribute_value', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_brand', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_browse', count: 222, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_category', count: 129, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_category_block', count: 14, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_comment', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_deleted', count: 14, dataSize: '112KB', createDate: '2018-08-14 09:59:24'
+      }, {
+        tableName: 'ns_goods_evaluate', count: 2, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_group', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_ladder_preferential', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_member_discount', count: 16, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_sku', count: 107, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_sku_deleted', count: 283, dataSize: '80KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_sku_picture', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:30'
+      }, {
+        tableName: 'ns_goods_sku_picture_delete', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_goods_spec', count: 5, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_goods_spec_value', count: 27, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member', count: 95, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_account', count: 90, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_account_records', count: 164, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_balance_withdraw', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_bank_account', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_express_address', count: 14, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_favorites', count: 7, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_gift', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_level', count: 4, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_recharge', count: 7, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_member_withdraw_setting', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_notice', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_o2o_distribution_area', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_o2o_distribution_config', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_o2o_distribution_user', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_o2o_order_delivery', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_offpay_area', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order', count: 132, dataSize: '80KB', createDate: '2018-08-14 09:58:29'
+      }, {
+        tableName: 'ns_order_action', count: 10, dataSize: '1td>2018-09-06 18:23:weixin.qq.com/'
+      }, {
+        tableName: 'ns_order_customer_account_records', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_goods', count: 138, dataSize: '48KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_goods_express', count: 18, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_goods_promotion_details', count: 9, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_payment', count: 85, dataSize: '48KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_pickup', count: 2, dataSize: '16KB', createDate: '2018-08-14 09:58:29'
+      }, {
+        tableName: 'ns_order_presell', count: 2, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_promotion_details', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_refund', count: 34, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_refund_account_records', count: 8, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_shipping_fee', count: 7, dataSize: '64KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_shipping_fee_extend', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_order_shop_return', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_picked_up_auditor', count: 0, dataSize: '16KB', createDate: '2018-08-14 09:58:29'
+      }, {
+        tableName: 'ns_pickup_point', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_platform_adv', count: 39, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_platform_adv_position', count: 34, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_platform_block', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_platform_goods_recommend', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_platform_goods_recommend_class', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_platform_help_class', count: 5, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_platform_help_document', count: 16, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_platform_link', count: 1, dataSize: '40B', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_point_config', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_promotion_bargain', count: 2, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_promotion_bargain_goods', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:31'
+      }, {
+        tableName: 'ns_promotion_bargain_launch', count: 6, dataSize: '16KB', createDate: '2018-08-14 09:59:24'
+      }, {
+        tableName: 'ns_promotion_bargain_partake', count: 28, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_bundling', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_bundling_goods', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_discount', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_discount_goods', count: 17, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_full_mail', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_game_rule', count: 5, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_game_type', count: 10, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_games', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_games_winning_records', count: 14, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_gift', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_gift_goods', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_gift_grant_records', count: 2, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_group_buy', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_group_buy_ladder', count: 1, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_mansong', count: 1, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_mansong_goods', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_mansong_rule', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_topic', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_topic_goods', count: 8, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_promotion_tuangou', count: 15, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_reward_rule', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_account', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_ad', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_coin_records', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_express_address', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_group', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_navigation', count: 17, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_navigation_template', count: 20, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_order_account_records', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_shop_weixin_share', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_supplier', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_tuangou_group', count: 8, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_tuangou_type', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_verification_person', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_virtual_goods', count: 9, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_virtual_goods_group', count: 4, dataSize: '16KB', createDate: '2018-07-02 15:32:32'
+      }, {
+        tableName: 'ns_virtual_goods_type', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'ns_virtual_goods_verification', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_addons', count: 1, dataSize: '100B', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_addons_weixin_template_msg', count: 15, dataSize: '16KB', createDate: '2018-08-29 15:47:56'
+      }, {
+        tableName: 'sys_album_class', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_album_picture', count: 126, dataSize: '64KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_applet_custom_template', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_area', count: 8, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_city', count: 345, dataSize: '48KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_config', count: 56, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_custom_template', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_district', count: 2864, dataSize: '160KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_hooks', count: 39, dataSize: '2td>2018-07-02 15:32:weixin.qq.com/'
+      }, {
+        tableName: 'sys_instance', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_instance_type', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_module', count: 290, dataSize: '80KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_notice', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_notice_records', count: 16, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_notice_template', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_notice_template_item', count: 19, dataSize: '16KB', createDate: '2018-08-14 09:59:24'
+      }, {
+        tableName: 'sys_notice_template_type', count: 22, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_province', count: 34, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_shortcut_menu', count: 18, dataSize: '378B', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_url_route', count: 7, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_user', count: 90, dataSize: '48KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_user_admin', count: 2, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_user_group', count: 2, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_user_log', count: 1859, dataSize: '288KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_version_devolution', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_version_patch', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_version_update_records', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_wap_custom_template', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_web_style', count: 3, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_website', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_auth', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_default_replay', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_fans', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_follow_replay', count: 1, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_functions_button', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_instance_msg', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_key_replay', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_media', count: 1, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_media_item', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_menu', count: 7, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_msg_template', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_qrcode_template', count: 7, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_user_msg', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_weixin_user_msg_replay', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }, {
+        tableName: 'sys_wexin_onekeysubscribe', count: 0, dataSize: '16KB', createDate: '2018-07-02 15:32:33'
+      }]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
+    },
+    handleDelete (index, row) {
+      console.log(index, row)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+</style>
