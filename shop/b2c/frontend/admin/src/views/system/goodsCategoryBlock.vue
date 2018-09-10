@@ -68,65 +68,73 @@
 
             <el-table-column
                 prop="name"
-                label="分类名称"
-                width="120">
+                label="分类名称">
                 </el-table-column>
             <el-table-column
                 prop="alias"
-                label="别名"
-                width="120">
+                label="别名">
                 </el-table-column>
             <el-table-column
                 prop="abbr"
                 label="简称"
                 width="120">
-                </el-table-column>
+            </el-table-column>
+
             <el-table-column
                 prop="sortBy"
                 label="商品排序"
                 width="120">
-                </el-table-column>
+            </el-table-column>
+
             <el-table-column
-                prop="color"
                 label="颜色"
-                width="120">
-                </el-table-column>
+                width="80">
+              <template slot-scope="scope">
+                <el-color-picker v-model="scope.row.color"></el-color-picker>
+              </template>
+            </el-table-column>
+
             <el-table-column
                 label="是否显示"
-                width="120">
+                width="80">
                 <template slot-scope="scope">
-                                <el-switch v-model="scope.row.show">
-                                </el-switch>
-                            </template>
+                    <el-switch v-model="scope.row.isShow">
+                    </el-switch>
+                </template>
                 </el-table-column>
             <el-table-column
                 label="品牌显示"
-                width="120">
-                    <template slot-scope="scope">
-                                <el-switch v-model="scope.row.showBrand">
-                                </el-switch>
-                            </template>
-                </el-table-column>
+                width="80">
+              <template slot-scope="scope">
+                <el-switch v-model="scope.row.showBrand">
+                </el-switch>
+              </template>
+            </el-table-column>
+
             <el-table-column
                 label="下级分类显示"
-                width="120">
-                    <template slot-scope="scope">
-                                <el-switch v-model="scope.row.show">
-                                </el-switch>
-                            </template>
-                </el-table-column>
+                width="110">
+                <template slot-scope="scope">
+                  <el-switch v-model="scope.row.show">
+                  </el-switch>
+                </template>
+            </el-table-column>
+
             <el-table-column
                 prop="sort"
                 label="排序"
-                width="120">
+                width="80">
                 </el-table-column>
-            <el-table-column label="广告图"
-                width="180">
+
+            <el-table-column label="广告图" fixed="right"
+                width="120">
                 <template slot-scope="scope">
                     <!-- <a href="/config/loginconfig.html?type=qq">配置</a> -->
                     <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑广告
 </el-button>
+                    <br/>
                     <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除广告</el-button>
+                    <br/>
                     <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">添加广告</el-button>
                 </template>
             </el-table-column>

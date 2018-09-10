@@ -6,7 +6,7 @@
                                     </article> -->
 
         <el-container>
-            <el-header>
+            <el-header style="background-color: #545c64;">
                 <el-row :gutter="20">
                     <el-col :span="4">
                         <div class="ns-logo" onclick="location.href='http://showfx.niuteam.cn/admin.html';"></div>
@@ -323,7 +323,10 @@
                         </div>
                     </el-col>
                     <el-col :span="16">
-                        <el-menu :default-active="verticalMenu.path" mode="horizontal" @select="handleSelect" :router='true'>
+                        <el-menu
+                          background-color="#545c64"
+                          text-color="#fff"
+                          active-text-color="#ffd04b" :default-active="verticalMenu.path" mode="horizontal" @select="handleSelect" :router='true'>
                             <el-menu-item v-for="item in menuList" :key="item.path" :index='item.path'>{{item.name}}</el-menu-item>
                         </el-menu>
                     </el-col>
@@ -730,15 +733,14 @@ export default {
         },
         {
           name: '网站',
-          path: '/config/usernotice.html',
+          path: '/config',
           children: [
             {
-              selected: true,
-              path: '/config/userNotice.html',
+              path: '/config/homeNotice',
               name: '首页公告'
             },
             {
-              path: '/config/shopNavigationList.html',
+              path: '/config/shopNavigation',
               name: '导航管理'
             },
             {
@@ -746,7 +748,7 @@ export default {
               name: '商品楼层'
             },
             {
-              path: '/config/pcTemplate.html',
+              path: '/config/template',
               name: '店铺装修'
             },
             {
@@ -754,23 +756,23 @@ export default {
               name: '搜索'
             },
             {
-              path: '/system/adsList.html',
+              path: '/config/ads',
               name: '广告管理'
             },
             {
-              path: '/cms/articleList.html',
+              path: '/config/article',
               name: '文章管理'
             },
             {
-              path: '/cms/topicList.html',
+              path: '/config/topic',
               name: '专题列表'
             },
             {
-              path: '/config/helpDocument.html',
+              path: '/config/help',
               name: '站点帮助'
             },
             {
-              path: '/config/linkList.html',
+              path: '/config/link',
               name: '友情链接'
             }
           ]
@@ -788,19 +790,19 @@ export default {
               name: '商品分销'
             },
             {
-              path: '/distribution/threeLevelDistributionConfig.html',
+              path: '/distribution/threeLevelDistribution',
               name: '三级分销'
             },
             {
-              path: '/distribution/regionalAgent.html',
+              path: '/distribution/regionalAgent',
               name: '区域代理'
             },
             {
-              path: '/distribution/shareholderDividendsConfig.html',
+              path: '/distribution/shareholderDividends',
               name: '股东分红'
             },
             {
-              path: '/distribution/globalBonusPoolConfig.html',
+              path: '/distribution/globalBonusPool',
               name: '全球分红'
             }
           ]
@@ -841,7 +843,6 @@ export default {
           path: '/upgrade/onlineupdate.html',
           children: [
             {
-              selected: true,
               path: '/upgrade/onlineupdate.html',
               name: '在线更新'
             },

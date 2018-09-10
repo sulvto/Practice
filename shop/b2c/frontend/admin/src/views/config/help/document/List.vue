@@ -3,15 +3,12 @@
     <el-row :gutter="8">
       <el-col :span="12">
         <el-button type="danger" size="small">批量删除</el-button>
-        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加友情链接</el-button>
+        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加帮助内容</el-button>
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入物流公司名称或编号"></el-input>
       </el-col>
-
       <el-col :span="2">
-        <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
@@ -24,40 +21,30 @@
       </el-table-column>
 
       <el-table-column
-            prop="name"
-            label="链接名称"
-            width="120">
-          </el-table-column>
-      <el-table-column
-            prop="link"
-            label="链接地址">
-          </el-table-column>
-      <el-table-column
-            label="是否打开新窗口"
-            width="120">
-            <template slot-scope="scope">
-              <el-switch v-model="scope.row.isBlank" >
-            </el-switch>
-           </template>
-          </el-table-column>
-      <el-table-column
-            label="是否显示"
-            width="120">
+        label="标题">
         <template slot-scope="scope">
-          <el-switch v-model="scope.row.isShow" >
-          </el-switch>
+          <el-input v-model="scope.row.title" size="small"></el-input>
         </template>
       </el-table-column>
 
       <el-table-column
-          prop="sort"
-          label="排序"
-          width="180">
+        prop="classify"
+        label="分类"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="排序"
+        width="120">
+        <template slot-scope="scope">
+          <el-input type="number" v-model="scope.row.sort" style="width: 80px;" size="small"></el-input>
+        </template>
       </el-table-column>
 
       <el-table-column label="操作" fixed="right"
-          width="180">
+          width="250">
           <template slot-scope="scope">
+              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">预览</el-button>
               <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
               <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
@@ -73,10 +60,8 @@ export default {
     return {
       searchKeyword: '',
       tableData: [{
-        name: 'baidu',
-        link: 'baidu.com',
-        isBlank: true,
-        isShow: true,
+        title: '微信登录',
+        classify: 'true',
         sort: 1
       }]
     }

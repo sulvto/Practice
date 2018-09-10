@@ -39,8 +39,8 @@ import OrderPresellList from '@/views/orderPresell/list.vue'
 import OrderPresellDetail from '@/views/orderPresell/detail.vue'
 
 import Promotion from '@/views/promotion/Index.vue'
-import PromotionCouponTypeList from '@/views/promotion/coupontype/list.vue'
-// import PromotionCouponTypeEdit from '@/views/promotion/coupontype/edit.vue'
+import PromotionCouponTypeList from '@/views/promotion/coupon/list.vue'
+// import PromotionCouponTypeEdit from '@/views/promotion/coupon/edit.vue'
 import PromotionPointconfig from '@/views/promotion/pointconfig.vue'
 import PromotionGiftList from '@/views/promotion/gift/list.vue'
 import PromotionGiftEdit from '@/views/promotion/gift/edit.vue'
@@ -109,18 +109,45 @@ import CommissionPartnerGlobalList from '@/views/commission/partnerGlobalList.vu
 import CommissionUserCommissionWithdrawList from '@/views/commission/userCommissionWithdrawList.vue'
 
 import Config from '@/views/config/Index.vue'
-import ConfigUserNotice from '@/views/config/userNotice.vue'
-import ConfigShopNavigationList from '@/views/config/shopNavigationList.vue'
-import ConfigPcTemplate from '@/views/config/pcTemplate.vue'
+
+import ConfigHomeNoticeList from '@/views/config/homeNotice/List.vue'
+import ConfigHomeNoticeEdit from '@/views/config/homeNotice/Edit.vue'
+
+import ConfigShopNavigationList from '@/views/config/shopNavigation/List.vue'
+import ConfigShopNavigationEdit from '@/views/config/shopNavigation/Edit.vue'
+
+import ConfigTemplate from '@/views/config/template/Index.vue'
+import ConfigTemplatePc from '@/views/config/template/Pc.vue'
+import ConfigTemplateFixed from '@/views/config/template/Fixed.vue'
+import ConfigTemplateWapCustomList from '@/views/config/template/wapCustom/List.vue'
+import ConfigTemplateWapCustomEdit from '@/views/config/template/wapCustom/Edit.vue'
+
 import ConfigSearchConfig from '@/views/config/searchConfig.vue'
-import ConfigHelpDocumentList from '@/views/config/help/document/list.vue'
+
+import ConfigHelp from '@/views/config/help/Index.vue'
+import ConfigHelpDocumentList from '@/views/config/help/document/List.vue'
+import ConfigHelpDocumentEdit from '@/views/config/help/document/Edit.vue'
+import ConfigHelpClassList from '@/views/config/help/class/List.vue'
+import ConfigHelpClassEdit from '@/views/config/help/class/Edit.vue'
+
 import ConfigLinkList from '@/views/config/link/list.vue'
+import ConfigLinkEdit from '@/views/config/link/edit.vue'
+
+import ConfigAds from '@/views/config/ads/Index.vue'
+import ConfigAdsList from '@/views/config/ads/list.vue'
+import ConfigAdsEdit from '@/views/config/ads/edit.vue'
+import ConfigAdsPositionList from '@/views/config/ads/position/list.vue'
+import ConfigAdsPositionEdit from '@/views/config/ads/position/edit.vue'
 
 import SystemGoodsCategoryBlock from '@/views/system/goodsCategoryBlock.vue'
-import SystemAdsList from '@/views/system/ads/list.vue'
 
-import CmsArticleList from '@/views/cms/article/list.vue'
-import CmsTopicList from '@/views/cms/topicList.vue'
+import CmsArticle from '@/views/cms/article/Index.vue'
+import CmsArticleList from '@/views/cms/article/List.vue'
+import CmsArticleEdit from '@/views/cms/article/Edit.vue'
+import CmsArticleClassList from '@/views/cms/article/ClassList.vue'
+
+import CmsTopicList from '@/views/cms/topic/List.vue'
+import CmsTopicEdit from '@/views/cms/topic/Edit.vue'
 
 import Distribution from '@/views/distribution/Index.vue'
 
@@ -129,10 +156,24 @@ import DistributionPromoterList from '@/views/distribution/promoter/List.vue'
 import DistributionPromoterVerifyList from '@/views/distribution/promoter/VerifyList.vue'
 
 import DistributionGoodsCommissionRateList from '@/views/distribution/goodsCommissionRateList.vue'
-import DistributionThreeLevelDistributionConfig from '@/views/distribution/threeLevelDistributionConfig.vue'
-import DistributionRegionalAgent from '@/views/distribution/regionalAgent.vue'
-import DistributionShareholderDividendsConfig from '@/views/distribution/shareholderDividendsConfig.vue'
-import DistributionGlobalBonusPoolConfig from '@/views/distribution/globalBonusPoolConfig.vue'
+import DistributionThreeLevelDistribution from '@/views/distribution/threeLevelDistribution/Index.vue'
+import DistributionThreeLevelDistributionConfig from '@/views/distribution/threeLevelDistribution/Config.vue'
+import DistributionThreeLevelDistributionLevelList from '@/views/distribution/threeLevelDistribution/level/List.vue'
+import DistributionThreeLevelDistributionLevelEdit from '@/views/distribution/threeLevelDistribution/level/Edit.vue'
+
+import DistributionRegionalAgent from '@/views/distribution/regionalAgent/Index.vue'
+import DistributionRegionalAgentConfig from '@/views/distribution/regionalAgent/Config.vue'
+import DistributionRegionalAgentPromoterList from '@/views/distribution/regionalAgent/PromoterList.vue'
+
+import DistributionShareholderDividends from '@/views/distribution/shareholderDividends/Index.vue'
+import DistributionShareholderDividendsConfig from '@/views/distribution/shareholderDividends/Config.vue'
+import DistributionShareholderDividendsAddPartnerLevel from '@/views/distribution/shareholderDividends/AddPartnerLevel.vue'
+import DistributionShareholderDividendsPartnerList from '@/views/distribution/shareholderDividends/PartnerList.vue'
+
+import DistributionGlobalBonusPool from '@/views/distribution/globalBonusPool/Index.vue'
+import DistributionGlobalBonusPoolConfig from '@/views/distribution/globalBonusPool/Config.vue'
+import DistributionGlobalBonusPoolGrant from '@/views/distribution/globalBonusPool/Grant.vue'
+import DistributionGlobalBonusPoolRecords from '@/views/distribution/globalBonusPool/Records.vue'
 
 import Setting from '@/views/setting/Index.vue'
 
@@ -605,52 +646,213 @@ export default new Router({
       name: '网站',
       component: Config,
       children: [{
-        path: 'userNotice.html',
-        name: 'userNotice',
-        component: ConfigUserNotice
+        path: '/',
+        redirect: 'homeNotice'
       }, {
-        path: 'shopNavigationList.html',
-        name: 'shopNavigationList',
-        component: ConfigShopNavigationList
+        path: 'homeNotice',
+        name: '首页公告',
+        component: BaseRouter,
+        children: [{
+          path: '/',
+          redirect: 'list.html'
+        }, {
+          path: 'list.html',
+          name: '公告列表',
+          component: ConfigHomeNoticeList
+        }, {
+          path: 'edit.html',
+          name: '编辑公告',
+          component: ConfigHomeNoticeEdit
+        }]
       }, {
-        path: 'pcTemplate.html',
-        name: 'pcTemplate',
-        component: ConfigPcTemplate
+        path: 'shopNavigation',
+        name: '导航管理',
+        component: BaseRouter,
+        children: [{
+          path: '/',
+          redirect: 'list.html'
+        }, {
+          path: 'list.html',
+          name: '导航列表',
+          component: ConfigShopNavigationList
+        }, {
+          path: 'edit.html',
+          name: '编辑导航',
+          component: ConfigShopNavigationEdit
+        }]
+      }, {
+        path: 'template',
+        name: '店铺装修',
+        component: ConfigTemplate,
+        children: [{
+          path: '/',
+          redirect: 'pc.html'
+        }, {
+          path: 'pc.html',
+          name: '电脑端模板',
+          component: ConfigTemplatePc
+        }, {
+          path: 'fixed.html',
+          name: '手机端模板',
+          component: ConfigTemplateFixed
+        }, {
+          path: 'wapCustom',
+          name: '手机端自定义模板',
+          component: BaseRouter,
+          children: [{
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '自定义模板列表',
+            component: ConfigTemplateWapCustomList
+          }, {
+            path: 'list.html',
+            name: '编辑自定义模板',
+            component: ConfigTemplateWapCustomEdit
+          }]
+        }]
       }, {
         path: 'searchConfig.html',
-        name: 'searchConfig',
+        name: '搜索',
         component: ConfigSearchConfig
       }, {
-        path: 'helpDocument.html',
-        name: 'helpDocument',
-        component: ConfigHelpDocumentList
+        path: 'help',
+        name: '站点帮助',
+        component: ConfigHelp,
+        children: [{
+          path: '/',
+          redirect: 'document'
+        }, {
+          path: 'document',
+          name: '帮助内容',
+          component: BaseRouter,
+          children: [{
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '帮助内容列表',
+            component: ConfigHelpDocumentList
+          }, {
+            path: 'edit.html',
+            name: '编辑帮助内容',
+            component: ConfigHelpDocumentEdit
+          }]
+        }, {
+          path: 'class',
+          name: '帮助类型',
+          component: BaseRouter,
+          children: [{
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '帮助类型列表',
+            component: ConfigHelpClassList
+          }, {
+            path: 'edit.html',
+            name: '编辑帮助类型',
+            component: ConfigHelpClassEdit
+          }]
+        }]
       }, {
-        path: 'linkList.html',
-        name: 'linkList',
-        component: ConfigLinkList
-      }]
-    }, {
-      path: '/cms',
-      name: 'cms',
-      component: Config,
-      children: [{
-        path: 'topicList.html',
-        name: 'topicList',
-        component: CmsTopicList
+        path: 'link',
+        name: '友情链接',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '友情连接链接',
+            component: ConfigLinkList
+          }, {
+            path: 'edit.html',
+            name: '编辑友情链接',
+            component: ConfigLinkEdit
+          }
+        ]
       }, {
-        path: 'articleList.html',
-        name: 'articleList',
-        component: CmsArticleList
+        path: 'topic',
+        name: '专题',
+        component: BaseRouter,
+        children: [{
+          path: '/',
+          redirect: 'list.html'
+        }, {
+          path: 'List.html',
+          name: '专题列表',
+          component: CmsTopicList
+        }, {
+          path: 'edit.html',
+          name: '编辑专题',
+          component: CmsTopicEdit
+        }]
+      }, {
+        path: 'article',
+        name: '文章管理',
+        component: CmsArticle,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '文章列表',
+            component: CmsArticleList
+          }, {
+            path: 'edit.html',
+            name: '编辑文章',
+            component: CmsArticleEdit
+          }, {
+            path: 'classList.html',
+            name: '文章分类',
+            component: CmsArticleClassList
+          }
+        ]
+      }, {
+        path: 'ads',
+        name: '广告管理',
+        component: ConfigAds,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '广告列表',
+            component: ConfigAdsList
+          }, {
+            path: 'edit.html',
+            name: '编辑广告',
+            component: ConfigAdsEdit
+          }, {
+            path: 'position',
+            name: '广告位',
+            component: BaseRouter,
+            children: [{
+              path: '/',
+              redirect: 'list.html'
+            }, {
+              path: 'list.html',
+              name: '广告位列表',
+              component: ConfigAdsPositionList
+            }, {
+              path: 'list.html',
+              name: '编辑广告位',
+              component: ConfigAdsPositionEdit
+            }]
+          }
+        ]
+
       }]
     }, {
       path: '/system',
       name: 'system',
       component: Config,
       children: [{
-        path: 'adsList.html',
-        name: 'adsList',
-        component: SystemAdsList
-      }, {
         path: 'goodsCategoryBlock.html',
         name: 'goodsCategoryBlock',
         component: SystemGoodsCategoryBlock
@@ -683,21 +885,90 @@ export default new Router({
         name: '商品分销',
         component: DistributionGoodsCommissionRateList
       }, {
-        path: 'threeLevelDistributionConfig.html',
-        name: 'threeLevelDistributionConfig',
-        component: DistributionThreeLevelDistributionConfig
+        path: 'threeLevelDistribution',
+        name: '三级分销',
+        component: DistributionThreeLevelDistribution,
+        children: [{
+          path: '/',
+          redirect: 'config.html'
+        }, {
+          path: 'config.html',
+          name: '基本设置',
+          component: DistributionThreeLevelDistributionConfig
+        }, {
+          path: 'level',
+          name: '推广员等级',
+          component: BaseRouter,
+          children: [{
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '推广员列表',
+            component: DistributionThreeLevelDistributionLevelList
+          }, {
+            path: 'edit.html',
+            name: '推广员编辑',
+            component: DistributionThreeLevelDistributionLevelEdit
+          }]
+
+        }]
       }, {
-        path: 'regionalAgent.html',
-        name: 'regionalAgent',
-        component: DistributionRegionalAgent
+        path: 'regionalAgent',
+        name: '区域代理',
+        component: DistributionRegionalAgent,
+        children: [{
+          path: '/',
+          redirect: 'config.html'
+        }, {
+          path: 'config.html',
+          name: '基本设置',
+          component: DistributionRegionalAgentConfig
+        }, {
+          path: 'promoterList.html',
+          name: '人员管理',
+          component: DistributionRegionalAgentPromoterList
+        }]
       }, {
-        path: 'shareholderDividendsConfig.html',
-        name: 'shareholderDividendsConfig',
-        component: DistributionShareholderDividendsConfig
+        path: 'shareholderDividends',
+        name: '股东分红',
+        component: DistributionShareholderDividends,
+        children: [{
+          path: '/',
+          redirect: 'config.html'
+        }, {
+          path: 'config.html',
+          name: '基本设置',
+          component: DistributionShareholderDividendsConfig
+        }, {
+          path: 'partnerList.html',
+          name: '人员管理',
+          component: DistributionShareholderDividendsPartnerList
+        }, {
+          path: 'addPartnerLevel.html',
+          name: '添加股东等级',
+          component: DistributionShareholderDividendsAddPartnerLevel
+        }]
       }, {
-        path: 'globalBonusPoolConfig.html',
-        name: 'globalBonusPoolConfig',
-        component: DistributionGlobalBonusPoolConfig
+        path: 'globalBonusPool',
+        name: '全球分红',
+        component: DistributionGlobalBonusPool,
+        children: [{
+          path: '/',
+          redirect: 'config.html'
+        }, {
+          path: 'config.html',
+          name: '基本设置',
+          component: DistributionGlobalBonusPoolConfig
+        }, {
+          path: 'grant.html',
+          name: '发放分红',
+          component: DistributionGlobalBonusPoolGrant
+        }, {
+          path: 'records.html',
+          name: '发放记录',
+          component: DistributionGlobalBonusPoolRecords
+        }]
       }]
     }, {
       path: '/setting',

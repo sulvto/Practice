@@ -1,66 +1,67 @@
+
 <template>
+  <el-tabs v-model="activeName" >
+    <el-tab-pane label="热门搜索" name="hot">
+      <el-form ref="searchConfigFrom" :model="searchConfigFrom" label-width="100px" size="small" label-position="right">
+          <el-form-item label="热门搜索">
+          <el-input type="textarea" v-model="searchConfigFrom.keywords"></el-input>
+          <p class="hint">热门搜索，将显示在前台搜索框下面，前台点击时直接作为关键词进行搜索，多个关键词间请用半角逗号 "," 隔开</p>
+        </el-form-item>
 
-  <section class="ns-base-section">
+        <el-form-item>
+          <el-button type="primary" @click="saveHotSearchConfig()">保存</el-button>
+        </el-form-item>
+      </el-form>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/config/usernotice.html">网站</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/config/searchconfig -->
-          <a href="javascript:;" style="color:#999;">搜索</a>
-              </div>
-            <!-- 三级导航菜单 -->
+    </el-tab-pane>
+    <el-tab-pane label="默认搜索" name="default">
 
-                <nav class="ns-third-menu">
-          <ul>
-                        <li class="selected" onclick="location.href='/config/searchConfig.html?type=hot';">热门搜索</li>
-                          <li onclick="location.href='/config/searchConfig.html?type=default';">默认搜索</li>
-                      </ul>
-        </nav>
+        <el-form ref="searchConfigFrom" :model="searchConfigFrom" label-width="100px" size="small" label-position="right">
+          <el-form-item label="默认搜索">
+            <el-input v-model="searchConfigFrom.defaultKeywords"></el-input>
+      <p class="hint">默认搜索，将显示在前台搜索框，前台点击时直接作为关键词进行搜索</p>
+          </el-form-item>
 
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2374&amp;extra=page%3D1" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2374&amp;extra=page%3D1</a></p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts">
-    </p><p class="function-prompts">热门搜索在前台搜索框下面显示，前台点击直接作为关键字进行搜索，多个关键字之间用“,”隔开。</p>
-  <p></p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="ns-main">
-
-  <!-- 热门搜索 -->
-  <div class="set-style">
-  <dl>
-    <dt>热门搜索：</dt>
-    <dd>
-
-      <textarea rows="2" id="keywords" class="textarea-common" maxlength="50"></textarea>
-      <p class="hint">热门搜索，将显示在前台搜索框下面，前台点击时直接作为关键词进行搜索，多个关键词间请用半角逗号 "," 隔开</p>
-    </dd>
-  </dl>
-  <dl>
-    <dt></dt>
-    <dd><button class="btn-common btn-big" onclick="setConfigAjax();">保存</button></dd>
-  </dl>
-  </div>
-
-    </div>
-  </section>
+          <el-form-item>
+            <el-button type="primary" @click="saveDefaultSearchConfig()">保存</el-button>
+          </el-form-item>
+        </el-form>
+    </el-tab-pane>
+  </el-tabs>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      activeName: 'hot',
+      searchConfigFrom: {
+        keywords: '',
+        defaultKeywords: ''
+      }
+    }
+  },
+  methods: {
+    saveHotSearchConfig () {
+
+    },
+    saveDefaultSearchConfig () {
+
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.hint {
+  font-size: 12px;
+  line-height: 16px;
+  color: #999999;
+  margin: 10px 0 0;
+}
+
+.important-note {
+  color: #ff6600;
+  font-style: normal;
+}
+</style>

@@ -48,9 +48,11 @@
         <li>2、以下关于订单和订单商品近30天统计数据的依据为：从昨天开始最近30天的有效订单</li>
       </ul>
     </div> -->
-    <div class="alert alert-info mt10" style="clear:both;">
-      <ul class="mt5">
-        <li>
+
+  <div >
+  </div>
+
+    <el-card class="box-card">
           <span class="w210 fl h30" style="display:block;">
             <i title="店铺从昨天开始最近30天有效订单的总金额" class="tip icon-question-sign"></i>
             近30天下单金额：<strong>7446.37元</strong>
@@ -67,8 +69,6 @@
             <i title="店铺从昨天开始最近30天有效订单的总商品数量" class="tip icon-question-sign"></i>
             近30天下单商品数：<strong>34</strong>
           </span>
-        </li>
-        <li>
           <span class="w210 fl h30" style="display:block;">
             <i title="店铺从昨天开始最近30天有效订单的平均每个订单的交易金额" class="tip icon-question-sign"></i>
             平均客单价：<strong>744.64元</strong>
@@ -77,10 +77,7 @@
             <i title="店铺从昨天开始最近30天有效订单商品的平均每个商品的成交价格" class="tip icon-question-sign"></i>
             平均价格：<strong>219.01元</strong>
           </span>
-        </li>
-      </ul>
-      <div style="clear:both;"></div>
-    </div>
+      </el-card>
 
     <div id="container" data-highcharts-chart="0"><div id="highcharts-fo4wihc-0" class="highcharts-container " style="position: relative; overflow: hidden; width: 1191px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
     </div></div>

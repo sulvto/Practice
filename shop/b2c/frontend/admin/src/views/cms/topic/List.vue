@@ -3,15 +3,12 @@
     <el-row :gutter="8">
       <el-col :span="12">
         <el-button type="danger" size="small">批量删除</el-button>
-        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加友情链接</el-button>
+        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加专题</el-button>
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入物流公司名称或编号"></el-input>
       </el-col>
-
       <el-col :span="2">
-        <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
@@ -24,42 +21,31 @@
       </el-table-column>
 
       <el-table-column
-            prop="name"
-            label="链接名称"
-            width="120">
-          </el-table-column>
-      <el-table-column
-            prop="link"
-            label="链接地址">
-          </el-table-column>
-      <el-table-column
-            label="是否打开新窗口"
-            width="120">
-            <template slot-scope="scope">
-              <el-switch v-model="scope.row.isBlank" >
-            </el-switch>
-           </template>
-          </el-table-column>
-      <el-table-column
-            label="是否显示"
-            width="120">
-        <template slot-scope="scope">
-          <el-switch v-model="scope.row.isShow" >
-          </el-switch>
-        </template>
+        prop="title"
+        label="标题">
       </el-table-column>
 
       <el-table-column
-          prop="sort"
-          label="排序"
-          width="180">
+        prop="status"
+        label="状态">
+      </el-table-column>
+
+      <el-table-column
+        prop="createDate"
+        label="创建时间">
+      </el-table-column>
+
+      <el-table-column
+        prop="publishDate"
+        label="发布时间">
       </el-table-column>
 
       <el-table-column label="操作" fixed="right"
-          width="180">
+          width="250">
           <template slot-scope="scope">
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">预览</el-button>
               <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -73,11 +59,15 @@ export default {
     return {
       searchKeyword: '',
       tableData: [{
-        name: 'baidu',
-        link: 'baidu.com',
-        isBlank: true,
-        isShow: true,
-        sort: 1
+        title: 'BEATI BLUE',
+        status: '已发布',
+        createDate: '2018-08-10 14:08:56',
+        publishDate: '2018-08-10 14:08:56'
+      }, {
+        title: '又一专题',
+        status: '未发布',
+        createDate: '2018-08-20 14:00:48',
+        publishDate: ''
       }]
     }
   },

@@ -33,18 +33,18 @@
 
     <el-form-item label="单选">
       <el-radio-group v-model="editForm.radio">
-        <el-radio label="单选1"></el-radio>
-        <el-radio label="单选2"></el-radio>
-        <el-radio label="单选3"></el-radio>
+        <el-radio label="value1">单选1</el-radio>
+        <el-radio label="value2">单选2</el-radio>
+        <el-radio label="value3">单选3</el-radio>
       </el-radio-group>
       <p class="hint">暂时将站点关闭，其他人无法访问，但不影响管理员访问</p>
     </el-form-item>
 
     <el-form-item label="多选">
       <el-checkbox-group v-model="editForm.checkbox">
-        <el-checkbox label="多选1" value="checkbox1"></el-checkbox>
-        <el-checkbox label="多选2" value="checkbox2"></el-checkbox>
-        <el-checkbox label="多选3" value="checkbox3"></el-checkbox>
+        <el-checkbox label="checkbox1">多选1</el-checkbox>
+        <el-checkbox label="checkbox2">多选2</el-checkbox>
+        <el-checkbox label="checkbox3">多选3</el-checkbox>
       </el-checkbox-group>
       <p class="hint">如开启邮箱和手机注册，请在<a href="/config/notifyindex.html" target="_blank">通知系统</a>功能中进行邮箱与短信通知配置，游客在注册时通过验证后方能注册成功</p>
     </el-form-item>
@@ -83,6 +83,11 @@ export default {
           { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ]
       }
+    }
+  },
+  methods: {
+    submitForm () {
+      console.log('submitForm', this.editForm)
     }
   }
 }

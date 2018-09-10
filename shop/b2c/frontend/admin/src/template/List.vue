@@ -6,7 +6,9 @@
         <el-button type="primary" size="small">添加物流公司</el-button>
       </el-col>
 
-      <el-col :span="10"><el-input size="small" v-model="searchKeyword" placeholder="请输入物流公司名称或编号"></el-input></el-col>
+      <el-col :span="10">
+        <el-input size="small" v-model="searchKeyword" placeholder="请输入物流公司名称或编号"></el-input>
+      </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
@@ -21,28 +23,27 @@
       </el-table-column>
 
       <el-table-column label="第三方登录">
-          <template slot-scope="scope">
-
-              <div class="table-logo"><img :src="scope.row.logo"></div>
-              <span class="table-pay">{{scope.row.name}}</span><br>
-              <span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
-              </span>
-          </template>
+        <template slot-scope="scope">
+          <div class="table-logo"><img :src="scope.row.logo"></div>
+          <span class="table-pay">{{scope.row.name}}</span><br>
+          <span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
+          </span>
+        </template>
       </el-table-column>
 
       <el-table-column
-            prop="type"
-            label="类型"
-            width="120">
-          </el-table-column>
+        prop="type"
+        label="类型"
+        width="120">
+      </el-table-column>
 
       <el-table-column
           label="状态"
           width="180">
-          <template slot-scope="scope">
-              <el-switch v-model="scope.row.status">
-              </el-switch>
-          </template>
+        <template slot-scope="scope">
+            <el-switch v-model="scope.row.status">
+            </el-switch>
+        </template>
       </el-table-column>
 
       <el-table-column label="操作" fixed="right"

@@ -73,24 +73,15 @@
     </el-table>
 
     <br/>
-    <Modal :show='showPrintDOM'>
-      <TestModal slot="content"></TestModal>
-    </Modal>
-
-    <el-button size="mini" @click="showPrintDOM = !showPrintDOM">showPrintDOM</el-button>
-
   </div>
 </template>
 
 <script>
 
-import Modal from '@/components/Modal.vue'
-
 export default {
   name: 'list',
   data () {
     return {
-      showPrintDOM: false,
       searchKeyword: '',
       tableData: [{
         level: '中级分销商',
@@ -135,7 +126,6 @@ export default {
 
   },
   components: {
-    Modal
   }
 }
 </script>
