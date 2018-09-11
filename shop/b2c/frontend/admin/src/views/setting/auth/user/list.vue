@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import DefaultUserPortrait from '@/assets/images/default_user_portrait.gif'
+import DefaultUserPortrait from '@/assets/img/default_user_portrait.gif'
 
 export default {
   name: 'list',

@@ -37,9 +37,9 @@
 
 <script>
 
-import wchatImage from '@/assets/images/wchat.png'
-import aliPayImage from '@/assets/images/pay.png'
-import unionpayImage from '@/assets/images/unionpay.png'
+import wchatImage from '@/assets/img/wchat.png'
+import aliPayImage from '@/assets/img/pay.png'
+import unionpayImage from '@/assets/img/unionpay.png'
 
 export default {
 

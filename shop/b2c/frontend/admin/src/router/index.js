@@ -5,7 +5,7 @@ import Index from '@/views/Index.vue'
 
 import Goods from '@/views/goods/Index.vue'
 import GoodsList from '@/views/goods/list.vue'
-import GoodsAdd from '@/views/goods/add.vue'
+import GoodsEdit from '@/views/goods/publish.vue'
 import GoodsCategoryList from '@/views/goods/category/list.vue'
 // import GoodsCategoryEdit from '@/views/goods/category/edit.vue'
 import GoodsBrandList from '@/views/goods/brand/list.vue'
@@ -258,9 +258,9 @@ export default new Router({
         name: 'goodsList',
         component: GoodsList
       }, {
-        path: 'add.html',
-        name: 'goodsAdd',
-        component: GoodsAdd
+        path: 'edit.html',
+        name: '商品发布',
+        component: GoodsEdit
       }, {
         path: 'categorylist.html',
         name: 'goodsCategoryList',
@@ -614,31 +614,31 @@ export default new Router({
       }]
     }, {
       path: '/commission',
-      name: 'commission',
+      name: '佣金',
       component: Commission,
       children: [{
         path: 'userAccountList.html',
-        name: 'userAccountList',
+        name: '推广员佣金',
         component: CommissionUserAccountList
       }, {
         path: 'distributionList.html',
-        name: 'distributionList',
+        name: '三级分销',
         component: CommissionDistributionList
       }, {
         path: 'partnerList.html',
-        name: 'partnerList',
+        name: '股东分红',
         component: CommissionPartnerList
       }, {
         path: 'regionAgentList.html',
-        name: 'regionAgentList',
+        name: '区域代理',
         component: CommissionRegionAgentList
       }, {
         path: 'partnerGlobalList.html',
-        name: 'partnerGlobalList',
+        name: '全球分红',
         component: CommissionPartnerGlobalList
       }, {
         path: 'userCommissionWithdrawList.html',
-        name: 'userCommissionWithdrawList',
+        name: '会员提现',
         component: CommissionUserCommissionWithdrawList
       }]
     }, {

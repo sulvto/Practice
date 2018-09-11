@@ -1,97 +1,147 @@
 <template>
+  <div>
 
-  <section class="ns-base-section">
+    <el-form :inline="true" :model="queryForm" size="small" >
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/Commission/userAccountList.html">佣金</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/Commission/commissionPartnerGlobalList -->
-          <a href="javascript:;" style="color:#999;">全球分红</a>
-              </div>
-            <!-- 三级导航菜单 -->
+      <el-form-item label="用户姓名">
+        <el-input size="small" v-model="queryForm.username" ></el-input>
+      </el-form-item>
 
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+      <el-form-item label="手机号">
+        <el-input size="small" v-model="queryForm.phoneNumber" ></el-input>
+      </el-form-item>
 
-    <div class="ns-main">
+      <el-form-item>
+        <el-button type="primary" @click="search">查询</el-button>
+      </el-form-item>
+    </el-form>
 
-  <table class="mytable">
-  <tbody><tr>
-    <th>
-      用户姓名：<input id="userName" class="input-common middle" type="text" value="">
-      手机号：<input id="userTel" class="input-common middle" type="text" value="">
-      <button onclick="searchData()" value="搜索" class="btn-common">搜索</button>
-    </th>
-  </tr>
-  </tbody></table>
-  <div class="mod-table">
-  <div class="mod-table-head">
-    <div class="con style0list">
-      <table class="table-class">
-        <colgroup>
-          <col style="width: 8%;">
-          <col style="width: 15%;">
-          <col style="width: 15%;">
-          <col style="width: 10%;">
-          <col style="width: 10%;">
-          <col style="width: 8%;">
-          <col style="width: 10%;">
-          <col style="width: 8%;">
-          <col style="width: 18%;">
-        </colgroup>
-        <thead>
-          <tr>
-            <th>股东</th>
-            <th>分红开始时间</th>
-            <th>分红结束时间</th>
-            <th>分红总金额</th>
-            <th>店铺总分值</th>
-            <th>股东分值</th>
-            <th>分红佣金比率</th>
-            <th>分红金额</th>
-            <th>创建时间</th>
-          </tr>
-        </thead>
-        <colgroup>
-          <col style="width: 8%;">
-          <col style="width: 15%;">
-          <col style="width: 15%;">
-          <col style="width: 10%;">
-          <col style="width: 10%;">
-          <col style="width: 8%;">
-          <col style="width: 11%;">
-          <col style="width: 8%;">
-          <col style="width: 18%;">
-        </colgroup>
-        <tbody><tr align="center"><td>undefined</td><td>2018-07-17 00:00:00</td><td>2018-08-11 00:00:00</td><td>1.00</td><td>100</td><td>100</td><td>1.00%</td><td>1.00</td><td>2018-08-11 01:04:04</td></tr><tr align="center"><td>undefined</td><td>2018-08-11 00:00:00</td><td>2018-08-20 00:00:00</td><td>5.00</td><td>100</td><td>100</td><td>1.00%</td><td>5.00</td><td>2018-08-20 10:08:02</td></tr></tbody>
-      </table>
-    </div>
+    <el-table border :data="tableData" style="width: 100%">
+      <el-table-column
+        prop="shareholder"
+        label="股东">
+      </el-table-column>
+
+      <el-table-column
+        prop="receiveDividendsStartDate"
+        label="分红开始时间"
+        width="140">
+      </el-table-column>
+
+      <el-table-column
+        prop="receiveDividendsEndDate"
+        label="分红结束时间"
+        width="140">
+      </el-table-column>
+
+      <el-table-column
+        prop="receiveDividendsAmountCount"
+        label="分红总金额"
+        width="120">
+      </el-table-column>
+
+      <el-table-column
+        prop="shopValue"
+        label="店铺总分值"
+        width="100">
+      </el-table-column>
+
+      <el-table-column
+        prop="shareholderValue"
+        label="股东分值"
+        width="100">
+      </el-table-column>
+
+      <el-table-column
+        prop="dividendCommissionRatio"
+        label="分红佣金比率"
+        width="120">
+      </el-table-column>
+
+      <el-table-column
+        prop="dividendAmount"
+        label="分红金额"
+        width="120">
+      </el-table-column>
+
+      <el-table-column
+        prop="completionDate"
+        label="完成时间"
+        width="140">
+      </el-table-column>
+    </el-table>
   </div>
-  </div>
-
-  <input type="hidden" id="page_count" value="1">
-  <input type="hidden" id="page_size" value="2">
-    </div>
-
-  </section>
-
 </template>
+
+<script>
+export default {
+  name: 'partnerGlobalList',
+  data () {
+    return {
+      queryForm: {
+      },
+      tableData: [{
+        shareholder: 'undefined',
+        receiveDividendsStartDate: '2018-07-17 00:00:00',
+        receiveDividendsEndDate: '2018-08-11 00:00:00',
+        receiveDividendsAmountCount: '1.00',
+        shopValue: '100',
+        shareholderValue: '100',
+        dividendCommissionRatio: '1.00%',
+        dividendAmount: '1.00',
+        completionDate: '2018-08-11 01:04:04'
+      }, {
+        shareholder: 'undefined',
+        receiveDividendsStartDate: '2018-08-11 00:00:00',
+        receiveDividendsEndDate: '2018-08-20 00:00:00',
+        receiveDividendsAmountCount: '5.00',
+        shopValue: '100',
+        shareholderValue: '100',
+        dividendCommissionRatio: '1.00%',
+        dividendAmount: '5.00',
+        completionDate: '2018-08-20 10:08:02'
+      }, {
+        shareholder: 'undefined',
+        receiveDividendsStartDate: '2018-08-20 00:00:00',
+        receiveDividendsEndDate: '2018-09-03 00:00:00',
+        receiveDividendsAmountCount: '21.00',
+        shopValue: '1500',
+        shareholderValue: '500',
+        dividendCommissionRatio: '0.33%',
+        dividendAmount: '7.00',
+        completionDate: '2018-09-03 01:13:34'
+      }, {
+        shareholder: 'undefined',
+        receiveDividendsStartDate: '2018-08-20 00:00:00',
+        receiveDividendsEndDate: '2018-09-03 00:00:00',
+        receiveDividendsAmountCount: '21.00',
+        shopValue: '1500',
+        shareholderValue: '1000',
+        dividendCommissionRatio: '0.67%',
+        dividendAmount: '14.00',
+        completionDate: '2018-09-03 01:13:34'
+      }, {
+        shareholder: 'undefined',
+        receiveDividendsStartDate: '2018-09-03 00:00:00',
+        receiveDividendsEndDate: '2018-09-05 00:00:00',
+        receiveDividendsAmountCount: '5000.00',
+        shopValue: '1500',
+        shareholderValue: '500',
+        dividendCommissionRatio: '0.33%',
+        dividendAmount: '1666.67',
+        completionDate: '2018-09-05 14:28:59'
+      }]
+    }
+  },
+  methods: {
+    search () {
+      console.log('search', this.searchKeyword)
+    }
+
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>

@@ -483,12 +483,11 @@ export default {
           path: '/goods/list.html',
           children: [
             {
-              selected: true,
               path: '/goods/list.html',
               name: '商品列表'
             },
             {
-              path: '/goods/add.html',
+              path: '/goods/edit.html',
               name: '商品发布'
             },
             {
@@ -563,39 +562,51 @@ export default {
               name: '售后服务'
             }
           ]
-        },
-        {
+        }, {
           name: '营销',
           path: '/promotion/coupontypelist.html',
-          children: [
-            {
-              selected: true,
-              path: '/commission/userAccountList.html',
-              name: '推广员佣金'
-            },
-            {
-              path: '/commission/distributionList.html',
-              name: '三级分销'
-            },
-            {
-              path: '/commission/partnerList.html',
-              name: '股东分红'
-            },
-            {
-              path: '/commission/regionAgentList.html',
-              name: '区域代理'
-            },
-            {
-              path: '/commission/partnerGlobalList.html',
-              name: '全球分红'
-            },
-            {
-              path: '/commission/userCommissionWithdrawList.html',
-              name: '会员提现'
-            }
-          ]
-        },
-        {
+          children: [{
+            selected: true,
+            path: '/promotion/coupontypelist.html',
+            name: '优惠券'
+          }, {
+            path: '/promotion/pointconfig.html',
+            name: '积分管理'
+          }, {
+            path: '/promotion/giftlist.html',
+            name: '赠品'
+          }, {
+            path: '/promotion/mansonglist.html',
+            name: '满减送'
+          }, {
+            path: '/bargain/index.html',
+            name: '砍价活动'
+          }, {
+            path: '/promotion/discountlist.html',
+            name: '限时折扣'
+          }, {
+            path: '/promotion/combopackagelist.html',
+            name: '组合套餐'
+          }, {
+            path: '/promotion/fullshipping.html',
+            name: '满额包邮'
+          }, {
+            path: '/promotion/integral.html',
+            name: '奖励规则'
+          }, {
+            path: '/promotion/gameslist.html',
+            name: '互动游戏'
+          }, {
+            path: '/promotion/groupbuylist.html',
+            name: '团购'
+          }, {
+            path: '/tuangou/pintuanlist.html',
+            name: '拼团'
+          }, {
+            path: '/promotion/topiclist.html',
+            name: '专题活动'
+          }]
+        }, {
           name: '会员',
           path: '/member/memberlist.html',
           children: [
@@ -621,8 +632,7 @@ export default {
               name: '余额管理'
             }
           ]
-        },
-        {
+        }, {
           name: '数据',
           path: '/account/shopsalesaccount.html',
           children: [
@@ -648,8 +658,7 @@ export default {
               name: '销售排行'
             }
           ]
-        },
-        {
+        }, {
           name: '微信',
           path: '/wchat/config.html',
           children: [
@@ -699,13 +708,11 @@ export default {
               name: '客服管理'
             }
           ]
-        },
-        {
+        }, {
           name: '佣金',
           path: '/commission/userAccountList.html',
           children: [
             {
-              selected: true,
               path: '/commission/userAccountList.html',
               name: '推广员佣金'
             },
@@ -730,8 +737,7 @@ export default {
               name: '会员提现'
             }
           ]
-        },
-        {
+        }, {
           name: '网站',
           path: '/config',
           children: [
@@ -776,8 +782,7 @@ export default {
               name: '友情链接'
             }
           ]
-        },
-        {
+        }, {
           name: '分销',
           path: '/distribution',
           children: [
@@ -806,8 +811,7 @@ export default {
               name: '全球分红'
             }
           ]
-        },
-        {
+        }, {
           name: '设置',
           path: '/setting',
           children: [
@@ -837,8 +841,7 @@ export default {
               name: '核销设置'
             }
           ]
-        },
-        {
+        }, {
           name: '系统',
           path: '/upgrade/onlineupdate.html',
           children: [
