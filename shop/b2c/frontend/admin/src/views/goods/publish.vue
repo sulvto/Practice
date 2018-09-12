@@ -3,66 +3,34 @@
   <section class="ns-base-section" style="">
     <el-tabs type="border-card">
       <el-tab-pane label="基础设置">
-        <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
-        <!-- 基础设置 -->
-          <h4>商品类型</h4>
+          <!-- 基础设置 -->
+        <h4>商品类型</h4>
 
-          <dl>
-            <dd class="goods_type_select">
-                        <span class="goods_type_item selected" data-goods-type="1">
-                  <p class="type_name">实物商品</p>
-                  <p class="type_desc">（物流发货）</p>
-                  <i class="selected-icon" :style="'background:url(' + selectedIconBackground + ') no-repeat'"></i>
-                  <input type="radio" name="goods_type" value="1" checked="checked">
-                </span>
-                          <span class="goods_type_item" data-goods-type="0">
-                  <p class="type_name">网上服务</p>
-                  <p class="type_desc">（虚拟商品）</p>
-                  <i class="selected-icon"></i>
-                  <input type="radio" name="virtual_goods_type" value="1">
-                </span>
-                          <span class="goods_type_item" data-goods-type="0">
-                  <p class="type_name">网盘下载</p>
-                  <p class="type_desc">（虚拟商品）</p>
-                  <i class="selected-icon"></i>
-                  <input type="radio" name="virtual_goods_type" value="2">
-                </span>
-                          <span class="goods_type_item" data-goods-type="0">
-                  <p class="type_name">点卡</p>
-                  <p class="type_desc">（虚拟商品）</p>
-                  <i class="selected-icon"></i>
-                  <input type="radio" name="virtual_goods_type" value="3">
-                </span>
-                          <span class="goods_type_item" data-goods-type="0">
-                  <p class="type_name">网站下载</p>
-                  <p class="type_desc">（虚拟商品）</p>
-                  <i class="selected-icon"></i>
-                  <input type="radio" name="virtual_goods_type" value="4">
-                </span>
-                </dd>
-          </dl>
+        <el-radio-group v-model="editForm.type" style="padding-left: 30px!important;" >
+          <el-radio :label="10" border>实物商品（物流发货）</el-radio>
+          <el-radio :label="20" border>网上服务（虚拟商品）</el-radio>
+          <el-radio :label="21" border>网盘下载（虚拟商品）</el-radio>
+          <el-radio :label="22" border>点卡（虚拟商品）</el-radio>
+          <el-radio :label="23" border>网站下载（虚拟商品）</el-radio>
+        </el-radio-group>
+
+        <el-form ref="editForm" :rules="rules" :model="editForm" label-width="120px" size="small" label-position="right">
 
           <h4>基础信息</h4>
 
-          <el-form-item label="商品名称">
+          <el-form-item label="商品名称" prop="name">
             <el-input v-model="editForm.name" placeholder="请输入商品名称，不能超过60个字符"></el-input>
           </el-form-item>
 
           <el-form-item label="商品分类">
-            <el-input v-model="editForm.name" placeholder="请输入商品名称，不能超过60个字符"></el-input>
+            <el-input v-model="editForm.class">
+              <el-button slot="append" >选择</el-button>
+            </el-input>
           </el-form-item>
 
-          <dl>
-            <dt><i class="required">*</i>商品分类：</dt>
-                  <dd id="tbcNameCategory" data-flag="category" data-goods-id="0" cid="" data-attr-id="" cname="">
-              <span class="category-text"></span>
-                    <button class="category-button">选择</button>
-              <span><label for="g_name" class="error"><i class="icon-exclamation-sign"></i>商品分类不能为空</label></span>
-              <span class="help-inline">请选择商品分类</span>
-            </dd>
-          </dl>
-          <dl>
+          <!-- TODO: 添加分类 -->
+          <!-- <dl>
             <dt>扩展分类：</dt>
             <dd id="extend_name_category_box">
                         <div class="extend-name-category-box"></div>
@@ -70,262 +38,206 @@
                 <button class="select-button" onclick="addExtentCategoryBox();"><i class="fa fa-plus-square"></i>&nbsp;添加</button>
               </div>
             </dd>
-          </dl>
+          </dl> -->
 
-          <dl class="js-virtual-goods-cloud-download-resources">
-            <dt>网盘地址：</dt>
-            <dd>
-              <input id="cloud_address" type="text" class="input-common long" placeholder="请输入网盘地址">
-            </dd>
-          </dl>
+          <el-form-item label="扩展分类">
+            <el-input v-model="editForm.extendedClass">
+            </el-input>
+          </el-form-item>
 
-          <dl class="js-virtual-goods-cloud-download-resources">
-            <dt>网盘密码：</dt>
-            <dd>
-              <input id="cloud_password" type="text" class="input-common" placeholder="请输入网盘密码">
-            </dd>
-          </dl>
+          <el-form-item label="网盘地址" v-show="editForm.type === 21">
+            <el-input v-model="editForm.cloudAddress" placeholder="请输入网盘地址">
+            </el-input>
+          </el-form-item>
 
-          <dl class="js-virtual-goods-site-directly-download-resources">
-            <dt>上传文件：</dt>
-            <dd>
-              <div class="upload-btn-common">
-                <div>
-                  <input class="input-file" name="file_upload" id="uploadDownloadResources" type="file" onchange="imgUpload(this);" title="上传" only-type=".zip">
-                  <input type="hidden" id="download_resources" value="">
-                </div>
-                <input type="text" id="text_download_resources" class="input-common" readonly="readonly" value="">
-                <em style="top:1px;">上传</em>
-              </div>
-              <p class="hint">上传附件类型必须是<i class="important-note">zip</i>格式</p>
-            </dd>
-          </dl>
+          <el-form-item label="网盘密码" v-show="editForm.type === 21">
+            <el-input v-model="editForm.cloudPassword" placeholder="请输入网盘密码">
+            </el-input>
+          </el-form-item>
 
-          <dl class="js-virtual-goods-site-directly-download-resources">
-            <dt>解压密码：</dt>
-            <dd>
-              <input id="unzip_password" type="text" class="input-common" placeholder="请输入解压密码">
-            </dd>
-          </dl>
+          <el-form-item label="卡密库存" v-show="editForm.type === 22">
+            <span style="font-weight: bold;color: #FF5722;">0件</span>
+          </el-form-item>
 
-          <dl class="js-virtual-goods-point-card-inventory">
-            <dt>卡密库存：</dt>
-            <dd>
-              <span>0件</span>
-            </dd>
-          </dl>
-          <dl class="js-virtual-goods-point-card-inventory">
-            <dt>添加卡密：</dt>
-            <dd>
-              <span style="font-weight: bold;color: #FF5722;">导入格式为卡号+空格+密码(可跟上附加内容)，一行一组，如AAAAA BBBBB</span><br>
-              <textarea class="input-common long" id="card_password"></textarea>
-            </dd>
-          </dl>
-          <dl class="js-virtual-goods-type-block">
-            <dt>有效期/天：</dt>
-            <dd>
-              <input id="validity_period" type="text" placeholder="请输入有效期" class="input-common harf"><em class="unit">天</em>
-              <p class="hint notice">输入0表示不限制</p>
-            </dd>
-          </dl>
+          <el-form-item label="添加卡密" v-show="editForm.type === 22">
+            <span style="font-weight: bold;color: #FF5722;">导入格式为卡号+空格+密码(可跟上附加内容)，一行一组，如AAAAA BBBBB</span><br>
+            <el-input type="textarea" v-model="editForm.cardPassword" >
+            </el-input>
+          </el-form-item>
 
-          <dl class="js-virtual-goods-type-block">
-            <dt>限制使用次数：</dt>
-            <dd>
-              <span class="js-confine_use_number" style="color: #FF5722;font-weight: bold;">1次</span>
-            </dd>
-          </dl>
+          <el-form-item label="上传文件" v-show="editForm.type === 23">
+            <el-input v-model="editForm.downloadResources">
+              <el-button slot="append">上传</el-button>
+            </el-input>
+            <p class="hint">上传附件类型必须是<i class="important-note">zip</i>格式</p>
+          </el-form-item>
 
-          <dl>
-            <dt>商品促销语：</dt>
-            <dd>
-              <input class="productname input-common long" type="text" id="txtIntroduction" placeholder="请输入促销语，不能超过100个字符" oninput="if(value.length>100){value=value.slice(0,100);$(this).next().text(&quot;促销语不能超过100个字符&quot;).show();}else{$(this).next().hide();}">
-              <span class="help-inline">请输入商品促销语，不能超过100个字符</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>关键词：</dt>
-            <dd>
-              <input class="productname input-common" type="text" id="txtKeyWords" placeholder="商品关键词用于SEO搜索" oninput="if(value.length>40){value=value.slice(0,40);$(this).next().text(&quot;商品关键词不能超过40个字符&quot;).show();}">
-              <span class="help-inline">请输入商品促销语，不能超过40个字符</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>商品单位：</dt>
-            <dd>
-              <input class="productname input-common" type="text" id="goodsUnit" placeholder="请输入商品单位" oninput="if(value.length>10){value=value.slice(0,10);$(this).next().text(&quot;商品单位不能超过10个字符&quot;).show();}">
-              <span class="help-inline">请输入商品单位，不能超过10个字符</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>商品标签：</dt>
-            <dd>
-              <div class="group-text-check-box">
-                <div class="controls product-category-position">
-                                  <div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select class="select-common" multiple="" id="goods_group" size="1" tabindex="-1">
-                        <option value="0" disabled="">请选择商品标签</option>
-                                            <option value="1">热卖</option>
-                                            <option value="2">活动</option>
-                                            <option value="3">新品lll</option>
-                                            <option value="5">网红</option>
-                                            <option value="6">最火热</option>
-                                        </select></div><div class="selectric"><span class="selectric-label">请选择商品标签</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="disabled" title="请选择商品标签">请选择商品标签</li><li data-index="1" class="" title="热卖">热卖</li><li data-index="2" class="" title="活动">活动</li><li data-index="3" class="" title="新品lll">新品lll</li><li data-index="4" class="" title="网红">网红</li><li data-index="5" class="last" title="最火热">最火热</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-                              </div>
-              </div>
-            </dd>
-          </dl>
-          <dl style="overflow: inherit;">
-            <dt>商品品牌：</dt>
-            <dd class="js-brand-block">
-              <div class="controls brand-controls">
-                <select id="brand_id" class="select-common-ajax" style="display: none;"><option value="0">请选择商品品牌</option><option value="2">小米</option><option value="4">索尼</option><option value="5">三星</option></select><div tabindex="0" class="searchable-select"><span class="searchable-select-caret"></span><div class="searchable-select-holder">请选择商品品牌</div><div class="searchable-select-dropdown searchable-select-hide"><input type="text" class="searchable-select-input"><div class="searchable-scroll"><div class="searchable-has-privious searchable-select-hide">...</div><div class="searchable-select-items"><div class="searchable-select-item selected hover" data-value="0">请选择商品品牌</div><div class="searchable-select-item" data-value="2">小米</div><div class="searchable-select-item" data-value="4">索尼</div><div class="searchable-select-item" data-value="5">三星</div></div><div class="searchable-has-next searchable-select-hide">...</div></div></div></div>
-                <input type="text" id="selected_brand_name" style="padding:0;margin:0;opacity: 0;position: absolute;">
-                <p class="hint">可输入品牌名或品牌首字母来搜索品牌</p>
-              </div>
-            </dd>
-          </dl>
-          <dl>
-            <dt>供货商：</dt>
-            <dd>
-              <div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select id="supplierSelect" class="select-common" tabindex="-1">
-                <option value="0">请选择供货商</option>
-                            <option value="1">小米供货商</option>
-                            <option value="2">三星供货商</option>
-                        </select></div><div class="selectric"><span class="selectric-label">请选择供货商</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="请选择供货商">请选择供货商</li><li data-index="1" class="" title="小米供货商">小米供货商</li><li data-index="2" class="last" title="三星供货商">三星供货商</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-              <span class="help-inline">请选择供货商</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>基础销量：</dt>
-            <dd>
-              <input type="number" class="span1 input-common harf" id="BasicSales" placeholder="0"><em class="unit">件</em>
-              <span class="help-inline">基础销量必须是数字，且不能为负数</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>基础点击数：</dt>
-            <dd>
-              <input type="number" class="span1 input-common harf" id="BasicPraise" placeholder="0"><em class="unit">次</em>
-              <span class="help-inline">基础点击数必须是数字，且不能为负数</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>基础分享数：</dt>
-            <dd>
-              <input type="number" class="span1 input-common harf" id="BasicShare" placeholder="0"><em class="unit">次</em>
-              <span class="help-inline">基础分享数必须是数字，且不能为负数</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>商家编码：</dt>
-            <dd>
-              <input type="text" class="input-common" id="txtProductCodeA" placeholder="请输入商家编码">
-              <span class="help-inline">请输入商家编码，不能超过40个字符</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>生产日期：</dt>
-            <dd>
-              <input type="text" class="input-common" id="production_date" onclick="WdatePicker()">
-            </dd>
-          </dl>
-          <dl>
-            <dt>保质期天数：</dt>
-            <dd>
-              <input type="number" class="goods-stock input-common harf" id="shelf_life" value="0"><em class="unit">天</em>
-              <span class="help-inline">请输入保质期天数，必须是整数</span>
-            </dd>
-          </dl>
+          <el-form-item label="解压密码" v-show="editForm.type === 23">
+            <el-input v-model="editForm.unzipPassword" placeholder="请输入解压密码">
+            </el-input>
+          </el-form-item>
 
-          <dl>
-            <dt><i class="required">*</i>总库存：</dt>
-            <dd>
-              <input type="number" class="goods-stock input-common harf" id="txtProductCount" min="0" value="0"><em class="unit">件</em>
-              <span class="help-inline">请输入总库存数量，必须是大于0的整数</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt><i class="required">*</i>库存预警：</dt>
-            <dd>
-              <input type="number" class="goods-stock input-common harf" id="txtMinStockLaram" min="0" value="0"><em class="unit">件</em>
-              <span class="help-inline">请输入库存预警数，必须是大于0的整数</span>
-              <p class="hint">设置最低库存预警值。当库存低于预警值时商家中心商品列表页库存列红字提醒。<br>0为不预警。</p>
-            </dd>
-          </dl>
+          <el-form-item label="有效期/天" v-show="editForm.type === 20 || editForm.type === 21 || editForm.type === 22 || editForm.type === 23">
+            <el-input type="number" v-model="editForm.validityPeriod" placeholder="请输入有效期">
+              <el-button slot="append">天</el-button>
+            </el-input>
+            <p class="hint notice">输入0表示不限制</p>
+          </el-form-item>
 
-          <dl>
-            <dt><i class="required">*</i>库存显示：</dt>
-            <dd>
-              <div class="controls">
-                            <label class="radio inline normal">
-                    <i class="radio-common selected">
-                      <input type="radio" name="stock" checked="checked" value="1">
-                    </i>
-                    <span>是</span>
-                  </label>
-                  <label class="radio inline normal">
-                    <i class="radio-common">
-                      <input type="radio" name="stock" value="0">
-                    </i>
-                    <span>否</span>
-                  </label>
-                          <span class="help-inline">请选择库存是否显示</span>
-              </div>
-            </dd>
-          </dl>
-          <dl>
-            <dt><i class="required">*</i>是否上架：</dt>
-            <dd>
-              <div class="controls">
-                            <label class="radio inline normal">
-                    <i class="radio-common selected">
-                      <input type="radio" name="shelves" value="1" checked="checked">
-                    </i>
-                    <span>立刻上架</span>
-                  </label>
-                  <label class="radio inline normal">
-                    <i class="radio-common">
-                      <input type="radio" name="shelves" value="0">
-                    </i>
-                    <span>放入仓库</span>
-                  </label>
-                        </div>
-            </dd>
-          </dl>
-          <dl>
-            <dt>商品所在地：</dt>
-            <dd>
-              <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select">
-                          <select id="provinceSelect" class="select-common middle" onchange="getProvince(this,'#citySelect',-1)" tabindex="-1"><option value="0">请选择省</option><option value="34">台湾省</option><option value="19">广东省</option><option value="20">广西壮族自治区</option><option value="21">海南省</option><option value="22">重庆市</option><option value="23">四川省</option><option value="24">贵州省</option><option value="25">云南省</option><option value="26">西藏自治区</option><option value="27">陕西省</option><option value="28">甘肃省</option><option value="29">青海省</option><option value="30">宁夏回族自治区</option><option value="31">新疆维吾尔自治区</option><option value="32">香港特别行政区</option><option value="33">澳门特别行政区</option><option value="18">湖南省</option><option value="17">湖北省</option><option value="2">天津市</option><option value="3">河北省</option><option value="4">山西省</option><option value="5">内蒙古自治区</option><option value="6">辽宁省</option><option value="7">吉林省</option><option value="8">黑龙江省</option><option value="9">上海市</option><option value="10">江苏省</option><option value="11">浙江省</option><option value="12">安徽省</option><option value="13">福建省</option><option value="14">江西省</option><option value="15">山东省</option><option value="16">河南省</option><option value="1">北京市</option></select></div><div class="selectric"><span class="selectric-label">请选择省</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="请选择省">请选择省</li><li data-index="1" class="" title="台湾省">台湾省</li><li data-index="2" class="" title="广东省">广东省</li><li data-index="3" class="" title="广西壮族自治区">广西壮族自治区</li><li data-index="4" class="" title="海南省">海南省</li><li data-index="5" class="" title="重庆市">重庆市</li><li data-index="6" class="" title="四川省">四川省</li><li data-index="7" class="" title="贵州省">贵州省</li><li data-index="8" class="" title="云南省">云南省</li><li data-index="9" class="" title="西藏自治区">西藏自治区</li><li data-index="10" class="" title="陕西省">陕西省</li><li data-index="11" class="" title="甘肃省">甘肃省</li><li data-index="12" class="" title="青海省">青海省</li><li data-index="13" class="" title="宁夏回族自治区">宁夏回族自治区</li><li data-index="14" class="" title="新疆维吾尔自治区">新疆维吾尔自治区</li><li data-index="15" class="" title="香港特别行政区">香港特别行政区</li><li data-index="16" class="" title="澳门特别行政区">澳门特别行政区</li><li data-index="17" class="" title="湖南省">湖南省</li><li data-index="18" class="" title="湖北省">湖北省</li><li data-index="19" class="" title="天津市">天津市</li><li data-index="20" class="" title="河北省">河北省</li><li data-index="21" class="" title="山西省">山西省</li><li data-index="22" class="" title="内蒙古自治区">内蒙古自治区</li><li data-index="23" class="" title="辽宁省">辽宁省</li><li data-index="24" class="" title="吉林省">吉林省</li><li data-index="25" class="" title="黑龙江省">黑龙江省</li><li data-index="26" class="" title="上海市">上海市</li><li data-index="27" class="" title="江苏省">江苏省</li><li data-index="28" class="" title="浙江省">浙江省</li><li data-index="29" class="" title="安徽省">安徽省</li><li data-index="30" class="" title="福建省">福建省</li><li data-index="31" class="" title="江西省">江西省</li><li data-index="32" class="" title="山东省">山东省</li><li data-index="33" class="" title="河南省">河南省</li><li data-index="34" class="last" title="北京市">北京市</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-              <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select"><select id="citySelect" class="select-common middle" tabindex="-1">
-                <option value="0">请选择市</option>
-              </select></div><div class="selectric"><span class="selectric-label">请选择市</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="last selected" title="请选择市">请选择市</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-            </dd>
-          </dl>
+          <el-form-item label="限制使用次数" v-show="editForm.type === 20 || editForm.type === 22">
+            <span style="color: #FF5722;font-weight: bold;" >1次</span>
+          </el-form-item>
+
+          <el-form-item label="限制使用次数" v-show="editForm.type === 21 || editForm.type === 23">
+            <span style="color: #FF5722;font-weight: bold;" >不限制</span>
+          </el-form-item>
+
+          <el-form-item label="商品促销语">
+            <el-input v-model="editForm.introduction" placeholder="请输入促销语，不能超过100个字符">
+            </el-input>
+          </el-form-item>
+
+          <el-form-item label="关键词">
+            <el-input v-model="editForm.keywords" placeholder="商品关键词用于SEO搜索">
+            </el-input>
+          </el-form-item>
+
+          <el-form-item label="商品单位">
+            <el-input v-model="editForm.unit" placeholder="请输入商品单位，不能超过10个字符">
+            </el-input>
+          </el-form-item>
+
+          <el-form-item label="商品标签">
+            <el-select filterable v-model="editForm.tags" multiple placeholder="请选择商品标签">
+              <el-option label="热卖" value="1"></el-option>
+              <el-option label="活动" value="2"></el-option>
+            </el-select>
+          </el-form-item>
+
+          <el-form-item label="商品品牌">
+            <el-select filterable v-model="editForm.tags" multiple placeholder="请选择商品品牌">
+              <el-option label="小米" value="1"></el-option>
+              <el-option label="索尼" value="2"></el-option>
+              <el-option label="三星" value="3"></el-option>
+            </el-select>
+            <p class="hint">可输入品牌名或品牌首字母来搜索品牌</p>
+          </el-form-item>
+
+          <el-form-item label="商品品牌">
+            <el-select filterable v-model="editForm.brands" multiple placeholder="请选择商品品牌">
+              <el-option label="小米" value="1"></el-option>
+              <el-option label="索尼" value="2"></el-option>
+              <el-option label="三星" value="3"></el-option>
+            </el-select>
+            <p class="hint">可输入品牌名或品牌首字母来搜索品牌</p>
+          </el-form-item>
+
+          <el-form-item label="供货商">
+            <el-select filterable v-model="editForm.suppliers" multiple placeholder="请选择供货商">
+              <el-option label="小米供货商" value="1"></el-option>
+              <el-option label="三星供货商" value="2"></el-option>
+            </el-select>
+          </el-form-item>
+
+          <el-form-item label="基础销量" >
+            <el-input type="number" v-model="editForm.basicSales" placeholder="0">
+              <el-button slot="append">件</el-button>
+            </el-input>
+          </el-form-item>
+
+          <el-form-item label="基础点击数" >
+            <el-input type="number" v-model="editForm.basicPraise" placeholder="0">
+              <el-button slot="append">次</el-button>
+            </el-input>
+            <span class="help-inline">基础点击数必须是数字，且不能为负数</span>
+          </el-form-item>
+
+          <el-form-item label="基础分享数" >
+            <el-input type="number" v-model="editForm.basicShare" placeholder="0">
+              <el-button slot="append">次</el-button>
+            </el-input>
+            <span class="help-inline">基础点击数必须是数字，且不能为负数</span>
+          </el-form-item>
+
+          <el-form-item label="商家编码" >
+            <el-input type="number" v-model="editForm.productCodeA" placeholder="请输入商家编码，不能超过40个字符">
+            </el-input>
+            <span class="help-inline">基础点击数必须是数字，且不能为负数</span>
+          </el-form-item>
+
+          <el-form-item label="生产日期" >
+            <el-date-picker
+              v-model="editForm.productionDate"
+              type="date"
+              placeholder="选择日期">
+            </el-date-picker>
+          </el-form-item>
+
+          <el-form-item label="保质期天数" >
+            <el-input type="number" v-model="editForm.shelfLife" placeholder="0">
+              <el-button slot="append">天</el-button>
+            </el-input>
+            <span class="help-inline">请输入保质期天数，必须是整数</span>
+          </el-form-item>
+
+          <el-form-item label="总库存" prop="totalStock">
+            <el-input type="number" v-model="editForm.totalStock" placeholder="0">
+              <el-button slot="append">件</el-button>
+            </el-input>
+            <span class="help-inline">请输入总库存数量，必须是大于0的整数</span>
+          </el-form-item>
+
+          <el-form-item label="库存预警" prop="minStockLaram">
+            <el-input type="number" v-model="editForm.minStockLaram" placeholder="0">
+              <el-button slot="append">件</el-button>
+            </el-input>
+            <p class="hint">设置最低库存预警值。当库存低于预警值时商家中心商品列表页库存列红字提醒。<br>0为不预警。</p>
+          </el-form-item>
+
+          <el-form-item label="库存显示" required>
+            <el-switch  active-text="是" inactive-text="否" v-model="editForm.isShowStock"></el-switch>
+          </el-form-item>
+
+          <el-form-item label="是否上架" required>
+            <el-radio-group v-model="editForm.shelves">
+              <el-radio label="1">立刻上架</el-radio>
+              <el-radio label="0">放入仓库</el-radio>
+            </el-radio-group>
+          </el-form-item>
+
+          <el-form-item label="商品所在地" >
+            <el-select filterable v-model="editForm.province" placeholder="请选择省">
+              <el-option label="小米供货商" value="1"></el-option>
+              <el-option label="三星供货商" value="2"></el-option>
+            </el-select>
+            <el-select filterable v-model="editForm.city" placeholder="请选择市">
+              <el-option label="小米供货商" value="1"></el-option>
+              <el-option label="三星供货商" value="2"></el-option>
+            </el-select>
+          </el-form-item>
 
           <h4>购买信息</h4>
 
-          <dl>
-            <dt>市场价格：</dt>
-            <dd>
-              <input class="goods_price input-common harf" type="number" id="txtProductMarketPrice" min="0" placeholder="0.00"><em class="unit">元</em>
-              <span class="help-inline">商品市场价格必须是数字，且不能为负数</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt><i class="required">*</i>销售价格：</dt>
-            <dd>
-              <input class="goods_price input-common harf" type="number" id="txtProductSalePrice" min="0" placeholder="0.00"><em class="unit">元</em>
-              <span class="help-inline">商品销售价不能为空，且不能为负数</span>
-            </dd>
-          </dl>
-          <dl>
-            <dt>成本价格：</dt>
-            <dd>
-              <input class="goods_price input-common harf" type="number" id="txtProductCostPrice" min="0" placeholder="0.00"><em class="unit">元</em>
-              <span class="help-inline">商品成本必须是数字，且不能为负数</span>
-            </dd>
-          </dl>
+          <el-form-item label="市场价格" >
+            <el-input type="number" v-model="editForm.productMarketPrice" placeholder="0.00" min="0">
+              <el-button slot="append">元</el-button>
+            </el-input>
+            <span class="help-inline">商品市场价格必须是数字，且不能为负数</span>
+          </el-form-item>
+
+          <el-form-item label="销售价格" required>
+            <el-input type="number" v-model="editForm.productSalePrice" placeholder="0.00" min="0">
+              <el-button slot="append">元</el-button>
+            </el-input>
+            <span class="help-inline">商品销售价不能为空，且不能为负数</span>
+          </el-form-item>
+
+          <el-form-item label="成本价格">
+            <el-input type="number" v-model="editForm.productCostPrice" placeholder="0.00" min="0">
+              <el-button slot="append">元</el-button>
+            </el-input>
+            <span class="help-inline">商品成本必须是数字，且不能为负数</span>
+          </el-form-item>
 
           <dl>
             <dt>阶梯优惠：</dt>
@@ -340,286 +252,174 @@
               <div class="add_ladder_preference"><i class="fa fa-plus" aria-hidden="true"></i></div>
             </dd>
           </dl>
-          <dl>
-            <dt><i class="required">*</i>运费：</dt>
-            <dd>
-              <div class="controls">
 
-                            <label class="radio inline normal">
-                    <i class="radio-common selected">
-                      <input type="radio" name="fare" value="0" checked="checked">
-                    </i>
-                    <span>免邮</span>
-                  </label>
-                  <label class="radio inline normal">
-                    <i class="radio-common">
-                      <input type="radio" name="fare" value="1">
-                    </i>
-                    <span>买家承担运费</span>
-                  </label>
-                          <span class="help-inline">请选择运费类型</span>
-              </div>
-            </dd>
-          </dl>
+          <el-form-item label="运费" required>
+            <el-radio-group v-model="editForm.fare">
+              <el-radio :label="0" value="0">免邮</el-radio>
+              <el-radio :label="1" value="1">买家承担运费</el-radio>
+            </el-radio-group>
+          </el-form-item>
 
-          <dl id="valuation-method" style="display: none" class="">
-            <dt><i class="required">*</i>计价方式：</dt>
-            <dd>
-              <label class="radio inline normal">
-                <i class="radio-common selected">
-                  <input type="radio" name="shipping_fee_type" value="3" checked="checked">
-                </i>
-                <span>计件</span>
-              </label>
-              <label class="radio inline normal">
-                <i class="radio-common">
-                  <input type="radio" name="shipping_fee_type" value="2">
-                </i>
-                <span>体积</span>
-              </label>
-              <label class="radio inline normal">
-                <i class="radio-common">
-                  <input type="radio" name="shipping_fee_type" value="1">
-                </i>
-                <span>重量</span>
-              </label>
-            </dd>
-          </dl>
-          <dl id="commodity-weight" style="display: none" class="">
-            <dt><i class="required">*</i>商品重量：</dt>
-            <dd>
-              <input type="number" class="goods-stock input-common harf" id="goods_weight" min="0" value="0"><em class="unit">公斤</em>
+          <el-form-item label="计价方式" v-show="editForm.fare === 1" required>
+            <el-radio-group v-model="editForm.shippingTeeType">
+              <el-radio :label="1">计件</el-radio>
+              <el-radio :label="2">体积</el-radio>
+              <el-radio :label="3">重量</el-radio>
+            </el-radio-group>
+          </el-form-item>
+
+          <el-form-item label="商品重量" v-show="editForm.fare === 1" required>
+            <el-input type="number" v-model="editForm.goodsWeight" placeholder="0.00" min="0">
+              <el-button slot="append">公斤</el-button>
+            </el-input>
               <span class="help-inline">商品重量必须大于0</span>
-            </dd>
-          </dl>
-          <dl id="commodity-volume" style="display: none" class="">
-            <dt><i class="required">*</i>商品体积：</dt>
-            <dd>
-              <input type="number" class="goods-stock input-common harf" id="goods_volume" min="0" value="0"><em class="unit">立方米</em>
+          </el-form-item>
+
+          <el-form-item label="商品体积" v-show="editForm.fare === 1" required>
+            <el-input type="number" v-model="editForm.goodsVolume" placeholder="0" min="0">
+              <el-button slot="append">立方米</el-button>
+            </el-input>
               <span class="help-inline">商品体积必须大于0</span>
-            </dd>
-          </dl>
-          <dl id="express_Company" style="display: none;" class="">
-            <dt>物流公司：</dt>
-            <dd>
-              <div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select id="expressCompany" class="select-common" tabindex="-1">
-                <option value="0">请选择物流公司</option>
-                          <option value="4">顺丰</option>
-                          <option value="5">cccc</option>
-                          <option value="6">中通快递</option>
-                        </select></div><div class="selectric"><span class="selectric-label">请选择物流公司</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="请选择物流公司">请选择物流公司</li><li data-index="1" class="" title="顺丰">顺丰</li><li data-index="2" class="" title="cccc">cccc</li><li data-index="3" class="last" title="中通快递">中通快递</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-            </dd>
-          </dl>
+          </el-form-item>
 
-          <dl>
-            <dt>每人限购：</dt>
-            <dd>
-              <div class="controls">
-                <input type="number" class="input-mini input-common harf" min="0" placeholder="0" id="PurchaseSum"><em class="unit">件</em>
-                <p class="hint notice">输入0表示不限购</p>
-              </div>
-            </dd>
-          </dl>
-          <dl>
-            <dt>最少购买数：</dt>
-            <dd>
-              <div class="controls">
-                <input type="number" class="input-mini input-common harf" min="1" placeholder="0" id="minBuy"><em class="unit">件</em>
-                <span class="help-inline">最少购买数必须是大于0的整数</span>
-              </div>
-            </dd>
-          </dl>
+          <el-form-item label="物流公司" v-show="editForm.fare === 1" >
+            <el-select filterable v-model="editForm.expressCompany" placeholder="请选择物流公司">
+              <el-option label="顺丰" value="1"></el-option>
+              <el-option label="ccc" value="2"></el-option>
+              <el-option label="中通快递" value="3"></el-option>
+            </el-select>
+          </el-form-item>
+
+          <el-form-item label="每人限购" required>
+            <el-input type="number" v-model="editForm.purchaseLimit" placeholder="0" min="0">
+              <el-button slot="append">件</el-button>
+            </el-input>
+              <span class="help-inline">输入0表示不限购</span>
+          </el-form-item>
+
+          <el-form-item label="最少购买数" required>
+            <el-input type="number" v-model="editForm.minBuy" placeholder="0" min="1">
+              <el-button slot="append">件</el-button>
+            </el-input>
+              <span class="help-inline">最少购买数必须是大于0的整数</span>
+          </el-form-item>
+
           <!-- 预售设置 -->
-        <div id="presell_set">
-          <h4>预售设置</h4>
-          <dl>
-          <dt>是否支持预售：</dt>
-          <dd>
-            <label class="radio inline normal">
-              <i class="radio-common "><input type="radio" name="open_presell" value="1"></i>
-              <span>是</span>
-            </label>
-            <label class="radio inline normal">
-              <i class="radio-common selected">
-                <input type="radio" name="open_presell" value="0" checked="checked">
-              </i>
-              <span>否</span>
-            </label>
-          </dd>
+          <div id="presell_set" v-show="editForm.type === 10">
+            <h4>预售设置</h4>
+            <el-form-item label="是否支持预售" required>
+              <el-switch  active-text="是" inactive-text="否" v-model="editForm.openPresell"></el-switch>
+            </el-form-item>
 
-          </dl>
-          <dl class="presell hide">
-          <dt>预售金额：</dt>
-          <dd>
-            <input class="goods_price input-common harf" type="number" id="presell_price" min="0" placeholder="0.00" value=""><em class="add-on">元</em>
-            <span class="help-inline">预售金额必须是数字，且不能为负数</span>
-          </dd>
+            <div v-show="editForm.openPresell">
 
-          </dl>
-          <dl class="presell hide">
-          <dt>预售发货方式：</dt>
-          <dd>
-            <label class="radio inline normal">
-              <i class="radio-common "><input type="radio" name="presell_delivery_type" value="1"></i>
-              <span>按照预售发货时间</span>
-            </label>
-            <label class="radio inline normal">
-              <i class="radio-common selected">
-                <input type="radio" name="presell_delivery_type" value="2">
-              </i>
-              <span>按照预售发货天数</span>
-            </label>
-          </dd>
+              <el-form-item label="预售金额">
+                <el-input type="number" v-model="editForm.presellPrice" placeholder="0.00" min="0">
+                  <el-button slot="append">元</el-button>
+                </el-input>
+                <span class="help-inline">预售金额必须是数字，且不能为负数</span>
+              </el-form-item>
 
-          </dl>
-          <dl class="presell hide">
-          <dt>预售发货时间：</dt>
-          <dd>
-            <input type="text" class="input-common" id="presell_time" value="" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss',minDate: '%y-%M-#{%d+1}' })">&nbsp;开始发货
-          </dd>
-          </dl>
-          <dl class="presell hide">
-          <dt>预售发货时间：</dt>
-          <dd>
-            付款成功&nbsp;<input type="number" value="" class="span1 input-common short" id="presell_day" placeholder="0">&nbsp;天后发货
-          </dd>
-          </dl>
+              <el-form-item label="预售发货方式" required>
+                <el-radio-group v-model="editForm.presellDeliveryType">
+                  <el-radio :label="1">按照预售发货时间</el-radio>
+                  <el-radio :label="2">按照预售发货天数</el-radio>
+                </el-radio-group>
+              </el-form-item>
+
+              <el-form-item label="预售发货时间" v-show="editForm.presellDeliveryType === 1">
+                  <el-date-picker
+                    v-model="editForm.presellTime"
+                    type="datetime"
+                    placeholder="选择日期时间">
+                  </el-date-picker>
+                  开始发货
+              </el-form-item>
+
+              <el-form-item label="预售发货时间" v-show="editForm.presellDeliveryType === 2">
+                <el-input type="number" v-model="editForm.presellDay" min="0">
+                  <el-button slot="prepend">付款成功</el-button>
+                  <el-button slot="append">天后发货</el-button>
+                </el-input>
+              </el-form-item>
             </div>
-            <h4>积分设置</h4>
-            <dl id="integral_balance">
-              <dt>最大可使用积分：</dt>
-              <dd>
-                <input type="number" class="input-common harf" id="max_use_point" value="" onchange="integrationChange(this);"><em class="unit">分</em>
+          </div>
+
+          <h4>积分设置</h4>
+
+          <el-form-item label="最大可使用积分">
+            <el-input type="number" v-model="editForm.maxUsePoint" >
+              <el-button slot="append">分</el-button>
+            </el-input>
                 <p class="hint">设置购买时积分抵现最大可使用积分数，0为不可使用 </p>
-              </dd>
-            </dl>
-            <dl>
-              <dt>积分兑换设置：</dt>
-              <dd>
-                <label class="radio inline normal">
-                  <i class="radio-common selected">
-                    <input type="radio" name="integralSelect" checked="" value="0">
-                  </i>
-                  <span>非积分兑换</span>
-                </label>
-                <label class="radio inline normal">
-                  <i class="radio-common ">
-                    <input type="radio" name="integralSelect" value="1">
-                  </i>
-                  <span>积分加现金购买</span>
-                </label>
-                <label class="radio inline normal">
-                  <i class="radio-common ">
-                    <input type="radio" name="integralSelect" value="2">
-                  </i>
-                  <span>积分兑换或直接购买</span>
-                </label>
-                  <label class="radio inline normal">
-                  <i class="radio-common ">
-                    <input type="radio" name="integralSelect" value="3">
-                  </i>
-                  <span>只支持积分兑换</span>
-                </label>
-              </dd>
-            </dl>
-          <dl>
-            <dt>兑换所需积分：</dt>
-            <dd>
-              <input type="number" class="input-common harf" id="integration_available_use" value="0" onchange="integrationChange(this);"><em class="unit">分</em>
-              <span class="help-inline">请设置积分</span>
-            </dd>
-          </dl>
-            <dl>
-              <dt>购买可赠送：</dt>
-              <dd>
-                <div class="controls">
-                  <input id="integration_available_give" class="input-mini input-common harf" placeholder="0" min="0" type="number" onchange="integrationChange(this);" value="0"><em class="unit">分</em>
-                </div>
-              </dd>
-            </dl>
-                <h4>折扣设置</h4>
-                    <dl>
-                <dt>黄金会员：</dt>
-                <dd>
-                  <div class="controls">
-                    <input class="input-common harf" name="member_discount" placeholder="0" min="0" type="number" value="" data-level-id="47"><em class="unit">%</em>
-                  </div>
-                </dd>
-              </dl>
-                    <dl>
-                <dt>白银会员：</dt>
-                <dd>
-                  <div class="controls">
-                    <input class="input-common harf" name="member_discount" placeholder="0" min="0" type="number" value="" data-level-id="48"><em class="unit">%</em>
-                  </div>
-                </dd>
-              </dl>
-                    <dl>
-                <dt>青铜会员：</dt>
-                <dd>
-                  <div class="controls">
-                    <input class="input-common harf" name="member_discount" placeholder="0" min="0" type="number" value="" data-level-id="49"><em class="unit">%</em>
-                  </div>
-                </dd>
-              </dl>
-                    <dl>
-                <dt>钻石卡：</dt>
-                <dd>
-                  <div class="controls">
-                    <input class="input-common harf" name="member_discount" placeholder="0" min="0" type="number" value="" data-level-id="50"><em class="unit">%</em>
-                  </div>
-                </dd>
-              </dl>
-                    <dl>
-                <dt>vip会员等级：</dt>
-                <dd>
-                  <div class="controls">
-                    <input class="input-common harf" name="member_discount" placeholder="0" min="0" type="number" value="" data-level-id="51"><em class="unit">%</em>
-                  </div>
-                </dd>
-              </dl>
-                  <dl>
-              <dt>价格保留方式：</dt>
-              <dd>
-                <label class="radio inline normal decimal_reservation_number">
-                  <i class="checkbox-common ">
-                    <input type="checkbox" name="decimal-reservation-number" value="0">
-                  </i>
-                  <span>抹去角和分</span>
-                </label>
-                <label class="radio inline normal decimal_reservation_number">
-                  <i class="checkbox-common ">
-                    <input type="checkbox" name="decimal-reservation-number" value="1">
-                  </i>
-                  <span>抹去分</span>
-                </label>
-              </dd>
-            </dl>
+          </el-form-item>
+
+          <el-form-item label="积分兑换设置">
+            <el-radio-group v-model="editForm.integralSelect">
+              <el-radio label="1">非积分兑换</el-radio>
+              <el-radio label="2">积分加现金购买</el-radio>
+              <el-radio label="3">积分兑换或直接购买</el-radio>
+              <el-radio label="4">只支持积分兑换</el-radio>
+            </el-radio-group>
+          </el-form-item>
+
+          <el-form-item label="兑换所需积分">
+            <el-input type="number" v-model="editForm.integrationAvailableUse" >
+              <el-button slot="append">分</el-button>
+            </el-input>
+          </el-form-item>
+
+          <el-form-item label="购买赠送积分">
+            <el-radio-group v-model="editForm.integralGiveType">
+              <el-radio :label="1">赠送固定积分</el-radio>
+              <el-radio :label="2">按比率赠送积分</el-radio>
+            </el-radio-group>
+          </el-form-item>
+
+          <el-form-item>
+            <el-input type="number" v-show="editForm.integralGiveType === 1" v-model="editForm.integrationAvailableGive" placeholder="0" min="0">
+              <el-button slot="append">分</el-button>
+            </el-input>
+
+            <el-input type="number" v-show="editForm.integralGiveType === 2" v-model="editForm.integrationAvailableGiveRatio" placeholder="0" min="0">
+              <el-button slot="append">%</el-button>
+            </el-input>
+          </el-form-item>
+
+          <h4>折扣设置</h4>
+
+          <!-- TODO: 这里还有其他会员 -->
+          <el-form-item label="黄金会员">
+            <el-input type="number" v-model="editForm.integrationAvailableGiveRatio" placeholder="0" min="0">
+              <el-button slot="append">%</el-button>
+            </el-input>
+          </el-form-item>
+
+          <el-form-item label="价格保留方式">
+            <el-radio-group v-model="editForm.priceRetentionMethod">
+              <el-radio :label="1">抹去角和分</el-radio>
+              <el-radio :label="2">抹去分</el-radio>
+            </el-radio-group>
+          </el-form-item>
         </el-form>
       </el-tab-pane>
 
       <el-tab-pane label="商品属性">
-
+        <el-form ref="editForm" :rules="rules" :model="editForm" label-width="120px" size="small" label-position="right">
           <h4>基础信息</h4>
 
-          <dl>
-            <dt>商品类型：</dt>
-            <dd>
-              <div class="selectric-wrapper selectric-select-common" style="width: 250px;"><div class="selectric-hide-select"><select id="goodsType" class="select-common" tabindex="-1">
-                <option value="0">请选择商品类型</option>
-                <option value="16">美体专区</option>
-                  <option value="17">铁皮石斛</option>
-                  <option value="18">闲逛逛</option>
-                </select>
-              </div>
-              <div class="selectric"><span class="selectric-label">请选择商品类型</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="请选择商品类型">请选择商品类型</li><li data-index="1" class="" title="美体专区">美体专区</li><li data-index="2" class="" title="铁皮石斛">铁皮石斛</li><li data-index="3" class="last" title="闲逛逛">闲逛逛</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-              <span class="help-inline">请选择商品类型</span>
-            </dd>
-          </dl>
-          <h4 style="display:none;" class="js-goods-attribute-block">商品属性：</h4>
-          <div class="goods-sku-attribute-block js-goods-attribute-block">
-            <table class="goods-sku-attribute js-goods-sku-attribute"></table>
-          </div>
+          <el-form-item label="商品类型">
+            <el-select filterable v-model="editForm.goodsType" clearable placeholder="请选择商品类型">
+              <el-option label="美体专区" value="1"></el-option>
+              <el-option label="铁皮石斛" value="2"></el-option>
+              <el-option label="闲逛逛" value="3"></el-option>
+            </el-select>
+            <p class="hint">可输入品牌名或品牌首字母来搜索品牌</p>
+          </el-form-item>
+
+          <h4 v-show="editForm.goodsType">商品属性：</h4>
+          <!-- TODO: 商品属性表 -->
+        </el-form>
       </el-tab-pane>
 
       <el-tab-pane label="商品规格">
@@ -787,23 +587,28 @@
       </el-tab-pane>
 
       <el-tab-pane label="模板设置">
+        <el-form ref="editForm" :model="editForm" label-width="120px" size="small" label-position="right">
 
           <!-- 模板设置 -->
           <h4>模板设置</h4>
-          <dl>
-            <dt>电脑端：</dt>
-            <dd>
-              template/shop/blue/Goods/&nbsp;<input type="text" class="input-common harf" name="" id="pc_custom_template" value="" style="width: 80px;" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">&nbsp;.html
-              <p class="hint">用户自定义模板必须存放在template/shop/blue/Goods/下，模板名只能由英文组成</p>
-            </dd>
-          </dl>
-          <dl>
-            <dt>手机端：</dt>
-            <dd>
-              template/wap/default_new/Goods/&nbsp;<input type="text" class="input-common harf" name="" id="wap_custom_template" value="" style="width: 80px;" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">&nbsp;.html
-              <p class="hint">用户自定义模板必须存放在template/wap/default_new/Goods/下，模板名只能由英文组成</p>
-            </dd>
-          </dl>
+
+          <el-form-item label="电脑端">
+            <el-input v-model="editForm.pcCustomTemplate" >
+              <el-button slot="prepend">template/shop/blue/Goods/</el-button>
+              <el-button slot="append">.html</el-button>
+            </el-input>
+            <p class="hint">用户自定义模板必须存放在template/shop/blue/Goods/下，模板名只能由英文组成</p>
+          </el-form-item>
+
+          <el-form-item label="手机端">
+            <el-input v-model="editForm.wapCustomTemplate" >
+              <el-button slot="prepend">template/wap/default_new/Goods/</el-button>
+              <el-button slot="append">.html</el-button>
+            </el-input>
+            <p class="hint">用户自定义模板必须存放在template/wap/default_new/Goods/下，模板名只能由英文组成</p>
+          </el-form-item>
+
+        </el-form>
       </el-tab-pane>
     </el-tabs>
 
@@ -959,11 +764,31 @@ export default {
   data () {
     return {
       selectedIconBackground: typeSelectedImage,
-      editForm: {},
+      editForm: {
+        type: 10
+      },
       rules: {
         name: [
           { required: true, message: '请输入商品名称', trigger: 'blur' },
           { min: 1, max: 60, message: '不能超过60个字符', trigger: 'blur' }
+        ],
+        keywords: [
+          { min: 0, max: 40, message: '不能超过40个字符', trigger: 'blur' }
+        ],
+        unit: [
+          { min: 0, max: 10, message: '不能超过10个字符', trigger: 'blur' }
+        ],
+        basicSales: [
+          { min: 0, message: '基础销量必须是数字，且不能为负数', trigger: 'blur' }
+        ],
+        productCodeA: [
+          { min: 0, max: 40, message: '不能超过40个字符', trigger: 'blur' }
+        ],
+        totalStock: [
+          { min: 1, step: 1, message: '必须是大于0的整数', trigger: 'blur' }
+        ],
+        minStockLaram: [
+          { min: 1, step: 1, message: '必须是大于0的整数', trigger: 'blur' }
         ]
       }
     }
@@ -974,14 +799,12 @@ export default {
 </script>
 
 <style lang="scss">
-.ncsc-form-goods {
-  h4 {
+h4 {
     border-left: 2px solid #126AE4;
     padding-left: 5px;
     font-size: 14px;
     color: #333333;
     margin: 15px 0 10px 10px;
-  }
 }
 
 .goods_type_select  {
@@ -1057,5 +880,16 @@ export default {
       display: inline-block;
     }
   }
+}
+
+.hint {
+  font-size: 12px;
+  line-height: 16px;
+  color: #999999;
+  margin: 10px 0 0;
+}
+
+.hint.notice {
+  color: #FF8400;
 }
 </style>

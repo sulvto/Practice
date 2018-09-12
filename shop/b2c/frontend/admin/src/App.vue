@@ -491,11 +491,11 @@ export default {
               name: '商品发布'
             },
             {
-              path: '/goods/categorylist.html',
+              path: '/goods/category/list.html',
               name: '商品分类'
             },
             {
-              path: '/goods/brandlist.html',
+              path: '/goods/brand/list.html',
               name: '商品品牌'
             },
             {

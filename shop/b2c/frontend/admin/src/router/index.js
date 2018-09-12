@@ -7,7 +7,7 @@ import Goods from '@/views/goods/Index.vue'
 import GoodsList from '@/views/goods/list.vue'
 import GoodsEdit from '@/views/goods/publish.vue'
 import GoodsCategoryList from '@/views/goods/category/list.vue'
-// import GoodsCategoryEdit from '@/views/goods/category/edit.vue'
+import GoodsCategoryEdit from '@/views/goods/category/edit.vue'
 import GoodsBrandList from '@/views/goods/brand/list.vue'
 import GoodsBrandEdit from '@/views/goods/brand/edit.vue'
 import GoodsLabelList from '@/views/goods/label/list.vue'
@@ -262,13 +262,41 @@ export default new Router({
         name: '商品发布',
         component: GoodsEdit
       }, {
-        path: 'categorylist.html',
-        name: 'goodsCategoryList',
-        component: GoodsCategoryList
+        path: 'category',
+        name: '商品分类',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '商品分类列表',
+            component: GoodsCategoryList
+          }, {
+            path: 'edit.html',
+            name: '编辑商品分类',
+            component: GoodsCategoryEdit
+          }
+        ]
       }, {
-        path: 'brandlist.html',
-        name: 'goodsBrandList',
-        component: GoodsBrandList
+        path: 'brand',
+        name: '商品品牌',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '商品品牌列表',
+            component: GoodsBrandList
+          }, {
+            path: 'edit.html',
+            name: '编辑商品品牌',
+            component: GoodsBrandEdit
+          }
+        ]
       }, {
         path: 'brandedit.html',
         name: 'goodsBrandEdit',
