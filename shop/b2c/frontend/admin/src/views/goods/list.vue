@@ -1,48 +1,92 @@
 <template>
   <section class="ns-base-section">
+<div>
+  <el-tabs v-model="selectedStatus" >
+    <el-tab-pane label="出售中" :name="1">
+    </el-tab-pane>
+    <el-tab-pane label="已下架" :name="2">
+    </el-tab-pane>
+    <el-tab-pane label="库存预警" :name="3">
+    </el-tab-pane>
+    <el-tab-pane label="回收站" :name="4">
+    </el-tab-pane>
+  </el-tabs>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-      <div class="breadcrumb-nav">
-        <a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
-        <i class="fa fa-angle-right"></i>
-        <a href="/goods/goodslist.html">商品</a>
-        <i class="fa fa-angle-right"></i>
-        <!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/goods/goodslist -->
-        <a href="javascript:;" style="color:#999;">商品列表</a>
-      </div>
-      <!-- 三级导航菜单 -->
+    <el-row>
+        <el-button type="primary" size="small">发布商品</el-button>
+        <el-button type="danger" size="small">批量删除</el-button>
+        <el-button size="small">上架</el-button>
+        <el-button size="small">下架</el-button>
+        <el-button size="small">推荐</el-button>
+        <el-button size="small">商品标签</el-button>
+        <el-button size="small">更新二维码</el-button>
+        <el-button size="small">批量处理</el-button>
+        <el-button size="small">设置折扣</el-button>
 
-      <nav class="ns-third-menu">
-        <ul>
-          <li class="selected" onclick="location.href='/goods/goodslist.html';">出售中</li>
-          <li onclick="location.href='/goods/goodslist.html?state_type=2';">已下架</li>
-          <li onclick="location.href='/goods/goodslist.html?stock_warning=1';">库存预警</li>
-          <li onclick="location.href='/goods/recyclelist.html';">回收站</li>
-        </ul>
-      </nav>
+    </el-row>
 
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                  <h4>操作提示</h4>
-                  <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2301&amp;extra=page%3D3" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2301&amp;extra=page%3D3</a></p>
-                  <hr>
-                  <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
+    <el-row>
+      <el-col :span="14">
+        <el-button type="primary" size="small">发布商品</el-button>
+        <el-button type="danger" size="small">批量删除</el-button>
+        <el-button size="small">上架</el-button>
+        <el-button size="small">下架</el-button>
+        <el-button size="small">推荐</el-button>
+        <el-button size="small">商品标签</el-button>
+        <el-button size="small">更新二维码</el-button>
+        <el-button size="small">批量处理</el-button>
+        <el-button size="small">设置折扣</el-button>
+      </el-col>
 
-        </ul>
-      </div>
-    </div>
+      <el-col :span="10">
+        <el-input size="small" v-model="searchKeyword" placeholder="请选择商品分类"></el-input>
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
+    </el-row>
+
+    <br/>
+
+    <el-table border :data="goodsList" style="width: 100%">
+      <el-table-column
+        type="selection"
+        width="35">
+      </el-table-column>
+
+      <el-table-column label="第三方登录">
+        <template slot-scope="scope">
+          <div class="table-logo"><img :src="scope.row.logo"></div>
+          <span class="table-pay">{{scope.row.name}}</span><br>
+          <span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
+          </span>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        prop="type"
+        label="类型"
+        width="120">
+      </el-table-column>
+
+      <el-table-column
+          label="状态"
+          width="180">
+        <template slot-scope="scope">
+            <el-switch v-model="scope.row.status">
+            </el-switch>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" fixed="right"
+          width="180">
+          <template slot-scope="scope">
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+      </el-table-column>
+    </el-table>
+  </div>
 
     <!-- 操作提示 -->
 
@@ -52,19 +96,7 @@
       <table class="mytable">
         <tbody>
           <tr>
-            <th align="left">
-              <a class="btn-common" href="/goods/addgoods.html">发布商品</a>
-              <a class="btn-common-white" href="javascript:batchDelete()">批量删除</a>
-              <a class="btn-common-white upstore" href="javascript:goodsIdCount('online')">上架</a>
-              <a class="btn-common-white downstore" href="javascript:goodsIdCount('offline')">下架</a>
-              <a class="btn-common-white recommend" href="javascript:ShowRecommend()" data-html="true" id="setRecommend" title="推荐" data-container="body" data-placement="bottom" data-trigger="manual" data-content="">推荐</a>
-              <a data-html="true" class="btn-common-white fun-a category" href="javascript:goodsGroupIdCount();" id="editGroup" title="修改商品标签" data-container="body" data-placement="bottom" data-trigger="manual" data-content="">
-            商品标签</a>
-              <a href="javascript:batchUpdateGoodsQrcode();;" class="btn-common-white fun-a category" title="更新二维码">更新二维码</a>
-              <a href="javascript:;" id="batchProcessing" class="btn-common-white" title="批量设置商品信息">批量处理</a>
-              <a href="javascript:;" id="setMemberDiscount" class="btn-common-white" title="批量设置会员折扣">设置折扣</a>
-              <input type="hidden" id="goods_type_ids">
-            </th>
+
             <th style="position: relative;">
 
               商品分类：
@@ -1088,6 +1120,7 @@ export default {
   name: 'goodsList',
   data () {
     return {
+      selectedStatus: 1,
       goodsList: [],
       showCategory: false
     }

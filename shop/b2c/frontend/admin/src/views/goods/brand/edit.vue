@@ -52,6 +52,10 @@
 </dd>
 </dl> -->
 
+    <el-form-item label="排序" >
+      <el-input type="number" v-model="editForm.sort"></el-input>
+    </el-form-item>
+
     <el-form-item>
       <el-button type="primary" @click="submitForm('editForm')">保存</el-button>
       <el-button type="info" @click="$router.back()">返回</el-button>

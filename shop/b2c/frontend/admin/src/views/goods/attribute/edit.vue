@@ -1,351 +1,295 @@
 <template>
+  <div>
+    <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
-	<section class="ns-base-section">
+      <el-form-item label="类型名称" prop="name">
+        <el-input v-model="editForm.name"></el-input>
+      </el-form-item>
 
-		<div style="position:relative;margin:0;">
-			<!-- 面包屑导航 -->
-						<div class="breadcrumb-nav">
-				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
-									<i class="fa fa-angle-right"></i>
-					<a href="/goods/goodslist.html">商品</a>
-									<i class="fa fa-angle-right"></i>
-					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/goods/updategoodsattribute -->
-					<a href="javascript:;" style="color:#999;">修改商品类型</a>
-							</div>
-						<!-- 三级导航菜单 -->
+      <el-form-item label="属性排序">
+        <el-input type="number" v-model="editForm.sort"></el-input>
+      </el-form-item>
 
-			<div class="right-side-operation">
-				<ul>
-					<li>
-						<a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-						<div class="popover">
-							<div class="arrow"></div>
-							<div class="popover-content">
-								<div>
-																		<h4>功能提示</h4>
-									<p class="function-prompts"></p>
-								</div>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="ns-main">
+      <el-form-item label="是否启用">
+        <el-switch  active-text="是" inactive-text="否" v-model="editForm.isVisible"></el-switch>
+      </el-form-item>
 
-<div class="space-10"></div>
-<div class="set-style">
-	<dl>
-		<dt><span class="color-red">*</span>类型名称：</dt>
-		<dd>
-			<input id="attr_name" type="text" placeholder="请输入类型名称" value="铁皮石斛" class="input-common">
-			<span class="error">请输入类型名称</span>
-		</dd>
-	</dl>
-	<dl>
-		<dt><span class="color-red">&nbsp;</span>属性排序：</dt>
-		<dd>
-			<input id="sort" type="number" value="0" class="input-common harf">
-		</dd>
-	</dl>
-	<dl>
-		<dt><span class="color-red">&nbsp;</span>是否启用：</dt>
-		<dd>
-			<input id="is_visible" type="checkbox" class="checkbox" checked="checked" simpleswitch="0" result="true" style="display: none;"><div class="Switch Switch_FlatRadius On" id="Switch0"><span class="switch-open">是</span><span class="switch-close">否</span></div>
-		</dd>
-	</dl>
-	<dl>
-		<dt><span class="color-red">&nbsp;</span>关联规格：</dt>
-		<dd>
-			<div class="guige_list">
-										<a href="javascript:;" value="17">颜色<img src="/public/admin/images/delete_ico.png" alt=""></a>
-						
-											<a href="javascript:;" value="39">尺码<img src="/public/admin/images/delete_ico.png" alt=""></a>
-						
-								</div>
-			<a href="javascript:;" class="add_relation" data-toggle="modal" data-target="#setGoodsAttribute"><img src="/public/admin/images/add_ico.png" alt=""></a>
-		</dd>
-	</dl>
-	<dl>
-		<dt><span class="color-red">&nbsp;</span>关联品牌：</dt>
-		<dd>
-			<div class="brand_list">
+      <el-form-item label="关联规格">
+        <el-button size="mini" @click="dialogSelectSpecVisible = true">添加</el-button>
+      </el-form-item>
 
-									<a href="javascript:;" value="5">三星<img src="/public/admin/images/delete_ico.png" alt=""></a>
+      <el-form-item label="关联品牌">
+        <el-button size="mini" @click="showBrandSelectDialog()">添加</el-button>
+      </el-form-item>
 
-			</div>
-			<a href="javascript:;" class="add_relation" data-toggle="modal" data-target="#setGoodsBrand"><img src="/public/admin/images/add_ico.png" alt=""></a>
-		</dd>
-	</dl>
+      <el-form-item label="属性">
+        <el-button size="mini" @click="addAttribute()">添加</el-button>
+      </el-form-item>
 
-	<div>
-		<table class="table-class" id="attrList">
-			<colgroup>
-				<col style="width: 2%;">
-				<col style="width: 6%;">
-				<col style="width: 15%;">
-				<col style="width: 15%;">
-				<col style="width: 13%;">
-				<col style="width: 34%;">
-				<col style="width: 15%;">
-			</colgroup>
-			<thead>
-				<tr>
-					<th></th>
-					<th>排序</th>
-					<th align="left">属性名称</th>
-					<th align="left">所属类型</th>
-					<th>是否筛选</th>
-					<th align="left">属性值</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody>
-								<tr class="value_data old_data">
-					<td></td>
-					<td>
-						<input type="number" name="value_sort" value="0" class="input-common short" onchange="updateAttrvalue('value_sort',32,this);">
-					</td>
-					<td>
-						<input type="text" name="value_name" class="input-common middle" value="num" onchange="updateAttrvalue('value_name',32,this);">
+      <el-form-item>
+        <el-table border :data="editForm.attributeList" style="width: 100%">
 
-					</td>
-					<td>
-						<div class="selectric-wrapper selectric-selectbox selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select"><select class="selectbox select-common middle" id="type_box_32" value="2" onchange="updateAttrvalue('type_box',32,this);" tabindex="-1">
-							<option value="1">输入框</option>
-							<option value="2" selected="selected">单选框</option>
-							<option value="3">复选框</option>
-						</select></div><div class="selectric"><span class="selectric-label">单选框</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="" title="输入框">输入框</li><li data-index="1" class="selected" title="单选框">单选框</li><li data-index="2" class="last" title="复选框">复选框</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-					</td>
-					<td style="text-align: center;">
-													<a href="javascript:;" class="is_search" is_search="1" onclick="updateAttrvalue('is_search',32,this);">
-								<img src="/public/admin/images/checked.png" alt="" width="15">
-							</a>
-											</td>
-					<td id="value_32" style="word-break:break-all;" title="1,2,3,4">
-						1,2,3,4					</td>
-					<input type="hidden" class="value_32" value="1,2,3,4">
-					<td style="text-align: center;">
-						<span class="spec_box_32">
-							<a href="javascript:;" id="showAttrbox_32" onclick="showAttrbox(32,17,this);">编辑属性值</a>						</span>
-						<a href="javascript:;" onclick="delOldAttributeValue(this, 17, 32)">删除</a>
-					</td>
-					<input type="hidden" name="attr_value_id" value="32">
-				</tr>
-								<tr class="value_data old_data">
-					<td></td>
-					<td>
-						<input type="number" name="value_sort" value="0" class="input-common short" onchange="updateAttrvalue('value_sort',34,this);">
-					</td>
-					<td>
-						<input type="text" name="value_name" class="input-common middle" value="sdfs " onchange="updateAttrvalue('value_name',34,this);">
+          <el-table-column
+            label="排序"
+            width="90">
+            <template slot-scope="scope">
+              <el-input type="number" size="mini" v-model="scope.row.sort" ></el-input>
+            </template>
+          </el-table-column>
 
-					</td>
-					<td>
-						<div class="selectric-wrapper selectric-selectbox selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select"><select class="selectbox select-common middle" id="type_box_34" value="2" onchange="updateAttrvalue('type_box',34,this);" tabindex="-1">
-							<option value="1">输入框</option>
-							<option value="2" selected="selected">单选框</option>
-							<option value="3">复选框</option>
-						</select></div><div class="selectric"><span class="selectric-label">单选框</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="" title="输入框">输入框</li><li data-index="1" class="selected" title="单选框">单选框</li><li data-index="2" class="last" title="复选框">复选框</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-					</td>
-					<td style="text-align: center;">
-													<a href="javascript:;" class="is_search" is_search="1" onclick="updateAttrvalue('is_search',34,this);">
-								<img src="/public/admin/images/checked.png" alt="" width="15">
-							</a>
-											</td>
-					<td id="value_34" style="word-break:break-all;" title="1,2,3,4,">
-						1,2,3,4,					</td>
-					<input type="hidden" class="value_34" value="1,2,3,4,">
-					<td style="text-align: center;">
-						<span class="spec_box_34">
-							<a href="javascript:;" id="showAttrbox_34" onclick="showAttrbox(34,17,this);">编辑属性值</a>						</span>
-						<a href="javascript:;" onclick="delOldAttributeValue(this, 17, 34)">删除</a>
-					</td>
-					<input type="hidden" name="attr_value_id" value="34">
-				</tr>
-							</tbody>
-		</table>
-		<div style="padding:6px 0;">
-			<a href="javascript:;" onclick="addSpecValue(this)" style="font-size: 12px;"><i class="fa fa-plus"></i>&nbsp;&nbsp;添加一个属性</a>
-		</div>
-	</div>
-<dl>
-	<dt></dt>
-	<dd>
-		<button class="btn-common btn-big" onclick="updateAttributeService();">保存</button>
-		<button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
-	</dd>
-</dl>
-<input type="hidden" id="attr_id" value="17">
-<!-- 点击编辑弹出框开始 -->
-<div class="attr_table" id="Attrbox" style="display:none;">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="myModalLabel">编辑属性值</h3>
-	</div>
-	<dl>
-		<dt><span class="color-red">*</span>属性值：</dt>
-		<dd>
-			<textarea rows="" cols="" id="attr_value" class="textarea-common"></textarea>
-			<p class="hint">一行为一个属性值，多个属性值用换行输入</p>
-		</dd>
-	</dl>
+          <el-table-column
+            label="属性名称">
+            <template slot-scope="scope">
+              <el-input size="mini" v-model="scope.row.name" ></el-input>
+            </template>
+          </el-table-column>
 
-	<div class="modal-footer">
-		<input type="hidden" id="click_order">
-		<button class="btn-common btn-big" onclick="submitAttrValue();hide_modal();">保存</button>
-		<button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true" onclick="hide_modal()">关闭</button>
-	</div>
-</div>
+          <el-table-column
+            label="所属类型"
+            width="110">
+            <template slot-scope="scope">
+              <el-select v-model="scope.row.type" placeholder="请选择">
+                <el-option label="输入框" :value="1"></el-option>
+                <el-option label="单选框" :value="2"></el-option>
+                <el-option label="复选框" :value="3"></el-option>
+              </el-select>
+            </template>
+          </el-table-column>
 
-<!--设置规格 -->
-<div class="modal fade hide" id="setGoodsAttribute" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3>规格关联设置</h3>
-			</div>
-			<div class="modal-body">
-				<table class="attribute_table">	
-					<thead>
-						<tr>
-							<th width="30%">规格</th>
-							<th width="70%">描述</th>
-						</tr>
-					</thead>
-					<tbody>
-													<tr>
-								<td>
-									<label for="attribute_check1">
-										<i class="checkbox-common">
-											<input type="checkbox" id="attribute_check1" value="17" spec_name="颜色" checked="" name="spec">
-										</i>
-										颜色									</label>
-								</td>
-								<td></td>
-							</tr>
-													<tr>
-								<td>
-									<label for="attribute_check2">
-										<i class="checkbox-common">
-											<input type="checkbox" id="attribute_check2" value="26" spec_name="存储内存" name="spec">
-										</i>
-										存储内存									</label>
-								</td>
-								<td></td>
-							</tr>
-													<tr>
-								<td>
-									<label for="attribute_check3">
-										<i class="checkbox-common">
-											<input type="checkbox" id="attribute_check3" value="38" spec_name="颜色" name="spec">
-										</i>
-										颜色									</label>
-								</td>
-								<td></td>
-							</tr>
-													<tr>
-								<td>
-									<label for="attribute_check4">
-										<i class="checkbox-common">
-											<input type="checkbox" id="attribute_check4" value="39" spec_name="尺码" checked="" name="spec">
-										</i>
-										尺码									</label>
-								</td>
-								<td></td>
-							</tr>
-													<tr>
-								<td>
-									<label for="attribute_check5">
-										<i class="checkbox-common">
-											<input type="checkbox" id="attribute_check5" value="40" spec_name="屏幕色彩" name="spec">
-										</i>
-										屏幕色彩									</label>
-								</td>
-								<td></td>
-							</tr>
-													<tr>
-								<td>
-									<label for="attribute_check6">
-										<i class="checkbox-common">
-											<input type="checkbox" id="attribute_check6" value="41" spec_name="主屏分辨率" name="spec">
-										</i>
-										主屏分辨率									</label>
-								</td>
-								<td></td>
-							</tr>
-													<tr>
-								<td>
-									<label for="attribute_check7">
-										<i class="checkbox-common">
-											<input type="checkbox" id="attribute_check7" value="34" spec_name="运行内存" name="spec">
-										</i>
-										运行内存									</label>
-								</td>
-								<td></td>
-							</tr>
-													<tr>
-								<td>
-									<label for="attribute_check8">
-										<i class="checkbox-common">
-											<input type="checkbox" id="attribute_check8" value="42" spec_name="规格1" name="spec">
-										</i>
-										规格1									</label>
-								</td>
-								<td></td>
-							</tr>
-												
-					</tbody>
-				</table>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn-common btn-big" onclick="setSku();">确定</button>
-				<button type="button" class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
-			</div>
-		</div>
-	</div>
-</div>
+          <el-table-column
+            label="是否筛选"
+            width="80">
+            <template slot-scope="scope">
+              <el-switch v-model="scope.row.isSearch">
+              </el-switch>
+            </template>
+          </el-table-column>
 
-<!--设置品牌 -->
-<div class="modal fade hide" id="setGoodsBrand" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3>关联品牌设置</h3>
-			</div>
-			<div class="modal-body">
-				<div class="brand_content">
-										<div class="brand_item " brand_id="4">
-						<div class="img_content"><img src="" alt=""></div>
-						<p>索尼</p>
-					</div>
-										<div class="brand_item select" brand_id="5">
-						<div class="img_content"><img src="" alt=""></div>
-						<p>三星</p>
-					</div>
-										<div class="brand_item " brand_id="2">
-						<div class="img_content"><img src="" alt=""></div>
-						<p>小米</p>
-					</div>
-									</div>
-			</div>
-			<div class="modal-footer">
-				<label class="radio inline normal all-select" style="float: left;">
-					<i class="checkbox-common">
-						<input type="checkbox" name="">
-					</i>
-					<span style="user-select: none">全选</span>
-				</label>
-				<button type="button" class="btn-common btn-big" onclick="setBrand();">确定</button>
-				<button type="button" class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
-			</div>
-		</div>
-	</div>
-</div>
+          <el-table-column
+            label="属性值"
+            width="250">
+            <template slot-scope="scope">
+              {{ scope.row.values.toString() }}
+            </template>
+          </el-table-column>
 
-		</div>
+          <el-table-column label="操作" fixed="right"
+            width="190">
+            <template slot-scope="scope">
+              <el-button size="mini" v-show="scope.row.type === 2 || scope.row.type === 3" @click="showEditAttributeDialog(scope.row)">编辑属性值</el-button>
+              <el-button size="mini" @click="removeAttribute(scope.$index)">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-form-item>
 
-	</div></section>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('editForm')">保存</el-button>
+        <el-button type="info" @click="$router.back()">返回</el-button>
+      </el-form-item>
+    </el-form>
+
+    <el-dialog title="规格关联设置" :visible.sync="dialogSelectSpecVisible">
+       <el-table border :data="specList">
+        <el-table-column
+          type="selection"
+          width="35">
+        </el-table-column>
+        <el-table-column prop="name" label="规格" width="150"></el-table-column>
+        <el-table-column prop="description" label="描述" ></el-table-column>
+      </el-table>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="small" @click="dialogSelectSpecVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="dialogSelectSpecVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog title="关联品牌设置" :visible.sync="dialogSelectBrandVisible">
+      <div style="max-height: 300px; overflow-y: auto;">
+        <el-row>
+          <el-col :span="4" v-for="(brand, index) in brandList" :key="brand.name" :offset="index % 5 ? 1 : 0" style="margin-bottom: 10px">
+            <el-card :body-style="{ padding: '0px', height: '144px' }">
+              <img src="@/assets/img/hamburger.png" style="width: 103.91px; height: 100px">
+              <div>
+                <el-button style="width: 100%" v-if="isNotBrandSelected(brand)" @click="brandSelectChange(brand, true)">{{ brand.name }}</el-button>
+                <el-button style="width: 100%" type="success" v-if="isBrandSelected(brand)" @click="brandSelectChange(brand, false)">{{ brand.name }}</el-button>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
+      </div>
+      <div slot="footer" class="dialog-footer">
+
+        <el-button size="small" type="success" v-if="isBrandSelectedAll()" @click="brandUnSelectAll">全 选</el-button>
+        <el-button size="small" v-if="isNotBrandSelectedAll()" @click="brandSelectAll">全 选</el-button>
+
+        <el-button size="small" @click="dialogSelectBrandVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="saveBrandSelected()">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog title="编辑属性值" :visible.sync="dialogEditAttributeVisible">
+      <el-form :model="editAttributeForm" label-width="100px">
+        <el-form-item label="属性值">
+          <el-input type="textarea" v-model="editAttributeForm.value" auto-complete="off"></el-input>
+          <p class="hint">一行为一个属性值，多个属性值用换行输入</p>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="small" @click="dialogEditAttributeVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="saveAttributeValues()">确 定</el-button>
+      </div>
+    </el-dialog>
+
+  </div>
 </template>
+
+<script>
+export default {
+  name: 'edit',
+  data () {
+    return {
+      editAttributeForm: {},
+      dialogEditAttributeVisible: false,
+      dialogSelectSpecVisible: false,
+      brandSelectedList: [],
+      dialogSelectBrandVisible: false,
+      specList: [
+        {
+          name: '手机尺寸',
+          description: ''
+        }, {
+          name: '尺码',
+          description: ''
+        }, {
+          name: '颜色',
+          description: ''
+        }
+      ],
+      brandList: [
+        {
+          name: '娃哈哈',
+          images: ''
+        }, {
+          name: '娃哈哈1',
+          images: ''
+        }, {
+          name: '娃哈哈2',
+          images: ''
+        }, {
+          name: '娃哈哈3',
+          images: ''
+        }, {
+          name: '小米',
+          images: ''
+        }, {
+          name: '三星',
+          images: ''
+        }, {
+          name: '索尼',
+          images: ''
+        }
+      ],
+      editForm: {
+        relatedBrands: [],
+        attributeList: []
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入类型名称', trigger: 'blur' }
+        ]
+      }
+    }
+  },
+
+  methods: {
+    submitForm () {
+      console.log('submitForm', this.editForm)
+    },
+
+    showEditAttributeDialog (attribute) {
+      this.editAttributeForm.value = attribute.values.join('\n')
+      this.editAttributeForm.attribute = attribute
+      this.dialogEditAttributeVisible = true
+    },
+    saveAttributeValues () {
+      this.editAttributeForm.attribute.values = this.editAttributeForm.value
+        .split('\n')
+        .map(string => string.trim())
+        .filter(string => string.length > 0)
+      this.dialogEditAttributeVisible = false
+    },
+
+    isNotBrandSelected (brand) {
+      return this.brandSelectedList.findIndex(item => item.name === brand.name) === -1
+    },
+
+    isBrandSelected (brand) {
+      return !this.isNotBrandSelected(brand)
+    },
+
+    isBrandSelectedAll () {
+      return this.brandSelectedList.length === this.brandList.length
+    },
+
+    isNotBrandSelectedAll () {
+      return this.brandSelectedList.length !== this.brandList.length
+    },
+
+    brandSelectAll () {
+      this.brandList.forEach(brandItem => this.brandSelectChange(brandItem, true))
+    },
+
+    brandUnSelectAll () {
+      this.brandList.forEach(brandItem => this.brandSelectChange(brandItem, false))
+    },
+
+    brandSelectChange (brand, bool) {
+      let index = this.brandSelectedList.findIndex(item => item.name === brand.name)
+      // add
+      if (bool && index === -1) {
+        this.brandSelectedList.push(brand)
+      } else if (bool) {
+        // no change
+      } else if (index !== -1) {
+        // remove
+        this.brandSelectedList.splice(index, 1)
+      }
+    },
+
+    saveBrandSelected () {
+      this.editForm.relatedBrands = []
+      this.brandSelectedList.forEach(brandItem => this.editForm.relatedBrands.push(brandItem))
+      this.dialogSelectBrandVisible = false
+    },
+
+    showBrandSelectDialog () {
+      this.brandSelectedList = []
+      this.editForm.relatedBrands.forEach(brandItem => this.brandSelectedList.push(brandItem))
+      this.dialogSelectBrandVisible = true
+    },
+
+    addAttribute () {
+      this.editForm.attributeList.push({id: new Date().getTime(), values: []})
+    },
+
+    removeAttribute (index) {
+      this.editForm.attributeList.splice(index, 1)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.hint {
+  font-size: 12px;
+  line-height: 16px;
+  color: #999999;
+  margin: 10px 0 0;
+}
+
+.important-note {
+  color: #ff6600;
+  font-style: normal;
+}
+</style>

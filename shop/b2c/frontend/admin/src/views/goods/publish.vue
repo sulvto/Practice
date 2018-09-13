@@ -6,15 +6,15 @@
 
           <!-- 基础设置 -->
         <h4>商品类型</h4>
-
-        <el-radio-group v-model="editForm.type" style="padding-left: 30px!important;" >
-          <el-radio :label="10" border>实物商品（物流发货）</el-radio>
-          <el-radio :label="20" border>网上服务（虚拟商品）</el-radio>
-          <el-radio :label="21" border>网盘下载（虚拟商品）</el-radio>
-          <el-radio :label="22" border>点卡（虚拟商品）</el-radio>
-          <el-radio :label="23" border>网站下载（虚拟商品）</el-radio>
-        </el-radio-group>
-
+        <div class="center-block">
+          <el-radio-group v-model="editForm.type" style="padding-left: 30px!important;" >
+            <el-radio :label="10" border>实物商品（物流发货）</el-radio>
+            <el-radio :label="20" border>网上服务（虚拟商品）</el-radio>
+            <el-radio :label="21" border>网盘下载（虚拟商品）</el-radio>
+            <el-radio :label="22" border>点卡（虚拟商品）</el-radio>
+            <el-radio :label="23" border>网站下载（虚拟商品）</el-radio>
+          </el-radio-group>
+        </div>
         <el-form ref="editForm" :rules="rules" :model="editForm" label-width="120px" size="small" label-position="right">
 
           <h4>基础信息</h4>
@@ -891,5 +891,9 @@ h4 {
 
 .hint.notice {
   color: #FF8400;
+}
+
+.center-block {
+  text-align: center
 }
 </style>

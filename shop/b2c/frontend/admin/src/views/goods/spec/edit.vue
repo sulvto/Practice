@@ -1,121 +1,80 @@
 <template>
+  <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
-	<section class="ns-base-section">
+    <el-form-item label="规格名称" prop="name">
+      <el-input v-model="editForm.name"></el-input>
+    </el-form-item>
 
-		<div style="position:relative;margin:0;">
-			<!-- 面包屑导航 -->
-						<div class="breadcrumb-nav">
-				<a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
-									<i class="fa fa-angle-right"></i>
-					<a href="/goods/goodslist.html">商品</a>
-									<i class="fa fa-angle-right"></i>
-					<!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/goods/updategoodsspec -->
-					<a href="javascript:;" style="color:#999;">修改商品规格</a>
-							</div>
-						<!-- 三级导航菜单 -->
+    <el-form-item label="规格排序" >
+      <el-input type="number" v-model="editForm.sort"></el-input>
+    </el-form-item>
 
-			<div class="right-side-operation">
-				<ul>
-					<li>
-						<a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-						<div class="popover">
-							<div class="arrow"></div>
-							<div class="popover-content">
-								<div>
-																		<h4>功能提示</h4>
-									<p class="function-prompts"></p>
-								</div>
-							</div>
-						</div>
-					</li>
+    <el-form-item label="是否启用">
+      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isEnable"></el-switch>
+    </el-form-item>
 
-				</ul>
-			</div>
-		</div>
+    <el-form-item label="是否筛选">
+      <el-switch  active-text="是" inactive-text="否" v-model="editForm.is_screen"></el-switch>
+    </el-form-item>
 
-		<div class="ns-main">
+    <el-form-item label="展示方式">
+      <el-radio-group v-model="editForm.showType">
+        <el-radio label="1">文字</el-radio>
+        <el-radio label="2">颜色</el-radio>
+        <el-radio label="3">图片</el-radio>
+      </el-radio-group>
+    </el-form-item>
 
-<div class="space-10"></div>
-<div class="set-style">
-	<dl>
-		<dt><span class="color-red">*</span>规格名称：</dt>
-		<dd>
-			<input id="spec_name" type="text" value="尺码" placeholder="请输入规格名称" class="input-common">
-			<span class="error">请输入规格名称</span>
-		</dd>
-	</dl>
-	<dl>
-		<dt><span class="color-red">&nbsp;</span>规格排序：</dt>
-		<dd>
-			<input id="sort" type="number" value="1" class="input-common harf">
-		</dd>
-	</dl>
-	<dl>
-		<dt><span class="color-red">&nbsp;</span>是否启用：</dt>
-		<dd>
-			<input id="is_visible" type="checkbox" class="checkbox" checked="checked" simpleswitch="0" result="true" style="display: none;"><div class="Switch Switch_FlatRadius On" id="Switch0"><span class="switch-open">是</span><span class="switch-close">否</span></div>
-		</dd>
-	</dl>
-	<dl>
-		<dt><span class="color-red">&nbsp;</span>是否筛选：</dt>
-		<dd>
-			<input id="is_screen" type="checkbox" class="checkbox" checked="checked" simpleswitch="1" result="true" style="display: none;"><div class="Switch Switch_FlatRadius On" id="Switch1"><span class="switch-open">是</span><span class="switch-close">否</span></div>
-		</dd>
-	</dl>
-	<dl>
-		<dt><span class="color-red">&nbsp;</span>展示方式：</dt>
-		<dd>
-			<label class="line-label">
-				<i class="radio-common selected">
-					<input type="radio" name="show_type" id="show_type1" value="1" checked="" onchange="change_show_type(1)">
-				</i>
-				文字
-			</label>
-			<label class="line-label">
-				<i class="radio-common ">
-					<input type="radio" name="show_type" id="show_type2" value="2" onchange="change_show_type(2)">
-				</i>
-				颜色
-			</label>
-			<label class="line-label">
-				<i class="radio-common ">
-					<input type="radio" name="show_type" id="show_type3" value="3" onchange="change_show_type(3)">
-				</i>
-				图片
-			</label>
-		</dd>
-	</dl>
-	
-	<dl>
-		<dt><span class="color-red">*</span>规格值：</dt>
-		<dd>
-			<textarea rows="" cols="" id="spec_value" class="textarea-common big">M
-L
-XL
-</textarea>
-			<p class="hint">一行为一个规格项，多个规格项用换行输入</p>
-		</dd>
-	</dl>
+    <el-form-item label="规格值" prop="value">
+      <el-input type="textarea" v-model="editForm.value"></el-input>
+      <p class="hint">一行为一个规格项，多个规格项用换行输入</p>
+    </el-form-item>
 
-	<dl>
-		<dt>规格说明：</dt>
-		<dd>
-			<textarea class="textarea-common big" placeholder="请输入规格说明" id="spec_des"></textarea>
-		</dd>
-	</dl>
+    <el-form-item label="规格说明" >
+      <el-input type="textarea" v-model="editForm.description"></el-input>
+    </el-form-item>
 
-	<dl>
-		<dt></dt>
-		<dd>
-			<button class="btn-common btn-big" onclick="updateGoodsSpec();">保存</button>
-			<button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
-		</dd>
-	</dl>
-
-	<input type="hidden" id="spec_id" name="spec_id" value="39">
-</div>
-
-		</div>
-
-	</section>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('editForm')">保存</el-button>
+      <el-button type="info" @click="$router.back()">返回</el-button>
+    </el-form-item>
+  </el-form>
 </template>
+
+<script>
+export default {
+  name: 'edit',
+  data () {
+    return {
+      editForm: {},
+      rules: {
+        name: [
+          { required: true, message: '请输入规格名称', trigger: 'blur' }
+        ],
+        value: [
+          { required: true, message: '请输入规格值', trigger: 'blur' }
+        ]
+      }
+    }
+  },
+  methods: {
+    submitForm () {
+      console.log('submitForm', this.editForm)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.hint {
+  font-size: 12px;
+  line-height: 16px;
+  color: #999999;
+  margin: 10px 0 0;
+}
+
+.important-note {
+  color: #ff6600;
+  font-style: normal;
+}
+</style>

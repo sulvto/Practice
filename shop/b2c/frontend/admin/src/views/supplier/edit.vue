@@ -1,86 +1,62 @@
 <template>
+  <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
-  <section class="ns-base-section">
+    <el-form-item label="供货商名称" prop="name">
+      <el-input v-model="editForm.name"></el-input>
+    </el-form-item>
 
-    <div style="position:relative;margin:0;">
-    <!-- 面包屑导航 -->
-          <div class="breadcrumb-nav">
-              <a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
-              <i class="fa fa-angle-right"></i>
-              <a href="/goods/goodslist.html">商品</a>
-              <i class="fa fa-angle-right"></i>
-              <!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/member/updatesupplier -->
-              <a href="javascript:;" style="color:#999;">修改供货商</a>
-          </div>
+    <el-form-item label="联系人姓名" prop="contacts">
+      <el-input v-model="editForm.contacts"></el-input>
+    </el-form-item>
 
-          <!-- 三级导航菜单 -->
-    <div class="right-side-operation">
-      <ul>
-        <li>
-          <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-          <div class="popover">
-            <div class="arrow"></div>
-            <div class="popover-content">
-              <div>
-                                  <h4>功能提示</h4>
-                <p class="function-prompts"></p>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    </div>
+    <el-form-item label="联系人电话" prop="contactNumber">
+      <el-input v-model="editForm.contactNumber"></el-input>
+    </el-form-item>
 
-    <div class="ns-main">
+    <el-form-item label="联系人地址" prop="address">
+      <el-input v-model="editForm.address"></el-input>
+    </el-form-item>
 
-          <div class="set-style">
-              <dl>
-                  <dt><span class="required">*</span>供货商名称：</dt>
-                  <dd>
-                      <input type="text" id="supplier_name" value="小米供货商" class="input-common">
-                      <p class="error">请输入供货商名称</p>
-                  </dd>
-              </dl>
-              <dl>
-                  <dt><span class="required">*</span>联系人姓名：</dt>
-                  <dd>
-                      <input type="text" id="linkman_name" value="xm" class="input-common">
-                      <p class="error">请输入联系人姓名</p>
-                  </dd>
-              </dl>
-              <dl>
-                  <dt><span class="required">*</span>联系人电话：</dt>
-                  <dd>
-                      <input type="text" id="linkman_tel" value="11111" class="input-common">
-                      <p class="error">请输入联系人电话</p>
-                  </dd>
-              </dl>
-              <dl>
-                  <dt><span class="required">*</span>联系人地址：</dt>
-                  <dd>
-                      <textarea class="textarea-common" id="linkman_address">1111</textarea>
-                      <p class="error">请输入联系地址</p>
-                  </dd>
-              </dl>
-              <dl>
-                  <dt>供货商描述：</dt>
-                  <dd>
-                      <textarea id="desc" class="textarea-common">奥术大师大多</textarea>
-                  </dd>
-              </dl>
-              <dl>
-                  <dt></dt>
-                  <dd>
-                      <button class="btn-common btn-big" onclick="updateSupplier();">保存</button>
-                      <button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
-                  </dd>
-              </dl>
-          </div>
-          <input type="hidden" id="supplier_id" value="1">
+    <el-form-item label="供货商描述">
+      <el-input type="textarea" v-model="editForm.description"></el-input>
+    </el-form-item>
 
-      </div>
-
-  </section>
-
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('editForm')">保存</el-button>
+      <el-button type="info" @click="$router.back()">返回</el-button>
+    </el-form-item>
+  </el-form>
 </template>
+
+<script>
+export default {
+  name: 'supplierEdit',
+  data () {
+    return {
+      editForm: {},
+      rules: {
+        name: [
+          { required: true, message: '请输入供货商名称', trigger: 'blur' }
+        ],
+        contacts: [
+          { required: true, message: '请输入联系人姓名', trigger: 'blur' }
+        ],
+        contactNumber: [
+          { required: true, message: '请输入联系人电话', trigger: 'blur' }
+        ],
+        address: [
+          { required: true, message: '请输入联系地址', trigger: 'blur' }
+        ]
+      }
+    }
+  },
+  methods: {
+    submitForm () {
+      console.log('submitForm', this.editForm)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+</style>

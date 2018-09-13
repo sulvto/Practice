@@ -13,11 +13,11 @@ import GoodsBrandEdit from '@/views/goods/brand/edit.vue'
 import GoodsLabelList from '@/views/goods/label/list.vue'
 import GoodsLabelEdit from '@/views/goods/label/edit.vue'
 import GoodsSpecList from '@/views/goods/spec/list.vue'
-// import GoodsSpecEdit from '@/views/goods/spec/edit.vue'
+import GoodsSpecEdit from '@/views/goods/spec/edit.vue'
 import SupplierList from '@/views/supplier/list.vue'
 import SupplierEdit from '@/views/supplier/edit.vue'
 import GoodsAttributeList from '@/views/goods/attribute/list.vue'
-// import GoodsAttributeEdit from '@/views/goods/attribute/edit.vue'
+import GoodsAttributeEdit from '@/views/goods/attribute/edit.vue'
 import GoodsComment from '@/views/goods/comment.vue'
 
 import SystemAlbumList from '@/views/system/album/list.vue'
@@ -302,33 +302,85 @@ export default new Router({
         name: 'goodsBrandEdit',
         component: GoodsBrandEdit
       }, {
-        path: 'labellist.html',
-        name: 'goodsLabelList',
-        component: GoodsLabelList
+        path: 'label',
+        name: '商品标签',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '商品标签列表',
+            component: GoodsLabelList
+          }, {
+            path: 'edit.html',
+            name: '编辑商品标签',
+            component: GoodsLabelEdit
+          }
+        ]
       }, {
         path: 'labeledit.html',
         name: 'goodsLabelEdit',
         component: GoodsLabelEdit
       }, {
-        path: 'speclist.html',
-        name: 'goodsSpecList',
-        component: GoodsSpecList
+        path: 'spec',
+        name: '商品规格',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '商品规格列表',
+            component: GoodsSpecList
+          }, {
+            path: 'edit.html',
+            name: '编辑商品规格',
+            component: GoodsSpecEdit
+          }
+        ]
       }, {
-        path: 'supplierlist.html',
-        name: 'supplierList',
-        component: SupplierList
-      }, {
-        path: 'supplieredit.html',
-        name: 'supplierEdit',
-        component: SupplierEdit
+        path: 'supplier',
+        name: '供货商',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '供货商列表',
+            component: SupplierList
+          }, {
+            path: 'edit.html',
+            name: '编辑供货商',
+            component: SupplierEdit
+          }
+        ]
       }, {
         path: 'consult.html',
         name: 'saleserviceConsult',
         component: SaleserviceConsult
       }, {
-        path: 'attributelist.html',
-        name: 'attributeList',
-        component: GoodsAttributeList
+        path: 'attribute',
+        name: '商品类型',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '商品类型列表',
+            component: GoodsAttributeList
+          }, {
+            path: 'edit.html',
+            name: '编辑商品类型',
+            component: GoodsAttributeEdit
+          }
+        ]
       }, {
         path: 'comment.html',
         name: 'comment',

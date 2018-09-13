@@ -5,344 +5,367 @@
                                         <router-view/>
                                     </article> -->
 
-        <el-container>
-            <el-header style="background-color: #545c64;">
-                <el-row :gutter="20">
-                    <el-col :span="4">
-                        <div class="ns-logo" onclick="location.href='http://showfx.niuteam.cn/admin.html';"></div>
-                        <div class="ns-search">
-                            <div class="nav-menu js-nav">
-                                <img src="@/assets/img/nav_menu.png" title="导航管理">
-                            </div>
-                            <div class="ns-navigation-management" style="display: none;">
-                                <div class="ns-navigation-title">
-                                    <h4>导航管理</h4>
-                                    <span>x</span>
-                                </div>
-                                <div style="height:40px;"></div>
-                                <dl>
-                                    <dt>首页</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/index/index.html">欢迎页</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>商品</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/goods/goodslist.html">商品列表</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/goods/addgoods.html">商品发布</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/goods/goodscategorylist.html">商品分类</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/goods/goodsbrandlist.html">商品品牌</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/goods/goodsgrouplist.html">商品标签</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/goods/goodsspeclist.html">商品规格</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/member/supplierlist.html">供货商</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/goods/attributelist.html">商品类型</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/saleservice/consultlist.html">咨询管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/goods/goodscomment.html">商品评价</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/system/albumlist.html">相册管理</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>订单</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/order/orderlist.html">订单列表</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/order/virtualorderlist.html">虚拟订单</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/tuangou/pintuanOrderList.html">拼团订单</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/orderpresell/orderPresellList.html">预售订单</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Order/bargainOrder.html">砍价订单</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/order/invoiceList.html">发票管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Order/customerServiceList.html">售后服务</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>营销</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/coupontypelist.html">优惠券</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/pointconfig.html">积分管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/giftlist.html">赠品</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/mansonglist.html">满减送</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Bargain/index.html">砍价活动</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/getdiscountlist.html">限时折扣</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/combopackagepromotionlist.html">组合套餐</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/fullshipping.html">满额包邮</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/integral.html">奖励规则</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Promotion/promotionGamesList.html">互动游戏</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Promotion/groupBuyList.html">团购</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/tuangou/pintuanlist.html">拼团</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/promotion/topiclist.html">专题活动</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>会员</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/member/memberlist.html">会员列表</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/member/memberlevellist.html">会员等级</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/member/usercommissionwithdrawlist.html">会员提现</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/member/pointlist.html">积分管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/member/accountlist.html">余额管理</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>数据</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/account/shopsalesaccount.html">销售概况</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/account/shopgoodssaleslist.html">商品分析</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/account/shopgoodsgroupsalecount.html">同行热卖</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/account/shopreport.html">运营报告</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/account/shopgoodssalesrank.html">销售排行</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>微信</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/appletConfig.html">微信小程序管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/config.html">公众号管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/menu.html">微信菜单管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/weixinqrcodetemplate.html">推广二维码管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/replayconfig.html">回复设置</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/materialmessage.html">消息素材管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/shareconfig.html">分享内容设置</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/menu_wchat.html?addons=wxtemplatemsg">模板消息设置</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/member/weixinfanslist.html">粉丝列表</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/wchat/keyConcernConfig.html">一键关注设置</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Wchat/fansMessageManage.html">客服管理</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>佣金</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Commission/userAccountList.html">推广员佣金</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Commission/commissionDistributionList.html">三级分销</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Commission/commissionPartnerList.html">股东分红</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Commission/commissionRegionAgentList.html">区域代理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Commission/commissionPartnerGlobalList.html">全球分红</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Commission/userCommissionWithdrawList.html">会员提现</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>网站</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/config/usernotice.html">首页公告</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/config/shopnavigationlist.html">导航管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/system/goodscategoryblock.html">商品楼层</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/config/pctemplate.html">店铺装修</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/config/searchconfig.html">搜索</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/system/shopadvlist.html">广告管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/cms/articlelist.html">文章管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/cms/topiclist.html">专题列表</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/config/helpdocument.html">站点帮助</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/config/linklist.html">友情链接</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>分销</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Distribution/promoterList.html">推广员管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Distribution/goodsCommissionRateList.html">商品分销</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Distribution/threeLevelDistributionConfig.html">三级分销</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Distribution/regionalAgent.html">区域代理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Distribution/shareholderDividendsConfig.html">股东分红</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Distribution/globalBonusPoolConfig.html">全球分红</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>设置</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/config/webconfig.html">基础设置</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/config/shopset.html">交易设置</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/express/expresscompany.html">配送管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/dbdatabase/databaselist.html">数据库管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/auth/userlist.html">管理员列表</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/Verification/index.html">核销设置</a>
-                                    </dd>
-                                </dl>
-                                <dl>
-                                    <dt>系统</dt>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/upgrade/onlineupdate.html">在线更新</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/upgrade/devolutioninfo.html">授权信息</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/extend/addonslist.html">插件管理</a>
-                                    </dd>
-                                    <dd>
-                                        <a href="http://showfx.niuteam.cn/admin/extend/hookslist.html">钩子管理</a>
-                                    </dd>
-                                </dl>
-                            </div>
-                            <div class="ns-search-block">
-                                <i class="fa fa-search" title="搜索"></i>
-                                <span>搜索</span>
-                                <div class="mask-layer-search" style="display: none;">
-                                    <input type="text" id="search_goods" placeholder="搜索">
-                                    <a href="javascript:search();"><img src="@/assets/img/enter.png"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </el-col>
-                    <el-col :span="16">
-                        <el-menu
-                          background-color="#545c64"
-                          text-color="#fff"
-                          active-text-color="#ffd04b" :default-active="verticalMenu.path" mode="horizontal" @select="handleSelect" :router='true'>
-                            <el-menu-item v-for="item in menuList" :key="item.path" :index='item.path'>{{item.name}}</el-menu-item>
-                        </el-menu>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="grid-content bg-purple"></div>
-                    </el-col>
-                </el-row>
-            </el-header>
+            <div class="header">
+              <div class="ns-logo" :style="'background: url(' + topLogoImage + ') no-repeat center; background-size: 65%;'" onclick="location.href='http://showfx.niuteam.cn/admin.html';"></div>
+              <div class="ns-search">
+                  <div class="nav-menu js-nav">
+                      <img src="@/assets/img/nav_menu.png" title="导航管理">
+                  </div>
+                  <div class="ns-navigation-management" style="display: none;">
+                      <div class="ns-navigation-title">
+                          <h4>导航管理</h4>
+                          <span>x</span>
+                      </div>
+                      <div style="height:40px;"></div>
+                      <dl>
+                          <dt>首页</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/index/index.html">欢迎页</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>商品</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/goods/goodslist.html">商品列表</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/goods/addgoods.html">商品发布</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/goods/goodscategorylist.html">商品分类</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/goods/goodsbrandlist.html">商品品牌</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/goods/goodsgrouplist.html">商品标签</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/goods/goodsspeclist.html">商品规格</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/member/supplierlist.html">供货商</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/goods/attributelist.html">商品类型</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/saleservice/consultlist.html">咨询管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/goods/goodscomment.html">商品评价</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/system/albumlist.html">相册管理</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>订单</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/order/orderlist.html">订单列表</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/order/virtualorderlist.html">虚拟订单</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/tuangou/pintuanOrderList.html">拼团订单</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/orderpresell/orderPresellList.html">预售订单</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Order/bargainOrder.html">砍价订单</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/order/invoiceList.html">发票管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Order/customerServiceList.html">售后服务</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>营销</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/coupontypelist.html">优惠券</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/pointconfig.html">积分管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/giftlist.html">赠品</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/mansonglist.html">满减送</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Bargain/index.html">砍价活动</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/getdiscountlist.html">限时折扣</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/combopackagepromotionlist.html">组合套餐</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/fullshipping.html">满额包邮</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/integral.html">奖励规则</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Promotion/promotionGamesList.html">互动游戏</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Promotion/groupBuyList.html">团购</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/tuangou/pintuanlist.html">拼团</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/promotion/topiclist.html">专题活动</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>会员</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/member/memberlist.html">会员列表</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/member/memberlevellist.html">会员等级</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/member/usercommissionwithdrawlist.html">会员提现</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/member/pointlist.html">积分管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/member/accountlist.html">余额管理</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>数据</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/account/shopsalesaccount.html">销售概况</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/account/shopgoodssaleslist.html">商品分析</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/account/shopgoodsgroupsalecount.html">同行热卖</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/account/shopreport.html">运营报告</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/account/shopgoodssalesrank.html">销售排行</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>微信</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/appletConfig.html">微信小程序管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/config.html">公众号管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/menu.html">微信菜单管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/weixinqrcodetemplate.html">推广二维码管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/replayconfig.html">回复设置</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/materialmessage.html">消息素材管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/shareconfig.html">分享内容设置</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/menu_wchat.html?addons=wxtemplatemsg">模板消息设置</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/member/weixinfanslist.html">粉丝列表</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/wchat/keyConcernConfig.html">一键关注设置</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Wchat/fansMessageManage.html">客服管理</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>佣金</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Commission/userAccountList.html">推广员佣金</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Commission/commissionDistributionList.html">三级分销</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Commission/commissionPartnerList.html">股东分红</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Commission/commissionRegionAgentList.html">区域代理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Commission/commissionPartnerGlobalList.html">全球分红</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Commission/userCommissionWithdrawList.html">会员提现</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>网站</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/config/usernotice.html">首页公告</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/config/shopnavigationlist.html">导航管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/system/goodscategoryblock.html">商品楼层</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/config/pctemplate.html">店铺装修</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/config/searchconfig.html">搜索</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/system/shopadvlist.html">广告管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/cms/articlelist.html">文章管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/cms/topiclist.html">专题列表</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/config/helpdocument.html">站点帮助</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/config/linklist.html">友情链接</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>分销</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Distribution/promoterList.html">推广员管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Distribution/goodsCommissionRateList.html">商品分销</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Distribution/threeLevelDistributionConfig.html">三级分销</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Distribution/regionalAgent.html">区域代理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Distribution/shareholderDividendsConfig.html">股东分红</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Distribution/globalBonusPoolConfig.html">全球分红</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>设置</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/config/webconfig.html">基础设置</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/config/shopset.html">交易设置</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/express/expresscompany.html">配送管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/dbdatabase/databaselist.html">数据库管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/auth/userlist.html">管理员列表</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/Verification/index.html">核销设置</a>
+                          </dd>
+                      </dl>
+                      <dl>
+                          <dt>系统</dt>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/upgrade/onlineupdate.html">在线更新</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/upgrade/devolutioninfo.html">授权信息</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/extend/addonslist.html">插件管理</a>
+                          </dd>
+                          <dd>
+                              <a href="http://showfx.niuteam.cn/admin/extend/hookslist.html">钩子管理</a>
+                          </dd>
+                      </dl>
+                  </div>
+                  <div class="ns-search-block">
+                      <i class="el-icon-search" title="搜索"></i>
+                      <span>搜索</span>
+                      <div class="mask-layer-search" style="display: none;">
+                          <input type="text" id="search_goods" placeholder="搜索">
+                          <a href="javascript:search();"><img src="@/assets/img/enter.png"></a>
+                      </div>
+                  </div>
+              </div>
+              <el-menu class="nav"
+                background-color="#393939"
+                text-color="#fff"
+                active-text-color="#ffd04b" :default-active="verticalMenu.path" mode="horizontal" @select="handleSelect" :router='true'>
+                  <el-menu-item v-for="item in menuList" :key="item.path" :index='item.path'>{{item.name}}</el-menu-item>
+              </el-menu>
+              <div class="ns-base-tool">
+              <i class="i-home" :style="'background: url(' + baseToolImage + ') no-repeat'" title="前台首页">
+                <a href="http://showfx.niuteam.cn" target="_blank"></a>
+              </i>
+              <i class="i-close" :style="'background: url(' + baseToolImage + ') no-repeat -76px 0'" title="退出登录"><a href="http://showfx.niuteam.cn/admin/login/logout.html"></a></i>
+              <i class="ns-vertical-bar"></i>
+              <div class="ns-help" @mouseover="showUCA = true" @mouseout="showUCA = false">
+                <div class="logo">
+                  <img src="@/assets/img/user_admin_blue.png" width="30">
+                </div>
+                <span>admin</span>
+                <i class="el-icon-arrow-down"></i>
+                <ul v-show="showUCA">
+                  <li title="修改密码">
+                    <img src="@/assets/img/add_favorites.png">
+                    <el-button type="text">修改密码</el-button>
+                  </li>
+                  <li title="清理缓存" onclick="delcache()">
+                    <img src="@/assets/img/clear_the_cache.png">
+                    <el-button type="text">清理缓存</el-button>
+                  </li>
+                  <li title="加入收藏" onclick="addFavorite()">
+                    <img src="@/assets/img/add_favorites.png">
+                    <el-button type="text">加入收藏</el-button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            </div>
             <el-container>
-                <el-aside width="200px">
-                    <el-menu :default-active="activeVerticalMenuItem" @open="handleOpen" @close="handleClose" :router='true'>
+                <el-aside class="aside-fixed-top" width="200px" style="background-color: rgb(238, 241, 246)">
+                    <el-menu
+                      style="overflow: scroll;"
+                      :default-active="activeVerticalMenuItem"
+                      @open="handleOpen"
+                      @close="handleClose"
+                      :router='true'>
                         <el-submenu index="1">
                             <template slot="title">
                                         <i class="el-icon-menu"></i>
                                         <span>{{verticalMenu.name}}</span>
-</template>
+                            </template>
                             <el-menu-item-group >
                                 <el-menu-item v-for="item in verticalMenu.children" :key="item.path" :index="item.path">{{item.name}}</el-menu-item>
                             </el-menu-item-group>
@@ -385,11 +408,13 @@
                     <router-view/>
                 </el-main>
             </el-container>
-        </el-container>
     </div>
 </template>
 
 <script>
+import topLogoImage from '@/assets/img/top_logo.png'
+import baseToolImage from '@/assets/img/base_tool.png'
+
 export default {
   name: 'app',
   watch: {
@@ -447,6 +472,9 @@ export default {
   },
   data () {
     return {
+      showUCA: false,
+      baseToolImage: baseToolImage,
+      topLogoImage: topLogoImage,
       verticalMenu: {},
       breadcrumb: [],
       menuList: [
@@ -499,19 +527,19 @@ export default {
               name: '商品品牌'
             },
             {
-              path: '/goods/labellist.html',
+              path: '/goods/label/list.html',
               name: '商品标签'
             },
             {
-              path: '/goods/speclist.html',
+              path: '/goods/spec/list.html',
               name: '商品规格'
             },
             {
-              path: '/goods/supplierlist.html',
+              path: '/goods/supplier/list.html',
               name: '供货商'
             },
             {
-              path: '/goods/attributelist.html',
+              path: '/goods/attribute/list.html',
               name: '商品类型'
             },
             {
@@ -880,4 +908,167 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  margin: 0px;
+}
+img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+.header {
+  background: #393939;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  z-index: 2000;
+  border-left: 1px solid transparent;
+
+  .ns-logo, .ns-search {
+    float: left;
+  }
+  .ns-logo {
+    height: 60px;
+    width: 139px;
+    line-height: 60px;
+    cursor: pointer;
+  }
+  .ns-search {
+    padding: 0 20px 0 0;
+    height: 60px;
+    position: relative;
+    .nav-menu {
+      cursor: pointer;
+      padding: 0 20px;
+      background: #4C4C4C;
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+  .ns-search-block {
+    display: inline-block;
+    position: relative;
+    height: 60px;
+    padding: 0 15px;
+    transition: background 0.5s;
+    -webkit-transition: background 0.5s;
+    cursor: pointer;
+  }
+  .nav {
+    overflow: hidden;
+    float: left;
+  }
+  .ns-base-tool {
+    position: absolute;
+    right: 0;
+    i[class*="i-"] {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin: 0 10px 0 5px;
+      a {
+        display: block;
+        height: 20px;
+        line-height: 20px;
+      }
+    }
+    .ns-help  {
+      display: inline-block;
+      height: 60px;
+      cursor: pointer;
+      position: relative;
+      padding: 0 10px;
+      margin-right: 15px;
+      .logo {
+        float: left;
+        width: 30px;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        position: absolute;
+        right: -10px;
+        width: 220px;
+        background: #ffffff;
+        box-shadow: 0px 0px 10px #999;
+        li {
+          line-height: 20px;
+          padding: 10px;
+          border-bottom: 1px solid #E1E1E1;
+          text-indent: 10px;
+          transition: background 0.3s;
+          -webkit-transition: background 0.3s;
+          img {
+            margin-right: 10px;
+          }
+          &:hover {
+            background: #E4F3FF;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ns-vertical-bar {
+  border-left: 1px solid #ffffff;
+  vertical-align: middle;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  margin: 0 5px 0 0;
+}
+
+.aside-fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  margin-top: 60px;
+}
+.el-main {
+  margin-top: 60px;
+  margin-left: 200px;
+}
+
+/*滚动条整体部分*/
+::-webkit-scrollbar{
+  width: 7px;
+  height: 7px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+
+/*滚动条两端的箭头*/
+::-webkit-scrollbar-button{
+  display: none;
+}
+/*经测试好像并不能控制什么*/
+::-webkit-scroll-track{
+  display: none;
+}
+/*滚动条内侧部分 去掉*/
+::-webkit-scrollbar-track-piece {
+  display: none;
+}
+/*滚动条中可以拖动的那部分*/
+::-webkit-scrollbar-thumb{
+  background-color: rgb(127, 151, 127);
+  border-radius: 4px;
+}
+/*变角部分*/
+::-webkit-scrollbar-corner {
+  display: none;
+}
+::-webkit-resizer{
+  display: none;
+}
 </style>
