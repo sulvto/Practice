@@ -49,8 +49,8 @@
       <el-table-column label="操作" fixed="right"
           width="180">
           <template slot-scope="scope">
-              <!-- <a href="/config/loginconfig.html?type=qq">配置</a> -->
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">配置</el-button>
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
       </el-table-column>
     </el-table>

@@ -12,34 +12,91 @@
     </el-tab-pane>
   </el-tabs>
 
-    <el-row>
-        <el-button type="primary" size="small">发布商品</el-button>
-        <el-button type="danger" size="small">批量删除</el-button>
-        <el-button size="small">上架</el-button>
-        <el-button size="small">下架</el-button>
-        <el-button size="small">推荐</el-button>
-        <el-button size="small">商品标签</el-button>
-        <el-button size="small">更新二维码</el-button>
-        <el-button size="small">批量处理</el-button>
-        <el-button size="small">设置折扣</el-button>
-
-    </el-row>
-
-    <el-row>
+    <el-row :gutter="4">
       <el-col :span="14">
-        <el-button type="primary" size="small">发布商品</el-button>
         <el-button type="danger" size="small">批量删除</el-button>
         <el-button size="small">上架</el-button>
         <el-button size="small">下架</el-button>
-        <el-button size="small">推荐</el-button>
-        <el-button size="small">商品标签</el-button>
+        <el-popover
+          title="标题"
+          placement="bottom"
+          popper-class="popover-checkbox-group"
+          width="80"
+          style="min-width: unset;"
+          trigger="click"
+          v-model="seleteRecommendTypesPopoverVisible">
+          <el-checkbox-group v-model="updateRecommendTypes">
+            <el-checkbox label="热卖"></el-checkbox>
+            <el-checkbox label="精品"></el-checkbox>
+            <el-checkbox label="新品"></el-checkbox>
+          </el-checkbox-group>
+          <br/>
+          <el-button type="primary" size="mini" @click="seleteRecommendTypesPopoverVisible = false">确定</el-button>
+          <el-button slot="reference" size="small">推荐</el-button>
+        </el-popover>
+
+        <el-popover
+          popper-class="popover-checkbox-group"
+          title="修改商品标签"
+          placement="bottom"
+          width="100"
+          trigger="click"
+          v-model="seleteTagsPopoverVisible">
+          <el-checkbox-group v-model="updateTags">
+            <el-checkbox label="hot"></el-checkbox>
+            <el-checkbox label="火火火"></el-checkbox>
+            <el-checkbox label="明星同款"></el-checkbox>
+          </el-checkbox-group>
+          <br/>
+          <el-button type="primary" size="mini" @click="seleteTagsPopoverVisible = false">确定</el-button>
+          <el-button slot="reference" size="small">商品标签</el-button>
+        </el-popover>
         <el-button size="small">更新二维码</el-button>
-        <el-button size="small">批量处理</el-button>
-        <el-button size="small">设置折扣</el-button>
+        <el-button size="small" @click="dialogBatchProcessingFormVisible = true">批量处理</el-button>
+        <el-button size="small" @click="dialogSetMemberDiscountFormVisible = true">设置折扣</el-button>
       </el-col>
 
-      <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请选择商品分类"></el-input>
+      <el-col :span="7">
+        <el-input size="small" v-model="queryForm.goodsName" placeholder="要搜索的商品名称"></el-input>
+      </el-col>
+      <el-col :span="1">
+        <el-popover
+          placement="bottom"
+          width="400"
+          trigger="click"
+          v-model="moreQueryPopoverVisible">
+          <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
+            <el-form-item label="商品编码">
+              <el-input v-model="queryForm.goodsCode"></el-input>
+            </el-form-item>
+
+            <el-form-item label="供货商">
+              <el-select v-model="queryForm.supplierId" clearable placeholder="请选择">
+                <el-option label="小米供货商" :value="1"></el-option>
+                <el-option label="三星供货商" :value="2"></el-option>
+              </el-select>
+            </el-form-item>
+
+            <el-form-item label="商品类型">
+              <el-select v-model="queryForm.goodsType" clearable placeholder="请选择">
+                <el-option label="实物商品" :value="1"></el-option>
+                <el-option label="虚拟商品" :value="2"></el-option>
+              </el-select>
+            </el-form-item>
+
+            <el-form-item label="商品标签">
+              <el-select v-model="queryForm.labels" multiple clearable placeholder="请选择">
+                <el-option label="hot" :value="1"></el-option>
+                <el-option label="牛逼的标签" :value="2"></el-option>
+              </el-select>
+            </el-form-item>
+
+            <el-form-item>
+              <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
+            </el-form-item>
+          </el-form>
+          <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
+        </el-popover>
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
@@ -48,44 +105,217 @@
 
     <br/>
 
-    <el-table border :data="goodsList" style="width: 100%">
+    <el-table border :data="goodsList" style="width: 100%" @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
         width="35">
       </el-table-column>
 
-      <el-table-column label="第三方登录">
+      <el-table-column
+        label="商品名称">
         <template slot-scope="scope">
-          <div class="table-logo"><img :src="scope.row.logo"></div>
-          <span class="table-pay">{{scope.row.name}}</span><br>
-          <span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
-          </span>
+          <div class="pro-code">
+            <span>商家编码：{{ scope.row.shopNo }}</span>
+            <span class="pro-code" style="margin-left:10px;">
+              创建时间：{{ scope.row.createDate }}
+              <span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative">
+                <i class="icon iconfont icon-qrcode" ></i>
+                <div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode">
+                  <p><img src="http://showfx.niuteam.cn/upload/goods_qrcode/goods_qrcode_157.png" style="width:110px;"></p>
+                </div>
+              </span>
+            </span>
+          </div>
+          <div style="width:450px;">
+            <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=157" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="http://pc7mzzjqj.bkt.clouddn.com/upload/goods/20180724/1ba75c9b575740a0db4e6dd8aca893a14.jpg"></a>
+            <div class="div-pro-view-name">
+              <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=157">{{ scope.row.name }}</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="157" data-up-type="goods_name"
+                  type="text" value="1"><br>
+              <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><span style="color:#999;font-size:12px;display:block;height:25px;overflow:hidden;text-decoration: none;">1</span></div><input data-goods-id="157" data-up-type="introduction" class="js-update-introduction input-common" style="width:350px!important;"
+                  type="text" maxlength="60" value="1">
+
+              <div style="position: relative;margin-left: 75px;">
+                <i v-for="tag in scope.row.tags" :key="tag" style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">{{ tag }}</i>
+              </div>
+            </div>
+          </div>
         </template>
+      </el-table-column>
+
+      <el-table-column
+        prop="price"
+        label="价格(元)"
+        width="80">
+      </el-table-column>
+
+      <el-table-column
+        prop="totalStock"
+        label="总库存"
+        width="80">
+      </el-table-column>
+
+      <el-table-column
+        prop="totalSales"
+        label="销量"
+        width="80">
       </el-table-column>
 
       <el-table-column
         prop="type"
-        label="类型"
-        width="120">
+        label="实物类型"
+        width="80">
       </el-table-column>
 
       <el-table-column
-          label="状态"
-          width="180">
+        label="排序"
+        width="80">
         <template slot-scope="scope">
-            <el-switch v-model="scope.row.status">
-            </el-switch>
+          <el-input class="disable-input-spinner-button" type="number" size="small" v-model="scope.row.sort" >
+          </el-input>
         </template>
       </el-table-column>
 
+      <!-- 实物类型 -->
       <el-table-column label="操作" fixed="right"
-          width="180">
+          width="200">
           <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">复制</el-button>
               <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              <br/>
+              <el-button class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">下架</el-button>
+              <br/>
+              <el-button class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">设置会员折扣</el-button>
+              <br/>
+              <el-button class="margin-top-5" size="mini" v-if="scope.row.type >= 20" @click="handleDelete(scope.$index, scope.row)">虚拟商品管理</el-button>
           </template>
       </el-table-column>
     </el-table>
+
+    <el-dialog title="批量处理" size="small" :visible.sync="dialogBatchProcessingFormVisible">
+      <el-form ref="batchProcessingForm" size="small" :model="batchProcessingForm" label-width="80px" >
+
+        <el-alert type="success" :closable="false" description="1、如果未设置任何选择，则商品保持原状不变。"></el-alert>
+        <el-alert type="success" :closable="false" description="2、设置商品库存，将作用于所选商品的所有规格项。"></el-alert>
+        <br/>
+
+        <el-form-item label="商品分类">
+          <el-select class="width-180" v-model="batchProcessingForm.categroyLevel0" clearable placeholder="请选择一级分类">
+            <el-option
+              v-for="item in categroyLevel_0"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+          <el-select class="width-180" v-model="batchProcessingForm.categroyLevel1" clearable placeholder="请选择二级分类">
+            <el-option
+              v-for="item in categroyLevel_1(batchProcessingForm.categroyLevel0)"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+          <el-select class="width-180" v-model="batchProcessingForm.categroyLevel2" clearable placeholder="请选择三级分类">
+            <el-option
+              v-for="item in categroyLevel_2(batchProcessingForm.categroyLevel1)"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="销售价">
+          <el-radio-group v-model="batchProcessingForm.salePriceOption">
+            <el-radio :label="1">增加</el-radio>
+            <el-radio :label="0">减少</el-radio>
+          </el-radio-group>
+          &emsp;&emsp;
+          <el-input class="disable-input-spinner-button width-180" type="number" value="0" v-model="batchProcessingForm.salePrice" ></el-input>
+
+          <span class="info">销售价增加N元或减少N元</span>
+
+        </el-form-item>
+
+        <el-form-item label="市场价">
+          <el-radio-group v-model="batchProcessingForm.marketPriceOption">
+            <el-radio :label="1">增加</el-radio>
+            <el-radio :label="0">减少</el-radio>
+          </el-radio-group>
+          &emsp;&emsp;
+          <el-input class="disable-input-spinner-button width-180" type="number" value="0" v-model="batchProcessingForm.marketPrice" ></el-input>
+
+          <span class="info">市场价增加N元或减少N元</span>
+
+        </el-form-item>
+
+        <el-form-item label="成本价">
+          <el-radio-group v-model="batchProcessingForm.costPriceOption">
+            <el-radio :label="1">增加</el-radio>
+            <el-radio :label="0">减少</el-radio>
+          </el-radio-group>
+          &emsp;&emsp;
+          <el-input class="disable-input-spinner-button width-180" type="number" value="0" v-model="batchProcessingForm.costPrice" ></el-input>
+
+          <span class="info">成本价增加N元或减少N元</span>
+        </el-form-item>
+
+        <el-form-item label="库存">
+          <el-radio-group v-model="batchProcessingForm.stockOption">
+            <el-radio :label="1">增加</el-radio>
+            <el-radio :label="0">减少</el-radio>
+          </el-radio-group>
+          &emsp;&emsp;
+          <el-input class="disable-input-spinner-button width-180" type="number" value="0" v-model="batchProcessingForm.stock" ></el-input>
+
+          <span class="info">库存增加N件或减少N件</span>
+        </el-form-item>
+
+        <el-form-item label="商品品牌">
+          <el-select v-model="batchProcessingForm.brand" clearable filterable placeholder="请选择">
+            <el-option
+              v-for="item in brandList"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+
+        </el-form-item>
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="small" @click="dialogBatchProcessingFormVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="submitForm('classForm')">保 存</el-button>
+      </div>
+    </el-dialog>
+
+    <el-dialog title="设置商品折扣" size="small" :visible.sync="dialogSetMemberDiscountFormVisible">
+      <el-form ref="setMemberDiscountForm" size="small" :model="setMemberDiscountForm" label-width="100px" >
+
+        <el-form-item label="黄金会员">
+          <el-input type="number" min="0" max="100" step="1" v-model="setMemberDiscountForm.salePrice" >
+            <template slot="append">
+                %
+            </template>
+          </el-input>
+        </el-form-item>
+
+        <el-form-item label="价格保留方式">
+          <el-radio-group v-model="setMemberDiscountForm.stockOption">
+            <el-radio :label="1">抹去角和分</el-radio>
+            <el-radio :label="0">抹去分</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="small" @click="dialogSetMemberDiscountFormVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="submitForm('classForm')">保 存</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 
     <!-- 操作提示 -->
@@ -280,48 +510,6 @@
               </tr>
             </thead>
             <tbody id="productTbody" style="border: 0;">
-              <div v-for="goods in goodsList" :key="goods.id">
-                <tr class="tr-title">
-                  <td class="td-157" style="border-bottom:0;"></td>
-                  <td colspan="9" style="border-bottom:0;">
-                    <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：{{ goods.shopNumber }}</span><span class="pro-code" style="margin-left:10px;">创建时间：{{ goods.createDate }}<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_157.png" style="width:110px;"></p></div></span></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center"><i class="checkbox-common"><input value="157" name="sub" data-state="1" type="checkbox"></i></td>
-                  <td colspan="1">
-                    <div style="width:450px;">
-                      <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=157" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="http://pc7mzzjqj.bkt.clouddn.com/upload/goods/20180724/1ba75c9b575740a0db4e6dd8aca893a14.jpg"></a>
-                      <div class="div-pro-view-name">
-                        <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=157">1</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="157" data-up-type="goods_name"
-                            type="text" value="1"><br>
-                        <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><span style="color:#999;font-size:12px;display:block;height:25px;overflow:hidden;text-decoration: none;">1</span></div><input data-goods-id="157" data-up-type="introduction" class="js-update-introduction input-common" style="width:350px!important;"
-                            type="text" maxlength="60" value="1">
-                        <div style="position: relative;margin-left: 75px;"><i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td style="text-align: right;">
-                    <div><span class="price-numble" id="moreChangePrice157" style="color:#FF6600;">0.00</span></div>
-                  </td>
-                  <td style="text-align: right;">
-                    <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock157">0</span></div>
-                  </td>
-                  <td style="text-align: right;">
-                    <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock157">0</span></div>
-                  </td>
-                  <td style="text-align: center;"><span>实物类</span></td>
-                  <td style="text-align: center;">
-                    <div class="cell"><input class="input-common input-common-sort" goods_id="157" value="0" onchange="changeSort(this)" type="number" title="排序号数值越大，商城商品列表显示越靠前"></div>
-                  </td>
-                  <td>
-                    <div class="bs-docs-example tooltip-demo" style="text-align: center;"><a href="/goods/addgoods?step=2&amp;goodsId=157" title="编辑商品">编辑</a><a href="javascript:copyGoodsDetail(157);" title="复制商品">复制</a><a href="javascript:deleteGoods(157)" title="删除商品">删除</a><br><a href="javascript:modifyGoodsOnline(157,'offline')">下架</a><br>
-                      <a href="javascript:showMemberDiscount(157)">设置会员折扣</a>
-                    </div>
-                  </td>
-                </tr>
-              </div>
 
               <tr class="tr-title">
                 <td class="td-155" style="border-bottom:0;"></td>
@@ -857,194 +1045,6 @@
       </div>
       <input type="hidden" id="hidden_sort_rule" class="">
 
-      <div class="modal fade hide" id="batch_processing" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h3>批量处理</h3>
-            </div>
-            <div class="modal-body">
-              <div class="tip_info">
-                <p>1、如果未设置任何选择，则商品保持原状不变。</p>
-                <p>2、设置商品库存，将作用于所选商品的所有规格项。</p>
-              </div>
-              <div class="setting-item">
-                <dl>
-                  <dt>商品分类</dt>
-                  <dd id="Js_goods_category">
-                    <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
-                      <div class="selectric-hide-select"><select class="select-common middle" id="batch_catrgory_one" tabindex="-1">
-                    <option value="0">请选择一级分类</option>
-                                      <option value="3">养护设备</option>
-                                      <option value="4">工程设备</option>
-                                      <option value="5">环卫设备</option>
-                                      <option value="146">服装</option>
-                                      <option value="6">配件专区</option>
-                                      <option value="7">女鞋/箱包/钟表/珠宝</option>
-                                      <option value="8">男鞋/运动/户外</option>
-                                      <option value="2">混凝土设</option>
-                                      <option value="9">汽车/汽车用品</option>
-                                      <option value="10">母婴/玩具用品</option>
-                                      <option value="11">食品/酒类/生鲜/特产</option>
-                                  </select></div>
-                      <div class="selectric"><span class="selectric-label">请选择一级分类</span><button class="selectric-button">▾</button></div>
-                      <div class="selectric-items" tabindex="-1">
-                        <div class="selectric-scroll">
-                          <ul>
-                            <li data-index="0" class="selected" title="请选择一级分类">请选择一级分类</li>
-                            <li data-index="1" class="" title="养护设备">养护设备</li>
-                            <li data-index="2" class="" title="工程设备">工程设备</li>
-                            <li data-index="3" class="" title="环卫设备">环卫设备</li>
-                            <li data-index="4" class="" title="服装">服装</li>
-                            <li data-index="5" class="" title="配件专区">配件专区</li>
-                            <li data-index="6" class="" title="女鞋/箱包/钟表/珠宝">女鞋/箱包/钟表/珠宝</li>
-                            <li data-index="7" class="" title="男鞋/运动/户外">男鞋/运动/户外</li>
-                            <li data-index="8" class="" title="混凝土设">混凝土设</li>
-                            <li data-index="9" class="" title="汽车/汽车用品">汽车/汽车用品</li>
-                            <li data-index="10" class="" title="母婴/玩具用品">母婴/玩具用品</li>
-                            <li data-index="11" class="last" title="食品/酒类/生鲜/特产">食品/酒类/生鲜/特产</li>
-                          </ul>
-                        </div>
-                      </div><input class="selectric-input" tabindex="0"></div>
-                    <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
-                      <div class="selectric-hide-select"><select class="select-common middle" id="batch_catrgory_two" tabindex="-1">
-                    <option value="0">请选择二级分类</option>
-                  </select></div>
-                      <div class="selectric"><span class="selectric-label">请选择二级分类</span><button class="selectric-button">▾</button></div>
-                      <div class="selectric-items" tabindex="-1">
-                        <div class="selectric-scroll">
-                          <ul>
-                            <li data-index="0" class="last selected" title="请选择二级分类">请选择二级分类</li>
-                          </ul>
-                        </div>
-                      </div><input class="selectric-input" tabindex="0"></div>
-                    <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
-                      <div class="selectric-hide-select"><select class="select-common middle" style="width: 150px;" id="batch_catrgory_three" tabindex="-1">
-                    <option value="0">请选择三级分类</option>
-                  </select></div>
-                      <div class="selectric"><span class="selectric-label">请选择三级分类</span><button class="selectric-button">▾</button></div>
-                      <div class="selectric-items" tabindex="-1">
-                        <div class="selectric-scroll">
-                          <ul>
-                            <li data-index="0" class="last selected" title="请选择三级分类">请选择三级分类</li>
-                          </ul>
-                        </div>
-                      </div><input class="selectric-input" tabindex="0"></div>
-                  </dd>
-                </dl>
-                <dl>
-                  <dt>销售价:</dt>
-                  <dd id="price">
-                    <label>
-                    <i class="radio-common selected">
-                      <input type="radio" checked="" name="price" value="1">
-                    </i>
-                    <span>增加</span>
-                  </label>
-                    <label>
-                    <i class="radio-common">
-                      <input type="radio" name="price" value="0">
-                    </i>
-                    <span>减少</span>
-                  </label>
-                    <input type="number" name="" value="0" class="num input-common short" min="0">
-                    <span class="info">销售价增加N元或减少N元</span>
-                  </dd>
-                </dl>
-                <dl>
-                  <dt>市场价:</dt>
-                  <dd id="market_price">
-                    <label>
-                    <i class="radio-common selected">
-                      <input type="radio" checked="" name="market_price" value="1">
-                    </i>
-                    <span>增加</span>
-                  </label>
-                    <label>
-                    <i class="radio-common">
-                      <input type="radio" name="market_price" value="0">
-                    </i>
-                    <span>减少</span>
-                  </label>
-                    <input type="number" name="" value="0" class="num input-common short" min="0">
-                    <span class="info">市场价增加N元或减少N元</span>
-                  </dd>
-                </dl>
-                <dl>
-                  <dt>成本价:</dt>
-                  <dd id="cost_price">
-                    <label>
-                    <i class="radio-common selected">
-                      <input type="radio" checked="" name="cost_price" value="1">
-                    </i>
-                    <span>增加</span>
-                  </label>
-                    <label>
-                    <i class="radio-common">
-                      <input type="radio" name="cost_price" value="0">
-                    </i>
-                    <span>减少</span>
-                  </label>
-                    <input type="number" name="" value="0" class="num input-common short" min="0">
-                    <span class="info">成本价增加N元或减少N元</span>
-                  </dd>
-                </dl>
-                <dl>
-                  <dt>库存:</dt>
-                  <dd id="stock">
-                    <label>
-                    <i class="radio-common selected">
-                      <input type="radio" checked="" name="stock" value="1">
-                    </i>
-                    <span>增加</span>
-                  </label>
-                    <label>
-                    <i class="radio-common">
-                      <input type="radio" name="stock" value="0">
-                    </i>
-                    <span>减少</span>
-                  </label>
-                    <input type="number" name="" value="0" class="num input-common short" min="0">
-                    <span class="info">库存增加N件或减少N件</span>
-                  </dd>
-                </dl>
-                <dl>
-                  <dt>商品品牌:</dt>
-                  <dd id="stock" class="js-brand-block">
-                    <div>
-                      <select id="brand_id" style="display: none;" class="middle"><option value="0">请选择商品品牌</option><option value="2">小米</option><option value="4">索尼</option><option value="5">三星</option></select>
-                      <div tabindex="0" class="searchable-select"><span class="searchable-select-caret"></span>
-                        <div class="searchable-select-holder">请选择商品品牌</div>
-                        <div class="searchable-select-dropdown searchable-select-hide"><input type="text" class="searchable-select-input">
-                          <div class="searchable-scroll">
-                            <div class="searchable-has-privious searchable-select-hide">...</div>
-                            <div class="searchable-select-items">
-                              <div class="searchable-select-item selected hover" data-value="0">请选择商品品牌</div>
-                              <div class="searchable-select-item" data-value="2">小米</div>
-                              <div class="searchable-select-item" data-value="4">索尼</div>
-                              <div class="searchable-select-item" data-value="5">三星</div>
-                            </div>
-                            <div class="searchable-has-next searchable-select-hide">...</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button class="btn-common btn-big" onclick="save();">保存</button>
-              <button class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
       <div class="modal fade hide" id="set_member_discount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -1114,17 +1114,310 @@
 </template>
 
 <script>
-require('@/assets/style/table.scss')
 
 export default {
   name: 'goodsList',
+
   data () {
     return {
+      dialogSetMemberDiscountFormVisible: false,
+      dialogBatchProcessingFormVisible: false,
+      moreQueryPopoverVisible: false,
+      seleteRecommendTypesPopoverVisible: false,
+      seleteTagsPopoverVisible: false,
+      batchProcessingForm: {},
+      setMemberDiscountForm: {},
+      updateRecommendTypes: [],
+      updateTags: [],
+      brandList: [
+        {
+          id: 1,
+          name: '娃哈哈',
+          images: ''
+        }, {
+          id: 2,
+          name: '娃哈哈1',
+          images: ''
+        }, {
+          id: 3,
+          name: '娃哈哈2',
+          images: ''
+        }, {
+          id: 4,
+          name: '娃哈哈3',
+          images: ''
+        }, {
+          id: 5,
+          name: '小米',
+          images: ''
+        }, {
+          id: 6,
+          name: '三星',
+          images: ''
+        }, {
+          id: 7,
+          name: '索尼',
+          images: ''
+        }
+      ],
+      categroyList: [
+        {
+          id: 1,
+          name: '家用电器',
+          level: 0,
+          abbreviate: '家电',
+          relationCategory: '女装',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 2,
+          name: '手机/运营商/数码',
+          level: 0,
+          abbreviate: '通讯',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 3,
+          name: '电脑/办公',
+          level: 0,
+          abbreviate: '电脑',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 4,
+          name: '家居/家具/家装/厨具',
+          level: 0,
+          abbreviate: '家居',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 5,
+          name: '男装/女装/童装/内衣',
+          level: 0,
+          abbreviate: '衣服',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 6,
+          name: '美妆个护/宠物',
+          level: 0,
+          abbreviate: '美妆',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 7,
+          name: '女鞋/箱包/钟表/珠宝',
+          level: 0,
+          abbreviate: '配饰',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 8,
+          name: '男鞋/运动/户外',
+          level: 0,
+          abbreviate: '运动',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 9,
+          name: '汽车/汽车用品',
+          level: 0,
+          abbreviate: '汽车',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 10,
+          name: '母婴/玩具用品',
+          level: 0,
+          abbreviate: '母婴',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 11,
+          name: '食品/酒类/生鲜/特产',
+          level: 0,
+          abbreviate: '食品生鲜',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 12,
+          name: '礼品鲜花/农资绿植',
+          level: 0,
+          abbreviate: '礼品农资',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 13,
+          name: '电视',
+          level: 1,
+          parentId: 1,
+          abbreviate: '电视',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 14,
+          name: '空调',
+          level: 1,
+          parentId: 1,
+          abbreviate: '空调',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 15,
+          name: '洗衣机',
+          level: 1,
+          parentId: 1,
+          abbreviate: '洗衣机',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 16,
+          name: '智能家居',
+          level: 1,
+          parentId: 1,
+          abbreviate: '智能家居',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 17,
+          name: '曲面电视',
+          level: 2,
+          parentId: 13,
+          abbreviate: '曲面电视',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 18,
+          name: '超薄电视',
+          level: 2,
+          parentId: 13,
+          abbreviate: '超薄电视',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 19,
+          name: 'HDR电视',
+          level: 2,
+          parentId: 13,
+          abbreviate: 'HDR电视',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 20,
+          name: '电脑整机',
+          level: 1,
+          parentId: 3,
+          abbreviate: '电脑整机',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 21,
+          name: '电脑配件',
+          level: 1,
+          parentId: 3,
+          abbreviate: '电脑配件',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 22,
+          name: '外设产品',
+          level: 1,
+          parentId: 3,
+          abbreviate: '外设产品',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 23,
+          name: '鼠标',
+          level: 2,
+          parentId: 22,
+          abbreviate: '鼠标',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 24,
+          name: '键盘',
+          level: 2,
+          parentId: 22,
+          abbreviate: '键盘',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }, {
+          id: 25,
+          name: '键鼠套装',
+          level: 2,
+          parentId: 22,
+          abbreviate: '键鼠套装',
+          relationCategory: '',
+          isShow: true,
+          sort: 1
+        }
+      ],
+      queryForm: {
+        labels: []
+      },
       selectedStatus: 1,
-      goodsList: [],
-      showCategory: false
+      goodsList: [{
+        type: 10,
+        goodsCode: '',
+        name: '澳大利亚丁戈树红标经典红葡萄酒750ml',
+        createDate: '2018-07-05 15:44:04',
+        price: '0.00',
+        totalStock: 1,
+        totalSales: 1,
+        sort: 1,
+        tags: ['top', '热卖']
+      }],
+      showCategory: false,
+      goodsTableSelection: []
     }
   },
+
+  computed: {
+    categroyLevel_0 () {
+      return this.categroyList.filter(categroyListItem => categroyListItem.level === 0)
+    }
+  },
+
+  methods: {
+    handleSelectionChange (val) {
+      this.goodsTableSelection = val
+    },
+    categroyLevel_1 (parentId) {
+      return this.categroyList
+        .filter(categroyListItem => categroyListItem.level === 1)
+        .filter(categroyListItem => categroyListItem.parentId === parentId)
+    },
+    categroyLevel_2 (parentId) {
+      return this.categroyList
+        .filter(categroyListItem => categroyListItem.level === 2)
+        .filter(categroyListItem => categroyListItem.parentId === parentId)
+    }
+  },
+
   components: {}
 }
 </script>
@@ -1468,4 +1761,24 @@ textarea,
     text-decoration: none;
   }
 }
+
+.el-button+.el-button {
+  margin-left: 0px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+.width-180 {
+  width: 180px;
+}
+
+.info {
+  font-size: 14px;
+  line-height: 16px;
+  color: #999999;
+  margin: 10px 0 0;
+}
+
 </style>

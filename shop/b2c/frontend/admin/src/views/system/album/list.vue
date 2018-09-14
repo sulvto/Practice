@@ -1,45 +1,40 @@
 <template>
 
     <section class="ns-base-section">
-        <div style="position:relative;margin:0;">
-            <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-                <a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
-                <i class="fa fa-angle-right"></i>
-                <a href="/goods/goodslist.html">商品</a>
-                <i class="fa fa-angle-right"></i>
-                <!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/system/albumlist -->
-                <a href="javascript:;" style="color:#999;">相册管理</a>
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button type="warning" size="small">创建相册</el-button>
+        <el-button type="primary" size="small">上传图片</el-button>
+      </el-col>
+
+      <el-col :span="10">
+        <el-input size="small" v-model="searchKeyword" placeholder="请输入相册名称"></el-input>
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
+    </el-row>
+
+    <br/>
+
+      <el-row >
+        <el-col :span="4" v-for="(image, index) in imageList" :key="image.name" :offset="index % 5 ? 1 : 0" style="margin-bottom: 10px">
+          <el-card :body-style="{ padding: '0px' }" >
+            <img src="@/assets/img/hamburger.png" class="image" @mouseover="showImageOperationButtomChange(index, true)" @mouseout="showImageOperationButtomChange(index, false)">
+            <div style="padding: 12px;" @mouseover="showImageOperationButtomChange(index, true)" @mouseout="showImageOperationButtomChange(index, false)">
+              <span>{{ image.name + ' ' + index }}</span>
+
+              <div v-show="!_showImageOperationButtom(index)" >
+                <p class="hint">{{ '共' + image.count + '张' }}</p>
+              </div>
+              <div v-show="_showImageOperationButtom(index)" style="margin: 5px 0 0;">
+                  <el-button type="primary" size="mini" >编辑</el-button>
+                  <el-button type="danger" size="mini" >删除</el-button>
+              </div>
             </div>
-
-            <!-- 三级导航菜单 -->
-            <div class="right-side-operation">
-                <ul>
-
-                    <div class="upload-con" id="uploader" style="display:none;overflow:auto;height:350px;width:185px;">
-                        <div class="js-file-msg"></div>
-                        <div class="upload-pmgressbar js-file-loading"></div>
-                        <div class="upload-txt"><span>支持Jpg、Png格式，大小不超过1024KB的图片上传；浏览文件时可以按住ctrl或shift键多选。</span></div>
-                    </div>
-
-                    <li>
-                        <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-                        <div class="popover">
-                            <div class="arrow"></div>
-                            <div class="popover-content">
-                                <div>
-                                    <h4>操作提示</h4>
-                                    <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2312&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2312&amp;extra=page%3D2</a></p>
-                                    <hr>
-                                    <h4>功能提示</h4>
-                                    <p class="function-prompts"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+          </el-card>
+        </el-col>
+      </el-row>
 
         <div class="ns-main">
             <table class="mytable">
@@ -129,3 +124,73 @@
     </section>
 
 </template>
+
+<script>
+export default {
+  name: 'list',
+  data () {
+    return {
+      showImageOperationButtom: {},
+      searchKeyword: '',
+      imageList: [{
+        name: '默认相册',
+        count: 101,
+        sort: 1
+      }, {
+        name: '颜色',
+        count: 12,
+        sort: 1
+      }, {
+        name: 'awsdqefqa',
+        count: 2,
+        sort: 1
+      }, {
+        name: 'asdqww',
+        count: 345,
+        sort: 1
+      }, {
+        name: 'asfqw',
+        count: 45,
+        sort: 1
+      }, {
+        name: 'adwqwfe',
+        count: 56,
+        sort: 1
+      }]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
+    },
+    handleDelete (index, row) {
+      console.log(index, row)
+    },
+    search () {
+      console.log('search', this.searchKeyword)
+    },
+    showImageOperationButtomChange (index, bool) {
+      console.log('showImageOperationButtomChange', bool)
+      this.showImageOperationButtom[index] = bool
+      console.log(this.showImageOperationButtom)
+    },
+    _showImageOperationButtom (index) {
+      return this.showImageOperationButtom[index]
+    }
+
+  },
+  created () {
+    // this.imageList.forEach(imageListItem => this.showImageOperationButtom[index] = false)
+    console.log(this.showImageOperationButtom)
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.hint {
+  font-size: 14px;
+  line-height: 18px;
+  color: #999999;
+  margin: 10px 0 0;
+}
+</style>

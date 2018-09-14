@@ -36,10 +36,13 @@ export default {
   },
 
   created () {
-    var currentTab = this.tabs.find(item => item.path === this.$route.path)
+    var currentTab = this.tabs.find(tabItem => this.$route.matched.find(routerItem => tabItem.path === routerItem.path))
     if (currentTab) {
       this.activeTabName = currentTab.name
+    } else {
+      console.warn('TabsRouter： 没找到activeTabName')
     }
+
     console.log('created route', this.$route)
   }
 }

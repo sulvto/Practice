@@ -54,9 +54,9 @@
 
       <el-table-column
         label="排序"
-        width="80">
+        width="70">
         <template slot-scope="scope">
-          <el-input class="sort" type="number" v-model="scope.row.sort" size="small"></el-input>
+          <el-input class="disable-input-spinner-button" type="number" v-model="scope.row.sort" size="small"></el-input>
         </template>
       </el-table-column>
 
@@ -95,12 +95,12 @@ export default {
         name: '颜色',
         values: ['玫瑰金', '黑色', '土豪金'],
         isEnable: true,
-        sotr: 1
+        sort: 1
       }, {
         name: '手机尺寸',
         values: ['4.5寸', '5.0寸', '5.5寸'],
         isEnable: true,
-        sotr: 1
+        sort: 1
       }]
     }
   },
@@ -120,7 +120,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.center-block {
-  text-align: center
-}
 </style>

@@ -254,6 +254,9 @@ export default new Router({
       name: '商品',
       component: Goods,
       children: [{
+        path: '/',
+        redirect: 'list.html'
+      }, {
         path: 'list.html',
         name: 'goodsList',
         component: GoodsList

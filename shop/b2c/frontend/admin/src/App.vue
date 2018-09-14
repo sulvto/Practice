@@ -321,7 +321,7 @@
               <el-menu class="nav"
                 background-color="#393939"
                 text-color="#fff"
-                active-text-color="#ffd04b" :default-active="verticalMenu.path" mode="horizontal" @select="handleSelect" :router='true'>
+                active-text-color="#ffd04b" :default-active="verticalMenu.name" mode="horizontal" @select="handleSelect" :router='true'>
                   <el-menu-item v-for="item in menuList" :key="item.path" :index='item.path'>{{item.name}}</el-menu-item>
               </el-menu>
               <div class="ns-base-tool">
@@ -354,24 +354,24 @@
             </div>
             </div>
             <el-container>
-                <el-aside class="aside-fixed-top" width="200px" style="background-color: rgb(238, 241, 246)">
+                <el-aside class="aside-fixed-top" width="200px" :style="'overflow-x: hidden; max-height: ' + (maxAsideHeight) + 'px;background-color: rgb(238, 241, 246)'">
                     <el-menu
-                      style="overflow: scroll;"
                       :default-active="activeVerticalMenuItem"
                       @open="handleOpen"
                       @close="handleClose"
                       :router='true'>
-                        <el-submenu index="1">
+
+                        <el-submenu index="1" >
                             <template slot="title">
                                         <i class="el-icon-menu"></i>
                                         <span>{{verticalMenu.name}}</span>
                             </template>
-                            <el-menu-item-group >
-                                <el-menu-item v-for="item in verticalMenu.children" :key="item.path" :index="item.path">{{item.name}}</el-menu-item>
+                            <el-menu-item-group>
+                              <el-menu-item v-for="item in verticalMenu.children" :key="item.path" :index="item.path">{{item.name}}</el-menu-item>
                             </el-menu-item-group>
-
                         </el-submenu>
-                        <el-menu-item index="2" v-show="verticalMenu.isHome">
+
+                        <el-menu-item index="1" v-show="verticalMenu.isHome">
                             <i class="el-icon-circle-plus"></i>
                             <span slot="title">常用功能</span>
                         </el-menu-item>
@@ -428,24 +428,37 @@ export default {
     }
   },
   computed: {
+    maxAsideHeight () {
+      return window.innerHeight - 60
+    },
+
     activeVerticalMenuItem () {
-      var result = null
+      let result = null
       if (this.verticalMenu.children.length > 0) {
-        var verticalMenuroute = this.$route.matched.find(route =>
-          this.verticalMenu.children.find(child => child.name === route.name)
-        )
+        var verticalMenuroute =
+          this.$route.matched.find(route => this.verticalMenu.children.find(child => child.path === route.path)) ||
+          this.$route.matched.find(route => this.verticalMenu.children.find(child => child.name === route.name))
+
         if (verticalMenuroute) {
           result = verticalMenuroute.path
         }
       }
 
+      if (!result) {
+        console.warn('没找到路由对应的左侧菜单.', this.$route.matched)
+      }
+
       console.log('activeVerticalMenuItem', result, this.$route)
       return result
+    },
+    menuList () {
+      return this.menuData.filter(menuItem => !menuItem.onlyAside)
     }
+
   },
   methods: {
     handleSelect (path) {
-      this.verticalMenu = this.menuList.find(item => item.path === path)
+      this.verticalMenu = this.menuData.find(item => item.path === path)
     },
     handleOpen () {
       console.log('handleOpen')
@@ -477,7 +490,7 @@ export default {
       topLogoImage: topLogoImage,
       verticalMenu: {},
       breadcrumb: [],
-      menuList: [
+      menuData: [
         {
           name: '首页',
           path: '/index.html',
@@ -508,7 +521,7 @@ export default {
         },
         {
           name: '商品',
-          path: '/goods/list.html',
+          path: '/goods',
           children: [
             {
               path: '/goods/list.html',
@@ -519,7 +532,7 @@ export default {
               name: '商品发布'
             },
             {
-              path: '/goods/category/list.html',
+              path: '/goods/category',
               name: '商品分类'
             },
             {
@@ -555,8 +568,7 @@ export default {
               name: '相册管理'
             }
           ]
-        },
-        {
+        }, {
           name: '订单',
           path: '/order/orderlist.html',
           children: [
@@ -594,7 +606,6 @@ export default {
           name: '营销',
           path: '/promotion/coupontypelist.html',
           children: [{
-            selected: true,
             path: '/promotion/coupontypelist.html',
             name: '优惠券'
           }, {
@@ -844,7 +855,6 @@ export default {
           path: '/setting',
           children: [
             {
-              selected: true,
               path: '/setting/base',
               name: '基础设置'
             },
@@ -898,11 +908,12 @@ export default {
   components: {},
 
   created () {
-    this.verticalMenu = this.menuList.find(
-      item => item.name === this.$route.matched[0].name
+    this.verticalMenu = this.menuData.find(
+      item => item.path === this.$route.matched[0].path
     )
     this.setBreadcrumb(this.$route)
-    console.log('created route', this.$route)
+    console.log('created, route', this.$route)
+    console.log('created, verticalMenu', this.verticalMenu)
   }
 }
 </script>
@@ -1040,19 +1051,19 @@ img {
 }
 
 /*滚动条整体部分*/
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 7px;
   height: 7px;
   border-radius: 4px;
-  background-color: #f0f0f0;
+  background-color: #f0f0f000;
 }
 
 /*滚动条两端的箭头*/
-::-webkit-scrollbar-button{
+::-webkit-scrollbar-button {
   display: none;
 }
 /*经测试好像并不能控制什么*/
-::-webkit-scroll-track{
+::-webkit-scroll-track {
   display: none;
 }
 /*滚动条内侧部分 去掉*/
@@ -1060,15 +1071,50 @@ img {
   display: none;
 }
 /*滚动条中可以拖动的那部分*/
-::-webkit-scrollbar-thumb{
-  background-color: rgb(127, 151, 127);
+::-webkit-scrollbar-thumb {
+  background-color: hsla(220,4%,58%,.3);
   border-radius: 4px;
 }
 /*变角部分*/
 ::-webkit-scrollbar-corner {
   display: none;
 }
-::-webkit-resizer{
+::-webkit-resizer {
   display: none;
+}
+
+/*滚动条整体部分*/
+aside::-webkit-scrollbar {
+  display: none;
+}
+
+.disable-input-spinner-button {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+}
+
+.center-block {
+  text-align: center
+}
+
+a {
+  color: #126AE4;
+  text-decoration: none;
+  cursor: pointer;
+  &:link, &:active {
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+.popover-checkbox-group {
+  min-width: 80px;
+  .el-checkbox+.el-checkbox {
+    margin-left: 0px;
+  }
 }
 </style>

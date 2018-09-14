@@ -11,7 +11,7 @@ export default {
     return {
       tabs: [
         {
-          path: '/config/ads/list.html',
+          path: '/config/ads',
           name: '广告列表'
         }, {
           path: '/config/ads/position',
