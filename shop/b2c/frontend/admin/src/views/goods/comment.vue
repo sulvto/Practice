@@ -2,78 +2,57 @@
 
   <section class="ns-base-section">
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/goods/goodslist.html">商品</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/goods/goodscomment -->
-          <a href="javascript:;" style="color:#999;">商品评价</a>
-              </div>
-            <!-- 三级导航菜单 -->
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button type="danger" size="small">批量删除</el-button>
+      </el-col>
 
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2311&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2311&amp;extra=page%3D2</a></p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+      <el-col :span="12">
+        <el-form :inline="true" :model="queryForm" size="small" >
+          <el-form-item label="评价时间">
+            <el-date-picker
+              v-model="queryForm.orderDateRange"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="datePickerOptions">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-popover
+              placement="bottom"
+              width="400"
+              trigger="click"
+              v-model="moreQueryPopoverVisible">
+              <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
+                <el-form-item label="评价用户">
+                  <el-input v-model="queryForm.username" placeholder="请输入用户名称"></el-input>
+                </el-form-item>
+
+                <el-form-item label="评价类型">
+                  <el-select v-model="queryForm.type" clearable placeholder="请选择">
+                    <el-option label="好评" value="1"></el-option>
+                    <el-option label="中评" value="2"></el-option>
+                    <el-option label="差评" value="3"></el-option>
+                  </el-select>
+                </el-form-item>
+
+                <el-form-item>
+                  <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
+                </el-form-item>
+              </el-form>
+              <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
+            </el-popover>
+            <el-button type="primary" size="small" @click="search">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
+
     <div class="ns-main">
-
-  <table class="mytable">
-  <tbody><tr>
-    <th width="9%" style="text-align:left;">
-      <button class="btn-common-delete btn-small" onclick="batchDelete()">批量删除</button>
-    </th>
-    <th style="line-height:33px;">
-      评价时间：
-      <input type="text" id="startDate" class="middle input-common" placeholder="请选择开始日期" onclick="WdatePicker()">
-      &nbsp;-&nbsp;
-      <input type="text" id="endDate" placeholder="请选择结束日期" class="middle input-common" onclick="WdatePicker()">
-
-      <button class="btn-common-white more-search"><i class="fa fa-chevron-down"></i></button>
-      <button class="btn-common" onclick="LoadingInfo(1)">搜索</button>
-      <!-- 更多搜索 -->
-      <div class="more-search-container">
-        <dl>
-          <dt>评价用户：</dt>
-          <dd><input id="member_name" class="middle input-common" type="text" placeholder="请输入用户名称"></dd>
-        </dl>
-        <dl>
-          <dt>评价类型：</dt>
-          <dd>
-            <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select"><select id="explain_type" class="select-common middle" tabindex="-1">
-              <option value="">全部</option>
-              <option value="1">好评</option>
-              <option value="2">中评</option>
-              <option value="3">差评</option>
-            </select></div><div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="全部">全部</li><li data-index="1" class="" title="好评">好评</li><li data-index="2" class="" title="中评">中评</li><li data-index="3" class="last" title="差评">差评</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-          </dd>
-        </dl>
-        <dl>
-          <dt></dt>
-          <dd><button class="btn-common" onclick="LoadingInfo(1)">完成</button></dd>
-        </dl>
-      </div>
-    </th>
-  </tr>
-  </tbody></table>
   <table class="table-class">
   <colgroup>
     <col style="width: 2%;">
@@ -155,6 +134,38 @@ require('@/assets/style/table.scss')
 
 export default {
   name: 'commentList',
+  data () {
+    return {
+      queryForm: {},
+      datePickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近三个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      }
+    }
+  },
   components: {}
 }
 </script>

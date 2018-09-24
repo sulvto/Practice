@@ -36,7 +36,7 @@
           label="升级条件"
           width="180">
             <template slot-scope="scope">
-              <el-input type="number"  v-model="scope.row.upgradCondition" >
+              <el-input type="number"  v-model="scope.row.upgradeCondition" >
                 <template slot="append">
                         %
                 </template>
@@ -59,15 +59,15 @@ export default {
       tableData: [{
         name: '省级代理',
         reward: 10,
-        upgradCondition: 10
+        upgradeCondition: 10
       }, {
         name: '市级代理',
         reward: 10,
-        upgradCondition: 10
+        upgradeCondition: 10
       }, {
         name: '区级代理',
         reward: 10,
-        upgradCondition: 10
+        upgradeCondition: 10
       }]
     }
   },

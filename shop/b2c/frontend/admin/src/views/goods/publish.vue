@@ -219,21 +219,21 @@
           <h4>购买信息</h4>
 
           <el-form-item label="市场价格" >
-            <el-input type="number" v-model="editForm.productMarketPrice" placeholder="0.00" min="0">
+            <el-input type="number" v-model="editForm.marketPrice" placeholder="0.00" min="0">
               <el-button slot="append">元</el-button>
             </el-input>
             <span class="help-inline">商品市场价格必须是数字，且不能为负数</span>
           </el-form-item>
 
           <el-form-item label="销售价格" required>
-            <el-input type="number" v-model="editForm.productSalePrice" placeholder="0.00" min="0">
+            <el-input type="number" v-model="editForm.salePrice" placeholder="0.00" min="0">
               <el-button slot="append">元</el-button>
             </el-input>
             <span class="help-inline">商品销售价不能为空，且不能为负数</span>
           </el-form-item>
 
           <el-form-item label="成本价格">
-            <el-input type="number" v-model="editForm.productCostPrice" placeholder="0.00" min="0">
+            <el-input type="number" v-model="editForm.costPrice" placeholder="0.00" min="0">
               <el-button slot="append">元</el-button>
             </el-input>
             <span class="help-inline">商品成本必须是数字，且不能为负数</span>
@@ -348,7 +348,7 @@
           <h4>积分设置</h4>
 
           <el-form-item label="最大可使用积分">
-            <el-input type="number" v-model="editForm.maxUsePoint" >
+            <el-input type="number" v-model="editForm.maxUseIntegral" >
               <el-button slot="append">分</el-button>
             </el-input>
                 <p class="hint">设置购买时积分抵现最大可使用积分数，0为不可使用 </p>

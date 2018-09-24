@@ -1,92 +1,162 @@
 <template>
+  <div>
+    <el-row :gutter="8">
+      <el-col :span="6">
+        &nbsp;
+      </el-col>
 
-  <section class="ns-base-section">
+      <el-col :span="18">
+        <el-form :inline="true" :model="queryForm" size="small" >
+          <el-form-item label="下单时间">
+            <el-date-picker
+              v-model="queryForm.orderDateRange"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="datePickerOptions">
+            </el-date-picker>
+          </el-form-item>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/order/orderlist.html">订单</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/order/invoiceList -->
-          <a href="javascript:;" style="color:#999;">发票管理</a>
-              </div>
-            <!-- 三级导航菜单 -->
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+          <el-form-item label="订单编号">
+            <el-input v-model="queryForm.orderNo"></el-input>
+          </el-form-item>
 
-    <div class="ns-main">
+          <el-form-item>
+            <el-button type="primary" size="small" @click="search">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
 
-  <table class="mytable">
-  <tbody><tr>
-    <th width="100%">
-      <span>下单时间：</span>
-      <input type="text" id="startDate" class="input-common middle" placeholder="请选择开始日期" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
-      &nbsp;-&nbsp;
-      <input type="text" id="endDate" placeholder="请选择结束日期" class="input-common middle" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
-      <span>订单编号：</span>
-      <input type="text" id="order_no" placeholder="订单编号" class="input-common middle">
-      <button class="btn-common" onclick="LoadingInfo(1)">搜索</button>
-    </th>
-  </tr>
-  </tbody></table>
-  <table class="table-class">
-  <colgroup>
-    <col style="width: 1%;">
-    <col style="width: 15%;">
-    <col style="width: 14%;">
-    <col style="width: 12%;">
-    <col style="width: 15%;">
-    <col style="width: 15%;">
-    <col style="width: 10%;">
-    <col style="width: 10%;">
-    <col style="width: 10%;">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="center">
-        <!-- <i class="checkbox-common"><input type="checkbox" onclick="CheckAll(this)" id="check"></i> -->
-      </th>
-      <th align="left">订单编号</th>
-      <th align="left">用户名</th>
-      <th align="right" class="right-indent">开票金额</th>
-      <th align="left">抬头</th>
-      <th align="left">发票内容</th>
-      <th align="left">纳税人识别号</th>
-      <th align="center">创建时间</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody><tr align="center"><td></td><td align="left"><a href="/order/orderdetail?order_id=122">2018060510540001</a></td><td align="left">admin</td><td align="right" class="right-indent">20919.71</td><td align="left">423423</td><td align="left">恩都是多</td><td align="left">34423</td><td>2018-06-05 10:54:04</td><td></td></tr></tbody>
-  </table>
+    <el-table border :data="tableData" style="width: 100%">
 
-    </div>
+      <el-table-column
+        prop="orderNo"
+        label="订单编号">
+      </el-table-column>
 
-  </section>
+      <el-table-column
+        prop="username"
+        label="用户名"
+        width="150">
+      </el-table-column>
+
+      <el-table-column
+        prop="amount"
+        label="开票金额"
+        width="120">
+      </el-table-column>
+
+      <el-table-column
+        prop="title"
+        label="抬头">
+      </el-table-column>
+
+      <el-table-column
+        prop="content"
+        label="发票内容">
+      </el-table-column>
+
+      <el-table-column
+        prop="taxpayerIdentificationNumber"
+        label="纳税人识别号"
+        width="120">
+      </el-table-column>
+
+      <el-table-column
+        prop="createDate"
+        label="创建时间"
+        width="140">
+      </el-table-column>
+
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="80">
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
-require('@/assets/style/table.scss')
-require('@/assets/style/order/list.scss')
-
 export default {
-  name: 'invoiceOrder',
-  components: {}
+  name: 'invoiceList',
+  data () {
+    return {
+      searchKeyword: '',
+      queryForm: {},
+      datePickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近三个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      },
+      tableData: [
+        {
+          orderNo: '2018060510540001',
+          amount: '20919.71',
+          username: 'admin',
+          title: '423423',
+          content: '恩都是多',
+          createDate: '2018-06-05 10:54:04',
+          taxpayerIdentificationNumber: '34423'
+        }
+      ]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
+    },
+    handleDelete (index, row) {
+      console.log(index, row)
+    },
+    search () {
+      console.log('search', this.searchKeyword)
+    }
+
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.table-logo {
+  width: 75px;
+  float: left;
+}
+
+.table-pay {
+  display: inline-block;
+  width: 120px;
+  overflow: hidden;
+  margin-top: 7px;
+}
+
+.table-desc {
+  display: inline-block;
+}
+</style>

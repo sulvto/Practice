@@ -6,7 +6,7 @@
     </el-form-item>
 
     <el-form-item label="升级条件" >
-      <el-input type="number" v-model="levelEditForm.upgradCondition"></el-input>
+      <el-input type="number" v-model="levelEditForm.upgradeCondition"></el-input>
     </el-form-item>
 
     <el-form-item label="本店销售佣金比率" >

@@ -1,154 +1,225 @@
 <template>
   <section class="ns-base-section">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="全部" :name="0"></el-tab-pane>
+      <el-tab-pane label="待付款" :name="1"></el-tab-pane>
+      <el-tab-pane label="待发货" :name="2"></el-tab-pane>
+      <!-- <el-tab-pane label="待提货" :name="3"></el-tab-pane> -->
+      <el-tab-pane label="已发货" :name="4"></el-tab-pane>
+      <el-tab-pane label="已收货" :name="5"></el-tab-pane>
+      <el-tab-pane label="已完成" :name="6"></el-tab-pane>
+      <el-tab-pane label="已关闭" :name="7"></el-tab-pane>
+      <el-tab-pane label="退款中" :name="8"></el-tab-pane>
+    </el-tabs>
 
-        <div style="position:relative;margin:0;">
-            <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-                <a href="http://b2c.niuteam.cn/admin.html">单商户B2C</a>
-                <i class="fa fa-angle-right"></i>
-                <a href="/order/orderlist.html">订单</a>
-                <i class="fa fa-angle-right"></i>
-                <!-- 需要加跳转链接用这个：http://b2c.niuteam.cn/admin/order/orderlist -->
-                <a href="javascript:;" style="color:#999;">订单列表</a>
-            </div>
-            <!-- 三级导航菜单 -->
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button type="primary" size="small">导出数据</el-button>
+        <el-button size="small">打印订单</el-button>
+      </el-col>
 
-            <nav class="ns-third-menu">
-                <ul>
-                    <li class="selected" onclick="location.href='/Order/orderList.html';">全部</li>
-                    <li onclick="location.href='/order/orderlist.html?status=0';">待付款</li>
-                    <li onclick="location.href='/order/orderlist.html?status=1';">待发货</li>
-                    <li onclick="location.href='/order/orderlist.html?status=2';">已发货</li>
-                    <li onclick="location.href='/order/orderlist.html?status=3';">已收货</li>
-                    <li onclick="location.href='/order/orderlist.html?status=4';">已完成</li>
-                    <li onclick="location.href='/order/orderlist.html?status=5';">已关闭</li>
-                    <li onclick="location.href='/order/orderlist.html?status=-1';">退款中</li>
-                </ul>
-            </nav>
+      <el-col :span="12">
+        <el-form :inline="true" :model="queryForm" size="small" >
+          <el-form-item label="下单时间">
+            <el-date-picker
+              v-model="queryForm.orderDateRange"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="datePickerOptions">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-popover
+              placement="bottom"
+              width="400"
+              trigger="click"
+              v-model="moreQueryPopoverVisible">
+              <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
+                <el-form-item label="订单编号">
+                  <el-input v-model="queryForm.orderNo"></el-input>
+                </el-form-item>
 
-            <div class="right-side-operation">
-                <ul>
-                    <li>
-                        <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-                        <div class="popover">
-                            <div class="arrow"></div>
-                            <div class="popover-content">
-                                <div>
-                                    <h4>操作提示</h4>
-                                    <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2314&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2314&amp;extra=page%3D2</a></p>
-                                    <hr>
-                                    <h4>功能提示</h4>
-                                    <p class="function-prompts"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                <el-form-item label="收货人姓名">
+                  <el-input v-model="queryForm.receiver"></el-input>
+                </el-form-item>
 
-                </ul>
-            </div>
-        </div>
+                <el-form-item label="收货人手机号">
+                  <el-input v-model="queryForm.receiverMobile"></el-input>
+                </el-form-item>
+
+                <el-form-item label="支付方式">
+                  <el-select v-model="queryForm.paymentType" clearable placeholder="请选择">
+                    <el-option label="微信" :value="1"></el-option>
+                    <el-option label="支付宝" :value="2"></el-option>
+                    <el-option label="线下支付" :value="3"></el-option>
+                    <el-option label="货到付款" :value="4"></el-option>
+                  </el-select>
+                </el-form-item>
+
+                <el-form-item label="配送方式">
+                  <el-select v-model="queryForm.shippingType" clearable placeholder="请选择">
+                    <el-option label="物流配送" :value="1"></el-option>
+                    <el-option label="买家自提" :value="2"></el-option>
+                    <el-option label="本地配送" :value="3"></el-option>
+                  </el-select>
+                </el-form-item>
+
+                <el-form-item>
+                  <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
+                </el-form-item>
+              </el-form>
+              <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
+            </el-popover>
+            <el-button type="primary" size="small" @click="search">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
+
+    <el-table border
+      :data="tableData"
+      :span-method="objectSpanMethod"
+      style="width: 100%">
+      <el-table-column
+        type="selection"
+        width="35">
+      </el-table-column>
+
+      <el-table-column
+        label="商品信息"
+        width="350">
+        <template slot-scope="scope">
+          <div v-show="!scope.row.duplicate" style="font-size: 12px;color: #126AE4;margin-bottom:5px;">
+            <span>订单编号：{{ scope.row.orderNo }}</span>&nbsp;
+            <span>下单时间：{{ scope.row.createDate }}</span>
+          </div>
+          <div class="product-img"><img src="@/assets/img/goods/1499338515654.jpg"></div>
+          <div class="product-infor">
+            <a href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=150" target="_blank" style="color:#333;">
+              {{ scope.row.goodsName }}
+            </a>
+              <p class="specification" style="margin-bottom: 0px;"><span style="color:#8e8c8c;font-size:12px;">5.0 </span></p>
+          </div>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="商品清单"
+        width="120">
+        <template slot-scope="scope">
+          <div style="display: inline-block;">
+            <span>{{ scope.row.goodsPrices }}元</span>
+          </div>
+          <div style="display: inline-block;float:right;">
+            {{ scope.row.goodsNumber }}件
+          </div>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="订单金额"
+        width="120">
+        <template slot-scope="scope">
+          <div style="text-align:center">
+            <b class="netprice" style="color: #FF6600;font-size: 14px;font-weight: normal;">0.00</b>
+            <br>
+            <span class="expressfee">(含配送费:0.00元)</span>
+            <br>
+            <span class="expressfee">积分兑换</span>
+          </div>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="收货信息"
+        width="120">
+        <template slot-scope="scope">
+          <div style="text-align:center">
+            <div style="text-align:left;"><span class="expressfee">1</span><br><span class="expressfee">13333333333</span><br><span class="expressfee">台湾省&nbsp;台湾省&nbsp;台北&nbsp;2</span></div>
+          </div>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="买家"
+        width="120">
+        <template slot-scope="scope">
+          <div class="cell">
+            nicemb
+            <br>
+            <!-- TODO: melibe pc -->
+            <i class="fa fa-television" style="color:#666;"></i>
+          </div>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        prop="status"
+        label="交易状态"
+        width="180">
+        <template slot-scope="scope">
+          <div class="business-status" style="text-align:center">
+            <span v-if="scope.row.status === 1">待付款</span>
+            <span v-if="scope.row.status === 2">待发货</span>
+            <span v-if="scope.row.status === 3">待提货</span>
+            <span v-if="scope.row.status === 4">已发货</span>
+            <span v-if="scope.row.status === 5">已收货</span>
+            <span v-if="scope.row.status === 6">已完成</span>
+            <span v-if="scope.row.status === 7">已关闭</span>
+            <span v-if="scope.row.status === 8">退款中</span>
+          </div>
+
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="配送方式"
+        width="180">
+        <template slot-scope="scope">
+          <div class="business-status" style="text-align:center">物流配送<br></div>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="操作" fixed="right"
+          width="100">
+          <template slot-scope="scope">
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">订单详情</el-button>
+              <br>
+              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 3">提货</el-button>
+              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 2">发货</el-button>
+
+              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)">备注</el-button>
+              <br/>
+              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 2">修改地址</el-button>
+              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 7">删除订单</el-button>
+              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 6">查看物流</el-button>
+          </template>
+      </el-table-column>
+    </el-table>
+
+    <el-dialog title="备注信息" size="small" :visible.sync="dialogUpdateMemosFormVisible">
+      <el-form ref="updateMemosForm" size="small" :model="updateMemosForm" label-width="100px" >
+
+        <el-form-item label="备注">
+          <el-input type="textarea" rows="3" v-model="updateMemosForm.memos" >
+          </el-input>
+        </el-form-item>
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button size="small" @click="dialogUpdateMemosFormVisible = false">取 消</el-button>
+        <el-button size="small" type="primary" @click="updateMemos()">保 存</el-button>
+      </div>
+    </el-dialog>
 
         <div class="ns-main">
 
-            <input type="hidden" id="order_id">
-            <input type="hidden" id="print_select_ids">
-            <input type="hidden" id="order_status" value="">
             <div>
-                <table class="mytable select">
-                    <tbody>
-                        <tr>
-                            <th align="left">
-                                <button onclick="dataExcel()" class="btn-common">导出数据</button>
-
-                                <a class="btn-common-white" id="PrintOrder" href="javascript:;">
-                                    <i class="fa fa-print"></i>
-                                    <span>打印订单</span>
-                                </a>
-                            </th>
-                            <th style="position: relative;">
-                                <span>下单时间：</span>
-                                <input type="text" id="startDate" class="input-common middle" placeholder="请选择开始日期" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"> &nbsp;-&nbsp;
-                                <input type="text" id="endDate" placeholder="请选择结束日期" class="input-common middle" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
-                                <button class="btn-common-white more-search"><i class="fa fa-chevron-down"></i></button>
-                                <button onclick="searchData()" class="btn-common">搜索</button>
-
-                                <!-- 更多搜索 -->
-                                <div class="more-search-container">
-                                    <dl>
-                                        <dt>订单编号：</dt>
-                                        <dd>
-                                            <input id="orderNo" class="input-common middle" type="text">
-                                        </dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>收货人姓名：</dt>
-                                        <dd>
-                                            <input id="userName" class="input-common middle" type="text">
-                                        </dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>收货人手机号：</dt>
-                                        <dd>
-                                            <input id="receiverMobile" class="input-common middle" type="text">
-                                        </dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>支付方式：</dt>
-                                        <dd>
-                                            <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
-                                                <div class="selectric-hide-select"><select id="payment_type" class="select-common middle" tabindex="-1">
-                    <option value="">全部</option>
-                    <option value="1">微信</option>
-                    <option value="2">支付宝</option>
-                    <option value="10">线下支付</option>
-                    <option value="4">货到付款</option>
-                  </select></div>
-                                                <div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div>
-                                                <div class="selectric-items" tabindex="-1">
-                                                    <div class="selectric-scroll">
-                                                        <ul>
-                                                            <li data-index="0" class="selected" title="全部">全部</li>
-                                                            <li data-index="1" class="" title="微信">微信</li>
-                                                            <li data-index="2" class="" title="支付宝">支付宝</li>
-                                                            <li data-index="3" class="" title="线下支付">线下支付</li>
-                                                            <li data-index="4" class="last" title="货到付款">货到付款</li>
-                                                        </ul>
-                                                    </div>
-                                                </div><input class="selectric-input" tabindex="0"></div>
-                                        </dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>配送方式：</dt>
-                                        <dd>
-                                            <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
-                                                <div class="selectric-hide-select"><select id="shipping_type" class="select-common middle" tabindex="-1">
-                    <option value="0">全部</option>
-                    <option value="1">物流配送</option>
-                    <option value="2">买家自提</option>
-                    <option value="3">本地配送</option>
-                  </select></div>
-                                                <div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div>
-                                                <div class="selectric-items" tabindex="-1">
-                                                    <div class="selectric-scroll">
-                                                        <ul>
-                                                            <li data-index="0" class="selected" title="全部">全部</li>
-                                                            <li data-index="1" class="" title="物流配送">物流配送</li>
-                                                            <li data-index="2" class="" title="买家自提">买家自提</li>
-                                                            <li data-index="3" class="last" title="本地配送">本地配送</li>
-                                                        </ul>
-                                                    </div>
-                                                </div><input class="selectric-input" tabindex="0"></div>
-                                        </dd>
-                                    </dl>
-                                    <dl>
-                                        <dt></dt>
-                                        <dd><button onclick="searchData()" class="btn-common">搜索</button></dd>
-                                    </dl>
-                                </div>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
                 <table class="table-class" id="ajax-orderlist">
                     <colgroup>
                         <col width="2%">
@@ -165,8 +236,8 @@
                         <tr align="center">
                             <th>
                                 <i class="checkbox-common">
-                <input type="checkbox" onclick="CheckAll(this)" id="check">
-              </i>
+                                                    <input type="checkbox" onclick="CheckAll(this)" id="check">
+                                                  </i>
                             </th>
                             <th>商品信息</th>
                             <th>商品清单</th>
@@ -208,8 +279,11 @@
                             <td rowspan="1">
                                 <div class="business-status" style="text-align:center">物流配送<br></div>
                             </td>
-                            <td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=501">订单详情</a><a style="display:block;margin-bottom:5px;color:green" href="javascript:operation('delivery',501)">发货</a><a style="display:block;margin-bottom:5px;color:#666666"
-                                    href="javascript:operation('seller_memo',501)">备注</a><a style="display:block;margin-bottom:5px;color:#51A351" href="javascript:operation('update_address',501)">修改地址</a></td>
+                            <td rowspan="1" style="text-align:center;">
+                              <a style="display:block;margin-bottom:5px;" href="/order/orderdetail?order_id=501">订单详情</a>
+                              <a style="display:block;margin-bottom:5px;color:green" href="javascript:operation('delivery',501)">发货</a>
+                              <a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',501)">备注</a>
+                              <a style="display:block;margin-bottom:5px;color:#51A351" href="javascript:operation('update_address',501)">修改地址</a></td>
                         </tr>
                         <tr style="height:10px;">
                             <td style="border-bottom:solid #E1E6F0;border-width:0 0 1px 0;" colspan="10"></td>
@@ -808,17 +882,17 @@
                                 <div>
                                     <div style="margin-bottom:5px;">发货方式：</div>
                                     <label class="checkbox-inline" style="float:left;margin-right:30px;">
-                <i class="radio-common">
-                  <input type="radio" name="shipping_type" id="shipping_type0" value="0">
-                </i>
-                <span>无需物流</span>
-              </label>
-                                    <label class="checkbox-inline" style="float:left;">
-                <i class="radio-common selected">
-                  <input type="radio" name="shipping_type" id="shipping_type1" value="1" checked="checked">
-                </i>
-                <span>需要物流</span>
-              </label>
+                                                      <i class="radio-common">
+                                                        <input type="radio" name="shipping_type" id="shipping_type0" value="0">
+                                                      </i>
+                                                      <span>无需物流</span>
+                                                    </label>
+                                                                          <label class="checkbox-inline" style="float:left;">
+                                                      <i class="radio-common selected">
+                                                        <input type="radio" name="shipping_type" id="shipping_type1" value="1" checked="checked">
+                                                      </i>
+                                                      <span>需要物流</span>
+                                                    </label>
                                 </div>
                                 <div style="clear:both;"></div>
                                 <div class="form-group" id="express_input" style="margin:5px 0 10px 0;">
@@ -928,6 +1002,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- 修改收货地址模态 -->
                 <div class="modal hide fade" id="update_address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-365px; width: 700px;">
                     <div class="modal-dialog">
@@ -1370,6 +1445,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal hide fade" tabindex="-1" aria-labelledby="退款操作提醒" aria-hidden="true" data-backdrop="static" id="refundOperationReminder" style="width:600px;top: 50%;">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1393,6 +1469,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="refuseRefund" style="width:300px;">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1412,6 +1489,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="agreeRefund" style="width:300px;">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1431,6 +1509,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="confirm_receipt" style="width:400px;">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1476,6 +1555,339 @@ require('@/assets/style/order/list.scss')
 
 export default {
   name: 'orderList',
+  data () {
+    return {
+      dialogUpdateMemosFormVisible: false,
+      moreQueryPopoverVisible: false,
+      queryForm: {},
+      updateMemosForm: {},
+      orderList: [{
+        orderNo: '2018082421370001',
+        createDate: '2018-08-24 21:37:11',
+        goodsList: [{
+          name: 'TV1233213',
+          number: '1',
+          price: '0.08'
+        }],
+        payPrices: '0.00',
+        paymentType: '物流配送',
+        receiver: '1',
+        receiverMobile: '13333333333',
+        receiverAddress: '台湾省&nbsp;台湾省&nbsp;台北&nbsp;2',
+        username: 'nicemb',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 2
+      }, {
+        orderNo: '2018082410590001',
+        createDate: '2018-08-24 10:59:41',
+        goodsList: [{
+          name: '蓝斯顿 智能楼宇对讲系统设备直按小高层刷卡门禁门铃套装高清',
+          number: '1',
+          price: '388.00'
+        }],
+        payPrices: '388.00',
+        paymentType: '物流配送',
+        receiver: 'shshhs',
+        receiverMobile: '13999998888',
+        receiverAddress: '海南省&nbsp;海口市&nbsp;琼山区&nbsp;sjjssj',
+        username: '123456',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }, {
+        orderNo: '2018082410480001',
+        createDate: '2018-08-24 10:48:57',
+        goodsList: [{
+          name: '14.1英寸轻薄刀锋四核笔记本电脑手提固态商务学生游戏上网本分期',
+          number: '2',
+          price: '56.00'
+        }],
+        payPrices: '112.00',
+        paymentType: '物流配送',
+        receiver: '张小三',
+        receiverMobile: '18516940875',
+        receiverAddress: '广东省&nbsp;河源市&nbsp;紫金县&nbsp;xxx',
+        username: 'zhangxiaosan',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }, {
+        orderNo: '2018082311270001',
+        createDate: '2018-08-23 11:27:56',
+        goodsList: [{
+          name: '技师',
+          number: '4',
+          price: '2.30'
+        }],
+        payPrices: '9.20',
+        paymentType: '物流配送',
+        receiver: '于河',
+        receiverMobile: '15910776603',
+        receiverAddress: '台湾省&nbsp;台湾省&nbsp;台北&nbsp;1',
+        username: 'yuhe',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 5
+      }, {
+        orderNo: '2018082221250001',
+        createDate: '2018-08-22 21:25:50',
+        goodsList: [{
+          name: '美国Elta MD无油防晒霜 全身脸部清爽痘皮敏感肌隔离防晒乳 SPF45-副本',
+          number: '1',
+          price: '100.00'
+        }],
+        payPrices: '198.00',
+        paymentType: '物流配送',
+        receiver: '小徐',
+        receiverMobile: '13076910220',
+        receiverAddress: '广东省&nbsp;深圳市&nbsp;罗湖区&nbsp;test',
+        username: 'xyf',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }, {
+        orderNo: '2018082212040001',
+        createDate: '2018-08-22 12:04:12',
+        goodsList: [{
+          name: 'TV1233213-副本',
+          number: '1',
+          price: '8.00'
+        }],
+        payPrices: '8.00',
+        paymentType: '物流配送',
+        receiver: '刘',
+        receiverMobile: '15625862457',
+        receiverAddress: '四川省&nbsp;广安市&nbsp;广安区&nbsp;爱与语言',
+        username: 'lxj',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }, {
+        orderNo: '2018082209550001',
+        createDate: '2018-08-22 09:55:46',
+        goodsList: [{
+          name: '20180606【正宗三华李】+果实饱满 现摘现发+1份2斤装（±0.2）',
+          number: '2',
+          price: '14.22'
+        }],
+        payPrices: '28.44',
+        paymentType: '物流配送',
+        receiver: 'xss',
+        receiverMobile: '15067160000',
+        receiverAddress: '广东省&nbsp;阳江市&nbsp;阳西县&nbsp;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;',
+        username: 'admin',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }, {
+        orderNo: '2018082121090001',
+        createDate: '2018-08-21 21:09:15',
+        goodsList: [{
+          name: '212313132',
+          number: '5',
+          price: '5.00'
+        }],
+        payPrices: '15.00',
+        paymentType: '物流配送',
+        receiver: '爱仕达奥所',
+        receiverMobile: '13267033002',
+        receiverAddress: '广东省&nbsp;汕头市&nbsp;潮阳区&nbsp;奥术大师大啊',
+        username: '1218853252',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 5
+      }, {
+        orderNo: '2018082116500001',
+        createDate: '2018-08-21 16:50:01',
+        goodsList: [{
+          name: '20180606【正宗三华李】+果实饱满 现摘现发+1份2斤装（±0.2）',
+          number: '1',
+          price: '14.22'
+        }],
+        payPrices: '9014.22',
+        paymentType: '物流配送',
+        receiver: 'xss',
+        receiverMobile: '15067160000',
+        receiverAddress: '广东省&nbsp;阳江市&nbsp;阳西县&nbsp;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;',
+        username: 'admin',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }, {
+        orderNo: '2018082015560001',
+        createDate: '2018-08-20 15:56:44',
+        goodsList: [{
+          name: '11111112',
+          number: '1',
+          price: '810.00'
+        }],
+        payPrices: '810.00',
+        paymentType: '物流配送',
+        receiver: '123',
+        receiverMobile: '15878907890',
+        receiverAddress: '海南省&nbsp;海口市&nbsp;秀英区&nbsp;123',
+        username: 'admin',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 5
+      }, {
+        orderNo: '2018082015170001',
+        createDate: '2018-08-20 15:17:25',
+        goodsList: [{
+          name: '宝格丽（BVLGARI） 宝格丽大吉岭茶男士淡香水浓情版 100ml',
+          number: '1',
+          price: '489.78'
+        }],
+        payPrices: '489.78',
+        paymentType: '物流配送',
+        receiver: '123',
+        receiverMobile: '15878907890',
+        receiverAddress: '海南省&nbsp;海口市&nbsp;秀英区&nbsp;123',
+        username: 'admin',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }, {
+        orderNo: '2018082008120001',
+        createDate: '2018-08-20 08:12:55',
+        goodsList: [{
+          name: '美国Elta MD无油防晒霜 全身脸部清爽痘皮敏感肌隔离防晒乳 SPF45-副本',
+          number: '1',
+          price: '100.00'
+        }],
+        payPrices: '100.00',
+        paymentType: '物流配送',
+        receiver: '1',
+        receiverMobile: '13612121212',
+        receiverAddress: '青海省&nbsp;海东地区&nbsp;平安县&nbsp;123123123',
+        username: 'chenhao0427',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }, {
+        orderNo: '2018081810530001',
+        createDate: '2018-08-18 10:53:04',
+        goodsList: [
+          {
+            name: '美国Elta MD无油防晒霜 全身脸部清爽痘皮敏感肌隔离防晒乳 SPF45-副本',
+            number: '1',
+            price: '200.00'
+          }, {
+            name: '浴霸智能开关 触摸86型卫生间风暖通用防水4四五合一5开开关面板',
+            price: '108.00',
+            number: '1'
+          }
+        ],
+        payPrices: '190.00',
+        paymentType: '物流配送',
+        receiver: '等人方',
+        receiverMobile: '13131313131',
+        receiverAddress: '广东省&nbsp;阳江市&nbsp;阳西县&nbsp;双方各是的法规单方事故',
+        username: '3452101',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 5
+      }, {
+        orderNo: '2018081716460001',
+        createDate: '2018-08-17 16:46:11',
+        goodsList: [{
+          name: '蓝斯顿 智能楼宇对讲系统设备直按小高层刷卡门禁门铃套装高清',
+          number: '1',
+          price: '100.00'
+        }],
+        payPrices: '100.00',
+        paymentType: '物流配送',
+        receiver: '测试',
+        receiverMobile: '13965425983',
+        receiverAddress: '北京市&nbsp;北京市&nbsp;东城区&nbsp;1111122',
+        username: 'niushop1',
+        order_from: 'https://open.weixin.qq.com/',
+        status: 6
+      }],
+      datePickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近三个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      }
+    }
+  },
+  computed: {
+    tableData () {
+      let result = []
+      this.orderList.forEach(orderListItem => {
+        let goods = this.copyOrderGoodsInfo(orderListItem, 0)
+        if (orderListItem.goodsList.length > 1) {
+          goods.multirow = true
+          result.push(Object.assign(goods, orderListItem))
+
+          orderListItem.goodsList.forEach((goodsListItem, index) => {
+            if (index > 0) {
+              let goods = this.copyOrderGoodsInfo(orderListItem, index)
+              goods.duplicate = true
+              console.log('duplicate', goods)
+              result.push(Object.assign(goods, orderListItem))
+            }
+          })
+        } else {
+          result.push(Object.assign(goods, orderListItem))
+        }
+      })
+      return result
+    }
+  },
+  methods: {
+    updateMemos () {
+      this.updateMemosForm.order.memos = this.updateMemosForm.memos
+      this.dialogUpdateMemosFormVisible = false
+    },
+    showUpdateMemosDialog (order) {
+      this.updateMemosForm.order = order
+      this.updateMemosForm.memos = order.memos
+      this.dialogUpdateMemosFormVisible = true
+    },
+    search () {
+
+    },
+    copyOrderGoodsInfo ({ goodsList = [] }, index) {
+      let result = {}
+      result.goodsName = goodsList[index].name
+      result.goodsNumber = goodsList[index].number
+      result.goodsPrices = goodsList[index].price
+      return result
+    },
+    objectSpanMethod ({ row, column, rowIndex, columnIndex }) {
+      if (columnIndex === 0 || columnIndex > 2) {
+        if (row.duplicate) {
+          console.log('duplicate', row.duplicate)
+          return {
+            rowspan: 0,
+            colspan: 0
+          }
+        } else if (row.multirow) {
+          console.log('multirow', row.multirow)
+          return {
+            rowspan: row.goodsList.length,
+            colspan: 1
+          }
+        } else {
+          return {
+            rowspan: 1,
+            colspan: 1
+          }
+        }
+      }
+    }
+  },
   components: {}
 }
 </script>

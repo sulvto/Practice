@@ -303,7 +303,7 @@
         </el-form-item>
 
         <el-form-item label="价格保留方式">
-          <el-radio-group v-model="setMemberDiscountForm.stockOption">
+          <el-radio-group v-model="setMemberDiscountForm.priceRetentionMethod">
             <el-radio :label="1">抹去角和分</el-radio>
             <el-radio :label="0">抹去分</el-radio>
           </el-radio-group>

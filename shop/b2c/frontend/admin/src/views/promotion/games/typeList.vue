@@ -1,73 +1,103 @@
 <template>
-  <section class="ns-base-section">
-
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="index.html">黑马商城</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/promotion/coupontypelist.html">营销</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/Promotion/promotionGameTypeList -->
-          <a href="javascript:;" style="color:#999;">活动类型</a>
-              </div>
-            <!-- 三级导航菜单 -->
-
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>活动类型</p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="ns-main">
-
-    <div class="main_content">
+  <div>
     <h3>互动游戏</h3>
     <ul class="clearfix">
 
-        <li class="application-item">
+      <li class="application-item">
+        <a href="/promotion/games/edit.html?type=3">
+          <div class="application-logo"><img src="@/assets/img/games/b4c30bad203a9ad37c92b7c52d5d422d.png" alt=""></div>
+          <div class="application-name">刮刮卡</div>
+          <div class="application-desc">通过刮开卡片进行抽奖的玩法</div>
+        </a>
+      </li>
 
-              <a href="/promotion/addPromotionGame.html?game_type=3">
-              <div class="application-logo"><img src="/public/admin/images/games/b4c30bad203a9ad37c92b7c52d5d422d.png" alt=""></div>
-        <div class="application-name">刮刮卡</div>
-        <div class="application-desc">通过刮开卡片进行抽奖的玩法</div>
-      </a>
-    </li>
-        <li class="application-item">
+      <li class="application-item">
+        <a href="/promotion/games/edit.html?type=4">
+          <div class="application-logo"><img src="@/assets/img/games/03aa1ac9b94e2b9c47f47360e98c25c0.png" alt=""></div>
+          <div class="application-name">幸运砸蛋</div>
+          <div class="application-desc">好运砸出来</div>
+        </a>
+      </li>
 
-              <a href="/promotion/addPromotionGame.html?game_type=7">
-              <div class="application-logo"><img src="/public/admin/images/games/03aa1ac9b94e2b9c47f47360e98c25c0.png" alt=""></div>
-        <div class="application-name">幸运砸蛋</div>
-        <div class="application-desc">好运砸出来</div>
-      </a>
-    </li>
-        <li class="application-item">
-
-              <a href="/promotion/addPromotionGame.html?game_type=8">
-              <div class="application-logo"><img src="/public/admin/images/games/57ebd7f399284e9eb7f2a779bec77362.png" alt=""></div>
-        <div class="application-name">幸运大抽奖</div>
-        <div class="application-desc">常见的转盘式抽奖玩法</div>
-      </a>
-    </li>
+      <li class="application-item">
+        <a href="/promotion/games/edit.html?type=5">
+          <div class="application-logo"><img src="@/assets/img/games/57ebd7f399284e9eb7f2a779bec77362.png" alt=""></div>
+          <div class="application-name">幸运大抽奖</div>
+          <div class="application-desc">常见的转盘式抽奖玩法</div>
+        </a>
+      </li>
 
     </ul>
-    </div>
-    </div>
-
-  </section>
+  </div>
 </template>
+<style lang="scss" scoped>
+
+h3 {
+  font-size: 14px;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    float: left;
+    width: 240px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    background: #f8f8f8;
+
+    > a {
+      zoom: 1;
+      display: block;
+      padding: 10px;
+    }
+
+    .application-logo {
+      float: left;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+    }
+
+    .application-item img{
+      width: 40px;
+      height: 40px;
+      vertical-align: bottom;
+      border: none;
+    }
+
+  }
+}
+
+.application-item .application-name {
+  font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: bottom;
+    color: #333;
+    font-weight: 700;
+    margin-left: 50px;
+}
+
+.application-item .application-desc {
+  margin-left: 50px;
+  font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: top;
+    color: #999;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+</style>

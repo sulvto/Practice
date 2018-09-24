@@ -1,106 +1,120 @@
 <template>
 
   <section class="ns-base-section">
+    <el-row :gutter="8">
+      <el-col :span="12">
+        &nbsp;
+      </el-col>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/member/memberlist.html">会员</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/member/usercommissionwithdrawlist -->
-          <a href="javascript:;" style="color:#999;">会员提现</a>
-              </div>
-            <!-- 三级导航菜单 -->
+      <el-col :span="12">
+        <el-form :inline="true" :model="queryForm" size="small" >
+          <el-form-item label="提现时间">
+            <el-date-picker
+              v-model="queryForm.orderDateRange"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="datePickerOptions">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-popover
+              placement="bottom"
+              width="400"
+              trigger="click"
+              v-model="moreQueryPopoverVisible">
+              <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
+                <el-form-item label="会员账号">
+                  <el-input v-model="queryForm.username"></el-input>
+                </el-form-item>
 
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2324&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2324&amp;extra=page%3D2</a></p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
+                <el-form-item label="手机号">
+                  <el-input v-model="queryForm.phoneNumber"></el-input>
+                </el-form-item>
 
-        </ul>
-      </div>
-    </div>
+                <el-form-item>
+                  <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
+                </el-form-item>
+              </el-form>
+              <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
+            </el-popover>
+            <el-button type="primary" size="small" @click="search">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
+
+    <el-table border
+      :data="tableData"
+      style="width: 100%">
+      <el-table-column
+        type="selection"
+        width="35">
+      </el-table-column>
+
+      <el-table-column
+        label="会员账号"
+        width="350">
+        <template slot-scope="scope">
+
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="手机号"
+        width="120">
+        <template slot-scope="scope">
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        label="提现流水号"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="提现银行"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="提现账户"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="账户姓名"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="提现金额"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="状态"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="提现日期"
+        width="180">
+      </el-table-column>
+
+      <el-table-column
+        label="操作" fixed="right"
+        width="100">
+        <template slot-scope="scope">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">订单详情</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
 
     <div class="ns-main">
-
-  <table class="mytable">
-  <tbody><tr>
-    <td>
-      <span>提现时间：</span>
-      <input type="text" id="startDate" class="input-common middle" placeholder="请选择开始日期" onclick="WdatePicker()">
-      &nbsp;-&nbsp;
-      <input type="text" id="endDate" placeholder="请选择结束日期" class="input-common middle" onclick="WdatePicker()">
-      <!-- 更多搜索按钮 -->
-      <button class="btn-common-white more-search"><i class="fa fa-chevron-down"></i></button>
-      <button onclick="searchData()" value="搜索" class="btn-common">搜索</button>
-      <!-- 更多搜索下拉框 -->
-      <div class="more-search-container">
-        <dl>
-          <dt>会员账号：</dt>
-          <dd>
-            <input id="userName" class="input-small input-common middle" type="text" placeholder="请输入会员账号">
-          </dd>
-        </dl>
-        <dl>
-          <dt>手机号：</dt>
-          <dd>
-            <input id="userTel" class="input-small input-common middle" type="text" placeholder="请输入手机号">
-          </dd>
-        </dl>
-        <dl>
-          <dt></dt>
-          <dd><button onclick="searchData()" class="btn-common">搜索</button></dd>
-        </dl>
-      </div>
-    </td>
-  </tr>
-  </tbody></table>
-  <table class="table-class">
-  <colgroup>
-    <col style="width: 2%;">
-    <col style="width: 9%;">
-    <col style="width: 9%;">
-    <col style="width: 9%;">
-    <col style="width: 9%;">
-    <col style="width: 9%;">
-    <col style="width: 9%;">
-    <col style="width: 9%;">
-    <col style="width: 9%;">
-    <col style="width: 16%;">
-    <col style="width: 10%;">
-  </colgroup>
-  <thead>
-    <tr>
-      <th><i class="checkbox-common"><input type="checkbox" onclick="CheckAll(this)"></i></th>
-      <th align="left">会员账号</th>
-      <th align="left">手机号</th>
-      <th align="left">提现流水号</th>
-      <th align="left">提现银行</th>
-      <th align="left">提现账户</th>
-      <th align="left">账户姓名</th>
-      <th align="right">提现金额</th>
-      <th>状态</th>
-      <th>提现日期</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody><tr align="center"><td colspan="11">暂无符合条件的数据记录</td></tr></tbody>
-  </table>
 
   <!-- 通过提现申请 -->
   <div class="modal fade hide" id="agree" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -252,3 +266,44 @@
 
   </section>
 </template>
+
+<script>
+export default {
+  name: 'list',
+  data () {
+    return {
+      searchKeyword: '',
+      queryForm: {},
+      tableData: [{
+        logo: '/admin/images/wchat.png',
+        name: '微信登录',
+        status: true,
+        tooltip: '使用该功能需申请微信开放平台网站应用',
+        link: 'https://open.weixin.qq.com/'
+      }, {
+        logo: '/admin/images/qq.png',
+        name: 'QQ登录',
+        status: false,
+        tooltip: '使用该功能需申请QQ互联',
+        link: 'https://connect.qq.com/'
+      }]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
+    },
+    handleDelete (index, row) {
+      console.log(index, row)
+    },
+    search () {
+      console.log('search', this.searchKeyword)
+    }
+
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>

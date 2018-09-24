@@ -5,7 +5,7 @@
   <div>
 
 <!-- 模态框（Modal） -->
-    <div class="modal fade hide" id="giftInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade hide" id="giftInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" v-show="false">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -47,23 +47,37 @@
         </div>
       </div>
     </div>
-    <el-row>
+    <el-row :gutter="8">
+      <el-col :span="12">
         <el-button type="danger" size="small">批量删除</el-button>
-        <el-button type="primary" size="small">添加赠品</el-button>
+        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加赠品</el-button>
+      </el-col>
+
+      <el-col :span="10">
+        <el-input size="small" v-model="searchKeyword" placeholder="请输入赠品名称"></el-input>
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
     </el-row>
+
+    <br/>
 
     <el-table border :data="tableData" style="width: 100%">
 
       <el-table-column
             prop="name"
-            label="活动名称"
-            width="120">
+            label="活动名称">
           </el-table-column>
 
       <el-table-column
-            prop="status"
             label="活动状态"
             width="120">
+        <template slot-scope="scope">
+            <span v-if="scope.row.status === 1">进行中</span>
+            <span v-if="scope.row.status === 2">已关闭</span>
+            <span v-if="scope.row.status === 3">已结束</span>
+        </template>
           </el-table-column>
 
       <el-table-column
@@ -77,19 +91,24 @@
             width="120">
                 <template slot-scope="scope">-</template>
           </el-table-column>
-<el-table-column label="有效时间">
-            <template slot-scope="scope">
 
-                <span class="table-pay">{{scope.row.startTime}}</span><br>
-                <span class="table-desc">提示：{{scope.row.stopTime}} </span>
+<el-table-column label="有效时间"
+            width="210">
+            <template slot-scope="scope">
+              开始时间：{{scope.row.startDate}}
+              <br>
+              结束时间：{{scope.row.endDate}}
             </template>
         </el-table-column>
 
         <el-table-column label="操作"
-            width="180">
+            width="220">
             <template slot-scope="scope">
-                <!-- <a href="/config/loginconfig.html?type=qq">配置</a> -->
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">配置</el-button>
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status !== 1">删除</el-button>
+              <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)">发放记录</el-button>
+
             </template>
         </el-table-column>
     </el-table>
@@ -103,22 +122,22 @@ export default {
     return {
       tableData: [{
         id: '1',
-        startTime: '2018-08-20 10:32:19',
-        stopTime: '2018-08-31 10:32:21',
+        startDate: '2018-08-20 10:32:19',
+        endDate: '2018-08-31 10:32:21',
         name: 's',
-        status: '已结束'
+        status: 3
       }, {
         id: '2',
-        startTime: '2018-08-09 14:20:34',
-        stopTime: '2018-08-29 14:20:35',
+        startDate: '2018-08-09 14:20:34',
+        endDate: '2018-08-29 14:20:35',
         name: 'eqweqe',
-        status: '已结束'
+        status: 3
       }, {
         id: '3',
-        startTime: '2018-05-01 00:00:00',
-        stopTime: '2019-06-21 00:00:00',
+        startDate: '2018-05-01 00:00:00',
+        endDate: '2019-06-21 00:00:00',
         name: '132',
-        status: '进行中'
+        status: 1
       }]
     }
   },
@@ -149,4 +168,7 @@ export default {
     .table-desc {
         display: inline-block;
     }
+.margin-top-5 {
+  margin-top:5px;
+}
 </style>

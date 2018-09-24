@@ -100,8 +100,7 @@
   <div>
     <el-row :gutter="8">
       <el-col :span="12">
-        <el-button type="danger" size="small">批量删除</el-button>
-        <el-button type="primary" size="small">添加物流公司</el-button>
+        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加优惠券</el-button>
       </el-col>
 
       <el-col :span="10">
@@ -115,15 +114,10 @@
     <br/>
 
     <el-table border :data="tableData" style="width: 100%">
-      <el-table-column
-        type="selection"
-        width="35">
-      </el-table-column>
 
       <el-table-column
         prop="name"
-        label="优惠券名称"
-        width="120">
+        label="优惠券名称">
       </el-table-column>
 
       <el-table-column
@@ -131,31 +125,36 @@
         label="面额"
         width="120">
       </el-table-column>
+
       <el-table-column
         prop="number"
         label="发放数量"
-        width="120">
+        width="80">
       </el-table-column>
 
-      <el-table-column label="有效时间">
+      <el-table-column label="有效时间"
+        width="210">
         <template slot-scope="scope">
-          <div>
-          开始时间：{{scope.row.startDate}}}
-          <br>
-          结束时间：{{scope.row.endDate}}
+          <div v-if="scope.row.termOfValidityType === 1">
+            开始时间：{{scope.row.startDate}}
+            <br>
+            结束时间：{{scope.row.endDate}}
+          </div>
+          <div v-if="scope.row.termOfValidityType === 2">
+            领取之日起{{ scope.row.fixedDays }}天内有效
           </div>
         </template>
       </el-table-column>
 
       <el-table-column label="操作" fixed="right"
-          width="180">
+          width="250">
           <template slot-scope="scope">
               <!-- <a href="/config/loginconfig.html?type=qq">配置</a> -->
               <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
               <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
               <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">推广链接</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">发放记录</el-button>
+              <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)">推广链接</el-button>
+              <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)">发放记录</el-button>
           </template>
       </el-table-column>
     </el-table>
@@ -169,17 +168,25 @@ export default {
     return {
       searchKeyword: '',
       tableData: [{
-        denomination: '/admin/images/wchat.png',
-        name: '微信登录',
-        number: 100,
-        startDate: '使用该功能需申请微信开放平台网站应用',
-        link: 'https://open.weixin.qq.com/'
+        denomination: 1000.00,
+        name: '滿5000送1000',
+        number: 999,
+        termOfValidityType: 1,
+        startDate: '2018-09-12 10:47:51',
+        endDate: '2018-09-30 10:47:55'
       }, {
-        denomination: '/admin/images/wchat.png',
-        name: '微信登录',
-        number: 100,
-        startDate: '使用该功能需申请QQ互联',
-        endDate: 'https://connect.qq.com/'
+        denomination: 5.00,
+        name: '满150元减5元',
+        number: 1000,
+        termOfValidityType: 1,
+        startDate: '2018-08-01 18:45:23',
+        endDate: '2018-10-31 18:45:27'
+      }, {
+        denomination: 2.00,
+        name: '满88元减2元',
+        number: 110,
+        termOfValidityType: 2,
+        fixedDays: 1
       }]
     }
   },
@@ -213,5 +220,9 @@ export default {
 
 .table-desc {
   display: inline-block;
+}
+
+.margin-top-5 {
+  margin-top:5px;
 }
 </style>

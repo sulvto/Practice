@@ -6,7 +6,7 @@
                                     </article> -->
 
             <div class="header">
-              <div class="ns-logo" :style="'background: url(' + topLogoImage + ') no-repeat center; background-size: 65%;'" onclick="location.href='http://showfx.niuteam.cn/admin.html';"></div>
+              <div class="ns-logo" :style="'background: url(' + topLogoImage + ') no-repeat center; background-size: 80%;'" onclick="location.href='http://showfx.niuteam.cn/admin.html';"></div>
               <div class="ns-search">
                   <div class="nav-menu js-nav">
                       <img src="@/assets/img/nav_menu.png" title="导航管理">
@@ -434,7 +434,7 @@ export default {
 
     activeVerticalMenuItem () {
       let result = null
-      if (this.verticalMenu.children.length > 0) {
+      if (this.verticalMenu.children && this.verticalMenu.children.length > 0) {
         var verticalMenuroute =
           this.$route.matched.find(route => this.verticalMenu.children.find(child => child.path === route.path)) ||
           this.$route.matched.find(route => this.verticalMenu.children.find(child => child.name === route.name))
@@ -497,7 +497,6 @@ export default {
           isHome: true,
           children: [
             {
-              selected: true,
               path: '/index.html',
               name: '欢迎页'
             },
@@ -604,58 +603,57 @@ export default {
           ]
         }, {
           name: '营销',
-          path: '/promotion/coupontypelist.html',
+          path: '/promotion',
           children: [{
-            path: '/promotion/coupontypelist.html',
+            path: '/promotion/coupon',
             name: '优惠券'
           }, {
             path: '/promotion/pointconfig.html',
             name: '积分管理'
           }, {
-            path: '/promotion/giftlist.html',
+            path: '/promotion/gift',
             name: '赠品'
           }, {
-            path: '/promotion/mansonglist.html',
+            path: '/promotion/mansong',
             name: '满减送'
           }, {
-            path: '/bargain/index.html',
+            path: '/bargain',
             name: '砍价活动'
           }, {
-            path: '/promotion/discountlist.html',
+            path: '/promotion/discount',
             name: '限时折扣'
           }, {
-            path: '/promotion/combopackagelist.html',
+            path: '/promotion/combopackage/list.html',
             name: '组合套餐'
           }, {
             path: '/promotion/fullshipping.html',
             name: '满额包邮'
           }, {
-            path: '/promotion/integral.html',
+            path: '/promotion/RewardRules.html',
             name: '奖励规则'
           }, {
-            path: '/promotion/gameslist.html',
+            path: '/promotion/games/list.html',
             name: '互动游戏'
           }, {
-            path: '/promotion/groupbuylist.html',
+            path: '/promotion/groupbuy',
             name: '团购'
           }, {
             path: '/tuangou/pintuanlist.html',
             name: '拼团'
           }, {
-            path: '/promotion/topiclist.html',
+            path: '/promotion/topic',
             name: '专题活动'
           }]
         }, {
           name: '会员',
-          path: '/member/memberlist.html',
+          path: '/member',
           children: [
             {
-              selected: true,
               path: '/member/memberlist.html',
               name: '会员列表'
             },
             {
-              path: '/member/memberlevellist.html',
+              path: '/member/level',
               name: '会员等级'
             },
             {
@@ -673,7 +671,7 @@ export default {
           ]
         }, {
           name: '数据',
-          path: '/account/shopsalesaccount.html',
+          path: '/account',
           children: [
             {
               selected: true,

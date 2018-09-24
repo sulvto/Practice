@@ -40,19 +40,20 @@ import OrderPresellDetail from '@/views/orderPresell/detail.vue'
 
 import Promotion from '@/views/promotion/Index.vue'
 import PromotionCouponTypeList from '@/views/promotion/coupon/list.vue'
-// import PromotionCouponTypeEdit from '@/views/promotion/coupon/edit.vue'
+import PromotionCouponTypeEdit from '@/views/promotion/coupon/edit.vue'
 import PromotionPointconfig from '@/views/promotion/pointconfig.vue'
+import PromotionGiftIndex from '@/views/promotion/gift/Index.vue'
 import PromotionGiftList from '@/views/promotion/gift/list.vue'
 import PromotionGiftEdit from '@/views/promotion/gift/edit.vue'
 import PromotionGiftRecords from '@/views/promotion/gift/records.vue'
 import PromotionMansongList from '@/views/promotion/mansong/list.vue'
-// import PromotionMansongEdit from '@/views/promotion/mansong/edit.vue'
+import PromotionMansongEdit from '@/views/promotion/mansong/Edit.vue'
 import PromotionDiscountList from '@/views/promotion/discount/list.vue'
 import PromotionDiscountEdit from '@/views/promotion/discount/edit.vue'
 import PromotionCombopackageList from '@/views/promotion/combopackage/list.vue'
 import PromotionCombopackageEdit from '@/views/promotion/combopackage/edit.vue'
 import PromotionFullshipping from '@/views/promotion/fullshipping.vue'
-import PromotionIntegral from '@/views/promotion/integral.vue'
+import PromotionRewardRules from '@/views/promotion/RewardRules.vue'
 import PromotionGamesList from '@/views/promotion/games/list.vue'
 import PromotionGamesEdit from '@/views/promotion/games/edit.vue'
 import PromotionGamesTypeList from '@/views/promotion/games/typeList.vue'
@@ -63,10 +64,14 @@ import PromotionTopicList from '@/views/promotion/topic/list.vue'
 import PromotionTopicEdit from '@/views/promotion/topic/edit.vue'
 
 import BargainIndex from '@/views/bargain/Index.vue'
+import BargainList from '@/views/bargain/List.vue'
+import BargainEdit from '@/views/bargain/edit.vue'
+import BargainConfig from '@/views/bargain/config.vue'
 
 import Member from '@/views/member/Index.vue'
 import MemberList from '@/views/member/memberList.vue'
 import MemberLevelList from '@/views/member/memberLevel/list.vue'
+import MemberLevelEdit from '@/views/member/memberLevel/edit.vue'
 import MemberAccountList from '@/views/member/accountList.vue'
 import MemberPointList from '@/views/member/pointList.vue'
 import MemberUserCommissionWithdrawList from '@/views/member/userCommissionWithdrawList.vue'
@@ -403,6 +408,9 @@ export default new Router({
       name: '订单',
       component: Order,
       children: [{
+        path: '/',
+        redirect: 'orderlist.html'
+      }, {
         path: 'orderlist.html',
         name: 'orderList',
         component: OrderList
@@ -444,12 +452,23 @@ export default new Router({
     },
     {
       path: '/bargain',
-      name: 'bargain',
-      component: Order,
+      name: '砍价活动',
+      component: BargainIndex,
       children: [{
+        path: '/',
+        redirect: 'index.html'
+      }, {
         path: 'index.html',
+        name: '砍价活动列表',
+        component: BargainList
+      }, {
+        path: 'edit.html',
+        name: '编辑砍价活动',
+        component: BargainEdit
+      }, {
+        path: 'config.html',
         name: 'bargainIndex',
-        component: BargainIndex
+        component: BargainConfig
       }, {
         path: 'pintuanlist.html',
         name: 'pintuanList',
@@ -458,84 +477,184 @@ export default new Router({
     },
     {
       path: '/promotion',
-      name: 'promotion',
+      name: '营销',
       component: Promotion,
       children: [{
-        path: 'coupontypelist.html',
-        name: 'couponTypeList',
-        component: PromotionCouponTypeList
+        path: '/',
+        redirect: 'coupon'
+      }, {
+        path: 'coupon',
+        name: '优惠券',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '优惠券列表',
+            component: PromotionCouponTypeList
+          }, {
+            path: 'edit.html',
+            name: '编辑优惠券',
+            component: PromotionCouponTypeEdit
+          }
+        ]
       }, {
         path: 'pointconfig.html',
         name: 'pointconfig',
         component: PromotionPointconfig
       }, {
-        path: 'giftlist.html',
-        name: 'giftList',
-        component: PromotionGiftList
+        path: 'gift',
+        name: '赠品',
+        component: PromotionGiftIndex,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '赠品列表',
+            component: PromotionGiftList
+          }, {
+            path: 'edit.html',
+            name: '编辑赠品',
+            component: PromotionGiftEdit
+          }, {
+            path: 'records.html',
+            name: '赠品发放记录',
+            component: PromotionGiftRecords
+          }
+        ]
       }, {
-        path: 'giftedit.html',
-        name: 'giftEdit',
-        component: PromotionGiftEdit
+        path: 'mansong',
+        name: '满减送',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '满减送列表',
+            component: PromotionMansongList
+          }, {
+            path: 'edit.html',
+            name: '编辑满减送',
+            component: PromotionMansongEdit
+          }
+        ]
       }, {
-        path: 'giftrecords.html',
-        name: 'giftRecords',
-        component: PromotionGiftRecords
-      }, {
-        path: 'mansonglist.html',
-        name: 'mansongList',
-        component: PromotionMansongList
-      }, {
-        path: 'discountlist.html',
-        name: 'discountList',
-        component: PromotionDiscountList
+        path: 'discount',
+        name: '限时折扣',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '限时折扣列表',
+            component: PromotionDiscountList
+          }, {
+            path: 'edit.html',
+            name: '编辑限时折扣',
+            component: PromotionDiscountEdit
+          }
+        ]
       }, {
         path: 'discountedit.html',
         name: 'discountEdit',
         component: PromotionDiscountEdit
       }, {
-        path: 'combopackagelist.html',
-        name: 'combopackageList',
-        component: PromotionCombopackageList
-      }, {
-        path: 'combopackageedit.html',
-        name: 'combopackageEdit',
-        component: PromotionCombopackageEdit
+        path: 'combopackage',
+        name: '组合套餐',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '组合套餐列表',
+            component: PromotionCombopackageList
+          }, {
+            path: 'edit.html',
+            name: '编辑组合套餐',
+            component: PromotionCombopackageEdit,
+            prompts: '<p>只有实物商品才能参与组合套餐活动！</p> ' +
+                     '<p>商品原价与节省价仅作为参考，不参与实际计算！</p> ' +
+                     '<p>商品价格取得是商品sku价格中的最低价格！参与套餐售卖的的商品sku价格不要相差太大。</p> ' +
+                     '<p style="color: red;margin:0;">注：在组合商品发布之后，切勿修改商品价格。</p> ' +
+                     '<p></p>'
+          }
+        ]
       }, {
         path: 'fullshipping.html',
         name: 'fullshipping',
         component: PromotionFullshipping
       }, {
-        path: 'integral.html',
-        name: 'integral',
-        component: PromotionIntegral
+        path: 'RewardRules.html',
+        name: '奖励规则',
+        component: PromotionRewardRules
       }, {
-        path: 'gameslist.html',
-        name: 'gamesList',
-        component: PromotionGamesList
+        path: 'games',
+        name: '互动游戏',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '互动游戏列表',
+            component: PromotionGamesList
+          }, {
+            path: 'typelist.html',
+            name: '活动类型',
+            component: PromotionGamesTypeList
+          }, {
+            path: 'edit.html',
+            name: '编辑互动游戏',
+            component: PromotionGamesEdit
+          }
+        ]
       }, {
-        path: 'gamesedit.html',
-        name: 'gamesEdit',
-        component: PromotionGamesEdit
+        path: 'groupbuy',
+        name: '团购',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '团购列表',
+            component: PromotionGroupBuyList
+          }, {
+            path: 'edit.html',
+            name: '编辑团购',
+            component: PromotionGroupBuyEdit
+          }
+        ]
       }, {
-        path: 'gamestypelist.html',
-        name: 'gamesTypeList',
-        component: PromotionGamesTypeList
-      }, {
-        path: 'groupbuylist.html',
-        name: 'groupBuyList',
-        component: PromotionGroupBuyList
-      }, {
-        path: 'groupbuyedit.html',
-        name: 'groupBuyEdit',
-        component: PromotionGroupBuyEdit
-      }, {
-        path: 'topiclist.html',
-        name: 'topicList',
-        component: PromotionTopicList
-      }, {
-        path: 'topicedit.html',
-        name: 'topicEdit',
-        component: PromotionTopicEdit
+        path: 'topic',
+        name: '专题活动',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '专题活动列表',
+            component: PromotionTopicList
+          }, {
+            path: 'edit.html',
+            name: '编辑专题活动',
+            component: PromotionTopicEdit
+          }
+        ]
       }]
     },
     {
@@ -557,24 +676,41 @@ export default new Router({
       name: '会员',
       component: Member,
       children: [{
+        path: '/',
+        redirect: 'memberlist.html'
+      }, {
         path: 'memberlist.html',
         name: 'memberList',
         component: MemberList
       }, {
-        path: 'memberlevellist.html',
-        name: 'memberLevelList',
-        component: MemberLevelList
+        path: 'level',
+        name: '会员等级',
+        component: BaseRouter,
+        children: [
+          {
+            path: '/',
+            redirect: 'list.html'
+          }, {
+            path: 'list.html',
+            name: '会员等级列表',
+            component: MemberLevelList
+          }, {
+            path: 'edit.html',
+            name: '编辑会员等级',
+            component: MemberLevelEdit
+          }
+        ]
       }, {
-        path: 'memberpointlist.html',
-        name: 'MemberPointList',
+        path: 'pointlist.html',
+        name: '积分管理',
         component: MemberPointList
       }, {
-        path: 'memberusercommissionwithdrawlist.html',
-        name: 'memberUserCommissionWithdrawList',
+        path: 'usercommissionwithdrawlist.html',
+        name: 'UserCommissionWithdrawList',
         component: MemberUserCommissionWithdrawList
       }, {
-        path: 'memberaccountlist.html',
-        name: 'memberAccountList',
+        path: 'accountlist.html',
+        name: '余额管理',
         component: MemberAccountList
       }]
     },
@@ -583,6 +719,9 @@ export default new Router({
       name: '数据',
       component: Account,
       children: [{
+        path: '/',
+        redirect: 'shopsalesaccount.html'
+      }, {
         path: 'shopsalesaccount.html',
         name: 'shopsalesaccount',
         component: AccountShopSalesAccount

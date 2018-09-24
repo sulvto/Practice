@@ -18,19 +18,22 @@
                     </th> -->
 <template>
     <div>
-        <el-row>
-            <el-button type="danger" size="small">全部   </el-button>
-            <el-button type="primary" size="small">￼未成团</el-button>
-                       <el-button type="primary" size="small">￼成团</el-button>
-                                  <el-button type="primary" size="small">￼失败</el-button>
-        </el-row>
 
-        <el-table border :data="tableData" style="width: 100%">
+    <el-row>
+        <el-button type="danger" size="small">全部</el-button>
+        <el-button type="primary" size="small">￼未成团</el-button>
+        <el-button type="primary" size="small">￼成团</el-button>
+        <el-button type="primary" size="small">￼失败</el-button>
+    </el-row>
 
-    <el-table-column prop="group_name" label="团长" width="120"></el-table-column>
-    <el-table-column prop="user_tel" label="联系方式" width="120"></el-table-column>
-    <el-table-column prop="tuangou_money" label="价格" width="120"></el-table-column>
-    <el-table-column  label="成团" width="120">
+    <br/>
+
+    <el-table border :data="tableData" style="width: 100%">
+
+      <el-table-column prop="group_name" label="团长" width="120"></el-table-column>
+      <el-table-column prop="user_tel" label="联系方式" width="120"></el-table-column>
+      <el-table-column prop="tuangou_money" label="价格" width="120"></el-table-column>
+      <el-table-column  label="成团" width="120">
           <template slot-scope="scope">
                 {{scope.row.status}}} <br/>
         已参团人数：{{scope.row.real_num}}

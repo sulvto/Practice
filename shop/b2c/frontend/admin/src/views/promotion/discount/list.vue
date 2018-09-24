@@ -2,49 +2,6 @@
 
   <section class="ns-base-section">
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/promotion/coupontypelist.html">营销</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/promotion/getdiscountlist -->
-          <a href="javascript:;" style="color:#999;">限时折扣</a>
-              </div>
-            <!-- 三级导航菜单 -->
-
-                <nav class="ns-third-menu">
-          <ul>
-                        <li class="selected" onclick="location.href='/promotion/getdiscountList.html';">全部</li>
-                          <li onclick="location.href='/promotion/getdiscountList.html?status=0';">未发布</li>
-                          <li onclick="location.href='/promotion/getdiscountList.html?status=1';">进行中</li>
-                          <li onclick="location.href='/promotion/getdiscountList.html?status=3';">已关闭</li>
-                          <li onclick="location.href='/promotion/getdiscountList.html?status=4';">已结束</li>
-                      </ul>
-        </nav>
-
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2318&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2318&amp;extra=page%3D2</a></p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
     <div class="ns-main">
 
   <table class="mytable">
@@ -81,39 +38,39 @@
 
   <!-- 模态框（Modal） -->
   <div class="modal fade hide" id="discountInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>限时折扣详情</h3>
-      </div>
-      <div class="modal-body">
-        <div class="modal-infp-style">
-          <table>
-            <tbody><tr>
-              <td style="width:60px;">活动名称</td>
-              <td colspan="3" id="discount_name"></td>
-            </tr>
-            <tr>
-              <td>有效期</td>
-              <td colspan="3" id="time"></td>
-            </tr>
-            <tr>
-              <td>活动状态</td>
-              <td colspan="3" id="status"></td>
-            </tr>
-            <tr>
-              <td colspan="3">商品列表</td>
-            </tr>
-            <tr id="goods_list"></tr>
-          </tbody></table>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>限时折扣详情</h3>
+        </div>
+        <div class="modal-body">
+          <div class="modal-infp-style">
+            <table>
+              <tbody><tr>
+                <td style="width:60px;">活动名称</td>
+                <td colspan="3" id="discount_name"></td>
+              </tr>
+              <tr>
+                <td>有效期</td>
+                <td colspan="3" id="time"></td>
+              </tr>
+              <tr>
+                <td>活动状态</td>
+                <td colspan="3" id="status"></td>
+              </tr>
+              <tr>
+                <td colspan="3">商品列表</td>
+              </tr>
+              <tr id="goods_list"></tr>
+            </tbody></table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-      </div>
     </div>
-  </div>
   </div>
 
     </div>
@@ -121,3 +78,135 @@
   </section>
 
 </template>
+<template>
+  <div>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="全部" name="first">全部</el-tab-pane>
+      <el-tab-pane label="未发布" name="second">未发布</el-tab-pane>
+      <el-tab-pane label="进行中" name="third">进行中</el-tab-pane>
+      <el-tab-pane label="已关闭" name="fourth">已关闭</el-tab-pane>
+      <el-tab-pane label="已结束" name="fourth">已结束</el-tab-pane>
+    </el-tabs>
+
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button type="danger" size="small">批量删除</el-button>
+        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加限时折扣</el-button>
+      </el-col>
+
+      <el-col :span="10">
+        <el-input size="small" v-model="searchKeyword" placeholder="请输入活动名称"></el-input>
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
+    </el-row>
+
+    <br/>
+
+    <el-table border :data="tableData" style="width: 100%">
+      <el-table-column
+        type="selection"
+        width="35">
+      </el-table-column>
+
+      <el-table-column
+        prop="name"
+        label="活动名称">
+      </el-table-column>
+
+      <el-table-column
+          label="活动状态"
+          width="180">
+        <template slot-scope="scope">
+          <span v-if="scope.row.status === 1">未发布</span>
+          <span v-if="scope.row.status === 2">进行中</span>
+          <span v-if="scope.row.status === 3">已关闭</span>
+          <span v-if="scope.row.status === 4">已结束</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+          label="有效时间"
+          width="210">
+        <template slot-scope="scope">
+          开始时间：{{ scope.row.startDate }}
+          <br>
+          结束时间：{{ scope.row.endDate }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" fixed="right"
+          width="220">
+          <template slot-scope="scope">
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status !== 2">修改</el-button>
+                            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status === 2">关闭</el-button>
+                            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
+              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)" v-if="scope.row.status === 3 || scope.row.status === 4">删除</el-button>
+          </template>
+      </el-table-column>
+    </el-table>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'list',
+  data () {
+    return {
+      searchKeyword: '',
+      tableData: [{
+        name: '222222',
+        status: 2,
+        startDate: '2018-07-17 18:14:06',
+        endDate: '2018-08-31 18:14:09'
+      }, {
+        name: 'asd',
+        status: 1,
+        startDate: '2018-09-19 21:11:12',
+        endDate: '2018-09-21 21:11:12'
+      }, {
+        name: '限时折扣活动',
+        status: 3,
+        startDate: '2018-09-05 09:49:47',
+        endDate: '2018-09-07 09:49:47'
+      }, {
+        name: '限时折扣',
+        status: 4,
+        startDate: '2018-09-05 09:49:47',
+        endDate: '2018-09-07 09:49:47'
+      }]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
+    },
+    handleDelete (index, row) {
+      console.log(index, row)
+    },
+    search () {
+      console.log('search', this.searchKeyword)
+    }
+
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.table-logo {
+  width: 75px;
+  float: left;
+}
+
+.table-pay {
+  display: inline-block;
+  width: 120px;
+  overflow: hidden;
+  margin-top: 7px;
+}
+
+.table-desc {
+  display: inline-block;
+}
+</style>

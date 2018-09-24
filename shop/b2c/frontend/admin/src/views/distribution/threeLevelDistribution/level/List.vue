@@ -78,7 +78,7 @@
             label="升级条件"
             width="120">
           <template slot-scope="scope">
-              {{scope.row.upgradConditions}}元
+              {{scope.row.upgradeCondition}}元
           </template>
           </el-table-column>
 
@@ -124,28 +124,28 @@ export default {
     return {
       searchKeyword: '',
       tableData: [{
-        upgradConditions: '3000.00',
+        upgradeCondition: '3000.00',
         name: '二级分销',
         lavel_0: '40.00',
         lavel_1: '30.00',
         lavel_2: '20.00',
         createDate: '2018-07-24 14:40:39'
       }, {
-        upgradConditions: '0.00',
+        upgradeCondition: '0.00',
         name: '初级分销商',
         lavel_0: '60.00',
         lavel_1: '25.00',
         lavel_2: '15.00',
         createDate: '2018-07-02 18:07:55'
       }, {
-        upgradConditions: '0.00',
+        upgradeCondition: '0.00',
         name: '中级分销商',
         lavel_0: '70.00',
         lavel_1: '20.00',
         lavel_2: '10.00',
         createDate: '2018-07-02 18:07:24'
       }, {
-        upgradConditions: '0.00',
+        upgradeCondition: '0.00',
         name: '高级分销商',
         lavel_0: '80.00',
         lavel_1: '15.00',
