@@ -936,7 +936,7 @@ img {
   color: #ffffff;
   position: fixed;
   top: 0;
-  z-index: 2000;
+  z-index: 1000;
   border-left: 1px solid transparent;
 
   .ns-logo, .ns-search {
@@ -1040,7 +1040,7 @@ img {
   position: fixed;
   right: 0;
   left: 0;
-  z-index: 1030;
+  z-index: 530;
   margin-top: 60px;
 }
 .el-main {

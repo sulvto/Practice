@@ -577,13 +577,7 @@
 
       <el-tab-pane label="商品详情">
         <!-- 详情设置 -->
-
-          <div class="controls" id="discripContainer" style="">
-            <textarea id="tareaProductDiscrip" name="discripArea" style="height: 500px; width: 800px; display: none;"></textarea>
-
-            <span class="help-inline">请填写商品描述</span>
-          </div>
-
+        <UEditor :content="editForm.detail" :config="{initialFrameHeight: '500'}" ref="ue"/>
       </el-tab-pane>
 
       <el-tab-pane label="模板设置">
@@ -615,7 +609,7 @@
     <div class="ns-main" style="">
 
       <div class="edit-sku-popup-mask-layer"></div>
-      <div class="edit-sku-popup">
+      <div class="edit-sku-popup" v-show="false">
         <header>
           <h3>选择规格</h3>
           <span>×</span>
@@ -757,6 +751,7 @@
 
 <script>
 
+import UEditor from '@/components/UEditor.vue'
 import typeSelectedImage from '@/assets/img/type_selected.png'
 
 export default {
@@ -794,6 +789,7 @@ export default {
     }
   },
   components: {
+    UEditor
   }
 }
 </script>

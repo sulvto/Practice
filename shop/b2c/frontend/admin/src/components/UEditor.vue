@@ -1,32 +1,38 @@
 <template>
   <div>
-    <script id="container" name="content" type="text/plain">
+    <script id="ueditor_container" name="content" type="text/plain">
 
     </script>
   </div>
 </template>
 
 <script>
-import '@/assets/ueditor/ueditor.all.min.js'
-import '@/assets/ueditor/ueditor.config.js'
-import '@/assets/ueditor/ueditor.parse.min.js'
-import '@/assets/ueditor/lang/zh-cn/zh-cn.js'
+require('@/../static/ueditor/ueditor.config.js')
+require('@/../static/ueditor/ueditor.all.min.js')
+require('@/../static/ueditor/ueditor.parse.min.js')
+require('@/../static/ueditor/lang/zh-cn/zh-cn.js')
 
 export default {
   name: 'UEditor',
   data () {
     return {
-      editor: null
+      editor: null,
+      defaultConfig: {
+        BaseUrl: '',
+        UEDITOR_HOME_URL: '/static/ueditor/',
+        zIndex: 999
+      }
     }
   },
-  props : {
+  props: {
     content: String,
     config: Object
   },
   mounted () {
-    this.editor = UE.getEditor('container', this.config)
+    this.editor = window.UE.getEditor('ueditor_container', Object.assign(this.config, this.defaultConfig))
     this.editor.ready(() => {
       this.editor.setContent(this.content)
+      this.editor.focus()
     })
   },
   methods: {
@@ -39,4 +45,3 @@ export default {
   }
 }
 </script>
-

@@ -2,7 +2,7 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
     <h4>专题活动信息</h4>
 
-    <el-form-item label="专题名称">
+    <el-form-item label="专题名称" required prop="name">
       <el-input v-model="editForm.name"></el-input>
     </el-form-item>
 
@@ -11,7 +11,7 @@
     </el-form-item>
 
     <el-form-item label="描述">
-      <el-input v-model="editForm.description"></el-input>
+      <el-input type="textarea" v-model="editForm.description"></el-input>
     </el-form-item>
     <!-- TODO: 图像：条幅：背景图： -->
 
@@ -84,7 +84,9 @@
     </el-form-item>
 
     <h4>高级设置</h4>
-    <!-- TODO: 专题介绍: -->
+    <el-form-item label="专题介绍">
+      <UEditor :content="editForm.introduce" :config="{initialFrameHeight: '400'}" ref="ue"/>
+    </el-form-item>
 
     <el-form-item label="是否显示头部">
       <el-switch  active-text="是" inactive-text="否" v-model="editForm.isShowHead"></el-switch>
@@ -133,6 +135,7 @@
 </template>
 
 <script>
+import UEditor from '@/components/UEditor.vue'
 import SimpleGoodsTable from '@/components/SimpleGoodsTable.vue'
 
 export default {
@@ -145,18 +148,20 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { required: true, message: '请输入专题名称', trigger: 'blur' }
+          // { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ]
       }
     }
   },
   methods: {
     submitForm () {
+      this.editForm.content = this.$refs.ue.getContent()
       console.log('submitForm', this.editForm)
     }
   },
   components: {
+    UEditor,
     SimpleGoodsTable
   }
 }
@@ -173,5 +178,12 @@ export default {
 .important-note {
   color: #ff6600;
   font-style: normal;
+}
+h4 {
+  margin-left: 0px;
+  border-left: 2px solid #126AE4;
+  padding-left: 5px;
+  font-size: 16px;
+  color: #333333;
 }
 </style>

@@ -10,19 +10,20 @@
       </el-input>
     </el-form-item>
 
-    <!-- TODO: 需要富文本编辑器 -->
     <el-form-item label="公告内容" required>
-      <el-input type="textarea" v-model="editForm.content"></el-input>
+      <UEditor :content="editForm.content" :config="{initialFrameHeight: '500'}" ref="ue"/>
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" @click="submitForm('editForm')">保存</el-button>
+      <el-button type="primary" @click="submitForm()">保存</el-button>
       <el-button type="info" @click="$router.back()">返回</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script>
+import UEditor from '@/components/UEditor.vue'
+
 export default {
   name: 'edit',
   data () {
@@ -37,6 +38,15 @@ export default {
         ]
       }
     }
+  },
+  methods: {
+    submitForm () {
+      this.editForm.content = this.$refs.ue.getContent()
+      console.log(this.editForm)
+    }
+  },
+  components: {
+    UEditor
   }
 }
 </script>

@@ -27,7 +27,8 @@
               width="400"
               trigger="click"
               v-model="moreQueryPopoverVisible">
-              <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
+              <el-form ref="editForm" :model="queryForm" label-width="100px" size="small"
+                label-position="right">
                 <el-form-item label="评价用户">
                   <el-input v-model="queryForm.username" placeholder="请输入用户名称"></el-input>
                 </el-form-item>
