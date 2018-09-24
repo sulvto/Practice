@@ -1,0 +1,108 @@
+package me.qinchao.web.controller;
+
+import com.google.common.collect.Lists;
+import me.qinchao.web.domain.Todo;
+import me.qinchao.web.dto.TodoDTO;
+import me.qinchao.web.exception.EntryNotFoundException;
+import me.qinchao.web.service.TodoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by sulvto on 9/24/18.
+ */
+@Controller
+public class TodoController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TodoController.class);
+
+    private TodoService service;
+
+    @Autowired
+    public TodoController(TodoService service) {
+        this.service = service;
+    }
+
+    @RequestMapping(value = "/api/todo", method = RequestMethod.POST)
+    @ResponseBody
+    public TodoDTO add(@Valid @RequestBody TodoDTO dto) {
+        LOGGER.debug("Adding a new to-do entry with information: {}", dto);
+
+        Todo added = service.add(dto);
+        LOGGER.debug("Added a to-do entry with information: {}", added);
+
+        return createDTO(added);
+    }
+
+    @RequestMapping(value = "/api/todo/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public TodoDTO deleteById(@PathVariable("id") Long id) throws EntryNotFoundException {
+        LOGGER.debug("Deleting a to-do entry with id: {}", id);
+
+        Todo deleted = service.deleteById(id);
+        LOGGER.debug("Deleted to-do entry with information: {}", deleted);
+
+        return createDTO(deleted);
+    }
+
+    @RequestMapping(value = "/api/todo", method = RequestMethod.GET)
+    @ResponseBody
+    public List<TodoDTO> findAll() {
+        LOGGER.debug("Finding all todo entries.");
+
+        Iterable<Todo> models = service.findAll();
+        ArrayList<Todo> todoArrayList = Lists.newArrayList(models);
+        LOGGER.debug("Found {} to-do entries.", todoArrayList.size());
+
+        return createDTOs(todoArrayList);
+    }
+
+    private List<TodoDTO> createDTOs(List<Todo> models) {
+        List<TodoDTO> dtos = new ArrayList<TodoDTO>();
+
+        for (Todo model : models) {
+            dtos.add(createDTO(model));
+        }
+
+        return dtos;
+    }
+
+    @RequestMapping(value = "/api/todo/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public TodoDTO findById(@PathVariable("id") Long id) throws EntryNotFoundException {
+        LOGGER.debug("Finding to-do entry with id: {}", id);
+
+        Todo found = service.findById(id);
+        LOGGER.debug("Found to-do entry with information: {}", found);
+
+        return createDTO(found);
+    }
+
+    @RequestMapping(value = "/api/todo/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public TodoDTO update(@Valid @RequestBody TodoDTO dto, @PathVariable("id") Long todoId) throws EntryNotFoundException {
+        LOGGER.debug("Updating a to-do entry with information: {}", dto);
+
+        Todo updated = service.update(dto, todoId);
+        LOGGER.debug("Updated the information of a to-entry to: {}", updated);
+
+        return createDTO(updated);
+    }
+
+    private TodoDTO createDTO(Todo model) {
+        TodoDTO dto = new TodoDTO();
+
+        dto.setId(model.getId());
+        dto.setDescription(model.getDescription());
+        dto.setTitle(model.getTitle());
+
+        return dto;
+    }
+}
