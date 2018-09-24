@@ -1,8 +1,12 @@
 package me.qinchao.web.util;
 
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by sulvto on 9/20/18.
@@ -41,8 +45,23 @@ public class Response {
         return jsonObject.toJSONString();
     }
 
-    public static String notFound(HttpServletResponse httpServletResponse) {
-        httpServletResponse.setStatus(404, "指定的用户不存在");
+    public static String notFound(String message) {
+        try {
+            httpServletResponse().sendError(404, message);
+        } catch (IOException e) {
+        }
         return null;
+    }
+
+    public static String notFound() {
+        return notFound("");
+    }
+
+    public static HttpServletResponse httpServletResponse() {
+        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+    }
+
+    public static HttpServletRequest httpServletRequest() {
+        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
     }
 }
