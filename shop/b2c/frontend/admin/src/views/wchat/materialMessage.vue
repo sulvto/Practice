@@ -1,88 +1,116 @@
 <template>
+  <div>
+    <el-tabs v-model="currentType">
+      <el-tab-pane v-for="o in 3" :key="o" :label="typeName[o]" :name="o">
+      </el-tab-pane>
+    </el-tabs>
 
-  <section class="ns-base-section">
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button v-if="currentType === 1" type="primary" size="small" @click="addMedia()">添加文本消息</el-button>
+        <el-button v-if="currentType === 2" type="primary" size="small" @click="addMedia()">添加单图文消息</el-button>
+        <el-button v-if="currentType === 3" type="primary" size="small" @click="addMedia()">添加多图文消息</el-button>
+      </el-col>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/wchat/config.html">微信</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/wchat/materialmessage -->
-          <a href="javascript:;" style="color:#999;">消息素材管理</a>
-              </div>
-            <!-- 三级导航菜单 -->
+      <el-col :span="10">
+        <el-input size="small" v-model="searchKeyword" placeholder="请输入消息名称"></el-input>
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
+    </el-row>
 
-                <nav class="ns-third-menu">
-          <ul>
-                        <li class="selected" onclick="location.href='/wchat/materialMessage.html?type=1';">文本</li>
-                          <li onclick="location.href='/wchat/materialMessage.html?type=2';">单图文</li>
-                          <li onclick="location.href='/wchat/materialMessage.html?type=3';">多图文</li>
-                      </ul>
-        </nav>
+    <br/>
 
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2330&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2330&amp;extra=page%3D2</a></p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <el-table border :data="tableData" style="width: 100%">
+      <el-table-column label="标题">
+        <template slot-scope="scope">
+          <el-tag>{{ typeName[scope.row.type] }}</el-tag>
+          <span>{{ scope.row.content }}
+          </span>
+        </template>
+      </el-table-column>
 
-    <div class="ns-main">
+      <el-table-column
+        prop="createDate"
+        label="创建时间"
+        width="140">
+      </el-table-column>
 
-  <table class="mytable">
-  <tbody><tr>
-  <th width="20%" style="text-align: left;">
-        <button class="btn-common btn-small" style="margin:0 5px 0 0 !important;" onclick="location.href='/wchat/addmedia.html?type=1';">添加文本消息</button>
-      </th>
-  <th width="10%">
-    <input type="text" id="search_text" placeholder="请输入消息名称" class="input-common">
-    <button onclick="searchData()" value="搜索" class="btn-common">搜索</button>
-  </th>
-  </tr>
-  </tbody></table>
-  <table class="table-class">
-  <colgroup>
-    <col style="width: 74%;">
-    <col style="width: 16%;">
-    <col style="width: 10%;">
-  </colgroup>
-  <thead>
-    <tr align="center">
-      <th style="text-align:left;">标题</th>
-      <th>创建时间</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody><tr align="center"><td style="text-align:left;"><ul class="mater"><li><span class="type_name">文本  </span><a href="#">sdfsaf</a></li></ul></td><td>2018-08-06 02:44:12</td><td><a href="/wchat/updatemedia?media_id=3">修改</a>&nbsp;&nbsp; <a href="javascript:void(0);" onclick="deleteWeixinMedia(3)">删除</a></td></tr></tbody>
-  </table>
+      <el-table-column label="操作" fixed="right"
+          width="180">
+          <template slot-scope="scope">
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+      </el-table-column>
+    </el-table>
 
-    </div>
-
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'materialMessage',
   data () {
-    return {}
+    return {
+      currentType: 1,
+      typeName: {
+        1: '文本',
+        2: '单图文',
+        3: '多图文'
+      },
+      list: [
+        {
+          content: '文本',
+          createDate: '2018-08-06 02:44:12',
+          type: 1
+        }, {
+          content: 'aaaaaaaaaa',
+          createDate: '2018-08-06 02:44:12',
+          type: 2
+        }, {
+          content: 'asdsf',
+          createDate: '2018-08-06 02:44:12',
+          type: 3
+        }, {
+          content: '阿斯顿',
+          createDate: '2018-08-06 02:44:12',
+          type: 1
+        }, {
+          content: '阿的和',
+          createDate: '2018-08-06 02:44:12',
+          type: 2
+        }, {
+          content: '阿的阿斯顿和',
+          createDate: '2018-08-06 02:44:12',
+          type: 2
+        }, {
+          content: '阿的三四三和',
+          createDate: '2018-08-06 02:44:12',
+          type: 3
+        }, {
+          content: '阿啊啊啊啊啊',
+          createDate: '2018-08-06 02:44:12',
+          type: 2
+        }, {
+          content: '啦啦啦理论',
+          createDate: '2018-08-06 02:44:12',
+          type: 1
+        }
+      ]
+    }
   },
-  methods: {}
+  methods: {
+    addMedia () {
+      this.$router.push('addMedia.html?type=' + this.currentType)
+    }
+  },
+  computed: {
+    tableData () {
+      let that = this
+      return this.list.filter(item => item.type === that.currentType)
+    }
+  }
 }
 </script>

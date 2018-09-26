@@ -1,9 +1,7 @@
 <template>
-	
+
 	<section class="ns-base-section">
-		
-		
-		
+
 		<div style="position:relative;margin:0;">
 			<!-- 面包屑导航 -->
 						<div class="breadcrumb-nav">
@@ -15,7 +13,7 @@
 					<a href="javascript:;" style="color:#999;">货到付款地区管理</a>
 							</div>
 						<!-- 三级导航菜单 -->
-			
+
 								<nav class="ns-third-menu">
 					<ul>
 												<li class="selected" onclick="location.href='/express/expresscompany.html';">物流配送</li>
@@ -23,11 +21,11 @@
 													<li onclick="location.href='/distribution/distributionuserlist.html';">本地配送</li>
 											</ul>
 				</nav>
-							
+
 			<div class="right-side-operation">
 				<ul>
-					
-					
+
+
 <!-- 					style="display:none;" style="display:block;" -->
 					<li>
 						<a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
@@ -41,13 +39,13 @@
 							</div>
 						</div>
 					</li>
-					
+
 				</ul>
 			</div>
 		</div>
-		
+
 		<!-- 操作提示 -->
-		
+
 <!-- 		 -->
 		<div class="ns-warm-prompt" style="display:none;">
 			<div class="alert alert-info">
@@ -61,10 +59,10 @@
 				</h4>
 			</div>
 		</div>
-		
-		
+
+
 		<div class="ns-main">
-			
+
 <div class="space-10"></div>
 <div class="ncsc-form-goods">
 <nav class="goods-nav">
@@ -74,13 +72,13 @@
 											<li><a href="/order/returnsetting.html" child_id="3">商家地址</a></li>
 										<li class="selected"><a href="/config/distributionareamanagement.html" child_id="4">货到付款地区管理</a></li>
 											<li><a href="/config/expressmessage.html" child_id="5">物流跟踪设置</a></li>
-							
+
 		</ul>
 </nav>
 	<!-- 基础设置 -->
 	<div class="mod-table">
 	<div class="mod-table-head">
-			
+
 		<table class="table">
 			<colgroup>
 				<col style="width: 20%">
@@ -20505,7 +20503,7 @@
 			<li><a id="prevPage" class="page-disable">上一页</a></li>
 			<li id="pageNumber"></li>
 			<li id="JslastPage">
-				
+
 			</li>
 			<li><a id="nextPage">下一页</a></li>
 			<li><a id="lastPage">末页</a></li>
@@ -20520,6 +20518,6 @@
 <input type="hidden" id="page_count">
 <input type="hidden" id="page_size">
 		</div>
-		
+
 	</section>
 </template>

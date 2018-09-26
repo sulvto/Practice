@@ -14,7 +14,7 @@ export default {
           path: '/setting/delivery/express/expressCompany.html',
           name: '物流公司'
         }, {
-          path: '/setting/delivery/express',
+          path: '/setting/delivery/express/areaManagement.html',
           name: '地区管理'
         }, {
           path: '/setting/delivery/express/SellerAddress.html',

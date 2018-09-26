@@ -1,65 +1,83 @@
 <template>
-  <section class="ns-base-section">
+  <div>
+    <el-tabs v-model="activeTabName">
+      <el-tab-pane label="关注时回复" name="1">
+        <!-- 关注时回复 -->
+        <div id="type1">
+            <p class="step_0" style="display:block;">您还未设置回复内容，
+                <a href="javascript:;" onclick="showMaterial()">我要马上设置</a>
+                。
+            </p>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-      <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-        <i class="fa fa-angle-right"></i>
-        <a href="/wchat/config.html">微信</a>
-        <i class="fa fa-angle-right"></i>
-        <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/wchat/replayconfig -->
-        <a href="javascript:;" style="color:#999;">回复设置</a>
-      </div>
-      <!-- 三级导航菜单 -->
-
-      <nav class="ns-third-menu">
-      <ul>
-          <li class="selected" onclick="location.href='/wchat/replayConfig.html?type=1';">关注时回复</li>
-            <li onclick="location.href='/wchat/replayConfig.html?type=2';">关键字回复</li>
-            <li onclick="location.href='/wchat/replayConfig.html?type=3';">默认回复</li>
-        </ul>
-      </nav>
-
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2329&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2329&amp;extra=page%3D2</a></p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
+            <div class="step_1" style="display:none;">
+            <!-- 样式模板 -->
+                        <div class="media-button">
+                    <a class="" href="javascript:;" onclick="showMaterial()">修改</a>
+                    <a class="" href="javascript:;" onclick="delReply()">删除</a>
                 </div>
+            </div>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="关键字回复" name="2">
+        <el-row :gutter="8">
+          <el-col :span="12">
+            <el-button type="primary" size="small" @click="$router.push('editKeywordReplay.html')">添加关键词回复</el-button>
+          </el-col>
+
+          <el-col :span="10">
+          </el-col>
+          <el-col :span="2">
+          </el-col>
+        </el-row>
+
+        <br/>
+
+        <el-table border :data="tableData" style="width: 100%">
+          <el-table-column
+            type="selection"
+            width="35">
+          </el-table-column>
+
+          <el-table-column
+            prop="keyword"
+            label="关键字">
+          </el-table-column>
+
+          <el-table-column
+            prop="type"
+            label="匹配类型"
+            width="120">
+          </el-table-column>
+
+          <el-table-column label="操作" fixed="right"
+              width="180">
+              <template slot-scope="scope">
+                  <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+                  <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              </template>
+          </el-table-column>
+        </el-table>
+      </el-tab-pane>
+      <el-tab-pane label="默认回复" name="3">
+        <div id="type3">
+          <p class="step_0" style="display:none;">您还未设置回复内容，
+            <a href="javascript:;" onclick="showMaterial()">我要马上设置。</a>
+          </p>
+
+          <el-card class="box-card">
+            <div style="padding: 14px;">
+              <p>的士速递所</p>
+              <div class="bottom clearfix">
+                <el-button type="text" class="button">修改</el-button>
+                <el-button type="text" class="button">删除</el-button>
               </div>
             </div>
-          </li>
-        </ul>
-      </div>
-      </div>
+          </el-card>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
 
-      <div class="ns-main">
-
-          <!-- 关注时回复 -->
-          <div id="type1">
-              <p class="step_0" style="display:block;">您还未设置回复内容，
-                  <a href="javascript:;" onclick="showMaterial()">我要马上设置。</a>
-              </p>
-
-              <div class="step_1" style="display:none;">
-              <!-- 样式模板 -->
-                          <div class="media-button">
-                      <a class="" href="javascript:;" onclick="showMaterial()">修改</a>
-                      <a class="" href="javascript:;" onclick="delReply()">删除</a>
-                  </div>
-              </div>
-          </div>
-
-          <div class="dialog_wrp media align_edge ui-draggable" style="display:none;width: 960px; margin-left: -480px; margin-top: -313.5px;" id="dialog_media">
+    <div class="dialog_wrp media align_edge ui-draggable" style="display:none;width: 960px; margin-left: -480px; margin-top: -313.5px;" id="dialog_media">
               <div class="dialog">
                   <div class="dialog_hd">
                       <h3>选择素材</h3>
@@ -88,16 +106,23 @@
                   </div>
               </div>
           </div>
-      </div>
 
-    </section>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'replayConfig',
   data () {
-    return {}
+    return {
+      activeTabName: '1',
+      tableData: [
+        {
+          keyword: '发的不发达',
+          type: '模糊匹配'
+        }
+      ]
+    }
   },
   methods: {
     handleEdit (index, row) {
@@ -109,3 +134,8 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.box-card {
+  width: 200px;
+}
+</style>

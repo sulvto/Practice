@@ -1,146 +1,164 @@
 <template>
 
-  <section class="ns-base-section">
+    <div>
+      <el-button type="primary" size="small" @click="$router.push('qrcode.html')">添加自定义模板</el-button>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/wchat/config.html">微信</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/wchat/weixinqrcodetemplate -->
-          <a href="javascript:;" style="color:#999;">推广二维码管理</a>
+      <ul>
+        <li v-for="(templateListItem, index) in templateList" :key="templateListItem.img" style="opacity: 1;height:auto;position:relative;width:19%;float:left;margin-right:1%;margin-top:10px;margin-bottom:10px;" @mouseover="showByIndex = index" @mouseout="showByIndex = null">
+            <img :src="templateListItem.img" :class="{true: 'default-template-img', false: 'template-img'}[templateListItem.isDefault]">
+            <div class="check" v-show="showByIndex === index" >
+              <div v-if="templateListItem.isDefault">
+                <div class="button" onclick="modifyWeixinQrcode(1)" style="margin-top:75%;cursor:pointer;">
+                  <span>编辑</span>
+                </div>
               </div>
-            <!-- 三级导航菜单 -->
-
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>相关教程：<a href="http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2328&amp;extra=page%3D2" target="_blank">http://bbs.niushop.com.cn/forum.php?mod=viewthread&amp;tid=2328&amp;extra=page%3D2</a></p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
+              <div v-else>
+                <div class="button" style="margin-top:50%;cursor:pointer;" @click="setTemplateDefault(templateListItem)">
+                  <span >设为默认</span>
+                </div>
+                <div class="button" style="cursor:pointer;" @click="deleteTemplate(templateListItem.id)">
+                  <span>删除</span>
+                </div>
+                <div class="button" onclick="modifyWeixinQrcode(1)" style="cursor:pointer;">
+                  <span>编辑</span>
                 </div>
               </div>
             </div>
-          </li>
 
-        </ul>
-      </div>
+            <div v-if="templateListItem.isDefault">
+              <img src="/static/images/check_qrcode1.png" class="qrcode_img" style="position:absolute;top:0px;leftt:1px;">
+            </div>
+        </li>
+      </ul>
     </div>
-
-    <div class="ns-main">
-
-  <div class="options-btn">
-  <button class="btn-common btn-small" onclick="load_url()">添加自定义模板</button>
-  </div>
-  <div id="pictureIndex" class="ncsc-picture-folder">
-  <div class="ncsc-album">
-    <div style="clear:both;"></div>
-    <ul id="albumList">
-
-      <li style="opacity: 1;height:auto;position:relative;width:19%;float:left;margin-right:1%;margin-top:10px;margin-bottom:10px;" onmouseover="checkShowThis(this);" onmouseout="checkHideThis(this);">
-            <img src="/upload/qrcode/promote_qrcode_template/qrcode_template_1_0.png" style="border:1px solid #eee;">
-                <div class="check">
-                  <div style="margin-top:50%;cursor:pointer;" onclick="modifyWeixinQrcodeTemplateValid(1)">
-            <span>设为默认</span>
-          </div>
-          <div onclick="deleteWeixinQrcodeTemplateValid(1)" style="cursor:pointer;">
-            <span>删除</span>
-          </div>
-          <div onclick="modifyWeixinQrcode(1)" style="cursor:pointer;">
-            <span>编辑</span>
-          </div>
-                  </div>
-        <input type="hidden" class="id" value="1">
-        <input type="hidden" class="background" value="public/static/images/qrcode_bg/qrcode_bg.png">
-        <input type="hidden" class="nick_font_color" value="#2b2b2b">
-        <input type="hidden" class="nick_font_size" value="23">
-        <input type="hidden" class="is_logo_show" value="1">
-        <input type="hidden" class="header_left" value="93px">
-        <input type="hidden" class="header_top" value="467px">
-        <input type="hidden" class="name_left" value="159px">
-        <input type="hidden" class="name_top" value="479px">
-        <input type="hidden" class="logo_left" value="98px">
-        <input type="hidden" class="logo_top" value="319px">
-        <input type="hidden" class="code_left" value="89px">
-        <input type="hidden" class="code_top" value="88px">
-        <div>
-
-            <img src="/public/admin/images/check_qrcode1.png" class="qrcode_img" style="position:absolute;top:0px;leftt:1px;display:none;">
-                  </div>
-      </li>
-
-      <li style="opacity: 1;height:auto;position:relative;width:19%;float:left;margin-right:1%;margin-top:10px;margin-bottom:10px;" onmouseover="checkShowThis(this);" onmouseout="checkHideThis(this);">
-            <img src="/upload/qrcode/promote_qrcode_template/qrcode_template_6_0.png" style="border:1px solid #00C0FF;">
-                <div class="check">
-
-          <div onclick="modifyWeixinQrcode(6)" style="margin-top:60%;cursor:pointer;">
-            <span>编辑</span>
-          </div>
-                  </div>
-        <input type="hidden" class="id" value="6">
-        <input type="hidden" class="background" value="">
-        <input type="hidden" class="nick_font_color" value="#2b2b2b">
-        <input type="hidden" class="nick_font_size" value="23">
-        <input type="hidden" class="is_logo_show" value="1">
-        <input type="hidden" class="header_left" value="59px">
-        <input type="hidden" class="header_top" value="15px">
-        <input type="hidden" class="name_left" value="150px">
-        <input type="hidden" class="name_top" value="120px">
-        <input type="hidden" class="logo_left" value="120px">
-        <input type="hidden" class="logo_top" value="100px">
-        <input type="hidden" class="code_left" value="83px">
-        <input type="hidden" class="code_top" value="174px">
-        <div>
-
-            <img src="/public/admin/images/check_qrcode1.png" class="qrcode_img" style="position:absolute;top:0px;left:1px;">
-                  </div>
-      </li>
-
-      <li style="opacity: 1;height:auto;position:relative;width:19%;float:left;margin-right:1%;margin-top:10px;margin-bottom:10px;" onmouseover="checkShowThis(this);" onmouseout="checkHideThis(this);">
-            <img src="/upload/qrcode/promote_qrcode_template/qrcode_template_7_0.png" style="border:1px solid #eee;">
-                <div class="check">
-                  <div style="margin-top:50%;cursor:pointer;" onclick="modifyWeixinQrcodeTemplateValid(7)">
-            <span>设为默认</span>
-          </div>
-          <div onclick="deleteWeixinQrcodeTemplateValid(7)" style="cursor:pointer;">
-            <span>删除</span>
-          </div>
-          <div onclick="modifyWeixinQrcode(7)" style="cursor:pointer;">
-            <span>编辑</span>
-          </div>
-                  </div>
-        <input type="hidden" class="id" value="7">
-        <input type="hidden" class="background" value="">
-        <input type="hidden" class="nick_font_color" value="#2b2b2b">
-        <input type="hidden" class="nick_font_size" value="23">
-        <input type="hidden" class="is_logo_show" value="1">
-        <input type="hidden" class="header_left" value="59px">
-        <input type="hidden" class="header_top" value="15px">
-        <input type="hidden" class="name_left" value="150px">
-        <input type="hidden" class="name_top" value="120px">
-        <input type="hidden" class="logo_left" value="120px">
-        <input type="hidden" class="logo_top" value="100px">
-        <input type="hidden" class="code_left" value="70px">
-        <input type="hidden" class="code_top" value="300px">
-        <div>
-
-            <img src="/public/admin/images/check_qrcode1.png" class="qrcode_img" style="position:absolute;top:0px;leftt:1px;display:none;">
-                  </div>
-      </li>
-        </ul>
-  </div>
-  </div>
-    </div>
-
-  </section>
-
 </template>
+
+<script>
+export default {
+  name: 'list',
+  data () {
+    return {
+      showByIndex: null,
+      searchKeyword: '',
+      templateList: [{
+        id: 1,
+        img: '/static/images/qrcode_bg/template_bg_img.png',
+        isDefault: true,
+        name: '微信登录',
+        status: true,
+        nickFontColor: '使用该功能需申请微信开放平台网站应用',
+        nockFontSize: '',
+        isShowLogo: false,
+        headerLeft: '10px',
+        headerTop: '10px',
+        nameLeft: '10px',
+        nameTop: '10px',
+        logoLeft: '10px',
+        logoTop: '10px',
+        codeLeft: '10px',
+        codeTop: '10px'
+      }, {
+        id: 2,
+        img: '/static/images/promote_qrcode_template/qrcode_template_2_0.png',
+        isDefault: false,
+        name: '微信登录',
+        status: true,
+        nickFontColor: '使用该功能需申请微信开放平台网站应用',
+        nockFontSize: '',
+        isShowLogo: false,
+        headerLeft: '10px',
+        headerTop: '10px',
+        nameLeft: '10px',
+        nameTop: '10px',
+        logoLeft: '10px',
+        logoTop: '10px',
+        codeLeft: '10px',
+        codeTop: '10px'
+      }, {
+        id: 3,
+        img: '/static/images/promote_qrcode_template/qrcode_template_3_0.png',
+        isDefault: false,
+        name: 'QQ登录',
+        status: false,
+        nickFontColor: '使用该功能需申请QQ互联',
+        nockFontSize: '',
+        isShowLogo: false,
+        headerLeft: '10px',
+        headerTop: '10px',
+        nameLeft: '10px',
+        nameTop: '10px',
+        logoLeft: '10px',
+        logoTop: '10px',
+        codeLeft: '10px',
+        codeTop: '10px'
+      }]
+    }
+  },
+  methods: {
+    edit (index, row) {
+      console.log(index, row)
+    },
+    setTemplateDefault (templateListItem) {
+      this.templateList.forEach(templateList => {
+        templateList.isDefault = false
+      })
+      templateListItem.isDefault = true
+    },
+    deleteTemplate (id) {
+      let deleteId = this.templateList.findIndex(templateListItem => templateListItem.id === id)
+      this.templateList.splice(deleteId, 1)
+    },
+    search () {
+      console.log('search', this.searchKeyword)
+    }
+
+  },
+  created () {
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.check {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  right: -1px;
+  background-color: rgba(0,0,0,0.8);
+  div.button {
+    width: 60%;
+    height: 30px;
+    margin-left: 20%;
+    border: 1px solid #fff;
+    margin-top: 10%;
+    text-align: center;
+
+    &:hover {
+      background: #126AE4;
+      border: 1px solid #126AE4;
+    }
+    span {
+      font-size: 15px;
+      color: #fff;
+      line-height: 30px;
+    }
+  }
+}
+
+.default-template-img {
+  border:1px solid #00C0FF;
+}
+
+.template-img {
+  border:1px solid #eee;
+}
+
+</style>

@@ -75,7 +75,6 @@ import MemberLevelEdit from '@/views/member/memberLevel/edit.vue'
 import MemberAccountList from '@/views/member/accountList.vue'
 import MemberPointList from '@/views/member/pointList.vue'
 import MemberUserCommissionWithdrawList from '@/views/member/userCommissionWithdrawList.vue'
-import MemberWeixinFansList from '@/views/member/weixinFansList.vue'
 
 import Account from '@/views/account/Index.vue'
 import AccountShopSalesAccount from '@/views/account/shopSalesAccount.vue'
@@ -97,11 +96,15 @@ import WchatAppletConfig from '@/views/wchat/appletConfig.vue'
 import WchatConfig from '@/views/wchat/config.vue'
 import WchatMenu from '@/views/wchat/menu.vue'
 import WchatQrcodeTemplate from '@/views/wchat/weixinQrcodeTemplate.vue'
+import WchatQrcode from '@/views/wchat/qrcode.vue'
 import WchatReplayConfig from '@/views/wchat/replayConfig.vue'
+import WchatEditKeywordReplay from '@/views/wchat/EditKeywordReplay.vue'
 import WchatMaterialMessage from '@/views/wchat/materialMessage.vue'
+import WchatAddMedia from '@/views/wchat/addmedia.vue'
 import WchatShareConfig from '@/views/wchat/shareConfig.vue'
 import WchatKeyConcernConfig from '@/views/wchat/keyConcernConfig.vue'
 import WchatFansMessageManage from '@/views/wchat/fansMessageManage.vue'
+import WchatWeixinFansList from '@/views/wchat/weixinFansList.vue'
 
 import MenuAddonMenu from '@/views/menu/addonMenu.vue'
 
@@ -221,6 +224,7 @@ import SettingDeliveryExpressCompany from '@/views/setting/delivery/express/expr
 import SettingDeliveryExpressCompanyEdit from '@/views/setting/delivery/express/editExpressCompany.vue'
 import SettingDeliveryExpressSellerAddress from '@/views/setting/delivery/express/SellerAddress.vue'
 import SettingDeliveryExpressMessage from '@/views/setting/delivery/express/ExpressMessage.vue'
+import SettingDeliveryAreaManagement from '@/views/setting/delivery/express/AreaManagement.vue'
 
 import SettingDeliveryLocal from '@/views/setting/delivery/local/Index.vue'
 import SettingDeliveryLocalArea from '@/views/setting/delivery/local/area.vue'
@@ -582,11 +586,13 @@ export default new Router({
             path: 'edit.html',
             name: '编辑组合套餐',
             component: PromotionCombopackageEdit,
-            prompts: '<p>只有实物商品才能参与组合套餐活动！</p> ' +
+            meta: {
+              functionPrompts: '<p>只有实物商品才能参与组合套餐活动！</p> ' +
                      '<p>商品原价与节省价仅作为参考，不参与实际计算！</p> ' +
                      '<p>商品价格取得是商品sku价格中的最低价格！参与套餐售卖的的商品sku价格不要相差太大。</p> ' +
                      '<p style="color: red;margin:0;">注：在组合商品发布之后，切勿修改商品价格。</p> ' +
                      '<p></p>'
+            }
           }
         ]
       }, {
@@ -778,14 +784,17 @@ export default new Router({
     {
       path: '/wchat',
       name: '微信',
-      component: Wchat,
+      component: BaseRouter,
       children: [{
+        path: '/',
+        redirect: 'config.html'
+      }, {
         path: 'appletconfig.html',
-        name: 'appletConfig',
+        name: '微信小程序管理',
         component: WchatAppletConfig
       }, {
         path: 'config.html',
-        name: 'config',
+        name: '公众号管理',
         component: WchatConfig
       }, {
         path: 'menu.html',
@@ -793,27 +802,47 @@ export default new Router({
         component: WchatMenu
       }, {
         path: 'weixinqrcodetemplate.html',
-        name: 'qrcodeTemplate',
+        name: '推广二维码管理',
         component: WchatQrcodeTemplate
       }, {
+        path: 'qrcode.html',
+        name: '自定义推广二维码',
+        component: WchatQrcode,
+        meta: {
+          functionPrompts: '<p><strong>提示：</strong>会员昵称、头像和二维码属于第三方提供的信息，您可以在这里调整字体和显示的位置，除此之外的信息您可以根据自己的需求放在背景图片中。</p>',
+          operationPrompts: '<p>自定义推广二维码</p>'
+        }
+      }, {
+        path: 'editKeywordReplay.html',
+        name: '编辑关键词回复',
+        component: WchatEditKeywordReplay
+      }, {
         path: 'replayconfig.html',
-        name: 'replayConfig',
+        name: '回复设置',
         component: WchatReplayConfig
       }, {
         path: 'materialmessage.html',
-        name: 'materialMessage',
+        name: '消息素材管理',
         component: WchatMaterialMessage
       }, {
+        path: 'addMedia.html',
+        name: '添加消息素材',
+        component: WchatAddMedia
+      }, {
+        path: 'weixinfanslist.html',
+        name: '粉丝列表',
+        component: WchatWeixinFansList
+      }, {
         path: 'shareconfig.html',
-        name: 'shareConfig',
+        name: '分享内容设置',
         component: WchatShareConfig
       }, {
         path: 'keyconcernconfig.html',
-        name: 'keyConcernConfig',
+        name: '一键关注设置',
         component: WchatKeyConcernConfig
       }, {
         path: 'fansmessagemanage.html',
-        name: 'fansMessageManage',
+        name: '客服管理',
         component: WchatFansMessageManage
       }]
     }, {
@@ -829,11 +858,7 @@ export default new Router({
       path: '/member',
       name: 'member',
       component: Wchat,
-      children: [{
-        path: 'weixinfanslist.html',
-        name: 'weixinFansList',
-        component: MemberWeixinFansList
-      }]
+      children: []
     }, {
       path: '/commission',
       name: '佣金',
@@ -1367,14 +1392,18 @@ export default new Router({
             component: SettingDeliveryExpressCompany
           }, {
             path: 'editExpressCompany.html',
-            name: '地区管理',
+            name: '编辑物流公司',
             component: SettingDeliveryExpressCompanyEdit
+          }, {
+            path: 'areaManagement.html',
+            name: '地区管理',
+            component: SettingDeliveryAreaManagement
           }, {
             path: 'SellerAddress.html',
             name: '商家地址',
             component: SettingDeliveryExpressSellerAddress
           }, {
-            path: 'editExpressCompany.html',
+            path: 'aaaaeditExpressCompany.html',
             name: '货到付款地区管理',
             component: SettingDeliveryExpress
           }, {

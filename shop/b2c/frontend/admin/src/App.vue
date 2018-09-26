@@ -387,15 +387,15 @@
                         </el-col>
                         <el-col :span="12">
                             <el-popover
-                            placement="right"
-                            width="400"
-                            trigger="click" style="float:right">
+                              placement="right"
+                              trigger="click"
+                              width="400"
+                              style="float:right">
                                 <div>
                                     <h4>功能提示</h4>
-                                    <p>建议您在更新前，备份相关的程序及数据信息，以免更新失败给您造成不必要的损失。</p>
-                                </div> <div>
-                                    <h4>功能提示2</h4>
-                                    <p>建议您在更新前，备份相关的程序及数据信息，以免更新失败给您造成不必要的损失。</p>
+                                    <div class="function-prompts" v-html="functionPrompts"></div>
+                                    <h4>操作提示</h4>
+                                    <div class="operation-prompts"  v-html="operationPrompts"></div>
                                 </div>
                                 <el-button type="text" size="mini" icon="el-icon-question" slot="reference" plain round>提示</el-button>
                             </el-popover>
@@ -421,7 +421,7 @@ export default {
     $route: {
       handler (val, oldVal) {
         console.log('watch route', this.$route)
-        this.setBreadcrumb(val)
+        this.switchRoute(val)
       },
       // 深度观察监听
       deep: true
@@ -481,11 +481,18 @@ export default {
       if (route.matched.length > 1) {
         route.matched.forEach(item => this.breadcrumb.push(item))
       }
+    },
+    switchRoute (route) {
+      this.setBreadcrumb(route)
+      this.functionPrompts = route.meta.functionPrompts
+      this.operationPrompts = route.meta.operationPrompts
     }
   },
   data () {
     return {
       showUCA: false,
+      operationPrompts: '',
+      functionPrompts: '',
       baseToolImage: baseToolImage,
       topLogoImage: topLogoImage,
       verticalMenu: {},
@@ -674,7 +681,6 @@ export default {
           path: '/account',
           children: [
             {
-              selected: true,
               path: '/account/shopsalesaccount.html',
               name: '销售概况'
             },
@@ -697,10 +703,9 @@ export default {
           ]
         }, {
           name: '微信',
-          path: '/wchat/config.html',
+          path: '/wchat',
           children: [
             {
-              selected: true,
               path: '/wchat/appletconfig.html',
               name: '微信小程序管理'
             },
@@ -733,7 +738,7 @@ export default {
               name: '模板消息设置'
             },
             {
-              path: '/member/weixinfanslist.html',
+              path: '/wchat/weixinfanslist.html',
               name: '粉丝列表'
             },
             {
@@ -909,7 +914,7 @@ export default {
     this.verticalMenu = this.menuData.find(
       item => item.path === this.$route.matched[0].path
     )
-    this.setBreadcrumb(this.$route)
+    this.switchRoute(this.$route)
     console.log('created, route', this.$route)
     console.log('created, verticalMenu', this.verticalMenu)
   }
@@ -1114,5 +1119,17 @@ a {
   .el-checkbox+.el-checkbox {
     margin-left: 0px;
   }
+}
+
+.function-prompts {
+  color: #666;
+  margin: 0;
+  font-size: 12px;
+}
+
+.operation-prompts {
+  color: #666;
+  margin: 0;
+  font-size: 12px;
 }
 </style>
