@@ -1,0 +1,11 @@
+(define (make-accumulator v)
+	(define (add i)
+		(begin (set! v (+ v i)) v))
+	add)
+
+(define A (make-accumulator 10)) 
+(A 12)
+(A 9)
+(A -1)
+(A 0)
+(A 150)
