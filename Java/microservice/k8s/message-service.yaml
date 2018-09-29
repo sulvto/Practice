@@ -1,0 +1,31 @@
+apiVresion: v1
+kind: Service
+metadata:
+  labels:
+    app: message-service
+  name: message-service
+spec:
+  ports:
+  - port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: message-service
+  type: ClusterIP
+---
+apiVresion: app/v1bata1
+kind: Deployment
+metadata:
+  name: message-service-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: message-service
+    spec:
+      containers:
+      - name: message-service
+        image: hub.qinchao.me/microservice/message-service:latest
+        ports:
+        - containerPort: 9090

@@ -1,0 +1,12 @@
+server:
+  port: 8766
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/sulvto/test
+          searchPaths: config-repo
