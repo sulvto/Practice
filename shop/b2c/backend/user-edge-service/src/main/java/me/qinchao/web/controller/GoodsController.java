@@ -4,10 +4,16 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import me.qinchao.web.domain.Goods;
 import me.qinchao.web.exception.EntryNotFoundException;
+import me.qinchao.web.service.FileSystemService;
 import me.qinchao.web.service.GoodsService;
+import org.lokra.seaweedfs.core.file.FileHandleStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
+import static me.qinchao.web.util.Response.body;
 import static me.qinchao.web.util.Response.success;
 
 /**
@@ -19,6 +25,8 @@ public class GoodsController {
 
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private FileSystemService fileSystemService;
 
     @ApiOperation(value = "发布商品", notes = "")
     @ApiImplicitParam(name = "goods", value = "商品详细实体", required = true, dataType = "User")
@@ -36,14 +44,12 @@ public class GoodsController {
         return success(goodsService.findById(id));
     }
 
-
     @ApiOperation(value = "更新商品详细信息", notes = "更新ID指定的商品详细信息")
     @ApiImplicitParam(name = "goods", value = "商品详细实体", required = true, dataType = "User")
     @PutMapping()
     public String updateGoods(@RequestBody Goods goods) throws EntryNotFoundException {
         return success(goodsService.update(goods, goods.getId()));
     }
-
 
     @ApiOperation(value = "删除商品", notes = "商品ID指定的商品")
     @ApiImplicitParam(name = "id", value = "商品ID", required = true, dataType = "Long")
@@ -56,6 +62,17 @@ public class GoodsController {
     @ApiOperation(value = "获取商品列表", notes = "")
     public String getAllGoods() {
         return success(goodsService.findAll());
+    }
+
+    @PostMapping("/uploadImage")
+    @ApiOperation(value = "上传图片", notes = "")
+    public String uploadImage(@RequestParam(value = "file", required = false) MultipartFile file) {
+        try {
+            FileHandleStatus fileHandleStatus = fileSystemService.saveFile(file);
+            return success(fileHandleStatus);
+        } catch (IOException e) {
+            return body(1, "图片上传失败");
+        }
     }
 
 }
