@@ -99,7 +99,7 @@ class RequestHandler(object):
                     params = yield from request.json()
                     if not isinstance(params, dict):
                         return web.HTTPBadRequest('JSON body must be object.')
-                        kw = params
+                    kw = params
                 elif content_type.startswith('application/x-www-form-urlencoded') or content_type.startswith('multipart/form-data'):
                     params = yield from requests.post()
                     kw = dict(**params)
@@ -138,7 +138,7 @@ class RequestHandler(object):
             r = yield from self.__func(**kw)
             return r
         except APIError as e:
-            return dict(error.e.error, data=e.data, message=e.message)
+            return dict(e.error, data=e.data, message=e.message)
 
 
 def add_route(app, fn):
