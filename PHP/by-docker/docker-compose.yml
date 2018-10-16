@@ -1,0 +1,17 @@
+version: "3"
+services:
+  php-fpm:
+    image: php:7.1-fpm
+    container_name: php-fpm
+    volumes:
+      - ./:/var/www/html
+  some-nginx:
+    image: nginx
+    container_name: some-nginx
+    ports:
+      - 8081:80
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    links:
+      - php-fpm
