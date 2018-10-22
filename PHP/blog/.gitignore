@@ -1,0 +1,7 @@
+.idea
+composer.lock
+*.log
+thinkphp
+
+mysql_data
+nginx
