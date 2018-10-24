@@ -1,0 +1,94 @@
+{extend name='base'/}
+
+{block name="title"}日志{/block}
+
+{block name="content"}
+
+<div id="app" style="float: none;">
+    <div class="uk-width-1-1 uk-margin-bottom">
+        <div class="uk-panel uk-panel-box">
+            <ul class="uk-breadcrumb">
+                <li><a href="/public/?s=/manage/comments">评论</a></li>
+                <li class="uk-active"><span>日志</span></li>
+                <li><a href="/public/?s=/manage/users">用户</a></li>
+                <li><a href="/public/?s=/manage/links">友情链接</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="error" class="uk-width-1-1">
+    </div>
+
+    <div v-show="loading" class="uk-width-1-1 uk-text-center">
+        <span><i class="uk-icon-spinner uk-icon-medium uk-icon-spin"></i> 正在加载...</span>
+    </div>
+    
+    <div v-show="!loading" class="uk-width-1-1">
+        <a href="/public/?s=/manage/blogs/edit" class="uk-button uk-button-primary"><i class="uk-icon-plus"></i> 新日志</a>
+
+        <table class="uk-table uk-table-hover">
+            <thead>
+                <tr>
+                    <th class="uk-width-5-10">标题 / 摘要</th>
+                    <th class="uk-width-2-10">作者</th>
+                    <th class="uk-width-2-10">创建时间</th>
+                    <th class="uk-width-1-10">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="blog in blogs" :key="blog.id">
+                    <td>
+                        <a target="_blank" v-href="'/blog/'+blog.id">{{blog.title}}</a>
+                    </td>
+                    <td>
+                        <a target="_blank" v-href="'/user/'+blog.user_id">{{blog.user_name}}</a>
+                    </td>
+                    <td>
+                        <span>{{toSmartDate(blog.created_at * 1000)}}</span>
+                    </td>
+                    <td>
+                        <a href="#0" @click="edit_blog(blog)"><i class="uk-icon-edit"></i></a>
+                        <a href="#0" @click="delete_blog(blog)"><i class="uk-icon-trash-o"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pagination url="/public/?s=/api/blogs" @onload="onload"></pagination>
+    </div>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            blogs: []
+        },
+        methods: {
+            edit_blog: function (blog) {
+                location.assign('/public/?s=/manage/blogs/edit&id=' + blog.id);
+            },
+            delete_blog: function (blog) {
+                if (confirm('确认要删除“' + blog.title + '”？删除后不可恢复！')) {
+                    var url = '/public/?s=/api/blogs/' + blog.id + "";
+                    console.log("url", url);
+                    _httpJSON('DELETE', url, null, function (err, r) {
+                        if (err) {
+                            return alert(err.message || err.error || err);
+                        }
+                        refresh();
+                    });
+                }
+            }, 
+            onload: function (data) {
+                this.loading = false;
+                this.blogs = data.blogs;
+            }
+        },
+        created: function () {
+            this.loading = true;
+        }
+    });
+
+</script>
+{/block}

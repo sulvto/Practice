@@ -15,9 +15,22 @@ class Users extends Controller
      *
      * @return \think\Response
      */
-    public function index(Request $request)
-    {
-        echo "index ".$request->method();
+    public function index($page=1, $page_size=10) {
+        $count = User::count();
+
+        $list = User::all(function($query) use ($page, $page_size) {
+            $query->page($page, $page_size)->order('created_at', 'desc');
+        });
+
+        return json([
+            'data'=>[
+                'users' => $list,
+                'page' => $page,
+                'count' => $count
+            ], 
+            'error'=>0, 
+            'message'=>'操作完成'
+        ]);
     }
 
     /**
@@ -97,5 +110,6 @@ class Users extends Controller
     public function delete($id)
     {
         //
+        return "delete".$id;
     }
 }

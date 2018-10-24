@@ -4,9 +4,9 @@ namespace app\index\model;
 
 use think\Model;
 
-class Blog extends Model
+class Comment extends Model
 {
     protected $pk = 'id';
-    protected $table = 'blogs';
+    protected $table = 'comments';
     protected $autoCheckFields = true;
 }

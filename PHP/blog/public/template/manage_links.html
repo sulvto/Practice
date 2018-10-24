@@ -1,0 +1,88 @@
+{extend name='base'/}
+
+{block name="title"}评论{/block}
+
+
+{block name="content"}
+
+<div id="app" style="float: none;">
+    <div class="uk-width-1-1 uk-margin-bottom">
+        <div class="uk-panel uk-panel-box">
+            <ul class="uk-breadcrumb">
+                <li><a href="/public/?s=/manage/comments">评论</a></li>
+                <li><a href="/public/?s=/manage/blogs">日志</a></li>
+                <li><a href="/public/?s=/manage/users">用户</a></li>
+                <li class="uk-active">友情链接</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="error" class="uk-width-1-1">
+    </div>
+
+    <div v-show="loading" class="uk-width-1-1 uk-text-center">
+        <span><i class="uk-icon-spinner uk-icon-medium uk-icon-spin"></i> 正在加载...</span>
+    </div>
+
+    <div v-show="!loading" class="uk-width-1-1">
+        <a href="/public/?s=/manage/links/edit" class="uk-button uk-button-primary"><i class="uk-icon-plus"></i>添加友情链接</a>
+
+        <table class="uk-table uk-table-hover">
+            <thead>
+                <tr>
+                    <th class="uk-width-2-10">命名</th>
+                    <th class="uk-width-5-10">链接</th>
+                    <th class="uk-width-1-10">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="link in links" :key="link.id">
+                    <td>
+                        <span >{{link.name}}</span>
+                    </td>
+                    <td>
+                        <span>{{link.url}}</span>
+                    </td>
+                    <td>
+                        <a href="#0" @click="edit_link(link)"><i class="uk-icon-edit"></i></a>
+                        <a href="#0" @click="delete_link(link)"><i class="uk-icon-trash-o"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pagination url="/public/?s=/api/links" @onload="onload"></pagination>
+    </div>
+</div>
+
+<script>
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            loading: true,
+            links: [],
+        },
+        methods: {
+            delete_link: function (link) {
+                if (confirm('确认要删除友情链接“' + link.url + '”？删除后不可恢复！')) {
+                    postJSON('/api/links/' + link.id , function (err, r) {
+                        if (err) {
+                            return error(err);
+                        }
+                        refresh();
+                    });
+                }
+            }, 
+            onload: function (data) {
+                this.loading = false;
+                this.links = data.links;
+            }
+        },
+        created: function () {
+            this.loading = true;
+        }
+    });
+
+</script>
+{/block}

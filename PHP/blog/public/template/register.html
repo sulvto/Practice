@@ -2,64 +2,11 @@
 
 {block name="title"}注册{/block}
 
-{block name="beforehead"}
-
-<script>
-function validateEmail(email) {
-    var re = /^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$/;
-    return re.test(email.toLowerCase());
-}
-$(function () {
-    var vm = new Vue({
-        el: '#vm',
-        data: {
-            username: '',
-            email: '',
-            password1: '',
-            password2: ''
-        },
-        methods: {
-            submit: function (event) {
-                event.preventDefault();
-                var $form = $('#vm');
-                if (! this.username.trim()) {
-                    return $form.showFormError('请输入名字');
-                }
-                if (! validateEmail(this.email.trim().toLowerCase())) {
-                    return $form.showFormError('请输入正确的Email地址');
-                }
-                if (this.password1.length < 6) {
-                    return $form.showFormError('口令长度至少为6个字符');
-                }
-                if (this.password1 !== this.password2) {
-                    return $form.showFormError('两次输入的口令不一致');
-                }
-                var email = this.email.trim().toLowerCase();
-                $form.postJSON('/public/?s=/users', {
-                    username: this.username.trim(),
-                    email: email,
-                    password: CryptoJS.SHA1(email + ':' + this.password1).toString()
-                }, function (err, r) {
-                    if (err) {
-                        return $form.showFormError(err);
-                    }
-                    
-                    return location.assign('/public');
-                });
-            }
-        }
-    });
-    $('#vm').show();
-});
-</script>
-
-{/block}
-
 {block name="content" %}
 
     <div class="uk-width-2-3">
         <h1>欢迎注册！</h1>
-        <form id="vm" v-on="submit: submit" class="uk-form uk-form-stacked">
+        <form id="app" @submit="submit" class="uk-form uk-form-stacked">
             <div class="uk-alert uk-alert-danger uk-hidden"></div>
             <div class="uk-form-row">
                 <label class="uk-form-label">名字:</label>
@@ -91,4 +38,53 @@ $(function () {
         </form>
     </div>
 
+
+<script>
+        function validateEmail(email) {
+            var re = /^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$/;
+            return re.test(email.toLowerCase());
+        }
+        $(function () {
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    username: '',
+                    email: '',
+                    password1: '',
+                    password2: ''
+                },
+                methods: {
+                    submit: function (event) {
+                        event.preventDefault();
+                        var $form = $('#app');
+                        if (! this.username.trim()) {
+                            return $form.showFormError('请输入名字');
+                        }
+                        if (! validateEmail(this.email.trim().toLowerCase())) {
+                            return $form.showFormError('请输入正确的Email地址');
+                        }
+                        if (this.password1.length < 6) {
+                            return $form.showFormError('口令长度至少为6个字符');
+                        }
+                        if (this.password1 !== this.password2) {
+                            return $form.showFormError('两次输入的口令不一致');
+                        }
+                        var email = this.email.trim().toLowerCase();
+                        $form.postJSON('/public/?s=/api/users', {
+                            username: this.username.trim(),
+                            email: email,
+                            password: CryptoJS.SHA1(email + ':' + this.password1).toString()
+                        }, function (err, r) {
+                            if (err) {
+                                return $form.showFormError(err);
+                            }
+                            
+                            return location.assign('/public');
+                        });
+                    }
+                }
+            });
+            $('#app').show();
+        });
+        </script>
 {/block}

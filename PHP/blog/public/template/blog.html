@@ -5,7 +5,8 @@
 {block name="beforehead"}
 
 <script>
-var comment_url = '/api/blogs/{$blog.id}/comments';
+var blog_id = "{$blog.id}";
+var comment_url = '/public/?s=/api/comments/';
 $(function () {
     var $form = $('#form-comment');
     $form.submit(function (e) {
@@ -15,7 +16,7 @@ $(function () {
         if (content==='') {
             return $form.showFormError('请输入评论内容！');
         }
-        $form.postJSON(comment_url, { content: content }, function (err, result) {
+        $form.postJSON(comment_url, { blog_id:blog_id, content: content }, function (err, result) {
             if (err) {
                 return $form.showFormError(err);
             }
@@ -32,8 +33,8 @@ $(function () {
     <div class="uk-width-medium-3-4">
         <article class="uk-article">
             <h2>{$blog.title}</h2>
-            <p class="uk-article-meta">发表于{$blog.created_at}</p>
-            <p>{$blog.html_content}</p>
+            <p class="uk-article-meta">发表于{$blog.created_at|date="Y-m-d H:i:s",###}</p>
+            <p>{$blog.content}</p>
         </article>
 
         <hr class="uk-article-divider">
@@ -43,8 +44,10 @@ $(function () {
 
         <article class="uk-comment">
             <header class="uk-comment-header">
-                <img class="uk-comment-avatar uk-border-circle" width="50" height="50" src="{{ __user__.image }}">
-                <h4 class="uk-comment-title">{$Think.session.current_user.name}</h4>
+                    
+                <img class="uk-comment-avatar uk-border-circle" width="50" height="50" src="{$Think.session.current_user.image ? $Think.session.current_user.image : '/public/static/img/user.png'}">
+
+                <h4 class="uk-comment-title">{$Think.session.current_user.username}</h4>
             </header>
             <div class="uk-comment-body">
                 <form id="form-comment" class="uk-form">
@@ -65,22 +68,25 @@ $(function () {
         <h3>最新评论</h3>
 
         <ul class="uk-comment-list">
-            {% for comment in comments %}
-            <li>
-                <article class="uk-comment">
-                    <header class="uk-comment-header">
-                        <img class="uk-comment-avatar uk-border-circle" width="50" height="50" src="{{ comment.user_image }}">
-                        <h4 class="uk-comment-title">{{ comment.user_name }} {% if comment.user_id==blog.user_id %}(作者){% endif %}</h4>
-                        <p class="uk-comment-meta">{{ comment.created_at|datetime }}</p>
-                    </header>
-                    <div class="uk-comment-body">
-                        {{ comment.html_content|safe }}
-                    </div>
-                </article>
-            </li>
-            {% else %}
-            <p>还没有人评论...</p>
-            {% endfor %}
+            {empty name="comments"}
+                <p>还没有人评论...</p>
+            {else /}
+                {foreach $comments as $comment}
+                <li>
+                    <article class="uk-comment">
+                        <header class="uk-comment-header">
+                            <img class="uk-comment-avatar uk-border-circle" width="50" height="50" src="{$comment.user_image ? $comment.user_image : '/public/static/img/user.png'}">
+
+                            <h4 class="uk-comment-title">{$comment.user_name} {$comment.user_id==$blog.user_id ? '(作者)' : ''}</h4>
+                            <p class="uk-comment-meta">{$comment.created_at|date="Y-m-d H:i:s",###}</p>
+                        </header>
+                        <div class="uk-comment-body">
+                            {$comment.content}
+                        </div>
+                    </article>
+                </li>
+                {/foreach}
+            {/empty}
         </ul>
 
     </div>
@@ -88,16 +94,16 @@ $(function () {
     <div class="uk-width-medium-1-4">
         <div class="uk-panel uk-panel-box">
             <div class="uk-text-center">
-                <img class="uk-border-circle" width="120" height="120" src="{$blog.user_image}">
+                <img class="uk-border-circle" width="120" height="120" src="{$blog.user_image ? $blog.user_image : '/public/static/img/user.png'}">
                 <h3>{$blog.user_name}</h3>
             </div>
         </div>
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">友情链接</h3>
             <ul class="uk-list uk-list-line">
-                <li><i class="uk-icon-link"></i> <a href="#">编程</a></li>
-                <li><i class="uk-icon-link"></i> <a href="#">思考</a></li>
-                <li><i class="uk-icon-link"></i> <a href="#">读书</a></li>
+                {foreach $links as $link}
+                <li><i class="uk-icon-link"></i> <a href="{$link.url}">{$link.name}</a></li>
+                {/foreach}
             </ul>
         </div>
     </div>

@@ -45,4 +45,8 @@ class Index
             return json(['data'=>NULL,'error'=>1,'message'=>'用户名或密码错误']);
         }
     }
+
+    public function test() {
+        return 18/10;
+    }
 }

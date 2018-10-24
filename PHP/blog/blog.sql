@@ -41,4 +41,14 @@ CREATE TABLE users
 ) ENGINE=Innodb DEFAULT charset=utf8;
 
 
+DROP TABLE links;
+
+CREATE TABLE links
+(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    url VARCHAR(50) NOT NULL
+) ENGINE=Innodb DEFAULT charset=utf8;
+
+
 

@@ -1,0 +1,72 @@
+{extend name='base'/}
+
+{block name="title"}用户{/block}
+
+{block name="content"}
+<div id="app" style="float: none;">
+
+    <div class="uk-width-1-1 uk-margin-bottom">
+        <div class="uk-panel uk-panel-box">
+            <ul class="uk-breadcrumb">
+                <li><a href="/public/?s=/manage/comments">评论</a></li>
+                <li><a href="/public/?s=/manage/blogs">日志</a></li>
+                <li class="uk-active"><span>用户</span></li>
+                <li><a href="/public/?s=/manage/links">友情链接</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="error" class="uk-width-1-1">
+    </div>
+
+    <div v-show="loading" class="uk-width-1-1 uk-text-center">
+        <span><i class="uk-icon-spinner uk-icon-medium uk-icon-spin"></i> 正在加载...</span>
+    </div>
+
+    <div v-show="!loading" class="uk-width-1-1">
+        <table class="uk-table uk-table-hover">
+            <thead>
+                <tr>
+                    <th class="uk-width-4-10">名字</th>
+                    <th class="uk-width-4-10">电子邮件</th>
+                    <th class="uk-width-2-10">注册时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users" :key="user.id">
+                    <td>
+                        <span>{{user.username}}</span>
+                        <span v-if="user.admin" style="color:#d05"><i class="uk-icon-key"></i> 管理员</span>
+                    </td>
+                    <td>
+                        <a v-href="'mailto:'+user.email">{{user.email}}</a>
+                    </td>
+                    <td>
+                        <span>{{toSmartDate(user.created_at * 1000)}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination url="/public/?s=/api/users" @onload="onload"></pagination>
+    </div>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            users: []
+        },
+        methods: {
+            onload: function (data) {
+                this.loading = false;
+                this.users = data.users;
+            }
+        }, 
+        created: function() {
+            this.loading = true;
+        }
+    });
+</script>
+
+{/block}

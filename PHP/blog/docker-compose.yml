@@ -10,22 +10,32 @@ services:
       MYSQL_ROOT_PASSWORD: a111111
     volumes:
       - ./mysql_data/mysql:/var/lib/mysql
-  php-fpm:
-    image: sulvto:myphp
-    container_name: php-fpm
-    privileged: true
-    volumes:
-      - ./:/var/www/html
-    links:
-      - mysql
-  some-nginx:
-    image: nginx
-    container_name: some-nginx
+#   php-fpm:
+#     image: sulvto:myphp
+#     container_name: php-fpm
+#     privileged: true
+#     volumes:
+#       - ./:/var/www/html
+#     links:
+#       - mysql
+#   some-nginx:
+#     image: nginx
+#     container_name: some-nginx
+#     privileged: true
+#     ports:
+#       - 8081:80
+#     volumes:
+#       - ./:/usr/share/nginx/html:ro
+#       - ./nginx/conf.d:/etc/nginx/conf.d:ro
+#     links:
+#       - php-fpm
+  php-apache:
+    image: sulvto:my-php-apache
+    container_name: php-apache
     privileged: true
     ports:
       - 8081:80
     volumes:
-      - ./:/usr/share/nginx/html:ro
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./:/var/www/html
     links:
-      - php-fpm
+      - mysql
