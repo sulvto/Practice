@@ -57,13 +57,19 @@ class Users extends Controller
      */
     public function save(Request $request)
     {
+        // User
         $user_input = $request->post();
-        $user = new User;
-        $user->data($user_input);
-        $user->created_at = time();
-        $user->save();
+        $user_input['created_at'] = time();
 
-        return json(['data'=>NULL,'error'=>0,'message'=>'操作完成']);
+        $validate_result = $this->validate($user_input, 'User');
+
+        if (true === $validate_result) {
+            $user = new User;
+            $user->save($user_input);
+            return json(['data' => NULL, 'error'=> 0, 'message'=>'操作完成']);
+        } else {
+            return json(['data' => NULL, 'error' => 1, 'message' => $validate_result]);
+        }
     }
 
     /**
@@ -109,7 +115,16 @@ class Users extends Controller
      */
     public function delete($id)
     {
-        //
-        return "delete".$id;
+        if (!Session::has("current_user")) {
+            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+        }
+
+        $user = User::get($id);
+        if (isset($user)) {
+            $user->delete();
+            return json(['data'=>NULL, 'error'=>0, 'message'=>'操作完成']);
+        } else {
+            return json(['data'=>NULL, 'error'=>1, 'message'=>'操作失败']);
+        }
     }
 }

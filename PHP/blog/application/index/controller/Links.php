@@ -56,17 +56,22 @@ class Links extends Controller
     {
         $link_input = $request->post();
         LOG::write($link_input, "debug");
-        $current_user = Session::get("current_user");
+
+        if (!Session::has("current_user")) {
+            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+        }
+
+        $validate_result = $this->validate($link_input, 'Link');
 
         // check user login
-        if (isset($current_user)) {
+        if (true === $validate_result) {
             $link = new Link;
             $link->data($link_input);
             $link->save();
 
             return json(['data'=>NULL, 'error'=>1, 'message'=>'操作完成']);
         } else {
-            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+            return json(['data'=>NULL, 'error'=>1, 'message'=> $validate_result]);
         }
     }
 
@@ -101,13 +106,15 @@ class Links extends Controller
      */
     public function update(Request $request, $id)
     {
-        // TODO: check input field
         $link_input = $request->post();
         LOG::write($link_input, "debug");
-        $current_user = Session::get("current_user");
 
-        // check user login
-        if (isset($current_user)) {
+        if (!Session::has("current_user")) {
+            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+        }
+        
+        $validate_result = $this->validate($link_input, 'Link');
+        if (true === $validate_result) {
             $link = Link::get($id);
 
             $link->name     = $link_input["name"];
@@ -115,7 +122,7 @@ class Links extends Controller
             $link->save();
             return json(['data'=>NULL, 'error'=>0, 'message'=>'操作完成']);
         } else {
-            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+            return json(['data'=>NULL, 'error'=>1, 'message'=>$validate_result]);
         }
     }
 
@@ -127,9 +134,7 @@ class Links extends Controller
      */
     public function delete($id)
     {
-        $current_user = Session::get("current_user");
-
-        if (!isset($current_user)) {
+        if (!Session::has("current_user")) {
             return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
         }
 

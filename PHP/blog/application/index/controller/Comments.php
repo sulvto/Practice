@@ -56,10 +56,17 @@ class Comments extends Controller
     {
         $comment_input = $request->post();
         LOG::write($comment_input, "debug");
-        $current_user = Session::get("current_user");
 
         // check user login
-        if (isset($current_user)) {
+        if (!Session::has("current_user")) {
+            return json(['data' => NULL, 'error' => 1, 'message' => '用户未登录']);
+        }
+
+        $validate_result = $this->validate($comment_input, 'Comment');
+
+        if (true === $validate_result) {
+            $current_user = Session::get("current_user");
+
             $cmment = new Comment;
             $cmment->data($comment_input);
             $cmment->created_at = time();
@@ -68,9 +75,9 @@ class Comments extends Controller
             $cmment->user_image = $current_user["image"];
             $cmment->save();
 
-            return json(['data'=>NULL, 'error'=>1, 'message'=>'操作完成']);
+            return json(['data'=>NULL, 'error'=>0, 'message'=>'操作完成']);
         } else {
-            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+            return json(['data'=>NULL, 'error'=>1, 'message'=> $validate_result]);
         }
     }
 
@@ -116,6 +123,17 @@ class Comments extends Controller
      */
     public function delete($id)
     {
-        //
+        if (!Session::has("current_user")) {
+            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+        }
+
+        $current_user = Session::get("current_user");
+        $comment = Comment::get($id);
+        if (isset($comment) && $comment["user_id"] == $current_user["id"]) {
+            $comment->delete();
+            return json(['data'=>NULL, 'error'=>0, 'message'=>'操作完成']);
+        } else {
+            return json(['data'=>NULL, 'error'=>1, 'message'=>'操作失败']);
+        }
     }
 }

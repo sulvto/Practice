@@ -66,9 +66,10 @@
         methods: {
             delete_link: function (link) {
                 if (confirm('确认要删除友情链接“' + link.url + '”？删除后不可恢复！')) {
-                    postJSON('/api/links/' + link.id , function (err, r) {
+                    var url = '/public/?s=/api/links/' + link.id;
+                    _httpJSON('DELETE', url, null, function (err, r) {
                         if (err) {
-                            return error(err);
+                            return alert(err.message || err.error || err);
                         }
                         refresh();
                     });

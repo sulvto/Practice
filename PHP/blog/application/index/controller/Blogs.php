@@ -6,6 +6,7 @@ use think\Controller;
 use think\Session;
 use think\Request;
 use think\LOG;
+use think\Validate;
 
 use app\index\model\Blog;
 use app\index\model\Comment;
@@ -13,6 +14,22 @@ use app\index\model\Link;
 
 class Blogs extends Controller
 {
+    protected $validate_rule = [
+        'title'  =>  'require|max:25',
+        'content' =>  'require',
+        'summary' =>  'require'
+    ];
+
+    protected $validate_message = [
+        'title.require' => '标题必须',
+        'name.max'     => '标题最多不能超过25个字符',
+        'email'        => '邮箱格式错误'
+    ];
+
+    protected $middleware = [
+        'Authentication' 	=> ['except' 	=> ['index'] ]
+    ];
+
     /**
      * 显示资源列表
      *
@@ -55,13 +72,18 @@ class Blogs extends Controller
      */
     public function save(Request $request)
     {
-        // TODO: check input field
         $blog_input = $request->post();
         LOG::write($blog_input, "debug");
-        $current_user = Session::get("current_user");
 
         // check user login
-        if (isset($current_user)) {
+        if (!Session::has("current_user")) {
+            return json(['data' => NULL, 'error' => 1, 'message' => '用户未登录']);
+        }
+
+        $validate_result = $this->validate($blog_input, 'Blog');
+
+        if(true === $validate_result) {
+            $current_user = Session::get("current_user");
             $blog = new Blog;
             $blog->data($blog_input);
             $blog->created_at = time();
@@ -69,10 +91,9 @@ class Blogs extends Controller
             $blog->user_name = $current_user["username"];
             $blog->user_image = $current_user["image"];
             $blog->save();
-
-            return json(['data'=>NULL, 'error'=>1, 'message'=>'操作完成']);
+            return json(['data' => NULL, 'error' => 0, 'message' => '操作完成']);
         } else {
-            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+            return json(['data' => NULL, 'error' => 1, 'message' => $validate_result]);
         }
     }
 
@@ -108,13 +129,19 @@ class Blogs extends Controller
      */
     public function update(Request $request, $id)
     {
-        // TODO: check input field
         $blog_input = $request->post();
         LOG::write($blog_input, "debug");
-        $current_user = Session::get("current_user");
 
         // check user login
-        if (isset($current_user)) {
+        if (!Session::has("current_user")) {
+            return json(['data' => NULL, 'error' => 1, 'message' => '用户未登录']);
+        }
+
+        $validate_result = $this->validate($blog_input, 'Blog');
+
+        // check user login
+        if (true === $validate_result) {
+            $current_user = Session::get("current_user");
             $blog = Blog::get($id);
 
             if ($current_user["id"] === $blog->user_id) {
@@ -127,7 +154,7 @@ class Blogs extends Controller
                 return json(['data'=>NULL, 'error'=>1, 'message'=>'操作失败']);
             }
         } else {
-            return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
+            return json(['data'=>NULL, 'error'=>1, 'message'=> $validate_result]);
         }
     }
 
@@ -139,12 +166,11 @@ class Blogs extends Controller
      */
     public function delete($id)
     {
-        $current_user = Session::get("current_user");
-
-        if (!isset($current_user)) {
+        if (!Session::has("current_user")) {
             return json(['data'=>NULL, 'error'=>1, 'message'=>'用户未登录']);
         }
 
+        $current_user = Session::get("current_user");
         $blog = Blog::get($id);
         if (isset($blog) && $blog["user_id"] == $current_user["id"]) {
             $blog->delete();
