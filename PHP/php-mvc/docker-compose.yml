@@ -1,0 +1,22 @@
+version: "3"
+services:
+  mysql:
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: a111111
+    volumes:
+      - ./mysql_data/mysql:/var/lib/mysql
+  php-apache:
+    image: sulvto:my-php-apache
+    container_name: php-apache
+    privileged: true
+    ports:
+      - 8081:80
+    volumes:
+      - ./:/var/www/html
+    links:
+      - mysql
