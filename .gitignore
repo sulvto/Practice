@@ -1,2 +1,16 @@
 .idea
 *.log
+
+.setting
+
+.vscode
+
+// java target
+*.class
+
+// python
+__ycache__
+
+// node.js
+node_modules
+
