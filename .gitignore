@@ -1,5 +1,2 @@
 .idea
-composer.lock
 *.log
-
-mysql_data

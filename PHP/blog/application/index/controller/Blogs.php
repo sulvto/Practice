@@ -7,6 +7,7 @@ use think\Session;
 use think\Request;
 use think\LOG;
 use think\Validate;
+use think\Cache;
 
 use app\index\model\Blog;
 use app\index\model\Comment;
@@ -210,6 +211,9 @@ class Blogs extends Controller
      */
     public function blog_view($id)
     {
+        LOG::write("上次访问时间： ".date('Y-m-d h:i:s', Cache::get('blogs_'.$id)), 'debug');
+        Cache::set("blogs_".$id, time());
+        Cache::set("blogs_last", $id."/".time());
         $blog = Blog::find($id);
         $comments = Comment::all(['blog_id'=>$id]);
         $links = Link::all();
