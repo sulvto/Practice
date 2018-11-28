@@ -32,6 +32,9 @@ import OrderInvoiceList from '@/views/order/invoiceList.vue'
 import OrderCustomerServiceList from '@/views/order/customerService/list.vue'
 import OrderCustomerServiceDetail from '@/views/order/customerService/detail.vue'
 
+import TuangouIndex from '@/views/tuangou/Index.vue'
+import TuangouList from '@/views/tuangou/tuangouList.vue'
+
 import PintuanList from '@/views/tuangou/pintuanList.vue'
 import PintuanOrderList from '@/views/tuangou/pintuanOrderList.vue'
 
@@ -442,19 +445,25 @@ export default new Router({
         name: 'customerServiceDetail',
         component: OrderCustomerServiceDetail
       }]
-    },
-    {
+    }, {
       path: '/tuangou',
-      name: 'tuangou',
-      component: Order,
+      name: '拼团',
+      component: TuangouIndex,
       children: [{
+        path: '/',
+        redirect: 'pintuanList.html'
+      }, {
         path: 'pintuanorderlist.html',
         name: 'pintuanOrderList',
         component: PintuanOrderList
       }, {
-        path: 'pintuanlist.html',
+        path: 'pintuanList.html',
         name: 'pintuanList',
         component: PintuanList
+      }, {
+        path: 'tuangouList.html',
+        name: 'TuangouList',
+        component: TuangouList
       }]
     },
     {

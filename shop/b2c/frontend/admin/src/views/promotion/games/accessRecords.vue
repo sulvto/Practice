@@ -1,5 +1,3 @@
-																		<!-- <h4>操作提示</h4> -->
-									<!-- <p>获奖记录</p> -->
 <template>
   <div>
     <el-tabs v-model="tabActiveName" @tab-click="switchTab">
@@ -9,10 +7,7 @@
     </el-tabs>
 
     <el-row :gutter="8">
-      <el-col :span="12">
-      </el-col>
-
-      <el-col :span="10">
+      <el-col :span="10" :offset="12">
         <el-input size="small" v-model="searchKeyword" placeholder="请输入会员昵称"></el-input>
       </el-col>
       <el-col :span="2">
@@ -30,7 +25,7 @@
       </el-table-column>
 
       <el-table-column
-        prop="name"
+        prop="info"
         label="获奖信息">
       </el-table-column>
 
@@ -41,9 +36,9 @@
       </el-table-column>
 
       <el-table-column
-        prop="info"
+        prop="date"
         label="参与时间"
-        width="140">
+        width="240">
       </el-table-column>
     </el-table>
   </div>
@@ -57,16 +52,16 @@ export default {
       searchKeyword: '',
       tableData: [{
         info: '【cqinter】未中奖',
-        data: '2018-07-30 18:23:04'
+        date: '2018-07-30 18:23:04'
       }, {
         info: '【cqinter】获得10，奖励赠品【上衣女夏2017新款枣红色韩版灯笼袖压褶方领宽松半袖百搭雪纺衫】',
-        data: '2018-07-30 18:23:09'
+        date: '2018-07-30 18:23:09'
       }, {
         info: '【cqinter】获得10，奖励￥5.00余额红包',
-        data: '2018-07-30 18:23:11'
+        date: '2018-07-30 18:23:11'
       }, {
         info: '【cqinter】获得10，奖励20积分',
-        data: '2018-07-30 18:23:22'
+        date: '2018-07-30 18:23:22'
       }]
     }
   },

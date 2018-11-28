@@ -1,95 +1,82 @@
 <template>
-  <section class="ns-base-section">
+  <div>
 
+    <el-row :gutter="8">
+      <el-col :xs="7" :sm="7" :md="7" :lg="7" :xl="12">
+        &emsp;
+      </el-col>
 
+      <el-col :xs="17" :sm="17" :md="17" :lg="17" :xl="12">
+        <el-form :inline="true" :model="queryForm" size="small" >
+          <el-form-item label="创建时间">
+            <el-date-picker
+              v-model="queryForm.orderDateRange"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="-"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="datePickerOptions">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="团长名">
+            <el-input v-model="queryForm.group_name" placeholder="团长名"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="onSubmit">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="http://showfx.niuteam.cn/admin.html"></a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="http://showfx.niuteam.cn/admin/promotion/coupontypelist.html">营销</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/tuangou/tuangouList -->
-          <a href="javascript:;" style="color:#999;">拼团设置</a>
-              </div>
-            <!-- 三级导航菜单 -->
+    <el-table border :data="tableData" style="width: 100%">
 
-                <nav class="ns-third-menu">
-          <ul>
-                        <li onclick="location.href='http://showfx.niuteam.cn/admin/tuangou/pintuanlist.html';">拼团列表</li>
-                          <li class="selected" onclick="location.href='http://showfx.niuteam.cn/admin/tuangou/tuangouList.html';">拼团设置</li>
-                      </ul>
-        </nav>
+      <el-table-column
+        type="selection"
+        width="35">
+      </el-table-column>
 
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
+      <el-table-column prop="goods_name" label="商品名称" >
+        <template slot-scope="scope">
+          <!-- TODO: a img -->
+          商品名称：{{scope.row.goods_name}} <br/>
+          商品编码：{{scope.row.seller_no}}
+        </template>
+      </el-table-column>
 
-        </ul>
-      </div>
-    </div>
+      <el-table-column prop="price" label="单价(元)" width="100"></el-table-column>
 
-    <div class="ns-main">
+      <el-table-column label="活动价(元)" width="100">
+        <template slot-scope="scope">
+          {{scope.row.activity_price}}元
+        </template>
+      </el-table-column>
 
-    <table class="mytable">
-    <tbody><tr>
-    <th style="line-height:33px;">
-      创建时间：
-      <input type="text" id="startDate" class="input-common middle" placeholder="请选择开始日期" onclick="WdatePicker()">
-      &nbsp;-&nbsp;
-      <input type="text" id="endDate" placeholder="请选择结束日期" class="input-common middle" onclick="WdatePicker()">
-      商品名：<input id="goods_name" class="input-common middle" type="text" value="">
-      <button class="btn-common" onclick="searchData()">搜索</button>
-    </th>
-    </tr>
-    </tbody></table>
-    <div id="myTabContent" class="tab-content">
-    <div class="tab-pane active">
-    <table class="table-class" border="0">
-      <colgroup>
-        <col style="width: 2%;">
-        <col style="width: 24%;">
-        <col style="width: 9%;">
-        <col style="width: 9%;">
-        <col style="width: 10%;">
-        <col style="width: 10%;">
-        <col style="width: 10%;">
-        <col style="width: 16%;">
-        <col style="width: 10%;">
-      </colgroup>
-      <tbody>
-        <tr class="table-title">
-          <th>
-            <i class="checkbox-common">
-              <input onclick="CheckAll(this)" type="checkbox" id="chek_all">
-            </i>
-          </th>
-          <th>商品名称</th>
-          <th align="right">单价(元)</th>
-          <th align="right">活动价(元)</th>
-          <th>是否拼团</th>
-          <th>拼团类型</th>
-          <th>拼团价格</th>
-          <th>创建时间</th>
-          <th>操作</th>
-        </tr>
-      </tbody>
-      <tbody id="productTbody" style="border: 0;"><tr><td align="center"><i class="checkbox-common"><input value="79" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=79" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180904/ff9d6c769dd2f7c69c63e98f67b618374.png"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=79">dfa</a></div><div>商家编码：</div></div></td><td align="right">100.00</td><td align="right">100.00</td><td style="text-align:center;">未启用</td><td style="text-align:center;">--</td><td style="text-align:center;">--</td><td align="center">2018-09-04 10:45:13</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(79)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0;" href="javascript:void(0);" onclick="modifyGoodsPintuan(79,'open')"><span class="edit">开启拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="78" name="sub" data-state="0" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=78" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180901/c9d91eda9b2e48c4959c8725073dc4d84.png"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=78">测试商品-副本</a></div><div>商家编码：</div></div></td><td align="right">100.00</td><td align="right">100.00</td><td style="text-align:center;">未启用</td><td style="text-align:center;">--</td><td style="text-align:center;">--</td><td align="center">2018-09-04 10:00:11</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(78)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0;" href="javascript:void(0);" onclick="modifyGoodsPintuan(78,'open')"><span class="edit">开启拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="77" name="sub" data-state="0" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=77" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods_sku/32fc4da4eb65a4567ee6cf4302057c7f4.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=77">OSA欧莎2018春秋装 名媛小香风圆领格子高腰流苏两件套包臀裙套装</a></div><div>商家编码：1009090110</div></div></td><td align="right">0.00</td><td align="right">0.00</td><td style="text-align:center;">已启用</td><td style="text-align:center;">阶梯团</td><td style="text-align:center;"></td><td align="center">2018-09-03 20:19:05</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(77)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0; " href="javascript:void(0);" onclick="modifyGoodsPintuan(77,'off')"><span class="edit">关闭拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="76" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=76" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180901/c9d91eda9b2e48c4959c8725073dc4d84.png"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=76">测试商品</a></div><div>商家编码：</div></div></td><td align="right">100.00</td><td align="right">100.00</td><td style="text-align:center;">已启用</td><td style="text-align:center;">秒杀团</td><td style="text-align:center;"></td><td align="center">2018-09-01 18:11:47</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(76)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0; " href="javascript:void(0);" onclick="modifyGoodsPintuan(76,'off')"><span class="edit">关闭拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="74" name="sub" data-state="0" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=74" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180719/95cf73c127d0a1ff3543f7fcb0874f274.png"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=74">8.10测试</a></div><div>商家编码：</div></div></td><td align="right">100.00</td><td align="right">100.00</td><td style="text-align:center;">已启用</td><td style="text-align:center;">秒杀团</td><td style="text-align:center;"></td><td align="center">2018-08-10 16:15:56</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(74)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0; " href="javascript:void(0);" onclick="modifyGoodsPintuan(74,'off')"><span class="edit">关闭拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="73" name="sub" data-state="0" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=73" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180711/3b658c4f23120aa70f6f98a937971f814.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=73">测试商品</a></div><div>商家编码：</div></div></td><td align="right">88.00</td><td align="right">88.00</td><td style="text-align:center;">已启用</td><td style="text-align:center;">佣金团</td><td style="text-align:center;"></td><td align="center">2018-08-08 11:46:50</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(73)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0; " href="javascript:void(0);" onclick="modifyGoodsPintuan(73,'off')"><span class="edit">关闭拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="71" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=71" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/14993418601114.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=71">Lenovo/联想Yoga BOOK WiFi平板二合一超薄笔记本电脑yoga book-副本</a></div><div>商家编码：</div></div></td><td align="right">0.00</td><td align="right">0.00</td><td style="text-align:center;">已启用</td><td style="text-align:center;">秒杀团</td><td style="text-align:center;"></td><td align="center">2018-07-11 16:24:37</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(71)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0; " href="javascript:void(0);" onclick="modifyGoodsPintuan(71,'off')"><span class="edit">关闭拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="69" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=69" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180705/12c1f79313f569cab48b5c38b69a1d9f4.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=69">澳大利亚丁戈树红标经典红葡萄酒750ml-副本</a></div><div>商家编码：</div></div></td><td align="right">1000.00</td><td align="right">1000.00</td><td style="text-align:center;">未启用</td><td style="text-align:center;">--</td><td style="text-align:center;">--</td><td align="center">2018-07-11 14:42:51</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(69)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0;" href="javascript:void(0);" onclick="modifyGoodsPintuan(69,'open')"><span class="edit">开启拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="66" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=66" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180705/12c1f79313f569cab48b5c38b69a1d9f4.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=66">澳大利亚丁戈树红标经典红葡萄酒750ml-副本</a></div><div>商家编码：</div></div></td><td align="right">1000.00</td><td align="right">1000.00</td><td style="text-align:center;">未启用</td><td style="text-align:center;">--</td><td style="text-align:center;">--</td><td align="center">2018-07-11 09:27:40</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(66)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0;" href="javascript:void(0);" onclick="modifyGoodsPintuan(66,'open')"><span class="edit">开启拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="62" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=62" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180705/12c1f79313f569cab48b5c38b69a1d9f4.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=62">test123澳大利亚丁戈树红标经典红葡萄酒750ml</a></div><div>商家编码：</div></div></td><td align="right">0.00</td><td align="right">0.00</td><td style="text-align:center;">已启用</td><td style="text-align:center;">秒杀团</td><td style="text-align:center;"></td><td align="center">2018-07-05 15:44:04</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(62)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0; " href="javascript:void(0);" onclick="modifyGoodsPintuan(62,'off')"><span class="edit">关闭拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="61" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=61" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/14993425091304.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=61">古尚古 懒人手机支架 手机通用指环创意卡扣粘贴式全金属卡通配件-副本</a></div><div>商家编码：</div></div></td><td align="right">15.00</td><td align="right">15.00</td><td style="text-align:center;">未启用</td><td style="text-align:center;">--</td><td style="text-align:center;">--</td><td align="center">2018-07-05 15:09:56</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(61)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0;" href="javascript:void(0);" onclick="modifyGoodsPintuan(61,'open')"><span class="edit">开启拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="60" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=60" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/14993421471174.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=60">14.1英寸轻薄刀锋四核笔记本电脑手提固态商务学生游戏上网本分期-副本</a></div><div>商家编码：</div></div></td><td align="right">5600.00</td><td align="right">5600.00</td><td style="text-align:center;">未启用</td><td style="text-align:center;">--</td><td style="text-align:center;">--</td><td align="center">2018-07-05 15:08:56</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(60)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0;" href="javascript:void(0);" onclick="modifyGoodsPintuan(60,'open')"><span class="edit">开启拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="59" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=59" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/14993430961454.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=59">钻石金属 闪钻镶卡通指环扣懒人防摔折叠粘贴式手机配件支架批发-副本</a></div><div>商家编码：</div></div></td><td align="right">42.00</td><td align="right">42.00</td><td style="text-align:center;">未启用</td><td style="text-align:center;">--</td><td style="text-align:center;">--</td><td align="center">2018-07-05 15:08:45</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(59)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0;" href="javascript:void(0);" onclick="modifyGoodsPintuan(59,'open')"><span class="edit">开启拼团</span></a></td></tr><tr><td align="center"><i class="checkbox-common"><input value="56" name="sub" data-state="1" type="checkbox"></i></td><td colspan="1"><div><a class="a-pro-view-img" href="http://showfx.niuteam.cn/goods/goodsinfo?goodsid=56" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/14993430961454.jpg"></a></div><div class="div-pro-view-name"><div class="goods-name">商品名称：<a target="_blank" href="http://showfx.niuteam.cn/wap/Goods/goodsDetail?id=56">钻石金属 闪钻镶卡通指环扣懒人防摔折叠粘贴式手机配件支架批发</a></div><div>商家编码：</div></div></td><td align="right">42.00</td><td align="right">42.00</td><td style="text-align:center;">已启用</td><td style="text-align:center;">秒杀团</td><td style="text-align:center;"></td><td align="center">2017-07-06 20:11:49</td><td style="text-align:center;"><a style="width:100%; " href="javascript:void(0);" onclick="showUpdateGoodsPintuan(56)"><span class="edit">拼团设定</span></a><a style="display: block;margin-right: 0; " href="javascript:void(0);" onclick="modifyGoodsPintuan(56,'off')"><span class="edit">关闭拼团</span></a></td></tr></tbody>
-    </table>
-    </div>
-    </div>
+      <el-table-column label="是否拼团" width="100">
+        <template slot-scope="scope">
+          <!-- 1: 未启用, 2: 已启用 -->
+          {{scope.row.status === 1 ? '未启用' : '已启用'}} <br/>
+        </template>
+      </el-table-column>
+      <el-table-column label="拼团类型" width="120">
+        <template slot-scope="scope">
+          {{(scope.row.type || '--')}} <br/>
+        </template>
+      </el-table-column>
+      <el-table-column prop="pintuan_price" label="拼团价格" width="100">
+      </el-table-column>
+      <el-table-column prop="create_date" label="创建时间" width="140"></el-table-column>
+      <el-table-column label="操作" width="200">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">拼团设定</el-button>
+          <el-button v-if="scope.row.status === 1" size="mini" @click="handleEdit(scope.$index, scope.row)">开启拼团</el-button>
+          <el-button v-if="scope.row.status === 2" size="mini" @click="handleEdit(scope.$index, scope.row)">关闭拼团</el-button>
+
+        </template>
+      </el-table-column>
+    </el-table>
+
     <!-- 此部分以下是弹出框内容 -->
     <div class="modal fade hide" id="editGoodsCommissionRate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:800px;">
     <div class="modal-dialog">
@@ -107,7 +94,6 @@
             <dd>
 
                 <input id="is_open" type="checkbox" class="checkbox" simpleswitch="0" result="false" style="display: none;"><div class="Switch Switch_FlatRadius" id="Switch0"><span class="switch-open">是</span><span class="switch-close">否</span></div>
-
 
               <!-- <label class="radio inline normal">
                 <i class="radio-common selected">
@@ -129,7 +115,6 @@
             <dd>
 
                 <input id="is_show" type="checkbox" class="checkbox" simpleswitch="1" result="false" style="display: none;"><div class="Switch Switch_FlatRadius" id="Switch1"><span class="switch-open">是</span><span class="switch-close">否</span></div>
-
 
               <!-- <label class="radio inline normal">
                 <i class="radio-common selected">
@@ -173,7 +158,7 @@
                                   <option class="type2" value="2">佣金团</option>
                                   <option class="type3" value="3">阶梯团</option>
                               </select></div><div class="selectric"><span class="selectric-label">请选择团购类型</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="请选择团购类型">请选择团购类型</li><li data-index="1" class="type1" title="秒杀团">秒杀团</li><li data-index="2" class="type2" title="佣金团">佣金团</li><li data-index="3" class="type3 last" title="阶梯团">阶梯团</li></ul></div></div><input class="selectric-input" tabindex="0"></div><span class="error">请输入团购类型</span>
-                         
+
             </dd>
           </dl>
           <dl style="display:none" id="commission_show">
@@ -216,7 +201,152 @@
     </div>
     </div>
     </div>
-    </div>
 
-  </section>
+  </div>
 </template>
+
+<script>
+// 失败 进行中 成功 已退款
+export default {
+  name: 'tuangouList',
+  data () {
+    return {
+      queryForm: {},
+      tableData: [
+        {
+          goods_name: 'dfa',
+          seller_no: '',
+          price: '100.00',
+          activity_price: '100.00',
+          pintuan_price: '--',
+          create_date: '2018-09-04 10:45:13',
+          status: 1
+
+        }, {
+          goods_name: '测试商品-副本',
+          seller_no: '',
+          price: '100.00',
+          activity_price: '100.00',
+          pintuan_price: '--',
+          create_date: '2018-09-04 10:00:11',
+          status: 1
+        }, {
+          goods_name: 'OSA欧莎2018春秋装 名媛小香风圆领格子高腰流苏两件套包臀裙套装',
+          seller_no: '1009090110',
+          price: '0.00',
+          activity_price: '0.00',
+          pintuan_price: '',
+          create_date: '2018-09-03 20:19:05',
+          status: 2,
+          type: '阶梯团'
+        }, {
+          goods_name: '测试商品',
+          seller_no: '',
+          price: '100.00',
+          activity_price: '100.00',
+          pintuan_price: '',
+          create_date: '2018-09-01 18:11:47',
+          status: 2,
+          type: '秒杀团'
+        }, {
+          goods_name: '8.10测试',
+          seller_no: '',
+          price: '100.00',
+          activity_price: '100.00',
+          pintuan_price: '',
+          create_date: '2018-08-10 16:15:56',
+          status: 2,
+          type: '秒杀团'
+        }, {
+          goods_name: '测试商品',
+          seller_no: '',
+          price: '88.00',
+          activity_price: '88.00',
+          pintuan_price: '',
+          create_date: '2018-08-08 11:46:50',
+          status: 2,
+          type: '佣金团'
+        }, {
+          goods_name: 'Lenovo/联想Yoga BOOK WiFi平板二合一超薄笔记本电脑yoga book-副本',
+          seller_no: '',
+          price: '0.00',
+          activity_price: '0.00',
+          pintuan_price: '',
+          create_date: '2018-07-11 16:24:37',
+          status: 2,
+          type: '秒杀团'
+        }, {
+          goods_name: '澳大利亚丁戈树红标经典红葡萄酒750ml-副本',
+          seller_no: '',
+          price: '1000.00',
+          activity_price: '1000.00',
+          pintuan_price: '--',
+          create_date: '2018-07-11 14:42:51',
+          status: 1
+        }, {
+          goods_name: '澳大利亚丁戈树红标经典红葡萄酒750ml-副本',
+          seller_no: '',
+          price: '1000.00',
+          activity_price: '1000.00',
+          pintuan_price: '--',
+          create_date: '2018-07-11 09:27:40',
+          status: 1
+        }, {
+          goods_name: 'test123澳大利亚丁戈树红标经典红葡萄酒750ml',
+          seller_no: '',
+          price: '0.00',
+          activity_price: '0.00',
+          pintuan_price: '',
+          create_date: '2018-07-05 15:44:04',
+          status: 2,
+          type: '秒杀团'
+        }, {
+          goods_name: '古尚古 懒人手机支架 手机通用指环创意卡扣粘贴式全金属卡通配件-副本',
+          seller_no: '',
+          price: '15.00',
+          activity_price: '15.00',
+          pintuan_price: '--',
+          create_date: '2018-07-05 15:09:56',
+          status: 1
+        }, {
+          goods_name: '14.1英寸轻薄刀锋四核笔记本电脑手提固态商务学生游戏上网本分期-副本',
+          seller_no: '',
+          price: '5600.00',
+          activity_price: '5600.00',
+          pintuan_price: '--',
+          create_date: '2018-07-05 15:08:56',
+          status: 1
+        }, {
+          goods_name: '钻石金属 闪钻镶卡通指环扣懒人防摔折叠粘贴式手机配件支架批发-副本',
+          seller_no: '',
+          price: '42.00',
+          activity_price: '42.00',
+          pintuan_price: '--',
+          create_date: '2018-07-05 15:08:45',
+          status: 1
+        }, {
+          goods_name: '钻石金属 闪钻镶卡通指环扣懒人防摔折叠粘贴式手机配件支架批发',
+          seller_no: '',
+          price: '42.00',
+          activity_price: '42.00',
+          pintuan_price: '',
+          create_date: '2017-07-06 20:11:49',
+          status: 2,
+          type: '秒杀团'
+        }
+      ]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
+    },
+    handleDelete (index, row) {
+      console.log(index, row)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+</style>

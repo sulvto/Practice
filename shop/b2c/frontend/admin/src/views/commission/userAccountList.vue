@@ -23,8 +23,7 @@
     <el-table border :data="tableData" style="width: 100%">
       <el-table-column
         prop="username"
-        label="用户名称"
-        width="120">
+        label="用户名称">
       </el-table-column>
 
       <el-table-column
