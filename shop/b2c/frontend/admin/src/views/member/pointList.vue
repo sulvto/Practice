@@ -1,11 +1,15 @@
 <template>
   <div>
-    <el-row :gutter="1">
-      <el-col :span="11">
-        &nbsp;
+
+    <el-row type="flex" justify="space-between">
+      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="2">
       </el-col>
 
-      <el-col :span="10">
+      <el-col :xs="2" :sm="4" :md="6" :lg="8" :xl="13">
+
+      </el-col>
+
+      <el-col :xs="6" :sm="8" :md="10" :lg="10" :xl="7">
         <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
           <el-form-item label="发生时间">
             <el-date-picker
@@ -23,7 +27,7 @@
         </el-form>
       </el-col>
 
-      <el-col :span="3">
+      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="2">
         <el-popover
           placement="bottom"
           width="400"
@@ -247,5 +251,23 @@ export default {
 
 .table-desc {
   display: inline-block;
+}
+
+.bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
 }
 </style>

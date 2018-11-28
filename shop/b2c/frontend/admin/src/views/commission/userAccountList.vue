@@ -205,7 +205,6 @@ export default {
     search () {
       console.log('search', this.searchKeyword)
     }
-
   }
 }
 </script>

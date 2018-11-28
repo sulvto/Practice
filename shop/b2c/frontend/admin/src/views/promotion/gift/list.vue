@@ -66,6 +66,11 @@
     <el-table border :data="tableData" style="width: 100%">
 
       <el-table-column
+        type="selection"
+        width="35">
+      </el-table-column>
+
+      <el-table-column
             prop="name"
             label="活动名称">
           </el-table-column>
@@ -92,24 +97,23 @@
                 <template slot-scope="scope">-</template>
           </el-table-column>
 
-<el-table-column label="有效时间"
-            width="210">
-            <template slot-scope="scope">
-              开始时间：{{scope.row.startDate}}
-              <br>
-              结束时间：{{scope.row.endDate}}
-            </template>
-        </el-table-column>
+      <el-table-column label="有效时间"
+        width="210">
+        <template slot-scope="scope">
+          开始时间：{{scope.row.startDate}}
+          <br>
+          结束时间：{{scope.row.endDate}}
+        </template>
+      </el-table-column>
 
         <el-table-column label="操作"
-            width="220">
-            <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status !== 1">删除</el-button>
-              <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)">发放记录</el-button>
-
-            </template>
+          width="220">
+          <template slot-scope="scope">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status !== 1">删除</el-button>
+            <el-button size="mini" class="margin-top-5" @click="$router.push('records.html?id=' + scope.row.id)">发放记录</el-button>
+          </template>
         </el-table-column>
     </el-table>
   </div>
@@ -120,6 +124,7 @@ export default {
   name: 'giftList',
   data () {
     return {
+      searchKeyword: '',
       tableData: [{
         id: '1',
         startDate: '2018-08-20 10:32:19',
@@ -147,6 +152,9 @@ export default {
     },
     handleDelete (index, row) {
       console.log(index, row)
+    },
+    search () {
+
     }
   }
 }

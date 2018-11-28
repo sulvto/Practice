@@ -103,14 +103,14 @@
 </template>
 <template>
   <div>
-    <el-row :gutter="8">
-      <el-col :span="10">
+    <el-row type="flex" justify="space-between">
+      <el-col :xs="5" :sm="5" :md="5" :lg="5" :xl="4">
         <el-button type="danger" size="small">批量删除</el-button>
-        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加活动</el-button>
+        <el-button type="primary" size="small" @click="addMember()">添加会员</el-button>
       </el-col>
-
-      <el-col :span="12">
-
+      <el-col :xs="7" :sm="7" :md="7" :lg="6" :xl="12">
+      </el-col>
+      <el-col :xs="10" :sm="10" :md="10" :lg="14" :xl="9">
         <el-form :inline="true" ref="queryForm" :model="queryForm" size="small" label-position="right">
 
           <el-form-item label="活动名称">
@@ -127,7 +127,7 @@
           </el-form-item>
         </el-form>
       </el-col>
-      <el-col :span="2">
+      <el-col :xs="2" :sm="2" :md="2" :lg="2" :xl="1">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>

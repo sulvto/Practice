@@ -70,11 +70,11 @@
           width="190">
           <template slot-scope="scope">
               <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">奖项列表</el-button>
+              <el-button size="mini" @click="$router.push('awardList.html')">奖项列表</el-button>
               <br/>
               <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status !== 2">删除</el-button>
               <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status === 2">关闭</el-button>
-              <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status !== 1">获奖记录</el-button>
+              <el-button size="mini" class="margin-top-5" @click="$router.push('accessRecords.html')" v-if="scope.row.status !== 1">获奖记录</el-button>
               <br/>
               <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status === 2">推广链接</el-button>
           </template>

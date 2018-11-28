@@ -1,82 +1,106 @@
+<!-- <h4>操作提示</h4> -->
+<!-- <p>赠品发放记录</p> -->
+
 <template>
+  <div>
+    <el-row :gutter="8">
+      <el-col :span="10" :offset="12">
+        <el-input size="small" v-model="searchKeyword" placeholder="请输入活动名称"></el-input>
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
+    </el-row>
 
-  <section class="ns-base-section">
+    <br/>
 
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-            <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-                  <i class="fa fa-angle-right"></i>
-          <a href="/promotion/coupontypelist.html">营销</a>
-                  <i class="fa fa-angle-right"></i>
-          <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/config/merchantService -->
-          <a href="javascript:;" style="color:#999;">赠品发放记录</a>
-              </div>
-            <!-- 三级导航菜单 -->
+    <el-table border :data="tableData" style="width: 100%">
 
-                <nav class="ns-third-menu">
-          <ul>
-                        <li onclick="location.href='/Promotion/giftList.html';">赠品列表</li>
-                          <li class="selected" onclick="location.href='/promotion/giftGrantRecordsList.html';">赠品发放记录</li>
-                      </ul>
-        </nav>
+      <el-table-column
+        prop="name"
+        label="赠品名称">
+      </el-table-column>
 
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow"></div>
-              <div class="popover-content">
-                <div>
-                                    <h4>操作提示</h4>
-                  <p>赠品发放记录</p>
-                  <hr>
-                                    <h4>功能提示</h4>
-                  <p class="function-prompts"></p>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+      <el-table-column
+        label="发放商品信息">
+        <template slot-scope="scope">
+            <img :src="scope.row.goodsImg" />
+            <span>{{scope.row.goodsName}}</span>
+        </template>
+      </el-table-column>
 
-    <div class="ns-main">
+      <el-table-column
+        prop="type"
+        label="发放类型"
+        width="120">
+      </el-table-column>
 
-      <table class="mytable">
-      <tbody><tr>
-        <th width="10%">
-          <input type="text" id="search_text" placeholder="请输入活动名称" class="input-common">
-          <input type="button" onclick="searchData()" value="搜索" class="btn-common">
-        </th>
-      </tr>
-      </tbody></table>
-      <table class="table-class">
-      <colgroup>
-      <col style="width: 2%;">
-      <col style="width: 15%;">
-      <col style="width: 15%;">
-      <col style="width: 13%;">
-      <col style="width: 15%;">
-      <col style="width: 20%;">
-      <col style="width: 20%;">
-      </colgroup>
-      <thead>
-        <tr align="center">
-          <th></th>
-          <th align="left">赠品名称</th>
-          <th align="left">发放商品信息</th>
-          <th>发放类型</th>
-          <th>发放用户</th>
-          <th>发放时间</th>
-          <th>备注</th>
-        </tr>
-      </thead>
-      <tbody><tr align="center"><td colspan="7">暂无符合条件的数据记录</td></tr></tbody>
-      </table>
+      <el-table-column
+        prop="username"
+        label="发放用户">
+      </el-table-column>
 
-    </div>
+      <el-table-column
+        prop="date"
+        label="发放时间"
+        width="180">
+      </el-table-column>
 
-  </section>
+      <el-table-column
+        prop="notes"
+        label="备注"
+        width="380">
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
+
+<script>
+export default {
+  name: 'list',
+  data () {
+    return {
+      searchKeyword: '',
+      tableData: [{
+        date: '2018-07-09 12:19:01',
+        name: 'namename',
+        goodsImg: '/admin/images/wchat.png',
+        goodsName: '12313434545565',
+        notes: '使用该功能需申请微信开放平台网站应用',
+        type: '游戏'
+      }, {
+        date: '2018-07-09 12:19:01',
+        name: 'aaaaa',
+        goodsImg: '/admin/images/wchat.png',
+        goodsName: '12313434545565',
+        notes: '使用该功能需申请微信开放平台网站应用',
+        type: '游戏'
+      }]
+    }
+  },
+  methods: {
+    search () {
+      console.log('search', this.searchKeyword)
+    }
+
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.table-logo {
+  width: 75px;
+  float: left;
+}
+
+.table-pay {
+  display: inline-block;
+  width: 120px;
+  overflow: hidden;
+  margin-top: 7px;
+}
+
+.table-desc {
+  display: inline-block;
+}
+</style>

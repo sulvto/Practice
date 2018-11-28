@@ -1,3 +1,9 @@
 *.iml
 .idea/
 target/
+**/mysql_data
+*.log
+
+PHP/
+python/
+java-base/

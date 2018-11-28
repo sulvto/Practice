@@ -1,12 +1,15 @@
 <template>
 
   <section class="ns-base-section">
-    <el-row :gutter="8">
-      <el-col :span="12">
-        &nbsp;
+    <el-row type="flex" justify="space-between">
+      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="2">
       </el-col>
 
-      <el-col :span="12">
+      <el-col :xs="2" :sm="4" :md="6" :lg="8" :xl="13">
+
+      </el-col>
+
+      <el-col :xs="6" :sm="8" :md="10" :lg="10" :xl="7">
         <el-form :inline="true" :model="queryForm" size="small" >
           <el-form-item label="提现时间">
             <el-date-picker
@@ -20,30 +23,32 @@
               :picker-options="datePickerOptions">
             </el-date-picker>
           </el-form-item>
-          <el-form-item>
-            <el-popover
-              placement="bottom"
-              width="400"
-              trigger="click"
-              v-model="moreQueryPopoverVisible">
-              <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
-                <el-form-item label="会员账号">
-                  <el-input v-model="queryForm.username"></el-input>
-                </el-form-item>
-
-                <el-form-item label="手机号">
-                  <el-input v-model="queryForm.phoneNumber"></el-input>
-                </el-form-item>
-
-                <el-form-item>
-                  <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
-                </el-form-item>
-              </el-form>
-              <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
-            </el-popover>
-            <el-button type="primary" size="small" @click="search">查询</el-button>
-          </el-form-item>
         </el-form>
+      </el-col>
+
+      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="2">
+        <el-popover
+          placement="bottom"
+          width="400"
+          trigger="click"
+          v-model="moreQueryPopoverVisible">
+          <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
+            <el-form-item label="会员账号">
+              <el-input v-model="queryForm.username"></el-input>
+            </el-form-item>
+
+            <el-form-item label="手机号">
+              <el-input v-model="queryForm.phoneNumber"></el-input>
+            </el-form-item>
+
+            <el-form-item>
+              <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
+            </el-form-item>
+          </el-form>
+          <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
+        </el-popover>
+
+        <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 

@@ -11,6 +11,14 @@ export default {
   methods: {
     handleClick (tab) {
       this.$router.push(tab.$attrs.path)
+    },
+    resetActiveTab () {
+      var currentTab = this.tabs.find(tabItem => this.$route.matched.find(routerItem => tabItem.path === routerItem.path))
+      if (currentTab) {
+        this.activeTabName = currentTab.name
+      } else {
+        console.warn('TabsRouter： 没找到activeTabName')
+      }
     }
   },
 
@@ -18,6 +26,7 @@ export default {
     $route: {
       handler (val, oldVal) {
         console.log('watch route', this.$route)
+        this.resetActiveTab()
       },
       // 深度观察监听
       deep: true
@@ -36,12 +45,7 @@ export default {
   },
 
   created () {
-    var currentTab = this.tabs.find(tabItem => this.$route.matched.find(routerItem => tabItem.path === routerItem.path))
-    if (currentTab) {
-      this.activeTabName = currentTab.name
-    } else {
-      console.warn('TabsRouter： 没找到activeTabName')
-    }
+    this.resetActiveTab()
 
     console.log('created route', this.$route)
   }

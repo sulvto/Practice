@@ -1,73 +1,89 @@
+																		<!-- <h4>操作提示</h4> -->
+									<!-- <p>获奖记录</p> -->
 <template>
+  <div>
+    <el-tabs v-model="tabActiveName" @tab-click="switchTab">
+      <el-tab-pane label="全部" name="first"></el-tab-pane>
+      <el-tab-pane label="中奖的" name="second"></el-tab-pane>
+      <el-tab-pane label="未中奖" name="third"></el-tab-pane>
+    </el-tabs>
 
-	<section class="ns-base-section">
+    <el-row :gutter="8">
+      <el-col :span="12">
+      </el-col>
 
-		<div style="position:relative;margin:0;">
-			<!-- 面包屑导航 -->
-						<div class="breadcrumb-nav">
-				<a href="index.html">大鵬系統</a>
-									<i class="fa fa-angle-right"></i>
-					<a href="/promotion/coupontypelist.html">营销</a>
-									<i class="fa fa-angle-right"></i>
-					<!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/Promotion/promotionGamesAccessRecords -->
-					<a href="javascript:;" style="color:#999;">获奖记录</a>
-							</div>
-						<!-- 三级导航菜单 -->
+      <el-col :span="10">
+        <el-input size="small" v-model="searchKeyword" placeholder="请输入会员昵称"></el-input>
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
+    </el-row>
 
-<nav class="ns-third-menu">
-	<ul>
-		<li class="selected">全部</li>
-		<li data-is-winning="1">中奖的</li>
-		<li data-is-winning="0">未中奖</li>
-	</ul>
-</nav>
+    <br/>
 
-			<div class="right-side-operation">
-				<ul>
-<!-- 					style="display:none;" style="display:block;" -->
-					<li>
-						<a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
-						<div class="popover">
-							<div class="arrow"></div>
-							<div class="popover-content">
-								<div>
-																		<h4>操作提示</h4>
-									<p>获奖记录</p>
-									<hr>
-																		<h4>功能提示</h4>
-									<p class="function-prompts"></p>
-								</div>
-							</div>
-						</div>
-					</li>
-					
-				</ul>
-			</div>
-		</div>
+    <el-table border :data="tableData" style="width: 100%">
 
-		<div class="ns-main">
+      <el-table-column
+        type="selection"
+        width="35">
+      </el-table-column>
 
-<table class="mytable">
-	<tbody><tr>
-		<th width="10%">
-			<input type="text" id="search_text" placeholder="请输入会员昵称" class="input-common">
-			<button class="btn-common" onclick="searchData()">搜索</button>
-		</th>
-	</tr>
-</tbody></table>
-<table class="table-class">
-	<thead>
-		<tr>
-			<th align="left">获奖信息</th>
-			<th>消耗积分</th>
-			<th align="left">参与时间</th>
-		</tr>
-	</thead>
-	<tbody><tr><td align="left">【cqinter】获得10，奖励￥5.00余额红包</td><td align="center">20</td><td>2018-07-30 18:23:04</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 18:23:00</td></tr><tr><td align="left">【cqinter】获得10，奖励赠品【上衣女夏2017新款枣红色韩版灯笼袖压褶方领宽松半袖百搭雪纺衫】</td><td align="center">20</td><td>2018-07-30 10:50:00</td></tr><tr><td align="left">【cqinter】获得10，奖励赠品【上衣女夏2017新款枣红色韩版灯笼袖压褶方领宽松半袖百搭雪纺衫】</td><td align="center">20</td><td>2018-07-30 10:49:27</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:49:08</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:49:07</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:49:02</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:48:59</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:48:56</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:48:54</td></tr><tr><td align="left">【cqinter】获得10，奖励20积分</td><td align="center">20</td><td>2018-07-30 10:48:26</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:48:24</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:48:22</td></tr><tr><td align="left">【cqinter】未中奖</td><td align="center">20</td><td>2018-07-30 10:48:20</td></tr></tbody>
-</table>
-<input type="hidden" value="1" id="hidden_game_id">
+      <el-table-column
+        prop="name"
+        label="获奖信息">
+      </el-table-column>
 
-		</div>
+      <el-table-column
+        prop="type"
+        label="消耗积分"
+        width="120">
+      </el-table-column>
 
-	</section>
+      <el-table-column
+        prop="info"
+        label="参与时间"
+        width="140">
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
+
+<script>
+export default {
+  name: 'list',
+  data () {
+    return {
+      searchKeyword: '',
+      tableData: [{
+        info: '【cqinter】未中奖',
+        data: '2018-07-30 18:23:04'
+      }, {
+        info: '【cqinter】获得10，奖励赠品【上衣女夏2017新款枣红色韩版灯笼袖压褶方领宽松半袖百搭雪纺衫】',
+        data: '2018-07-30 18:23:09'
+      }, {
+        info: '【cqinter】获得10，奖励￥5.00余额红包',
+        data: '2018-07-30 18:23:11'
+      }, {
+        info: '【cqinter】获得10，奖励20积分',
+        data: '2018-07-30 18:23:22'
+      }]
+    }
+  },
+  methods: {
+    handleEdit (index, row) {
+      console.log(index, row)
+    },
+    handleDelete (index, row) {
+      console.log(index, row)
+    },
+    search () {
+      console.log('search', this.searchKeyword)
+    }
+
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+</style>

@@ -1,14 +1,14 @@
 <template>
   <div>
-    <el-row :gutter="8">
-      <el-col :span="4">
+    <el-row :gutter="8" type="flex" justify="space-between">
+      <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4">
         <el-button type="danger" size="small">批量删除</el-button>
         <el-button type="primary" size="small" @click="addMember()">添加会员</el-button>
       </el-col>
-      <el-col :span="4">
+      <el-col :xs="8" :sm="8" :md="8" :lg="8" :xl="10">
         &emsp;
       </el-col>
-      <el-col :span="4">
+      <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="3">
         <el-select size="small" v-model="queryForm.select" clearable placeholder="请选择会员等级">
           <el-option label="普通会员" :value="1"></el-option>
           <el-option label="铜牌会员" :value="2"></el-option>
@@ -17,10 +17,10 @@
           <el-option label="至尊会员" :value="5"></el-option>
         </el-select>
       </el-col>
-      <el-col :span="8">
+      <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4">
         <el-input size="small" v-model="queryForm.searchKeyword" placeholder="输入手机号/邮箱/会员昵称"></el-input>
       </el-col>
-      <el-col :span="4">
+      <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="3">
         <el-button type="primary" size="small" @click="search">查询</el-button>
         <el-button type="primary" size="small" >导出数据</el-button>
       </el-col>

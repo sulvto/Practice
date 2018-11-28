@@ -41,6 +41,7 @@ import OrderPresellDetail from '@/views/orderPresell/detail.vue'
 import Promotion from '@/views/promotion/Index.vue'
 import PromotionCouponTypeList from '@/views/promotion/coupon/list.vue'
 import PromotionCouponTypeEdit from '@/views/promotion/coupon/edit.vue'
+import PromotionCouponTypeGrantRecords from '@/views/promotion/coupon/grantRecordsList.vue'
 import PromotionPointconfig from '@/views/promotion/pointconfig.vue'
 import PromotionGiftIndex from '@/views/promotion/gift/Index.vue'
 import PromotionGiftList from '@/views/promotion/gift/list.vue'
@@ -56,6 +57,8 @@ import PromotionFullshipping from '@/views/promotion/fullshipping.vue'
 import PromotionRewardRules from '@/views/promotion/RewardRules.vue'
 import PromotionGamesList from '@/views/promotion/games/list.vue'
 import PromotionGamesEdit from '@/views/promotion/games/edit.vue'
+import PromotionGamesAccessRecords from '@/views/promotion/games/accessRecords.vue'
+import PromotionGamesAwardList from '@/views/promotion/games/awardList.vue'
 import PromotionGamesTypeList from '@/views/promotion/games/typeList.vue'
 import PromotionGroupBuyList from '@/views/promotion/groupBuy/list.vue'
 import PromotionGroupBuyEdit from '@/views/promotion/groupBuy/edit.vue'
@@ -502,6 +505,10 @@ export default new Router({
             path: 'edit.html',
             name: '编辑优惠券',
             component: PromotionCouponTypeEdit
+          }, {
+            path: 'grantRecords.html',
+            name: '优惠券发放记录',
+            component: PromotionCouponTypeGrantRecords
           }
         ]
       }, {
@@ -623,6 +630,14 @@ export default new Router({
             path: 'edit.html',
             name: '编辑互动游戏',
             component: PromotionGamesEdit
+          }, {
+            path: 'accessRecords.html',
+            name: '获奖记录',
+            component: PromotionGamesAccessRecords
+          }, {
+            path: 'awardList.html',
+            name: '游戏奖项',
+            component: PromotionGamesAwardList
           }
         ]
       }, {

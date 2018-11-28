@@ -1,60 +1,69 @@
-<!-- <span>发生时间：</span>
-<input type="text" id="startDate" placeholder="请选择开始日期" class="input-medium input-common middle" onclick="WdatePicker()">
-&nbsp;-&nbsp;
-<input type="text" id="endDate" placeholder="请选择结束日期" class="input-medium input-common middle" onclick="WdatePicker()"> -->
-<!-- 更多搜索按钮 -->
-<!-- <button class="btn-common-white more-search"><i class="fa fa-chevron-down"></i></button>
-<button type="button" onclick="searchData()" value="搜索" class="btn-common">搜索</button> -->
-<!-- 更多搜索下拉框 -->
-<!-- <div class="more-search-container">
-<dl>
-<dt>会员昵称：</dt>
-<dd>
-<input type="text" id="search_text" placeholder="请输入会员昵称" class="input-common  middle">
-</dd>
-</dl>
-<dl>
-<dt>发生类别：</dt>
-<dd>
-<div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select"><select id="form_type" class="select-common middle" tabindex="-1">
-<option value="">全部</option>
-<option value="1">商城订单</option>
-<option value="2">订单退还</option>
-<option value="3">兑换</option>
-<option value="4">充值</option>
-<option value="5">签到</option>
-<option value="6">分享</option>
-<option value="7">注册</option>
-<option value="8">提现</option>
-<option value="9">提现退还</option>
-<option value="10">调整</option>
-<option value="11">参与营销游戏消耗积分</option>
-<option value="19">点赞</option>
-<option value="20">评论</option>
-</select></div><div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="全部">全部</li><li data-index="1" class="" title="商城订单">商城订单</li><li data-index="2" class="" title="订单退还">订单退还</li><li data-index="3" class="" title="兑换">兑换</li><li data-index="4" class="" title="充值">充值</li><li data-index="5" class="" title="签到">签到</li><li data-index="6" class="" title="分享">分享</li><li data-index="7" class="" title="注册">注册</li><li data-index="8" class="" title="提现">提现</li><li data-index="9" class="" title="提现退还">提现退还</li><li data-index="10" class="" title="调整">调整</li><li data-index="11" class="" title="参与营销游戏消耗积分">参与营销游戏消耗积分</li><li data-index="12" class="" title="点赞">点赞</li><li data-index="13" class="last" title="评论">评论</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-</dd>
-</dl>
-<dl>
-<dt></dt>
-<dd><button onclick="searchData()" class="btn-common">搜索</button></dd>
-</dl>
-</div> -->
-
 <template>
   <div>
-    <el-row :gutter="8">
-      <el-col :span="12">
+    <el-row type="flex" justify="space-between">
+      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="2">
       </el-col>
 
-      <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入物流公司名称或编号"></el-input>
+      <el-col :xs="2" :sm="4" :md="6" :lg="8" :xl="13">
+
       </el-col>
-      <el-col :span="2">
+
+      <el-col :xs="6" :sm="8" :md="10" :lg="10" :xl="7">
+        <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
+          <el-form-item label="发生时间">
+            <el-date-picker
+              v-model="queryForm.dateRange"
+              size="small"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="pickerOptions">
+            </el-date-picker>
+          </el-form-item>
+        </el-form>
+      </el-col>
+
+      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="2">
+        <el-popover
+          placement="bottom"
+          width="400"
+          trigger="click"
+          v-model="moreQueryPopoverVisible">
+          <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
+            <el-form-item label="会员昵称">
+              <el-input v-model="queryForm.username"></el-input>
+            </el-form-item>
+
+            <el-form-item label="发生类别">
+              <el-select v-model="queryForm.category" clearable placeholder="请选择">
+                <el-option label="商城订单" :value="1"></el-option>
+                <el-option label="订单退还" :value="2"></el-option>
+                <el-option label="兑换" :value="3"></el-option>
+                <el-option label="充值" :value="4"></el-option>
+                <el-option label="签到" :value="5"></el-option>
+                <el-option label="分享" :value="6"></el-option>
+                <el-option label="注册" :value="7"></el-option>
+                <el-option label="提现" :value="8"></el-option>
+                <el-option label="提现退还" :value="9"></el-option>
+                <el-option label="调整" :value="10"></el-option>
+                <el-option label="参与营销游戏消耗积分" :value="11"></el-option>
+                <el-option label="点赞" :value="12"></el-option>
+                <el-option label="评论" :value="13"></el-option>
+              </el-select>
+            </el-form-item>
+
+            <el-form-item>
+              <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
+            </el-form-item>
+          </el-form>
+          <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
+        </el-popover>
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
-
-    <br/>
 
     <el-table border :data="tableData" style="width: 100%">
 
@@ -70,8 +79,7 @@
       </el-table-column>
 
       <el-table-column
-          label="描述"
-          width="180">
+          label="描述">
         <template slot-scope="scope">
             {{scope.row.description}}
         </template>
@@ -101,6 +109,35 @@ export default {
   data () {
     return {
       searchKeyword: '',
+      pickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近三个月',
+          onClick (picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      },
+      moreQueryPopoverVisible: false,
+      queryForm: {},
       tableData: [{
         username: 'xxx',
         category: '调整',

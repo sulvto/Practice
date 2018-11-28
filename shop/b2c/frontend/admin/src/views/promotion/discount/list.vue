@@ -81,11 +81,11 @@
 <template>
   <div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="全部" name="first">全部</el-tab-pane>
-      <el-tab-pane label="未发布" name="second">未发布</el-tab-pane>
-      <el-tab-pane label="进行中" name="third">进行中</el-tab-pane>
-      <el-tab-pane label="已关闭" name="fourth">已关闭</el-tab-pane>
-      <el-tab-pane label="已结束" name="fourth">已结束</el-tab-pane>
+      <el-tab-pane label="全部" name="first"></el-tab-pane>
+      <el-tab-pane label="未发布" name="second"></el-tab-pane>
+      <el-tab-pane label="进行中" name="third"></el-tab-pane>
+      <el-tab-pane label="已关闭" name="fourth"></el-tab-pane>
+      <el-tab-pane label="已结束" name="fourth"></el-tab-pane>
     </el-tabs>
 
     <el-row :gutter="8">
