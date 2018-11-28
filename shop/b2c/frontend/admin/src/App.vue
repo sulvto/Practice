@@ -119,7 +119,7 @@
                               <a href="http://showfx.niuteam.cn/admin/Promotion/groupBuyList.html">团购</a>
                           </dd>
                           <dd>
-                              <a href="http://showfx.niuteam.cn/admin/tuangou/pintuanlist.html">拼团</a>
+                              <a href="http://showfx.niuteam.cn/admin/tuangou">拼团</a>
                           </dd>
                           <dd>
                               <a href="http://showfx.niuteam.cn/admin/promotion/topiclist.html">专题活动</a>
@@ -321,7 +321,7 @@
               <el-menu class="nav"
                 background-color="#393939"
                 text-color="#fff"
-                active-text-color="#ffd04b" :default-active="verticalMenu.name" mode="horizontal" @select="handleSelect" :router='true'>
+                active-text-color="#ffd04b" :default-active="verticalMenu.path" mode="horizontal" @select="handleSelect" :router='true'>
                   <el-menu-item v-for="item in menuList" :key="item.path" :index='item.path'>{{item.name}}</el-menu-item>
               </el-menu>
               <div class="ns-base-tool">
@@ -645,7 +645,7 @@ export default {
             path: '/promotion/groupbuy',
             name: '团购'
           }, {
-            path: '/tuangou/pintuanlist.html',
+            path: '/tuangou',
             name: '拼团'
           }, {
             path: '/promotion/topic',
