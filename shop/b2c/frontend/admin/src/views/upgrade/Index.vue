@@ -28,6 +28,10 @@ export default {
         {
           path: '/extend/hookslist.html',
           name: '钩子管理'
+        },
+        {
+          path: '/system/module/list.html',
+          name: '模块列表'
         }
       ]
     }

@@ -97,6 +97,9 @@ import ExtendAddonsList from '@/views/extend/addons/list.vue'
 import ExtendHooksList from '@/views/extend/hooks/list.vue'
 import ExtendHooksEdit from '@/views/extend/hooks/edit.vue'
 
+import SystemModuleList from '@/views/system/module/list.vue'
+import SystemModuleEdit from '@/views/system/module/edit.vue'
+
 import Wchat from '@/views/wchat/Index.vue'
 import WchatAppletConfig from '@/views/wchat/appletConfig.vue'
 import WchatConfig from '@/views/wchat/config.vue'
@@ -1127,6 +1130,22 @@ export default new Router({
         path: 'goodsCategoryBlock.html',
         name: 'goodsCategoryBlock',
         component: SystemGoodsCategoryBlock
+      }, {
+        path: 'module',
+        name: 'SystemModule',
+        component: BaseRouter,
+        children: [{
+          path: '/',
+          redirect: 'list.html'
+        }, {
+          path: 'list.html',
+          name: 'SystemModuleList',
+          component: SystemModuleList
+        }, {
+          path: 'edit.html',
+          name: 'SystemModuleEdit',
+          component: SystemModuleEdit
+        }]
       }]
     }, {
       path: '/distribution',
