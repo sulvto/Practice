@@ -25,7 +25,6 @@ import SystemAlbumList from '@/views/system/album/list.vue'
 // import SystemAlbumPictureList from '@/views/system/album/picturelist.vue'
 import SaleserviceConsult from '@/views/saleservice/consult.vue'
 
-import Order from '@/views/order/Index.vue'
 import OrderList from '@/views/order/orderList.vue'
 import VirtualOrder from '@/views/order/virtualOrder.vue'
 import BargainOrder from '@/views/order/bargainOrder.vue'
@@ -41,7 +40,6 @@ import PintuanOrderList from '@/views/tuangou/pintuanOrderList.vue'
 import OrderPresellList from '@/views/orderPresell/list.vue'
 // import OrderPresellDetail from '@/views/orderPresell/detail.vue'
 
-import Promotion from '@/views/promotion/Index.vue'
 import PromotionCouponTypeList from '@/views/promotion/coupon/list.vue'
 import PromotionCouponTypeEdit from '@/views/promotion/coupon/edit.vue'
 import PromotionCouponTypeGrantRecords from '@/views/promotion/coupon/grantRecordsList.vue'
@@ -72,7 +70,6 @@ import BargainList from '@/views/bargain/List.vue'
 import BargainEdit from '@/views/bargain/edit.vue'
 import BargainConfig from '@/views/bargain/config.vue'
 
-import Member from '@/views/member/Index.vue'
 import MemberList from '@/views/member/memberList.vue'
 import MemberLevelList from '@/views/member/memberLevel/list.vue'
 import MemberLevelEdit from '@/views/member/memberLevel/edit.vue'
@@ -80,14 +77,12 @@ import MemberAccountList from '@/views/member/accountList.vue'
 import MemberPointList from '@/views/member/pointList.vue'
 import MemberUserCommissionWithdrawList from '@/views/member/userCommissionWithdrawList.vue'
 
-import Account from '@/views/account/Index.vue'
 // import AccountShopSalesAccount from '@/views/account/shopSalesAccount.vue'
 import AccountShopGoodsSalesList from '@/views/account/shopGoodsSalesList.vue'
 import AccountShopGoodsGroupSaleCount from '@/views/account/shopGoodsGroupSaleCount.vue'
 import AccountShopReport from '@/views/account/shopReport.vue'
 import AccountShopGoodsSalesRank from '@/views/account/shopGoodsSalesRank.vue'
 
-import Upgrade from '@/views/upgrade/Index.vue'
 import UpgradeDevolutionInfo from '@/views/upgrade/devolutionInfo.vue'
 import UpgradeOnlineUpdate from '@/views/upgrade/onlineUpdate.vue'
 
@@ -114,15 +109,12 @@ import WchatWeixinFansList from '@/views/wchat/weixinFansList.vue'
 
 import MenuAddonMenu from '@/views/menu/addonMenu.vue'
 
-import Commission from '@/views/commission/Index.vue'
 import CommissionUserAccountList from '@/views/commission/userAccountList.vue'
 import CommissionDistributionList from '@/views/commission/distributionList.vue'
 import CommissionPartnerList from '@/views/commission/partnerList.vue'
 import CommissionRegionAgentList from '@/views/commission/regionAgentList.vue'
 import CommissionPartnerGlobalList from '@/views/commission/partnerGlobalList.vue'
 import CommissionUserCommissionWithdrawList from '@/views/commission/userCommissionWithdrawList.vue'
-
-import Config from '@/views/config/Index.vue'
 
 import ConfigHomeNoticeList from '@/views/config/homeNotice/List.vue'
 import ConfigHomeNoticeEdit from '@/views/config/homeNotice/Edit.vue'
@@ -159,8 +151,6 @@ import CmsArticleClassList from '@/views/cms/article/ClassList.vue'
 import CmsTopicList from '@/views/cms/topic/List.vue'
 import CmsTopicEdit from '@/views/cms/topic/Edit.vue'
 
-import Distribution from '@/views/distribution/Index.vue'
-
 import DistributionPromoterList from '@/views/distribution/promoter/List.vue'
 import DistributionPromoterVerifyList from '@/views/distribution/promoter/VerifyList.vue'
 
@@ -180,10 +170,6 @@ import DistributionGlobalBonusPoolConfig from '@/views/distribution/globalBonusP
 import DistributionGlobalBonusPoolGrant from '@/views/distribution/globalBonusPool/Grant.vue'
 import DistributionGlobalBonusPoolRecords from '@/views/distribution/globalBonusPool/Records.vue'
 
-import Setting from '@/views/setting/Index.vue'
-
-import SettingBase from '@/views/setting/base/Index.vue'
-
 import SettingBaseWebConfig from '@/views/setting/base/webConfig.vue'
 import SettingBaseSEOConfig from '@/views/setting/base/seoConfig.vue'
 import SettingBaseCopyrightInfo from '@/views/setting/base/copyrightInfo.vue'
@@ -196,7 +182,6 @@ import SettingBaseNotify from '@/views/setting/base/notify/list.vue'
 import SettingBaseCustomservice from '@/views/setting/base/customService.vue'
 // import SettingBaseMerchantService from '@/views/setting/base/merchantService.vue'
 
-import SettingTransaction from '@/views/setting/transaction/Index.vue'
 import SettingTransactionShopConfig from '@/views/setting/transaction/ShopConfig.vue'
 import SettingTransactionWithdrawConfig from '@/views/setting/transaction/WithdrawConfig.vue'
 import SettingTransactionPaymentConfig from '@/views/setting/transaction/pay/list.vue'
@@ -400,7 +385,7 @@ export default new Router({
     {
       path: '/order',
       name: '订单',
-      component: Order,
+      component: BaseRouter,
       children: [{
         path: '/',
         redirect: 'orderlist.html'
@@ -500,7 +485,7 @@ export default new Router({
     {
       path: '/promotion',
       name: '营销',
-      component: Promotion,
+      component: BaseRouter,
       children: [{
         path: '/',
         redirect: 'coupon'
@@ -707,7 +692,7 @@ export default new Router({
     {
       path: '/orderpresell',
       name: 'orderPresell',
-      component: Order,
+      component: BaseRouter,
       children: [{
         path: 'list.html',
         name: 'orderPresellList',
@@ -721,7 +706,7 @@ export default new Router({
     {
       path: '/member',
       name: '会员',
-      component: Member,
+      component: BaseRouter,
       children: [{
         path: '/',
         redirect: 'memberlist.html'
@@ -764,7 +749,7 @@ export default new Router({
     {
       path: '/account',
       name: '数据',
-      component: Account,
+      component: BaseRouter,
       children: [{
         path: '/',
         redirect: 'shopsalesaccount.html'
@@ -793,7 +778,7 @@ export default new Router({
     {
       path: '/upgrade',
       name: '系统',
-      component: Upgrade,
+      component: BaseRouter,
       children: [{
         path: 'onlineupdate.html',
         name: '线上更新',
@@ -807,7 +792,7 @@ export default new Router({
     {
       path: '/extend',
       name: 'extend',
-      component: Upgrade,
+      component: BaseRouter,
       children: [{
         path: 'addonslist.html',
         name: 'addonsList',
@@ -903,7 +888,7 @@ export default new Router({
     }, {
       path: '/commission',
       name: '佣金',
-      component: Commission,
+      component: BaseRouter,
       children: [{
         path: 'userAccountList.html',
         name: '推广员佣金',
@@ -932,7 +917,7 @@ export default new Router({
     }, {
       path: '/config',
       name: '网站',
-      component: Config,
+      component: BaseRouter,
       children: [{
         path: '/',
         redirect: 'homeNotice'
@@ -1186,7 +1171,7 @@ export default new Router({
     }, {
       path: '/system',
       name: 'system',
-      component: Config,
+      component: BaseRouter,
       children: [{
         path: 'goodsCategoryBlock.html',
         name: 'goodsCategoryBlock',
@@ -1211,7 +1196,7 @@ export default new Router({
     }, {
       path: '/distribution',
       name: '分销',
-      component: Distribution,
+      component: BaseRouter,
       children: [{
         path: '/',
         redirect: 'promoter'
@@ -1386,14 +1371,50 @@ export default new Router({
     }, {
       path: '/setting',
       name: '设置',
-      component: Setting,
+      component: BaseRouter,
       children: [{
         path: '/',
         redirect: 'base'
       }, {
         path: 'base',
         name: '基础设置',
-        component: SettingBase,
+        component: TabsRouter,
+        props: {
+          tabs: [{
+            path: '/setting/base/webConfig.html',
+            name: '网站设置'
+          }, {
+            path: '/setting/base/SEOConfig.html',
+            name: 'SEO设置'
+          }, {
+            path: '/setting/base/copyrightInfo.html',
+            name: '版权'
+          }, {
+            path: '/setting/base/visitConfig.html',
+            name: '运营'
+          }, {
+            path: '/setting/base/registerAndVisit.html',
+            name: '注册与访问'
+          }, {
+            path: '/setting/base/uploadConfig.html',
+            name: '上传设置'
+          }, {
+            path: '/setting/base/customPseudoStaticRule.html',
+            name: '伪静态路由'
+          }, {
+            path: '/setting/base/partyLogin.html',
+            name: '第三方登录'
+          }, {
+            path: '/cosettingnfig/base/notifyindex.html',
+            name: '通知系统'
+          }, {
+            path: '/setting/base/customService.html',
+            name: '客服'
+          }, {
+            path: '/setting/base/merchantService.html',
+            name: '商家服务'
+          }]
+        },
         children: [
           {
             path: '/',
@@ -1457,7 +1478,19 @@ export default new Router({
       }, {
         path: 'transaction',
         name: '交易设置',
-        component: SettingTransaction,
+        component: TabsRouter,
+        props: {
+          tabs: [{
+            path: '/setting/transaction/shopConfig.html',
+            name: '购物设置'
+          }, {
+            path: '/setting/transaction/paymentconfig.html',
+            name: '支付配置'
+          }, {
+            path: '/setting/transaction/withdrawConfig.html',
+            name: '提现设置'
+          }]
+        },
         children: [{
           path: '/',
           redirect: 'shopConfig.html'
