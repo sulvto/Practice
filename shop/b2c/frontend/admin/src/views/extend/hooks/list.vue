@@ -1,52 +1,47 @@
 <template>
 
-  <section class="ns-base-section">
+  <div>
 
-        <el-row :gutter="20">
-  <el-col :span="6">  <el-button type="primary" size="medium" @click="location.href='/extend/addhooks.html';">添加钩子</el-button>
-  <div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-  </el-row>
+    <el-row :gutter="20">
+      <el-col :span="6">
+        <el-button type="primary" size="medium" @click="location.href='/extend/addhooks.html';">添加钩子</el-button>
+      </el-col>
+    </el-row>
 
-  <br/>
+    <br>
 
-  <el-table
-    :data="tableData"
-    border
-    style="width: 100%">
-    <el-table-column
-      fixed
-      prop="name"
-      label="名称"
-      width="300">
-    </el-table-column>
-    <el-table-column
-      prop="type"
-      label="类型"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="description"
-      label="描述"
-      width="300">
-    </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="操作">
-      <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
-        <el-button type="text" size="small">删除</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-  </section>
+    <el-table
+      :data="tableData"
+      border
+      style="width: 100%">
+      <el-table-column
+        fixed
+        prop="name"
+        label="名称"
+        width="300" />
+      <el-table-column
+        prop="type"
+        label="类型"
+        width="120" />
+      <el-table-column
+        prop="description"
+        label="描述"
+        width="300" />
+      <el-table-column
+        fixed="right"
+        label="操作">
+        <template slot-scope="scope">
+          <el-button type="text" size="small" @click="handleClick(scope.row)" >修改</el-button>
+          <el-button type="text" size="small">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'hooksList',
+  name: 'HooksList',
   data () {
     return {
       tableData: [
@@ -131,7 +126,6 @@ export default {
         }
       ]
     }
-  },
-  components: {}
+  }
 }
 </script>

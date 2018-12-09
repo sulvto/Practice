@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'commission',
+  name: 'Commission',
   data () {
     return {
       menuList: [{
@@ -36,8 +36,6 @@ export default {
         name: '会员提现'
       }]
     }
-  },
-  components: {
   }
 }
 </script>

@@ -5,39 +5,34 @@
         <el-button type="primary" size="small" @click="$router.push('edit.html')">添加等级</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
-      <el-col :span="2">
-      </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
         prop="name"
-        label="等级名称">
-      </el-table-column>
+        label="等级名称" />
 
       <el-table-column
         prop="upgradeCondition"
         label="升级条件"
-        width="200">
-      </el-table-column>
+        width="200" />
 
       <el-table-column
         prop="discount"
         label="折扣率（%）"
-        width="120">
-      </el-table-column>
+        width="120" />
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" v-if="!scope.row.isDefault" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button v-if="!scope.row.isDefault" size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -45,7 +40,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'MemberLevelList',
   data () {
     return {
       searchKeyword: '',

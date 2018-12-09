@@ -2,31 +2,31 @@
   <el-form ref="expressCompanyForm" :rules="rules" :model="expressCompanyForm" label-width="110px" size="small" label-position="right">
 
     <el-form-item label="物流公司名称" prop="name">
-      <el-input v-model="expressCompanyForm.name"></el-input>
+      <el-input v-model="expressCompanyForm.name" />
     </el-form-item>
 
     <el-form-item label="物流公司编号" prop="no">
-      <el-input v-model="expressCompanyForm.no"></el-input>
+      <el-input v-model="expressCompanyForm.no" />
     </el-form-item>
 
     <el-form-item label="联系电话">
-      <el-input v-model="expressCompanyForm.tel"></el-input>
+      <el-input v-model="expressCompanyForm.tel" />
     </el-form-item>
 
     <el-form-item label="物流公司logo">
-      <el-input v-model="expressCompanyForm.logo"></el-input>
+      <el-input v-model="expressCompanyForm.logo" />
     </el-form-item>
 
     <el-form-item label="排序">
-      <el-input type="number" v-model="expressCompanyForm.sort"></el-input>
+      <el-input v-model="expressCompanyForm.sort" type="number" />
     </el-form-item>
 
     <el-form-item label="是否启用物流">
-      <el-switch  active-text="是" inactive-text="否" v-model="expressCompanyForm.isEnable"></el-switch>
+      <el-switch v-model="expressCompanyForm.isEnable" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item label="是否设置为默认">
-      <el-switch  active-text="是" inactive-text="否" v-model="expressCompanyForm.isDefault"></el-switch>
+      <el-switch v-model="expressCompanyForm.isDefault" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item>
@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: 'expressCompany',
+  name: 'ExpressCompany',
   data () {
     return {
       expressCompanyForm: {},

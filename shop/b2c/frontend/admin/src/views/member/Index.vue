@@ -9,7 +9,10 @@
 // import Sidebar from '@/components/TheSidebar.vue'
 
 export default {
-  name: 'member',
+  name: 'Member',
+  components: {
+    // Sidebar
+  },
   data () {
     return {
       menuList: [{
@@ -34,9 +37,6 @@ export default {
         name: '余额管理'
       }]
     }
-  },
-  components: {
-    // Sidebar
   }
 }
 </script>

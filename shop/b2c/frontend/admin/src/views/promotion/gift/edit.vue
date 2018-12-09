@@ -2,19 +2,18 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="赠品名称" prop="name" required>
-      <el-input v-model="editForm.name" max="10"></el-input>
+      <el-input v-model="editForm.name" max="10" />
     </el-form-item>
 
     <el-form-item label="赠品有效期" required>
       <el-date-picker
         v-model="editForm.dateRange"
-        type="datetimerange"
         :picker-options="pickerOptions"
+        type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
         end-placeholder="结束日期"
-        align="right">
-      </el-date-picker>
+        align="right" />
     </el-form-item>
 
     <el-form-item label="选择商品">
@@ -22,7 +21,7 @@
     </el-form-item>
 
     <el-form-item >
-      <SimpleGoodsTable :tableData="editForm.goodsList"/>
+      <SimpleGoodsTable :table-data="editForm.goodsList"/>
     </el-form-item>
 
     <el-form-item>
@@ -34,7 +33,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'GiftEdit',
   data () {
     return {
       editForm: {},

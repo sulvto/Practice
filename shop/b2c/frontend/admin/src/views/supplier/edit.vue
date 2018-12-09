@@ -2,23 +2,23 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="供货商名称" prop="name">
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="联系人姓名" prop="contacts">
-      <el-input v-model="editForm.contacts"></el-input>
+      <el-input v-model="editForm.contacts" />
     </el-form-item>
 
     <el-form-item label="联系人电话" prop="contactNumber">
-      <el-input v-model="editForm.contactNumber"></el-input>
+      <el-input v-model="editForm.contactNumber" />
     </el-form-item>
 
     <el-form-item label="联系人地址" prop="address">
-      <el-input v-model="editForm.address"></el-input>
+      <el-input v-model="editForm.address" />
     </el-form-item>
 
     <el-form-item label="供货商描述">
-      <el-input type="textarea" v-model="editForm.description"></el-input>
+      <el-input v-model="editForm.description" type="textarea" />
     </el-form-item>
 
     <el-form-item>
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'supplierEdit',
+  name: 'SupplierEdit',
   data () {
     return {
       editForm: {},

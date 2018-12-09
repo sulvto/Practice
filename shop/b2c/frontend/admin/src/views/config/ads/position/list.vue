@@ -1,6 +1,6 @@
 <template>
   <section class="ns-base-section">
-    <div class="ns-main">
+    <!-- <div class="ns-main">
 
   <table class="mytable">
   <tbody><tr>
@@ -53,27 +53,9 @@
   </table>
   <input type="hidden" id="ad_type" value="1">
 
-  <div class="page" id="turn-ul" style="">
-  <div class="pagination">
-    <ul>
-      <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
-      <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
-      <li><a id="prevPage" class="page-disable">上一页</a></li>
-      <li id="pageNumber"><a onclick="JumpForPage(this)" class="currentPage">1</a><a onclick="JumpForPage(this)">2</a></li>
-      <li id="JslastPage"></li>
-      <li><a id="nextPage">下一页</a></li>
-      <li><a id="lastPage">末页</a></li>
-      <li class="total-data" data-total-count="25">共25条</li>
-      <!-- <li class="page-count">共0页</li> -->
-      <li class="according-number">
-        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
-      </li>
-    </ul>
-  </div>
-  </div>
   <input type="hidden" id="page_count" value="2">
   <input type="hidden" id="page_size" value="14">
-    </div>
+    </div> -->
 
   </section>
 </template>

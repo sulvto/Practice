@@ -2,16 +2,15 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="公告标题" prop="title">
-      <el-input v-model="editForm.title"></el-input>
+      <el-input v-model="editForm.title" />
     </el-form-item>
 
     <el-form-item label="排序" prop="sort">
-      <el-input type="number"  v-model="editForm.sort" >
-      </el-input>
+      <el-input v-model="editForm.sort" type="number" />
     </el-form-item>
 
     <el-form-item label="公告内容" required>
-      <UEditor :content="editForm.content" :config="{initialFrameHeight: '500'}" ref="ue"/>
+      <UEditor ref="ue" :content="editForm.content" :config="{initialFrameHeight: '500'}"/>
     </el-form-item>
 
     <el-form-item>
@@ -25,7 +24,10 @@
 import UEditor from '@/components/UEditor.vue'
 
 export default {
-  name: 'edit',
+  name: 'Edit',
+  components: {
+    UEditor
+  },
   data () {
     return {
       editForm: {},
@@ -44,9 +46,6 @@ export default {
       this.editForm.content = this.$refs.ue.getContent()
       console.log(this.editForm)
     }
-  },
-  components: {
-    UEditor
   }
 }
 </script>

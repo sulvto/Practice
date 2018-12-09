@@ -22,65 +22,63 @@
 <!-- </div> -->
 <!-- </div> -->
 <template>
-    <div>
-        <el-row>
-            <el-button type="danger" size="small">批量删除</el-button>
-            <el-button type="primary" size="small">添加路由规则</el-button>
-        </el-row>
+  <div>
+    <el-row>
+      <el-button type="danger" size="small">批量删除</el-button>
+      <el-button type="primary" size="small">添加路由规则</el-button>
+    </el-row>
 
-        <el-table border :data="tableData" style="width: 100%">
-            <el-table-column label="第三方登录">
-                <template slot-scope="scope">
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column label="第三方登录">
+        <template slot-scope="scope">
 
-                    <div class="table-logo"><img :src="scope.row.logo"></div>
-                    <span class="table-pay">{{scope.row.name}}</span><br>
-                    <span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
-                    </span>
-                </template>
-            </el-table-column>
+          <div class="table-logo"><img :src="scope.row.logo"></div>
+          <span class="table-pay">{{ scope.row.name }}</span><br>
+          <span class="table-desc">提示：{{ scope.row.tooltip }} 链接：<a :href="scope.row.link" target="_brank">{{ scope.row.link }}</a>
+          </span>
+        </template>
+      </el-table-column>
 
-            <el-table-column
-                  prop="number"
-                  label="编号"
-                  width="120">
-                </el-table-column>
+      <el-table-column
+        prop="number"
+        label="编号"
+        width="120"/>
 
-            <el-table-column
-                  prop="title"
-                  label="标题"
-                  width="120">
-                </el-table-column>
-            <el-table-column
-                  label="内容示例"
-                  width="120">
-                      <template slot-scope="scope">
-                      <div class="example-txt">
-                        {{scope.row.contentExample}}
-                      </div>
-                                      </template>
-                </el-table-column>
-            <el-table-column
-                  prop="templateId"
-                  label="模板ID"
-                  width="120">
-                </el-table-column>
+      <el-table-column
+        prop="title"
+        label="标题"
+        width="120" />
 
-            <el-table-column
-                label="是否启用"
-                width="180">
-                <template slot-scope="scope">
-                    <el-switch v-model="scope.row.isOpen">
-                    </el-switch>
-                </template>
-            </el-table-column>
+      <el-table-column
+        label="内容示例"
+        width="120">
+        <template slot-scope="scope">
+          <div class="example-txt">
+            {{ scope.row.contentExample }}
+          </div>
+        </template>
+      </el-table-column>
 
-        </el-table>
+      <el-table-column
+        prop="templateId"
+        label="模板ID"
+        width="120" />
+
+      <el-table-column
+        label="是否启用"
+        width="180">
+        <template slot-scope="scope">
+          <el-switch v-model="scope.row.isOpen" />
+        </template>
+      </el-table-column>
+
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'addonMenu',
+  name: 'AddonMenu',
   data () {
     return {
       tableData: [{

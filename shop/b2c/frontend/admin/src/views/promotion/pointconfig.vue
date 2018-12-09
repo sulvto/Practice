@@ -2,7 +2,7 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="140px" size="small" label-position="right">
 
     <el-form-item label="积分抵现比率" prop="cashRatio">
-      <el-input type="number" min="0.01" step="0.01" v-model="editForm.cashRatio" >
+      <el-input v-model="editForm.cashRatio" type="number" min="0.01" step="0.01" >
         <template slot="append">
           元
         </template>
@@ -12,12 +12,12 @@
     </el-form-item>
 
     <el-form-item label="是否开启积分抵现">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isOpen"></el-switch>
+      <el-switch v-model="editForm.isOpen" active-text="是" inactive-text="否" />
       <p class="hint">只有启用该选项，才可以使用积分抵现功能</p>
     </el-form-item>
 
     <el-form-item label="积分说明">
-      <el-input type="textarea" v-model="editForm.description"></el-input>
+      <el-input v-model="editForm.description" type="textarea" />
     </el-form-item>
 
     <el-form-item>
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'PointConfig',
   data () {
     return {
       editForm: {},

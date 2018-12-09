@@ -7,51 +7,46 @@
         <el-button type="primary" size="small">手机端</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
-      <el-col :span="2">
-      </el-col>
+      <el-col :span="10" />
+      <el-col :span="2" />
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         prop="name"
-        label="名称">
-      </el-table-column>
+        label="名称" />
 
       <el-table-column
         prop="position"
-        label="所属广告位">
-      </el-table-column>
+        label="所属广告位" />
 
       <el-table-column
         prop="link"
         label="链接地址"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
-          label="排序"
-          width="80">
+        label="排序"
+        width="80">
         <template slot-scope="scope">
-          <el-input type="number" size="small" v-model="scope.row.sort" >
-          </el-input>
+          <el-input v-model="scope.row.sort" type="number" size="small" />
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -59,7 +54,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   data () {
     return {
       searchKeyword: '',

@@ -7,57 +7,56 @@
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入供货商名称"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入供货商名称" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table
+      :data="tableData"
+      border
+      style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         prop="name"
         label="供货商名称"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="contacts"
         label="联系人"
-        width="120">
-      </el-table-column>
+        width="120"/>
 
       <el-table-column
         prop="contactNumber"
         label="联系电话"
-        width="120">
-      </el-table-column>
+        width="120"/>
 
       <el-table-column
         prop="address"
         label="联系地址"
-        width="120">
-      </el-table-column>
+        width="120"/>
 
       <el-table-column
         prop="description"
         label="供货商描述"
-        width="120">
-      </el-table-column>
+        width="120"/>
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -65,7 +64,7 @@
 
 <script>
 export default {
-  name: 'supplierList',
+  name: 'SupplierList',
   data () {
     return {
       searchKeyword: '',

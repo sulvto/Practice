@@ -1,14 +1,14 @@
 <template>
-    <div>
-        <router-view/>
-    </div>
+  <div>
+    <router-view/>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
 export default {
-  name: 'upgrade',
+  name: 'Upgrade',
   data () {
     return {
       menuList: [
@@ -36,7 +36,6 @@ export default {
       ]
     }
   },
-  components: {},
 
   created () {
     console.log('created', this.$route)

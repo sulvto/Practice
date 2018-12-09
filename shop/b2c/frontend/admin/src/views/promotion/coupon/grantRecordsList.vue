@@ -2,34 +2,34 @@
   <div>
 
     <el-tabs v-model="tabActiveName" @tab-click="switchTab">
-      <el-tab-pane label="全部" name="first"></el-tab-pane>
-      <el-tab-pane label="未使用" name="second"></el-tab-pane>
-      <el-tab-pane label="已使用" name="third"></el-tab-pane>
-      <el-tab-pane label="已过期" name="fourth"></el-tab-pane>
+      <el-tab-pane label="全部" name="first" />
+      <el-tab-pane label="未使用" name="second" />
+      <el-tab-pane label="已使用" name="third" />
+      <el-tab-pane label="已过期" name="fourth" />
     </el-tabs>
 
     <el-row>
-        <el-button type="primary" size="small">添加优惠券</el-button>
+      <el-button type="primary" size="small">添加优惠券</el-button>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
-      <el-table-column prop="name" label="优惠券名称" > </el-table-column>
-      <el-table-column prop="receiveUser" label="领取人" > </el-table-column>
-      <el-table-column prop="code" label="优惠券编码" width="120"> </el-table-column>
-      <el-table-column prop="type" label="面额" width="120"> </el-table-column>
-      <el-table-column prop="obtainWay" label="获取方式" width="120"> </el-table-column>
-      <el-table-column prop="status" label="状态" width="120"> </el-table-column>
-      <el-table-column prop="receiveDate" label="领取时间" width="140"> </el-table-column>
-      <el-table-column prop="useDate" label="使用时间" width="140"> </el-table-column>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column prop="name" label="优惠券名称" />
+      <el-table-column prop="receiveUser" label="领取人" />
+      <el-table-column prop="code" label="优惠券编码" width="120" />
+      <el-table-column prop="type" label="面额" width="120" />
+      <el-table-column prop="obtainWay" label="获取方式" width="120" />
+      <el-table-column prop="status" label="状态" width="120" />
+      <el-table-column prop="receiveDate" label="领取时间" width="140" />
+      <el-table-column prop="useDate" label="使用时间" width="140" />
     </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'couponyGrantList',
+  name: 'CouponyGrantList',
   data () {
     return {
       tabActiveName: 'first',

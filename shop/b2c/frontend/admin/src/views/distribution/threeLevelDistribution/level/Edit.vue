@@ -2,31 +2,31 @@
   <el-form ref="levelEditForm" :rules="rules" :model="levelEditForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="等级名称" prop="name">
-      <el-input v-model="levelEditForm.name"></el-input>
+      <el-input v-model="levelEditForm.name" />
     </el-form-item>
 
     <el-form-item label="升级条件" >
-      <el-input type="number" v-model="levelEditForm.upgradeCondition"></el-input>
+      <el-input v-model="levelEditForm.upgradeCondition" type="number" />
     </el-form-item>
 
     <el-form-item label="本店销售佣金比率" >
-      <el-input type="number"  v-model="levelEditForm.level_0" >
+      <el-input v-model="levelEditForm.level_0" type="number" >
         <template slot="append">
-                %
+          %
         </template>
       </el-input>
     </el-form-item>
     <el-form-item label="给上级的佣金比率" >
-      <el-input type="number"  v-model="levelEditForm.level_1" >
+      <el-input v-model="levelEditForm.level_1" type="number" >
         <template slot="append">
-                %
+          %
         </template>
       </el-input>
     </el-form-item>
     <el-form-item label="给上上级的佣金比率" >
-      <el-input type="number"  v-model="levelEditForm.level_2" >
+      <el-input v-model="levelEditForm.level_2" type="number" >
         <template slot="append">
-                %
+          %
         </template>
       </el-input>
     </el-form-item>
@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: 'levelEdit',
+  name: 'LevelEdit',
   data () {
     return {
       levelEditForm: {},

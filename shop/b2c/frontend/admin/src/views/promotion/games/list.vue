@@ -7,44 +7,39 @@
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入活动名称"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入活动名称" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         prop="name"
-        label="活动名称">
-      </el-table-column>
+        label="活动名称" />
 
       <el-table-column
         prop="type"
         label="游戏类型"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="memberLevel"
         label="参与的会员"
-        width="95">
-      </el-table-column>
+        width="95" />
 
       <el-table-column
         prop="deductIntegral"
         label="参与扣除积分"
-        width="105">
-      </el-table-column>
+        width="105" />
 
       <el-table-column
         label="活动状态"
@@ -57,27 +52,30 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="有效时间"
+      <el-table-column
+        label="有效时间"
         width="210">
         <template slot-scope="scope">
-          开始时间：{{scope.row.startDate}}
+          开始时间：{{ scope.row.startDate }}
           <br>
-          结束时间：{{scope.row.endDate}}
+          结束时间：{{ scope.row.endDate }}
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" fixed="right"
-          width="190">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button size="mini" @click="$router.push('awardList.html')">奖项列表</el-button>
-              <br/>
-              <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status !== 2">删除</el-button>
-              <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status === 2">关闭</el-button>
-              <el-button size="mini" class="margin-top-5" @click="$router.push('accessRecords.html')" v-if="scope.row.status !== 1">获奖记录</el-button>
-              <br/>
-              <el-button size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status === 2">推广链接</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="190">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" @click="$router.push('awardList.html')">奖项列表</el-button>
+          <br>
+          <el-button v-if="scope.row.status !== 2" size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" >删除</el-button>
+          <el-button v-if="scope.row.status === 2" size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)" >关闭</el-button>
+          <el-button v-if="scope.row.status !== 1" size="mini" class="margin-top-5" @click="$router.push('accessRecords.html')" >获奖记录</el-button>
+          <br>
+          <el-button v-if="scope.row.status === 2" size="mini" class="margin-top-5" @click="handleEdit(scope.$index, scope.row)">推广链接</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -85,7 +83,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'GameList',
   data () {
     return {
       searchKeyword: '',

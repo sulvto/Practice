@@ -2,10 +2,10 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="标题" prop="title">
-      <el-input v-model="editForm.title"></el-input>
+      <el-input v-model="editForm.title" />
     </el-form-item>
 
-<!-- <dl style="display:none;">
+    <!-- <dl style="display:none;">
     <dt>标题图片：</dt>
     <dd>
       <div class="upload-btn-common">
@@ -26,7 +26,7 @@
   </dl> -->
 
     <el-form-item label="链接地址">
-      <el-input v-model="editForm.link"></el-input>
+      <el-input v-model="editForm.link" />
     </el-form-item>
 
     <el-form-item label="所属分类">
@@ -35,22 +35,21 @@
         <el-option label="选择1" >配送与支付</el-option>
         <el-option label="选择2" >会员中心</el-option>
         <el-option label="选择2" >服务保证</el-option>
-      <el-option label="选择2" >联系我们</el-option>
+        <el-option label="选择2" >联系我们</el-option>
 
       </el-select>
     </el-form-item>
 
     <el-form-item label="内容">
-      <el-input type="textarea" v-model="editForm.content"></el-input>
+      <el-input v-model="editForm.content" type="textarea" />
     </el-form-item>
 
     <el-form-item label="是否显示">
-      <el-switch  active-text="开" inactive-text="关" v-model="editForm.isShow"></el-switch>
+      <el-switch v-model="editForm.isShow" active-text="开" inactive-text="关" />
     </el-form-item>
 
     <el-form-item label="排序">
-      <el-input type="number"  v-model="editForm.sort" >
-      </el-input>
+      <el-input v-model="editForm.sort" type="number" />
     </el-form-item>
 
     <el-form-item>
@@ -62,7 +61,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'DocumentEdit',
   data () {
     return {
       editForm: {},

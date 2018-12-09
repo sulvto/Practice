@@ -1,36 +1,29 @@
 <template>
-    <div>
-        <el-row>
-            <el-button type="danger" size="small">批量删除</el-button>
-            <el-button type="primary" size="small" >添加路由规则</el-button>
-        </el-row>
+  <div>
+    <el-row>
+      <el-button type="danger" size="small">批量删除</el-button>
+      <el-button type="primary" size="small" >添加路由规则</el-button>
+    </el-row>
 
-        <el-table border :data="tableData" style="width: 100%">
-            <el-table-column prop="rule" label="伪静态路由规则">
-
-            </el-table-column>
-            <el-table-column prop="address" label="路由地址">
-            </el-table-column>
-            <el-table-column prop="module" label="路由模块">
-            </el-table-column>
-            <el-table-column prop="introduction" label="简介">
-            </el-table-column>
-            <el-table-column label="是否开启" width="180">
-                <template slot-scope="scope">
-                        <el-switch v-model="scope.row.isOpen">
-                        </el-switch>
-                </template>
-            </el-table-column>
-            <el-table-column label="操作" width="180">
-                <template slot-scope="scope">
-                    <!-- <a href="/config/updateRoutingRule?routeid=7">修改</a> <a href="javascript:;" onclick="delete_url_route(7);">删除</a> -->
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">配置</el-button>
-                    <el-button v-if="!scope.row.isDefault" size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
-
-    </div>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column prop="rule" label="伪静态路由规则" />
+      <el-table-column prop="address" label="路由地址" />
+      <el-table-column prop="module" label="路由模块" />
+      <el-table-column prop="introduction" label="简介" />
+      <el-table-column label="是否开启" width="180">
+        <template slot-scope="scope">
+          <el-switch v-model="scope.row.isOpen" />
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" width="180">
+        <template slot-scope="scope">
+          <!-- <a href="/config/updateRoutingRule?routeid=7">修改</a> <a href="javascript:;" onclick="delete_url_route(7);">删除</a> -->
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">配置</el-button>
+          <el-button v-if="!scope.row.isDefault" size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>

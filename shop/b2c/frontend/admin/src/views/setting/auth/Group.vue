@@ -5962,50 +5962,47 @@
   -->
 
 <template>
-    <div>
-      <el-row :gutter="8">
-        <el-col :span="12">
-          <el-button type="primary" size="small" >添加用户组</el-button>
-        </el-col>
+  <div>
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button type="primary" size="small" >添加用户组</el-button>
+      </el-col>
 
-        <el-col :span="10">
-          </el-col>
-        <el-col :span="2">
-        </el-col>
-      </el-row>
+    </el-row>
 
-      <br/>
+    <br>
 
-        <el-table border :data="tableData" style="width: 100%">
-            <el-table-column
-                  prop="name"
-                  label="用户组">
-                </el-table-column>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column
+        prop="name"
+        label="用户组" />
 
-            <el-table-column
-                label="是否是管理员组"
-                width="120">
-                <template slot-scope="scope">
-                  {{scope.row.isAdmin?'是':'否'}}
-                </template>
-            </el-table-column>
+      <el-table-column
+        label="是否是管理员组"
+        width="120">
+        <template slot-scope="scope">
+          {{ scope.row.isAdmin?'是':'否' }}
+        </template>
+      </el-table-column>
 
-            <el-table-column label="操作" fixed="right"
-                width="380">
-                <!-- 管理员用户不可进行操作 -->
-                <template slot-scope="scope" v-show="scope.row.isAdmin">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="380">
+        <!-- 管理员用户不可进行操作 -->
+        <template slot-scope="scope">
+          <el-button v-show="scope.row.isAdmin" size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button v-show="scope.row.isAdmin" size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'list',
+  name: 'Group',
   data () {
     return {
       tableData: [{

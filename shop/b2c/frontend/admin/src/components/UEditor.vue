@@ -1,8 +1,6 @@
 <template>
   <div>
-    <script id="ueditor_container" name="content" type="text/plain">
-
-    </script>
+    <script id="ueditor_container" name="content" type="text/plain" />
   </div>
 </template>
 
@@ -14,6 +12,16 @@ require('@/../static/ueditor/lang/zh-cn/zh-cn.js')
 
 export default {
   name: 'UEditor',
+  props: {
+    content: {
+      type: String,
+      default: ''
+    },
+    config: {
+      type: Object,
+      default: null
+    }
+  },
   data () {
     return {
       editor: null,
@@ -24,10 +32,6 @@ export default {
       }
     }
   },
-  props: {
-    content: String,
-    config: Object
-  },
   mounted () {
     this.editor = window.UE.getEditor('ueditor_container', Object.assign(this.config, this.defaultConfig))
     this.editor.ready(() => {
@@ -35,13 +39,13 @@ export default {
       this.editor.focus()
     })
   },
+  destroyed () {
+    this.editor.destroy()
+  },
   methods: {
     getContent () {
       return this.editor.getContent()
     }
-  },
-  destroyed () {
-    this.editor.destroy()
   }
 }
 </script>

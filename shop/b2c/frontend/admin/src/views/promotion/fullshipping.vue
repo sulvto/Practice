@@ -2,14 +2,14 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="满额包邮">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isOpen"></el-switch>
+      <el-switch v-model="editForm.isOpen" active-text="是" inactive-text="否" />
       <p class="hint">设置为不允许则游客无法注册成为站点会员</p>
     </el-form-item>
 
     <el-form-item label="包邮所需订单金额" >
-      <el-input type="number" min="0" step="0.01" v-model="editForm.fullMailMoney" >
+      <el-input v-model="editForm.fullMailMoney" type="number" min="0" step="0.01" >
         <template slot="append">
-                元
+          元
         </template>
       </el-input>
       <p class="hint">请设定数字参数，全场包邮请填写0</p>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'Fullshipping',
   data () {
     return {
       editForm: {},

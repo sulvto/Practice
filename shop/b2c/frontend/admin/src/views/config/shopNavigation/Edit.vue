@@ -2,11 +2,11 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="120px" size="small" label-position="right">
 
     <el-form-item label="导航名称" prop="name">
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="排序号">
-      <el-input type="number" v-model="editForm.sort"></el-input>
+      <el-input v-model="editForm.sort" type="number" />
     </el-form-item>
 
     <el-form-item label="所属类型">
@@ -37,16 +37,16 @@
     </el-form-item>
 
     <el-form-item v-show="linkType === 'custom'">
-      <el-input v-model="editForm.link"></el-input>
+      <el-input v-model="editForm.link" />
       <p class="hint">如：http://www.niushop.com.cn/</p>
     </el-form-item>
 
     <el-form-item label="是否新窗口打开">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isBlank"></el-switch>
+      <el-switch v-model="editForm.isBlank" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item label="是否显示">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isShow"></el-switch>
+      <el-switch v-model="editForm.isShow" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <!-- TODO: 导航图标 -->
@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'ShopNavigationEdit',
   data () {
     return {
       linkType: '',

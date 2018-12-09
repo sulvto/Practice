@@ -6,45 +6,40 @@
         <el-button type="primary" size="small">开启区域代理(关闭中)</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
+      <el-col :span="10" />
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">保存</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
-      <el-table-column prop="name" label="代理级别">
+      <el-table-column prop="name" label="代理级别" />
+
+      <el-table-column
+        label="各级奖励比例"
+        width="120">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.reward" type="number" >
+            <template slot="append">
+              %
+            </template>
+          </el-input>
+        </template>
       </el-table-column>
 
       <el-table-column
-            label="各级奖励比例"
-            width="120">
-             <template slot-scope="scope">
-              <el-input type="number"  v-model="scope.row.reward" >
-                <template slot="append">
-                        %
-                </template>
-              </el-input>
-          </template>
-          </el-table-column>
-
-      <el-table-column
-          label="升级条件"
-          width="180">
-            <template slot-scope="scope">
-              <el-input type="number"  v-model="scope.row.upgradeCondition" >
-                <template slot="append">
-                        %
-                </template>
-              </el-input>
-          </template>
-          <template slot-scope="scope">
-
-          </template>
+        label="升级条件"
+        width="180">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.upgradeCondition" type="number">
+            <template slot="append">
+              %
+            </template>
+          </el-input>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -52,7 +47,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'Config',
   data () {
     return {
       config: {},

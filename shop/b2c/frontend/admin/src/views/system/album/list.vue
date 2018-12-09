@@ -8,17 +8,17 @@
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入相册名称"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入相册名称" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
     <el-row >
-      <el-col :span="3" v-for="(albumListItem, index) in albumList" :key="albumListItem.name" :offset="index % 6 ? 1 : 0" style="margin-bottom: 20px">
+      <el-col v-for="(albumListItem, index) in albumList" :key="albumListItem.name" :span="3" :offset="index % 6 ? 1 : 0" style="margin-bottom: 20px">
         <el-card :body-style="{ padding: '0px', width: '160px' }" style="width: 160px;">
           <div class="covers">
             <img v-if="albumListItem.cover" src="@/assets/img/hamburger.png" class="image" @click="toAlbum(albumListItem)">
@@ -28,8 +28,8 @@
             <span style="line-height: 20px;" @click="toAlbum(albumListItem)">{{ albumListItem.name }}</span>
             <span class="hint">{{ '共' + albumListItem.count + '张' }}</span>
             <div style="margin-top: 5px">
-              <el-button type="primary" size="mini" :disabled="albumListItem.isDefault" @click="editAlbum(albumListItem)">编辑</el-button>
-              <el-button type="danger" size="mini" :disabled="albumListItem.isDefault">删除</el-button>
+              <el-button :disabled="albumListItem.isDefault" type="primary" size="mini" @click="editAlbum(albumListItem)">编辑</el-button>
+              <el-button :disabled="albumListItem.isDefault" type="danger" size="mini" >删除</el-button>
             </div>
           </div>
         </el-card>
@@ -37,27 +37,24 @@
     </el-row>
 
     <el-pagination
-      class="center-block"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
       :current-page="currentPage4"
       :page-sizes="[5, 10, 20, 50]"
       :page-size="10"
+      :total="400"
+      class="center-block"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
-    </el-pagination>
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"/>
 
-    <el-dialog :title="dialogAlbumFormTitle" size="small" :visible.sync="dialogAlbumFormVisible">
-      <el-form ref="albumForm" :rules="albumFormRules" size="small" :model="albumForm" label-width="100px" >
+    <el-dialog :title="dialogAlbumFormTitle" :visible.sync="dialogAlbumFormVisible" size="small" >
+      <el-form ref="albumForm" :rules="albumFormRules" :model="albumForm" size="small" label-width="100px" >
 
         <el-form-item label="相册名称" prop="name">
-          <el-input v-model="albumForm.name" >
-          </el-input>
+          <el-input v-model="albumForm.name" />
         </el-form-item>
 
         <el-form-item label="排序">
-          <el-input type="number" v-model="albumForm.sort" >
-          </el-input>
+          <el-input v-model="albumForm.sort" type="number" />
         </el-form-item>
 
       </el-form>
@@ -73,7 +70,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   data () {
     return {
       DIALOG_TITLE_ALBUMFORM_NEW: '相册创建',
@@ -155,7 +152,7 @@ export default {
     saveAlbumForm () {
       // editAlbum
       if (this.albumForm.oldAlbumObject) {
-        let oldAlbumObject = this.albumForm.oldAlbumObject
+        var oldAlbumObject = this.albumForm.oldAlbumObject
         delete this.albumForm.oldAlbumObject
         Object.assign(oldAlbumObject, this.albumForm)
       } else {
@@ -171,8 +168,6 @@ export default {
       console.log('toAlbum', album)
     }
 
-  },
-  created () {
   }
 }
 </script>

@@ -4,24 +4,24 @@
     <h4>门店运费管理</h4>
 
     <el-form-item label="门店运费" >
-      <el-input type="number"  v-model="freightForm.pickupFreight" >
+      <el-input v-model="freightForm.pickupFreight" type="number">
         <template slot="append">
-                元
+          元
         </template>
         <p class="hint">如果会员选择配送方式是门店自提对应运费</p>
       </el-input>
     </el-form-item>
 
     <el-form-item label="满X免运费" >
-      <el-input type="number"  v-model="freightForm.manjianFreight" >
+      <el-input v-model="freightForm.manjianFreight" type="number">
         <template slot="append">
-                元
+          元
         </template>
       </el-input>
     </el-form-item>
 
     <el-form-item label="是否启用">
-      <el-switch  active-text="是" inactive-text="否" v-model="freightForm.isEnable"></el-switch>
+      <el-switch v-model="freightForm.isEnable" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item>
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'freight',
+  name: 'Freight',
   data () {
     return {
       freightForm: {}

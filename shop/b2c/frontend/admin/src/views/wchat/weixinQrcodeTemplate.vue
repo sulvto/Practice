@@ -1,41 +1,41 @@
 <template>
 
-    <div>
-      <el-button type="primary" size="small" @click="$router.push('qrcode.html')">添加自定义模板</el-button>
+  <div>
+    <el-button type="primary" size="small" @click="$router.push('qrcode.html')">添加自定义模板</el-button>
 
-      <ul>
-        <li v-for="(templateListItem, index) in templateList" :key="templateListItem.img" style="opacity: 1;height:auto;position:relative;width:19%;float:left;margin-right:1%;margin-top:10px;margin-bottom:10px;" @mouseover="showByIndex = index" @mouseout="showByIndex = null">
-            <img :src="templateListItem.img" :class="{true: 'default-template-img', false: 'template-img'}[templateListItem.isDefault]">
-            <div class="check" v-show="showByIndex === index" >
-              <div v-if="templateListItem.isDefault">
-                <div class="button" onclick="modifyWeixinQrcode(1)" style="margin-top:75%;cursor:pointer;">
-                  <span>编辑</span>
-                </div>
-              </div>
-              <div v-else>
-                <div class="button" style="margin-top:50%;cursor:pointer;" @click="setTemplateDefault(templateListItem)">
-                  <span >设为默认</span>
-                </div>
-                <div class="button" style="cursor:pointer;" @click="deleteTemplate(templateListItem.id)">
-                  <span>删除</span>
-                </div>
-                <div class="button" onclick="modifyWeixinQrcode(1)" style="cursor:pointer;">
-                  <span>编辑</span>
-                </div>
-              </div>
+    <ul>
+      <li v-for="(templateListItem, index) in templateList" :key="templateListItem.img" style="opacity: 1;height:auto;position:relative;width:19%;float:left;margin-right:1%;margin-top:10px;margin-bottom:10px;" @mouseover="showByIndex = index" @mouseout="showByIndex = null">
+        <img :src="templateListItem.img" :class="{true: 'default-template-img', false: 'template-img'}[templateListItem.isDefault]">
+        <div v-show="showByIndex === index" class="check" >
+          <div v-if="templateListItem.isDefault">
+            <div class="button" onclick="modifyWeixinQrcode(1)" style="margin-top:75%;cursor:pointer;">
+              <span>编辑</span>
             </div>
+          </div>
+          <div v-else>
+            <div class="button" style="margin-top:50%;cursor:pointer;" @click="setTemplateDefault(templateListItem)">
+              <span >设为默认</span>
+            </div>
+            <div class="button" style="cursor:pointer;" @click="deleteTemplate(templateListItem.id)">
+              <span>删除</span>
+            </div>
+            <div class="button" onclick="modifyWeixinQrcode(1)" style="cursor:pointer;">
+              <span>编辑</span>
+            </div>
+          </div>
+        </div>
 
-            <div v-if="templateListItem.isDefault">
-              <img src="/static/images/check_qrcode1.png" class="qrcode_img" style="position:absolute;top:0px;leftt:1px;">
-            </div>
-        </li>
-      </ul>
-    </div>
+        <div v-if="templateListItem.isDefault">
+          <img src="/static/images/check_qrcode1.png" class="qrcode_img" style="position:absolute;top:0px;leftt:1px;">
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'list',
+  name: 'WeixinQrcodeTemplate',
   data () {
     return {
       showByIndex: null,
@@ -105,15 +105,13 @@ export default {
       templateListItem.isDefault = true
     },
     deleteTemplate (id) {
-      let deleteId = this.templateList.findIndex(templateListItem => templateListItem.id === id)
+      var deleteId = this.templateList.findIndex(templateListItem => templateListItem.id === id)
       this.templateList.splice(deleteId, 1)
     },
     search () {
       console.log('search', this.searchKeyword)
     }
 
-  },
-  created () {
   }
 }
 </script>

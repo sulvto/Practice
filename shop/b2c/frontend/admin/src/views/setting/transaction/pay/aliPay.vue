@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <section class="ns-base-section">
     <div class="ns-main">
 
@@ -56,90 +56,65 @@
     </dl>
     </div>
 
-    <div class="page" id="turn-ul" style="display: none;">
-    <div class="pagination">
-    <ul>
-      <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
-      <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
-      <li><a id="prevPage" class="page-disable">上一页</a></li>
-      <li id="pageNumber"></li>
-      <li id="JslastPage">
-
-      </li>
-      <li><a id="nextPage">下一页</a></li>
-      <li><a id="lastPage">末页</a></li>
-      <li class="total-data">共0条</li>
-      <!-- <li class="page-count">共0页</li> -->
-      <li class="according-number">
-        跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
-      </li>
-    </ul>
-    </div>
-    </div>
-    <input type="hidden" id="page_count">
-    <input type="hidden" id="page_size">
     </div>
     </section>
-    </template>
+    </template> -->
 
 <template>
-    <el-form ref="form" :model="aliPayConfigFrom" label-width="140px" size="mini" label-position="right">
+  <el-form ref="form" :model="aliPayConfigFrom" label-width="140px" size="mini" label-position="right">
 
-      <el-form-item label="账户">
-         <el-input   v-model="aliPayConfigFrom.aliSeller">
-        </el-input>
-          <p class="hint">支付宝账户</p>
+    <el-form-item label="账户">
+      <el-input v-model="aliPayConfigFrom.aliSeller" />
+      <p class="hint">支付宝账户</p>
 
-      </el-form-item>
+    </el-form-item>
 
-      <el-form-item label="合作者身份ID：">
-        <el-input   v-model="aliPayConfigFrom.aliPartnerid">
-        </el-input>
-        <p class="hint">支付宝合作者身份ID（PID）</p>
-      </el-form-item>
+    <el-form-item label="合作者身份ID：">
+      <el-input v-model="aliPayConfigFrom.aliPartnerid" />
+      <p class="hint">支付宝合作者身份ID（PID）</p>
+    </el-form-item>
 
-      <el-form-item label="安全校验码">
-        <el-input   v-model="aliPayConfigFrom.aliKey">
-      </el-input>
+    <el-form-item label="安全校验码">
+      <el-input v-model="aliPayConfigFrom.aliKey" />
       <p class="hint">支付宝老版MD5密钥</p>
     </el-form-item>
 
-     <el-form-item label="是否启用支付">
-      <el-switch active-text="是" inactive-text="否" v-model="aliPayConfigFrom.isUse"></el-switch>
+    <el-form-item label="是否启用支付">
+      <el-switch v-model="aliPayConfigFrom.isUse" active-text="是" inactive-text="否" />
     </el-form-item>
 
-     <el-form-item label="是否启用退款">
-      <el-switch active-text="是" inactive-text="否" v-model="aliPayConfigFrom.canRefund"></el-switch>
+    <el-form-item label="是否启用退款">
+      <el-switch v-model="aliPayConfigFrom.canRefund" active-text="是" inactive-text="否" />
       <p class="hint">开启支付宝支付才可以进行后续操作</p>
     </el-form-item>
 
-     <el-form-item label="是否启用转账">
-      <el-switch active-text="是" inactive-text="否" v-model="aliPayConfigFrom.canTransfer"></el-switch>
+    <el-form-item label="是否启用转账">
+      <el-switch v-model="aliPayConfigFrom.canTransfer" active-text="是" inactive-text="否" />
       <p class="hint">开启支付宝支付才可以进行后续操作</p>
     </el-form-item>
 
-      <el-form-item>
-          <el-button type="primary" @click="submitForm('aliPayConfigFrom')">保存</el-button>
-          <el-button type="info" @click="$router.back()">返回</el-button>
-      </el-form-item>
-    </el-form>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('aliPayConfigFrom')">保存</el-button>
+      <el-button type="info" @click="$router.back()">返回</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
 export default {
-  name: 'aliPayConfig',
+  name: 'AliPayConfig',
+  data () {
+    return {
+      aliPayConfigFrom: {
+      }
+    }
+  },
   methods: {
     handlePreview () {
 
     },
     handleRemove () {
 
-    }
-  },
-  data () {
-    return {
-      aliPayConfigFrom: {
-      }
     }
   }
 }

@@ -4,7 +4,7 @@
     <el-tabs type="border-card">
       <el-tab-pane label="基础设置">
 
-          <!-- 基础设置 -->
+        <!-- 基础设置 -->
         <h4>商品类型</h4>
         <div class="center-block">
           <el-radio-group v-model="editForm.type" style="padding-left: 30px!important;" >
@@ -20,7 +20,7 @@
           <h4>基础信息</h4>
 
           <el-form-item label="商品名称" prop="name">
-            <el-input v-model="editForm.name" placeholder="请输入商品名称，不能超过60个字符"></el-input>
+            <el-input v-model="editForm.name" placeholder="请输入商品名称，不能超过60个字符" />
           </el-form-item>
 
           <el-form-item label="商品分类">
@@ -41,127 +41,118 @@
           </dl> -->
 
           <el-form-item label="扩展分类">
-            <el-input v-model="editForm.extendedClass">
-            </el-input>
+            <el-input v-model="editForm.extendedClass" />
           </el-form-item>
 
-          <el-form-item label="网盘地址" v-show="editForm.type === 21">
-            <el-input v-model="editForm.cloudAddress" placeholder="请输入网盘地址">
-            </el-input>
+          <el-form-item v-show="editForm.type === 21" label="网盘地址" >
+            <el-input v-model="editForm.cloudAddress" placeholder="请输入网盘地址" />
           </el-form-item>
 
-          <el-form-item label="网盘密码" v-show="editForm.type === 21">
-            <el-input v-model="editForm.cloudPassword" placeholder="请输入网盘密码">
-            </el-input>
+          <el-form-item v-show="editForm.type === 21" label="网盘密码" >
+            <el-input v-model="editForm.cloudPassword" placeholder="请输入网盘密码" />
           </el-form-item>
 
-          <el-form-item label="卡密库存" v-show="editForm.type === 22">
+          <el-form-item v-show="editForm.type === 22" label="卡密库存" >
             <span style="font-weight: bold;color: #FF5722;">0件</span>
           </el-form-item>
 
-          <el-form-item label="添加卡密" v-show="editForm.type === 22">
+          <el-form-item v-show="editForm.type === 22" label="添加卡密">
             <span style="font-weight: bold;color: #FF5722;">导入格式为卡号+空格+密码(可跟上附加内容)，一行一组，如AAAAA BBBBB</span><br>
-            <el-input type="textarea" v-model="editForm.cardPassword" >
-            </el-input>
+            <el-input v-model="editForm.cardPassword" type="textarea" />
           </el-form-item>
 
-          <el-form-item label="上传文件" v-show="editForm.type === 23">
+          <el-form-item v-show="editForm.type === 23" label="上传文件">
             <el-input v-model="editForm.downloadResources">
               <el-button slot="append">上传</el-button>
             </el-input>
             <p class="hint">上传附件类型必须是<i class="important-note">zip</i>格式</p>
           </el-form-item>
 
-          <el-form-item label="解压密码" v-show="editForm.type === 23">
-            <el-input v-model="editForm.unzipPassword" placeholder="请输入解压密码">
-            </el-input>
+          <el-form-item v-show="editForm.type === 23" label="解压密码" >
+            <el-input v-model="editForm.unzipPassword" placeholder="请输入解压密码" />
           </el-form-item>
 
-          <el-form-item label="有效期/天" v-show="editForm.type === 20 || editForm.type === 21 || editForm.type === 22 || editForm.type === 23">
-            <el-input type="number" v-model="editForm.validityPeriod" placeholder="请输入有效期">
+          <el-form-item v-show="editForm.type === 20 || editForm.type === 21 || editForm.type === 22 || editForm.type === 23" label="有效期/天" >
+            <el-input v-model="editForm.validityPeriod" type="number" placeholder="请输入有效期">
               <el-button slot="append">天</el-button>
             </el-input>
             <p class="hint notice">输入0表示不限制</p>
           </el-form-item>
 
-          <el-form-item label="限制使用次数" v-show="editForm.type === 20 || editForm.type === 22">
+          <el-form-item v-show="editForm.type === 20 || editForm.type === 22" label="限制使用次数" >
             <span style="color: #FF5722;font-weight: bold;" >1次</span>
           </el-form-item>
 
-          <el-form-item label="限制使用次数" v-show="editForm.type === 21 || editForm.type === 23">
+          <el-form-item v-show="editForm.type === 21 || editForm.type === 23" label="限制使用次数" >
             <span style="color: #FF5722;font-weight: bold;" >不限制</span>
           </el-form-item>
 
           <el-form-item label="商品促销语">
-            <el-input v-model="editForm.introduction" placeholder="请输入促销语，不能超过100个字符">
-            </el-input>
+            <el-input v-model="editForm.introduction" placeholder="请输入促销语，不能超过100个字符" />
           </el-form-item>
 
           <el-form-item label="关键词">
-            <el-input v-model="editForm.keywords" placeholder="商品关键词用于SEO搜索">
-            </el-input>
+            <el-input v-model="editForm.keywords" placeholder="商品关键词用于SEO搜索" />
           </el-form-item>
 
           <el-form-item label="商品单位">
-            <el-input v-model="editForm.unit" placeholder="请输入商品单位，不能超过10个字符">
-            </el-input>
+            <el-input v-model="editForm.unit" placeholder="请输入商品单位，不能超过10个字符" />
           </el-form-item>
 
           <el-form-item label="商品标签">
-            <el-select filterable v-model="editForm.tags" multiple placeholder="请选择商品标签">
-              <el-option label="热卖" value="1"></el-option>
-              <el-option label="活动" value="2"></el-option>
+            <el-select v-model="editForm.tags" filterable multiple placeholder="请选择商品标签">
+              <el-option label="热卖" value="1" />
+              <el-option label="活动" value="2" />
             </el-select>
           </el-form-item>
 
           <el-form-item label="商品品牌">
-            <el-select filterable v-model="editForm.tags" multiple placeholder="请选择商品品牌">
-              <el-option label="小米" value="1"></el-option>
-              <el-option label="索尼" value="2"></el-option>
-              <el-option label="三星" value="3"></el-option>
+            <el-select v-model="editForm.tags" filterable multiple placeholder="请选择商品品牌">
+              <el-option label="小米" value="1" />
+              <el-option label="索尼" value="2" />
+              <el-option label="三星" value="3" />
             </el-select>
             <p class="hint">可输入品牌名或品牌首字母来搜索品牌</p>
           </el-form-item>
 
           <el-form-item label="商品品牌">
-            <el-select filterable v-model="editForm.brands" multiple placeholder="请选择商品品牌">
-              <el-option label="小米" value="1"></el-option>
-              <el-option label="索尼" value="2"></el-option>
-              <el-option label="三星" value="3"></el-option>
+            <el-select v-model="editForm.brands" filterable multiple placeholder="请选择商品品牌">
+              <el-option label="小米" value="1" />
+              <el-option label="索尼" value="2" />
+              <el-option label="三星" value="3" />
             </el-select>
             <p class="hint">可输入品牌名或品牌首字母来搜索品牌</p>
           </el-form-item>
 
           <el-form-item label="供货商">
-            <el-select filterable v-model="editForm.suppliers" multiple placeholder="请选择供货商">
-              <el-option label="小米供货商" value="1"></el-option>
-              <el-option label="三星供货商" value="2"></el-option>
+            <el-select v-model="editForm.suppliers" filterable multiple placeholder="请选择供货商">
+              <el-option label="小米供货商" value="1" />
+              <el-option label="三星供货商" value="2" />
             </el-select>
           </el-form-item>
 
           <el-form-item label="基础销量" >
-            <el-input type="number" v-model="editForm.basicSales" placeholder="0">
+            <el-input v-model="editForm.basicSales" type="number" placeholder="0">
               <el-button slot="append">件</el-button>
             </el-input>
           </el-form-item>
 
           <el-form-item label="基础点击数" >
-            <el-input type="number" v-model="editForm.basicPraise" placeholder="0">
+            <el-input v-model="editForm.basicPraise" type="number" placeholder="0">
               <el-button slot="append">次</el-button>
             </el-input>
             <span class="help-inline">基础点击数必须是数字，且不能为负数</span>
           </el-form-item>
 
           <el-form-item label="基础分享数" >
-            <el-input type="number" v-model="editForm.basicShare" placeholder="0">
+            <el-input v-model="editForm.basicShare" type="number" placeholder="0">
               <el-button slot="append">次</el-button>
             </el-input>
             <span class="help-inline">基础点击数必须是数字，且不能为负数</span>
           </el-form-item>
 
           <el-form-item label="商家编码" >
-            <el-input type="number" v-model="editForm.productCodeA" placeholder="请输入商家编码，不能超过40个字符">
-            </el-input>
+            <el-input v-model="editForm.productCodeA" type="number" placeholder="请输入商家编码，不能超过40个字符" />
             <span class="help-inline">基础点击数必须是数字，且不能为负数</span>
           </el-form-item>
 
@@ -169,33 +160,32 @@
             <el-date-picker
               v-model="editForm.productionDate"
               type="date"
-              placeholder="选择日期">
-            </el-date-picker>
+              placeholder="选择日期" />
           </el-form-item>
 
           <el-form-item label="保质期天数" >
-            <el-input type="number" v-model="editForm.shelfLife" placeholder="0">
+            <el-input v-model="editForm.shelfLife" type="number" placeholder="0">
               <el-button slot="append">天</el-button>
             </el-input>
             <span class="help-inline">请输入保质期天数，必须是整数</span>
           </el-form-item>
 
           <el-form-item label="总库存" prop="totalStock">
-            <el-input type="number" v-model="editForm.totalStock" placeholder="0">
+            <el-input v-model="editForm.totalStock" type="number" placeholder="0">
               <el-button slot="append">件</el-button>
             </el-input>
             <span class="help-inline">请输入总库存数量，必须是大于0的整数</span>
           </el-form-item>
 
           <el-form-item label="库存预警" prop="minStockLaram">
-            <el-input type="number" v-model="editForm.minStockLaram" placeholder="0">
+            <el-input v-model="editForm.minStockLaram" type="number" placeholder="0">
               <el-button slot="append">件</el-button>
             </el-input>
             <p class="hint">设置最低库存预警值。当库存低于预警值时商家中心商品列表页库存列红字提醒。<br>0为不预警。</p>
           </el-form-item>
 
           <el-form-item label="库存显示" required>
-            <el-switch  active-text="是" inactive-text="否" v-model="editForm.isShowStock"></el-switch>
+            <el-switch v-model="editForm.isShowStock" active-text="是" inactive-text="否" />
           </el-form-item>
 
           <el-form-item label="是否上架" required>
@@ -206,34 +196,34 @@
           </el-form-item>
 
           <el-form-item label="商品所在地" >
-            <el-select filterable v-model="editForm.province" placeholder="请选择省">
-              <el-option label="小米供货商" value="1"></el-option>
-              <el-option label="三星供货商" value="2"></el-option>
+            <el-select v-model="editForm.province" filterable placeholder="请选择省">
+              <el-option label="小米供货商" value="1" />
+              <el-option label="三星供货商" value="2" />
             </el-select>
-            <el-select filterable v-model="editForm.city" placeholder="请选择市">
-              <el-option label="小米供货商" value="1"></el-option>
-              <el-option label="三星供货商" value="2"></el-option>
+            <el-select v-model="editForm.city" filterable placeholder="请选择市">
+              <el-option label="小米供货商" value="1" />
+              <el-option label="三星供货商" value="2" />
             </el-select>
           </el-form-item>
 
           <h4>购买信息</h4>
 
           <el-form-item label="市场价格" >
-            <el-input type="number" v-model="editForm.marketPrice" placeholder="0.00" min="0">
+            <el-input v-model="editForm.marketPrice" type="number" placeholder="0.00" min="0">
               <el-button slot="append">元</el-button>
             </el-input>
             <span class="help-inline">商品市场价格必须是数字，且不能为负数</span>
           </el-form-item>
 
           <el-form-item label="销售价格" required>
-            <el-input type="number" v-model="editForm.salePrice" placeholder="0.00" min="0">
+            <el-input v-model="editForm.salePrice" type="number" placeholder="0.00" min="0">
               <el-button slot="append">元</el-button>
             </el-input>
             <span class="help-inline">商品销售价不能为空，且不能为负数</span>
           </el-form-item>
 
           <el-form-item label="成本价格">
-            <el-input type="number" v-model="editForm.costPrice" placeholder="0.00" min="0">
+            <el-input v-model="editForm.costPrice" type="number" placeholder="0.00" min="0">
               <el-button slot="append">元</el-button>
             </el-input>
             <span class="help-inline">商品成本必须是数字，且不能为负数</span>
@@ -247,9 +237,11 @@
                 <div>
                   <span class="label-title">数量</span><span class="label-title" style="margin-left: 30px;">优惠价格</span>
                 </div>
-                          <div id="ladder_preference"></div>
+                <div id="ladder_preference" />
               </div>
-              <div class="add_ladder_preference"><i class="fa fa-plus" aria-hidden="true"></i></div>
+              <div class="add_ladder_preference">
+                <i class="fa fa-plus" aria-hidden="true" />
+              </div>
             </dd>
           </dl>
 
@@ -260,7 +252,7 @@
             </el-radio-group>
           </el-form-item>
 
-          <el-form-item label="计价方式" v-show="editForm.fare === 1" required>
+          <el-form-item v-show="editForm.fare === 1" label="计价方式" required>
             <el-radio-group v-model="editForm.shippingTeeType">
               <el-radio :label="1">计件</el-radio>
               <el-radio :label="2">体积</el-radio>
@@ -268,53 +260,53 @@
             </el-radio-group>
           </el-form-item>
 
-          <el-form-item label="商品重量" v-show="editForm.fare === 1" required>
-            <el-input type="number" v-model="editForm.goodsWeight" placeholder="0.00" min="0">
+          <el-form-item v-show="editForm.fare === 1" label="商品重量" required>
+            <el-input v-model="editForm.goodsWeight" type="number" placeholder="0.00" min="0">
               <el-button slot="append">公斤</el-button>
             </el-input>
-              <span class="help-inline">商品重量必须大于0</span>
+            <span class="help-inline">商品重量必须大于0</span>
           </el-form-item>
 
-          <el-form-item label="商品体积" v-show="editForm.fare === 1" required>
-            <el-input type="number" v-model="editForm.goodsVolume" placeholder="0" min="0">
+          <el-form-item v-show="editForm.fare === 1" label="商品体积" required>
+            <el-input v-model="editForm.goodsVolume" type="number" placeholder="0" min="0">
               <el-button slot="append">立方米</el-button>
             </el-input>
-              <span class="help-inline">商品体积必须大于0</span>
+            <span class="help-inline">商品体积必须大于0</span>
           </el-form-item>
 
-          <el-form-item label="物流公司" v-show="editForm.fare === 1" >
-            <el-select filterable v-model="editForm.expressCompany" placeholder="请选择物流公司">
-              <el-option label="顺丰" value="1"></el-option>
-              <el-option label="ccc" value="2"></el-option>
-              <el-option label="中通快递" value="3"></el-option>
+          <el-form-item v-show="editForm.fare === 1" label="物流公司" >
+            <el-select v-model="editForm.expressCompany" filterable placeholder="请选择物流公司">
+              <el-option label="顺丰" value="1" />
+              <el-option label="ccc" value="2" />
+              <el-option label="中通快递" value="3" />
             </el-select>
           </el-form-item>
 
           <el-form-item label="每人限购" required>
-            <el-input type="number" v-model="editForm.purchaseLimit" placeholder="0" min="0">
+            <el-input v-model="editForm.purchaseLimit" type="number" placeholder="0" min="0">
               <el-button slot="append">件</el-button>
             </el-input>
-              <span class="help-inline">输入0表示不限购</span>
+            <span class="help-inline">输入0表示不限购</span>
           </el-form-item>
 
           <el-form-item label="最少购买数" required>
-            <el-input type="number" v-model="editForm.minBuy" placeholder="0" min="1">
+            <el-input v-model="editForm.minBuy" type="number" placeholder="0" min="1">
               <el-button slot="append">件</el-button>
             </el-input>
-              <span class="help-inline">最少购买数必须是大于0的整数</span>
+            <span class="help-inline">最少购买数必须是大于0的整数</span>
           </el-form-item>
 
           <!-- 预售设置 -->
-          <div id="presell_set" v-show="editForm.type === 10">
+          <div v-show="editForm.type === 10" id="presell_set">
             <h4>预售设置</h4>
             <el-form-item label="是否支持预售" required>
-              <el-switch  active-text="是" inactive-text="否" v-model="editForm.openPresell"></el-switch>
+              <el-switch v-model="editForm.openPresell" active-text="是" inactive-text="否" />
             </el-form-item>
 
             <div v-show="editForm.openPresell">
 
               <el-form-item label="预售金额">
-                <el-input type="number" v-model="editForm.presellPrice" placeholder="0.00" min="0">
+                <el-input v-model="editForm.presellPrice" type="number" placeholder="0.00" min="0">
                   <el-button slot="append">元</el-button>
                 </el-input>
                 <span class="help-inline">预售金额必须是数字，且不能为负数</span>
@@ -327,17 +319,16 @@
                 </el-radio-group>
               </el-form-item>
 
-              <el-form-item label="预售发货时间" v-show="editForm.presellDeliveryType === 1">
-                  <el-date-picker
-                    v-model="editForm.presellTime"
-                    type="datetime"
-                    placeholder="选择日期时间">
-                  </el-date-picker>
-                  开始发货
+              <el-form-item v-show="editForm.presellDeliveryType === 1" label="预售发货时间">
+                <el-date-picker
+                  v-model="editForm.presellTime"
+                  type="datetime"
+                  placeholder="选择日期时间" />
+                开始发货
               </el-form-item>
 
-              <el-form-item label="预售发货时间" v-show="editForm.presellDeliveryType === 2">
-                <el-input type="number" v-model="editForm.presellDay" min="0">
+              <el-form-item v-show="editForm.presellDeliveryType === 2" label="预售发货时间" >
+                <el-input v-model="editForm.presellDay" type="number" min="0">
                   <el-button slot="prepend">付款成功</el-button>
                   <el-button slot="append">天后发货</el-button>
                 </el-input>
@@ -348,10 +339,10 @@
           <h4>积分设置</h4>
 
           <el-form-item label="最大可使用积分">
-            <el-input type="number" v-model="editForm.maxUseIntegral" >
+            <el-input v-model="editForm.maxUseIntegral" type="number" >
               <el-button slot="append">分</el-button>
             </el-input>
-                <p class="hint">设置购买时积分抵现最大可使用积分数，0为不可使用 </p>
+            <p class="hint">设置购买时积分抵现最大可使用积分数，0为不可使用 </p>
           </el-form-item>
 
           <el-form-item label="积分兑换设置">
@@ -364,7 +355,7 @@
           </el-form-item>
 
           <el-form-item label="兑换所需积分">
-            <el-input type="number" v-model="editForm.integrationAvailableUse" >
+            <el-input v-model="editForm.integrationAvailableUse" type="number" >
               <el-button slot="append">分</el-button>
             </el-input>
           </el-form-item>
@@ -377,11 +368,11 @@
           </el-form-item>
 
           <el-form-item>
-            <el-input type="number" v-show="editForm.integralGiveType === 1" v-model="editForm.integrationAvailableGive" placeholder="0" min="0">
+            <el-input v-show="editForm.integralGiveType === 1" v-model="editForm.integrationAvailableGive" type="number" placeholder="0" min="0">
               <el-button slot="append">分</el-button>
             </el-input>
 
-            <el-input type="number" v-show="editForm.integralGiveType === 2" v-model="editForm.integrationAvailableGiveRatio" placeholder="0" min="0">
+            <el-input v-show="editForm.integralGiveType === 2" v-model="editForm.integrationAvailableGiveRatio" type="number" placeholder="0" min="0">
               <el-button slot="append">%</el-button>
             </el-input>
           </el-form-item>
@@ -390,7 +381,7 @@
 
           <!-- TODO: 这里还有其他会员 -->
           <el-form-item label="黄金会员">
-            <el-input type="number" v-model="editForm.integrationAvailableGiveRatio" placeholder="0" min="0">
+            <el-input v-model="editForm.integrationAvailableGiveRatio" type="number" placeholder="0" min="0">
               <el-button slot="append">%</el-button>
             </el-input>
           </el-form-item>
@@ -409,10 +400,10 @@
           <h4>基础信息</h4>
 
           <el-form-item label="商品类型">
-            <el-select filterable v-model="editForm.goodsType" clearable placeholder="请选择商品类型">
-              <el-option label="美体专区" value="1"></el-option>
-              <el-option label="铁皮石斛" value="2"></el-option>
-              <el-option label="闲逛逛" value="3"></el-option>
+            <el-select v-model="editForm.goodsType" filterable clearable placeholder="请选择商品类型">
+              <el-option label="美体专区" value="1" />
+              <el-option label="铁皮石斛" value="2" />
+              <el-option label="闲逛逛" value="3" />
             </el-select>
             <p class="hint">可输入品牌名或品牌首字母来搜索品牌</p>
           </el-form-item>
@@ -423,161 +414,160 @@
       </el-tab-pane>
 
       <el-tab-pane label="商品规格">
-          <!-- 商品规格 -->
-          <nav>
-            <button class="btn-common-white js-open-edit-sku-popup">编辑规格</button>
-            <button class="btn-common-white js-clear-goods-sku">清空规格</button>
-          </nav>
-          <div style="padding:10px;line-height: 30px;display: none;">
-            <table class="goods-sku js-goods-sku"></table>
-          </div>
+        <!-- 商品规格 -->
+        <nav>
+          <button class="btn-common-white js-open-edit-sku-popup">编辑规格</button>
+          <button class="btn-common-white js-clear-goods-sku">清空规格</button>
+        </nav>
+        <div style="padding:10px;line-height: 30px;display: none;">
+          <table class="goods-sku js-goods-sku" />
+        </div>
 
-          <div class="volume-set-sku-info">
-            <span>批量设置：</span>
-            <a href="javascript:;" data-tag="sku-price">销售价格</a>
-            <a href="javascript:;" data-tag="market-price">市场价格</a>
-            <a href="javascript:;" data-tag="cost-price">成本价格</a>
-            <a href="javascript:;" data-tag="stock-num">库存</a>
-            <input type="text" class="input-common middle">
-            <button class="btn-common">确定</button>
-            <button class="btn-common-cancle">取消</button>
-          </div>
+        <div class="volume-set-sku-info">
+          <span>批量设置：</span>
+          <a href="javascript:;" data-tag="sku-price">销售价格</a>
+          <a href="javascript:;" data-tag="market-price">市场价格</a>
+          <a href="javascript:;" data-tag="cost-price">成本价格</a>
+          <a href="javascript:;" data-tag="stock-num">库存</a>
+          <input type="text" class="input-common middle">
+          <button class="btn-common">确定</button>
+          <button class="btn-common-cancle">取消</button>
+        </div>
 
-          <div class="goods-sku-list">
-            <table class="table-class">
-              <colgroup>
-                <col width="50%">
-                <col width="10%">
-                <col width="10%">
-                <col width="10%">
-                <col width="10%">
-                <col width="10%">
-              </colgroup>
-              <thead>
-                <tr>
-                  <th align="left">商品规格</th>
-                  <th>
-                    <span>销售价格</span>
-                    <input type="text" class="input-common short" />
-                    <a href="javascript:;" style="float:right;">编辑</a>
-                  </th>
-                  <th>
-                    <span>市场价格</span>
-                    <a href="javascript:;" style="float:right;">编辑</a>
-                  </th>
-                  <th>
-                    <span>成本价格</span>
-                    <a href="javascript:;" style="float:right;">编辑</a>
-                  </th>
-                  <th>
-                    <span>库存</span>
-                    <a href="javascript:;" style="float:right;">编辑</a>
-                  </th>
-                  <th>
-                    <span>商家编码</span>
-                    <a href="javascript:;" style="float:right;">编辑</a>
-                  </th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
+        <div class="goods-sku-list">
+          <table class="table-class">
+            <colgroup>
+              <col width="50%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+            </colgroup>
+            <thead>
+              <tr>
+                <th align="left">商品规格</th>
+                <th>
+                  <span>销售价格</span>
+                  <input type="text" class="input-common short">
+                  <a href="javascript:;" style="float:right;">编辑</a>
+                </th>
+                <th>
+                  <span>市场价格</span>
+                  <a href="javascript:;" style="float:right;">编辑</a>
+                </th>
+                <th>
+                  <span>成本价格</span>
+                  <a href="javascript:;" style="float:right;">编辑</a>
+                </th>
+                <th>
+                  <span>库存</span>
+                  <a href="javascript:;" style="float:right;">编辑</a>
+                </th>
+                <th>
+                  <span>商家编码</span>
+                  <a href="javascript:;" style="float:right;">编辑</a>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
 
       </el-tab-pane>
 
       <el-tab-pane label="媒体设置">
 
         <!-- 图片视频设置 -->
-          <div class="goods-photos">
-            <h4>商品图片</h4>
-            <dl>
-              <dt>图片上传：</dt>
-              <dd>
-                <!-- （第一张图片将作为商品主图，支持同时上传多张图片,多张图片之间可随意调整位置；支持jpg、gif、png格式上传或从图片空间中选择，建议使用尺寸800x800像素以上、大小不超过1M的正方形图片，上传后的图片将会自动保存在图片空间的默认分类中。） -->
+        <div class="goods-photos">
+          <h4>商品图片</h4>
+          <dl>
+            <dt>图片上传：</dt>
+            <dd>
+              <!-- （第一张图片将作为商品主图，支持同时上传多张图片,多张图片之间可随意调整位置；支持jpg、gif、png格式上传或从图片空间中选择，建议使用尺寸800x800像素以上、大小不超过1M的正方形图片，上传后的图片将会自动保存在图片空间的默认分类中。） -->
 
-                <div id="goods_picture_box" class="controls">
-                  <div class="goodspic-uplaod">
-                    <div class="img-box" style="min-height:160px;">
-                                      <div class="upload-thumb" id="default_uploadimg">
-                        <img src="/public/admin/images/album/default_goods_image_240.gif">
-                      </div>
-                                    </div>
-                    <div class="clear"></div>
-                    <span class="img-error">最少需要一张图片作为商品主图</span>
-                    <p class="hint">第一张图片将作为商品主图,支持同时上传多张图片,多张图片之间可随意调整位置；支持jpg、gif、png格式上传或从图片空间中选择，建议使用尺寸800x800像素以上、大小不超过1M的正方形图片，上传后的图片将会自动保存在图片空间的默认分类中。</p>
-                    <div class="handle" style="margin-top: 5px;">
-                      <div class="ncsc-upload-btn" style="margin-left:0;">
-                        <a href="javascript:void(0);">
-                          <span>
-                            <input style="cursor:pointer;font-size:0;" type="file" id="fileupload" hidefocus="true" class="input-file" name="file_upload" multiple="multiple">
-                          </span>
-                          <p>图片上传</p>
-                        </a>
-                      </div>
-                      <a class="ncsc-btn mt5" id="img_box" nctype="show_image" href="javascript:void(0);">从图片空间选择</a>
+              <div id="goods_picture_box" class="controls">
+                <div class="goodspic-uplaod">
+                  <div class="img-box" style="min-height:160px;">
+                    <div class="upload-thumb" data-id="default_uploadimg">
+                      <img src="/public/admin/images/album/default_goods_image_240.gif">
                     </div>
                   </div>
-                </div>
-                <span class="help-inline">最少需要一张图片作为商品主图</span>
-              </dd>
-            </dl>
-          </div>
-
-            <div class="goods-video">
-              <h4>展示视频</h4>
-              <dl>
-                <dt>视频上传：</dt>
-                <dd style="padding:0;">
-                  <div class="goodspic-uplaod" style="overflow: hidden;position:relative;">
-
-                    <div class="video-thumb">
-                                      <video id="my-video" class="video-js vjs-big-play-centered" controls="" poster="/public/static/blue/img/goods_video_upload_bg.png" preload="auto">
-                          <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that</p>
-                        </video>
-                        <span class="del-video hide" onclick="del_video()"></span>
-                                  </div>
-                    <input class="input-file" name="file_upload" id="videoupload" type="file" onchange="fileUpload_video(this);" title="视频上传" style="position: absolute;left: 0;width: 290px;height: 140px;opacity: 0;cursor: pointer;z-index:10;">
+                  <div class="clear" />
+                  <span class="img-error">最少需要一张图片作为商品主图</span>
+                  <p class="hint">第一张图片将作为商品主图,支持同时上传多张图片,多张图片之间可随意调整位置；支持jpg、gif、png格式上传或从图片空间中选择，建议使用尺寸800x800像素以上、大小不超过1M的正方形图片，上传后的图片将会自动保存在图片空间的默认分类中。</p>
+                  <div class="handle" style="margin-top: 5px;">
+                    <div class="ncsc-upload-btn" style="margin-left:0;">
+                      <a href="javascript:void(0);">
+                        <span>
+                          <input style="cursor:pointer;font-size:0;" type="file" data-id="fileupload" hidefocus="true" class="input-file" name="file_upload" multiple="multiple">
+                        </span>
+                        <p>图片上传</p>
+                      </a>
+                    </div>
+                    <a class="ncsc-btn mt5" data-id="img_box" nctype="show_image" href="javascript:void(0);">从图片空间选择</a>
                   </div>
-                </dd>
-              </dl>
+                </div>
+              </div>
+              <span class="help-inline">最少需要一张图片作为商品主图</span>
+            </dd>
+          </dl>
+        </div>
 
-              <dl>
-                <dt>输入网址：</dt>
-                <dd>
-                  <input type="text" id="video_url" class="input-common" style="width: 290px !important;" placeholder="在此输入外链视频地址">
-                  <span style="display: block;margin-top: 5px;">注意事项：</span>
-                  <ul style="color:#FF6600;">
-                    <li>1、检查upload文件夹是否有读写权限。</li>
-                    <li>2、PHP默认上传限制为2MB，需要在php.ini配置文件中修改“post_max_size”和“upload_max_filesize”的大小。</li>
-                    <li>3、视频支持手动输入外链视频地址或者上传本地视频文件</li>
-                    <li>4、必须上传.mp4视频格式</li>
-                    <li>5、视频文件大小不能超过500MB</li>
-                  </ul>
-                </dd>
-              </dl>
-            </div>
+        <div class="goods-video">
+          <h4>展示视频</h4>
+          <dl>
+            <dt>视频上传：</dt>
+            <dd style="padding:0;">
+              <div class="goodspic-uplaod" style="overflow: hidden;position:relative;">
 
-            <div class="goods-sku-picture">
-              <h4>规格图片</h4>
-              <dl class="sku-picture-dl">
-                <dt>规格名列表：</dt>
-                <dd>
-                  <div class="sku-picture-div"></div>
-                </dd>
-              </dl>
-              <dl class="sku-picture-dl-box">
-                <dt>规格值列表：</dt>
-                <dd>
-                  <div class="sku-picture-box"></div>
-                </dd>
-              </dl>
-            </div>
+                <div class="video-thumb">
+                  <video id="my-video" class="video-js vjs-big-play-centered" controls="" poster="/public/static/blue/img/goods_video_upload_bg.png" preload="auto">
+                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that</p>
+                  </video>
+                  <span class="del-video hide" onclick="del_video()" />
+                </div>
+                <input class="input-file" name="file_upload" data-id="videoupload" type="file" onchange="fileUpload_video(this);" title="视频上传" style="position: absolute;left: 0;width: 290px;height: 140px;opacity: 0;cursor: pointer;z-index:10;">
+              </div>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>输入网址：</dt>
+            <dd>
+              <input type="text" data-id="video_url" class="input-common" style="width: 290px !important;" placeholder="在此输入外链视频地址">
+              <span style="display: block;margin-top: 5px;">注意事项：</span>
+              <ul style="color:#FF6600;">
+                <li>1、检查upload文件夹是否有读写权限。</li>
+                <li>2、PHP默认上传限制为2MB，需要在php.ini配置文件中修改“post_max_size”和“upload_max_filesize”的大小。</li>
+                <li>3、视频支持手动输入外链视频地址或者上传本地视频文件</li>
+                <li>4、必须上传.mp4视频格式</li>
+                <li>5、视频文件大小不能超过500MB</li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="goods-sku-picture">
+          <h4>规格图片</h4>
+          <dl class="sku-picture-dl">
+            <dt>规格名列表：</dt>
+            <dd>
+              <div class="sku-picture-div" />
+            </dd>
+          </dl>
+          <dl class="sku-picture-dl-box">
+            <dt>规格值列表：</dt>
+            <dd>
+              <div class="sku-picture-box" />
+            </dd>
+          </dl>
+        </div>
 
       </el-tab-pane>
 
       <el-tab-pane label="商品详情">
         <!-- 详情设置 -->
-        <UEditor :content="editForm.detail" :config="{initialFrameHeight: '500'}" ref="ue"/>
+        <UEditor ref="ue" :content="editForm.detail" :config="{initialFrameHeight: '500'}"/>
       </el-tab-pane>
 
       <el-tab-pane label="模板设置">
@@ -608,8 +598,8 @@
 
     <div class="ns-main" style="">
 
-      <div class="edit-sku-popup-mask-layer"></div>
-      <div class="edit-sku-popup" v-show="false">
+      <div class="edit-sku-popup-mask-layer" />
+      <div v-show="false" class="edit-sku-popup" >
         <header>
           <h3>选择规格</h3>
           <span>×</span>
@@ -618,18 +608,31 @@
           <aside>
             <p>选择规格 [可多选]</p>
             <div class="js-attr-block">
-              <div class="selectric-wrapper selectric-select-common selectric-attr-search" style="width: 250px;"><div class="selectric-hide-select"><select id="search_attr_id" class="select-common attr-search" onchange="getAttrSearchSelected(this);" tabindex="-1">
-                <option value="0" selected="selected">全部</option>
-                            <option value="16">美体专区</option>
-                            <option value="17">铁皮石斛</option>
-                            <option value="18">闲逛逛</option>
-                        </select></div><div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="全部">全部</li><li data-index="1" class="" title="美体专区">美体专区</li><li data-index="2" class="" title="铁皮石斛">铁皮石斛</li><li data-index="3" class="last" title="闲逛逛">闲逛逛</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
+              <div class="selectric-wrapper selectric-select-common selectric-attr-search" style="width: 250px;">
+                <div class="selectric-hide-select">
+                  <select id="search_attr_id" class="select-common attr-search" onchange="getAttrSearchSelected(this);" tabindex="-1">
+                    <option value="0" selected="selected">全部</option>
+                    <option value="16">美体专区</option>
+                    <option value="17">铁皮石斛</option>
+                    <option value="18">闲逛逛</option>
+                  </select>
+                </div>
+                <div class="selectric">
+                  <span class="selectric-label">全部</span>
+                  <button class="selectric-button">▾</button>
+                </div>
+                <div class="selectric-items" tabindex="-1">
+                  <div class="selectric-scroll">
+                    <ul><li data-index="0" class="selected" title="全部">全部</li><li data-index="1" class="" title="美体专区">美体专区</li><li data-index="2" class="" title="铁皮石斛">铁皮石斛</li><li data-index="3" class="last" title="闲逛逛">闲逛逛</li></ul>
+                  </div>
+                </div>
+                <input class="selectric-input" tabindex="0">
+              </div>
             </div>
             <!-- 原始规格 -->
             <div class="original-sku">
-              <ul class="original-sku-list">
-                <li class="add-sku" style="display: none;"></li>
-              </ul>
+              <!-- <ul class="original-sku-list">
+              </ul> -->
             </div>
             <p class="title">当前已选规格</p>
             <!-- 已选规格 -->
@@ -637,7 +640,7 @@
               <ul class="js-sku-list-popup">
                 <li class="add-sku">
                   <input type="text" class="input-common" placeholder="输入新规格名称">
-                  <i class="fa fa-plus"></i>
+                  <i class="fa fa-plus" />
                   <strong>添加新规格</strong>
                 </li>
               </ul>
@@ -652,14 +655,13 @@
               <div class="sku-value-list">
                 <label>
                   <i class="checkbox-common">
-                    <input class="margin-small-right" id="checkAll" type="checkbox">
+                    <input class="margin-small-right" data-id="checkAll" type="checkbox">
                   </i>
                   <span>全选</span>
                 </label>
                 <div class="add-sku-value-input">
                   <input type="text" class="input-common" placeholder="输入规格值名称(回车保存)">
                 </div>
-                <ul></ul>
               </div>
 
             </div>
@@ -679,7 +681,7 @@
                   <li data-spec-show-type="2">
                     <label class="line-label">
                       <i class="radio-common">
-                        <input type="radio" name="show_type" id="show_type2" value="2">
+                        <input type="radio" name="show_type" data-id="show_type2" value="2">
                       </i>
                       <span>颜色</span>
                     </label>
@@ -687,14 +689,14 @@
                   <li data-spec-show-type="3">
                     <label class="line-label">
                       <i class="radio-common">
-                        <input type="radio" name="show_type" id="show_type3" value="3">
+                        <input type="radio" name="show_type" data-id="show_type3" value="3">
                       </i>
                       <span>图片</span>
                     </label>
                   </li>
                 </ul>
               </nav>
-              <ul></ul>
+              <!-- <ul></ul> -->
             </div>
           </article>
         </div>
@@ -707,25 +709,24 @@
       </div>
 
       <div class="point-card-inventory-management-popup">
-        <div class="point-card-inventory-management-body">
-        </div>
+        <div class="point-card-inventory-management-body" />
         <footer>
-          <div class="page" id="turn-ul" style="display: none;">
+          <div class="page" data-id="turn-ul" style="display: none;">
             <div class="pagination">
               <ul>
-                <li class="according-number">每页显示<input type="text" class="input-medium" id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
-                <li><a id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
-                <li><a id="prevPage" class="page-disable">上一页</a></li>
-                <li id="pageNumber"></li>
-                <li id="JslastPage">
-
+                <li class="according-number">每页显示<input type="text" class="input-medium" data-id="showNumber" value="14" data-default="14" autocomplete="off">条</li>
+                <li><a data-id="beginPage" class="page-disable" style="border: 1px solid #dddddd;">首页</a></li>
+                <li><a data-id="prevPage" class="page-disable">上一页</a></li>
+                <li data-id="pageNumber">&emsp;</li>
+                <li data-id="JslastPage">
+                  &emsp;
                 </li>
-                <li><a id="nextPage">下一页</a></li>
-                <li><a id="lastPage">末页</a></li>
+                <li><a data-id="nextPage">下一页</a></li>
+                <li><a data-id="lastPage">末页</a></li>
                 <li class="total-data">共0条</li>
                 <!-- <li class="page-count">共0页</li> -->
                 <li class="according-number">
-                  跳<input type="text" class="input-medium" id="skipPage" data-curr-page="1">页
+                  跳<input type="text" class="input-medium" data-id="skipPage" data-curr-page="1">页
                 </li>
               </ul>
             </div>
@@ -735,11 +736,11 @@
 
       <div class="btn-submit ncsc-form-goods" style="text-align: left; width: 1189px;">
         <dl>
-          <dt></dt>
+          <dt>&emsp;</dt>
           <dd style="padding: 0;">
 
-            <button class="btn-common" id="btnSave" type="button" onclick="SubmitProductInfo(0,'http://b2c.niuteam.cn/admin','http://b2c.niuteam.cn')">保存</button>
-            <button class="btn-common" id="btnSavePreview" type="button" onclick="SubmitProductInfo(1,'http://b2c.niuteam.cn/admin','http://b2c.niuteam.cn')">保存并预览</button>
+            <button class="btn-common" data-id="btnSave" type="button" onclick="SubmitProductInfo(0,'http://b2c.niuteam.cn/admin','http://b2c.niuteam.cn')">保存</button>
+            <button class="btn-common" data-id="btnSavePreview" type="button" onclick="SubmitProductInfo(1,'http://b2c.niuteam.cn/admin','http://b2c.niuteam.cn')">保存并预览</button>
           </dd>
         </dl>
       </div>
@@ -755,7 +756,10 @@ import UEditor from '@/components/UEditor.vue'
 import typeSelectedImage from '@/assets/img/type_selected.png'
 
 export default {
-  name: 'goodsAdd',
+  name: 'GoodsAdd',
+  components: {
+    UEditor
+  },
   data () {
     return {
       selectedIconBackground: typeSelectedImage,
@@ -787,9 +791,6 @@ export default {
         ]
       }
     }
-  },
-  components: {
-    UEditor
   }
 }
 </script>

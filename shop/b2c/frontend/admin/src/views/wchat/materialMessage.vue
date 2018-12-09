@@ -1,8 +1,7 @@
 <template>
   <div>
     <el-tabs v-model="currentType">
-      <el-tab-pane v-for="o in 3" :key="o" :label="typeName[o]" :name="o">
-      </el-tab-pane>
+      <el-tab-pane v-for="o in 3" :key="o" :label="typeName[o]" :name="o" />
     </el-tabs>
 
     <el-row :gutter="8">
@@ -13,16 +12,16 @@
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入消息名称"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入消息名称" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column label="标题">
         <template slot-scope="scope">
           <el-tag>{{ typeName[scope.row.type] }}</el-tag>
@@ -34,15 +33,16 @@
       <el-table-column
         prop="createDate"
         label="创建时间"
-        width="140">
-      </el-table-column>
+        width="140" />
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
 
@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  name: 'materialMessage',
+  name: 'MaterialMessage',
   data () {
     return {
       currentType: 1,
@@ -101,15 +101,14 @@ export default {
       ]
     }
   },
+  computed: {
+    tableData () {
+      return this.list.filter(item => item.type === this.currentType)
+    }
+  },
   methods: {
     addMedia () {
       this.$router.push('addMedia.html?type=' + this.currentType)
-    }
-  },
-  computed: {
-    tableData () {
-      let that = this
-      return this.list.filter(item => item.type === that.currentType)
     }
   }
 }

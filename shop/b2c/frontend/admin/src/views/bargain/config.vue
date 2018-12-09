@@ -2,45 +2,45 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="110px" size="small" label-position="right">
 
     <el-form-item label="是否开启">
-      <el-switch  active-text="开" inactive-text="关" v-model="editForm.isOpen"></el-switch>
+      <el-switch v-model="editForm.isOpen" active-text="开" inactive-text="关" />
       <p class="hint">设置砍价活动的开启关闭</p>
     </el-form-item>
 
     <el-form-item label="活动时间" >
-      <el-input type="number"  v-model="editForm.activityTime" >
+      <el-input v-model="editForm.activityTime" type="number" >
         <template slot="append">
-                天
+          天
         </template>
       </el-input>
       <p class="hint">设置发起活动后多长时间结束 单位：天</p>
     </el-form-item>
 
     <el-form-item label="最大砍价次数" >
-      <el-input type="number"  v-model="editForm.maxNumber" >
+      <el-input v-model="editForm.maxNumber" type="number" >
         <template slot="append">
-                次
+          次
         </template>
       </el-input>
       <p class="hint">每个人帮助砍价最多次数</p>
     </el-form-item>
 
     <el-form-item label="推广语">
-      <el-input v-model="editForm.propaganda"></el-input>
+      <el-input v-model="editForm.propaganda" />
       <p class="hint">设置推广语</p>
     </el-form-item>
 
     <el-form-item label="砍价提示语">
-      <el-input type="textarea" v-model="editForm.cutReminds"></el-input>
+      <el-input v-model="editForm.cutReminds" type="textarea" />
       <p class="hint">用户砍价后的提示说明，用,分隔</p>
     </el-form-item>
 
     <el-form-item label="第一刀的提示语">
-      <el-input v-model="editForm.firstCutRemind"></el-input>
+      <el-input v-model="editForm.firstCutRemind" />
       <p class="hint">第一刀的的提示语</p>
     </el-form-item>
 
     <el-form-item label="活动规则">
-      <el-input type="textarea" v-model="editForm.introduce"></el-input>
+      <el-input v-model="editForm.introduce" type="textarea" />
       <p class="hint">整个活动的活动规则介绍</p>
     </el-form-item>
 
@@ -52,7 +52,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'Config',
   data () {
     return {
       editForm: {},

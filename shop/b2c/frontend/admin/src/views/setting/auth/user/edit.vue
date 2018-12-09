@@ -2,30 +2,30 @@
   <el-form ref="userForm" :rules="rules" :model="userForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="用户名" prop="username">
-      <el-input v-model="userForm.username"></el-input>
+      <el-input v-model="userForm.username" />
     </el-form-item>
 
     <el-form-item label="密码" prop="password">
-      <el-input type="password" v-model="userForm.password"></el-input>
+      <el-input v-model="userForm.password" type="password" />
     </el-form-item>
 
     <el-form-item label="手机号">
-      <el-input v-model="userForm.phoneNumber"></el-input>
+      <el-input v-model="userForm.phoneNumber" />
     </el-form-item>
 
     <el-form-item label="邮箱">
-      <el-input v-model="userForm.email"></el-input>
+      <el-input v-model="userForm.email" />
     </el-form-item>
 
     <el-form-item label="所属用户组" prop="group">
       <el-select v-model="userForm.group" placeholder="请选择">
-        <el-option label="管理员组" value="1"></el-option>
-        <el-option label="客服组" value="2"></el-option>
+        <el-option label="管理员组" value="1" />
+        <el-option label="客服组" value="2" />
       </el-select>
     </el-form-item>
 
     <el-form-item label="描述">
-      <el-input type="textarea" v-model="userForm.description"></el-input>
+      <el-input v-model="userForm.description" type="textarea" />
     </el-form-item>
 
     <el-form-item>
@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: 'userEdit',
+  name: 'UserEdit',
   data () {
     return {
       userForm: {},

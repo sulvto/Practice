@@ -4,11 +4,11 @@
     <el-form :inline="true" :model="queryForm" size="small" >
 
       <el-form-item label="用户姓名">
-        <el-input size="small" v-model="queryForm.username" ></el-input>
+        <el-input v-model="queryForm.username" size="small" />
       </el-form-item>
 
       <el-form-item label="手机号">
-        <el-input size="small" v-model="queryForm.phoneNumber" ></el-input>
+        <el-input v-model="queryForm.phoneNumber" size="small" />
       </el-form-item>
 
       <el-form-item>
@@ -16,66 +16,57 @@
       </el-form-item>
     </el-form>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         prop="shareholder"
-        label="股东">
-      </el-table-column>
+        label="股东" />
 
       <el-table-column
         prop="receiveDividendsStartDate"
         label="分红开始时间"
-        width="140">
-      </el-table-column>
+        width="140" />
 
       <el-table-column
         prop="receiveDividendsEndDate"
         label="分红结束时间"
-        width="140">
-      </el-table-column>
+        width="140" />
 
       <el-table-column
         prop="receiveDividendsAmountCount"
         label="分红总金额"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="shopValue"
         label="店铺总分值"
-        width="100">
-      </el-table-column>
+        width="100" />
 
       <el-table-column
         prop="shareholderValue"
         label="股东分值"
-        width="100">
-      </el-table-column>
+        width="100" />
 
       <el-table-column
         prop="dividendCommissionRatio"
         label="分红佣金比率"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="dividendAmount"
         label="分红金额"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="completionDate"
         label="完成时间"
-        width="140">
-      </el-table-column>
+        width="140" />
     </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'partnerGlobalList',
+  name: 'PartnerGlobalList',
   data () {
     return {
       queryForm: {

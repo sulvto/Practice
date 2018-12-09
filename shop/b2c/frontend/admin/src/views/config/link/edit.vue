@@ -2,11 +2,10 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="名称" prop="name">
-      <el-input   v-model="editForm.name" >
-      </el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
-  <!-- TODO: 图片 -->
-  <!-- <dl>
+    <!-- TODO: 图片 -->
+    <!-- <dl>
           <dt>图片：</dt>
           <dd>
             <div class="upload-btn-common">
@@ -27,19 +26,19 @@
         </dl> -->
 
     <el-form-item label="是否显示">
-      <el-switch  active-text="开" inactive-text="关" v-model="editForm.isBlank"></el-switch>
+      <el-switch v-model="editForm.isBlank" active-text="开" inactive-text="关" />
     </el-form-item>
 
     <el-form-item label="是否显示">
-      <el-switch  active-text="开" inactive-text="关" v-model="editForm.isShow"></el-switch>
+      <el-switch v-model="editForm.isShow" active-text="开" inactive-text="关" />
     </el-form-item>
 
     <el-form-item label="链接地址" prop="link">
-      <el-input v-model="editForm.link"></el-input>
+      <el-input v-model="editForm.link" />
     </el-form-item>
 
     <el-form-item label="排序" >
-      <el-input type="number" v-model="editForm.sort"></el-input>
+      <el-input v-model="editForm.sort" type="number" />
     </el-form-item>
 
     <el-form-item>
@@ -51,7 +50,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'ConfigLinkEdit',
   data () {
     return {
       editForm: {},

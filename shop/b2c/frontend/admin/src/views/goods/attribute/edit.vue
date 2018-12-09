@@ -3,15 +3,15 @@
     <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
       <el-form-item label="类型名称" prop="name">
-        <el-input v-model="editForm.name"></el-input>
+        <el-input v-model="editForm.name" />
       </el-form-item>
 
       <el-form-item label="属性排序">
-        <el-input type="number" v-model="editForm.sort"></el-input>
+        <el-input v-model="editForm.sort" type="number" />
       </el-form-item>
 
       <el-form-item label="是否启用">
-        <el-switch  active-text="是" inactive-text="否" v-model="editForm.isVisible"></el-switch>
+        <el-switch v-model="editForm.isVisible" active-text="是" inactive-text="否" />
       </el-form-item>
 
       <el-form-item label="关联规格">
@@ -27,20 +27,20 @@
       </el-form-item>
 
       <el-form-item>
-        <el-table border :data="editForm.attributeList" style="width: 100%">
+        <el-table :data="editForm.attributeList" border style="width: 100%">
 
           <el-table-column
             label="排序"
             width="90">
             <template slot-scope="scope">
-              <el-input type="number" size="mini" v-model="scope.row.sort" ></el-input>
+              <el-input v-model="scope.row.sort" type="number" size="mini" />
             </template>
           </el-table-column>
 
           <el-table-column
             label="属性名称">
             <template slot-scope="scope">
-              <el-input size="mini" v-model="scope.row.name" ></el-input>
+              <el-input v-model="scope.row.name" size="mini" />
             </template>
           </el-table-column>
 
@@ -49,9 +49,9 @@
             width="110">
             <template slot-scope="scope">
               <el-select v-model="scope.row.type" placeholder="请选择">
-                <el-option label="输入框" :value="1"></el-option>
-                <el-option label="单选框" :value="2"></el-option>
-                <el-option label="复选框" :value="3"></el-option>
+                <el-option :value="1" label="输入框" />
+                <el-option :value="2" label="单选框" />
+                <el-option :value="3" label="复选框" />
               </el-select>
             </template>
           </el-table-column>
@@ -60,8 +60,7 @@
             label="是否筛选"
             width="80">
             <template slot-scope="scope">
-              <el-switch v-model="scope.row.isSearch">
-              </el-switch>
+              <el-switch v-model="scope.row.isSearch"/>
             </template>
           </el-table-column>
 
@@ -73,10 +72,12 @@
             </template>
           </el-table-column>
 
-          <el-table-column label="操作" fixed="right"
+          <el-table-column
+            label="操作"
+            fixed="right"
             width="190">
             <template slot-scope="scope">
-              <el-button size="mini" v-show="scope.row.type === 2 || scope.row.type === 3" @click="showEditAttributeDialog(scope.row)">编辑属性值</el-button>
+              <el-button v-show="scope.row.type === 2 || scope.row.type === 3" size="mini" @click="showEditAttributeDialog(scope.row)">编辑属性值</el-button>
               <el-button size="mini" @click="removeAttribute(scope.$index)">删除</el-button>
             </template>
           </el-table-column>
@@ -89,14 +90,13 @@
       </el-form-item>
     </el-form>
 
-    <el-dialog title="规格关联设置" :visible.sync="dialogSelectSpecVisible">
-       <el-table border :data="specList">
+    <el-dialog :visible.sync="dialogSelectSpecVisible" title="规格关联设置" >
+      <el-table :data="specList" border >
         <el-table-column
           type="selection"
-          width="35">
-        </el-table-column>
-        <el-table-column prop="name" label="规格" width="150"></el-table-column>
-        <el-table-column prop="description" label="描述" ></el-table-column>
+          width="35" />
+        <el-table-column prop="name" label="规格" width="150" />
+        <el-table-column prop="description" label="描述" />
       </el-table>
       <div slot="footer" class="dialog-footer">
         <el-button size="small" @click="dialogSelectSpecVisible = false">取 消</el-button>
@@ -104,15 +104,15 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="关联品牌设置" :visible.sync="dialogSelectBrandVisible">
+    <el-dialog :visible.sync="dialogSelectBrandVisible" title="关联品牌设置" >
       <div style="max-height: 300px; overflow-y: auto;">
         <el-row>
-          <el-col :span="4" v-for="(brand, index) in brandList" :key="brand.name" :offset="index % 5 ? 1 : 0" style="margin-bottom: 10px">
+          <el-col v-for="(brand, index) in brandList" :span="4" :key="brand.name" :offset="index % 5 ? 1 : 0" style="margin-bottom: 10px">
             <el-card :body-style="{ padding: '0px', height: '144px' }">
               <img src="@/assets/img/hamburger.png" style="width: 103.91px; height: 100px">
               <div>
-                <el-button style="width: 100%" v-if="isNotBrandSelected(brand)" @click="brandSelectChange(brand, true)">{{ brand.name }}</el-button>
-                <el-button style="width: 100%" type="success" v-if="isBrandSelected(brand)" @click="brandSelectChange(brand, false)">{{ brand.name }}</el-button>
+                <el-button v-if="isNotBrandSelected(brand)" style="width: 100%" @click="brandSelectChange(brand, true)">{{ brand.name }}</el-button>
+                <el-button v-if="isBrandSelected(brand)" style="width: 100%" type="success" @click="brandSelectChange(brand, false)">{{ brand.name }}</el-button>
               </div>
             </el-card>
           </el-col>
@@ -120,18 +120,18 @@
       </div>
       <div slot="footer" class="dialog-footer">
 
-        <el-button size="small" type="success" v-if="isBrandSelectedAll()" @click="brandUnSelectAll">全 选</el-button>
-        <el-button size="small" v-if="isNotBrandSelectedAll()" @click="brandSelectAll">全 选</el-button>
+        <el-button v-if="isBrandSelectedAll()" size="small" type="success" @click="brandUnSelectAll">全 选</el-button>
+        <el-button v-if="isNotBrandSelectedAll()" size="small" @click="brandSelectAll">全 选</el-button>
 
         <el-button size="small" @click="dialogSelectBrandVisible = false">取 消</el-button>
         <el-button size="small" type="primary" @click="saveBrandSelected()">确 定</el-button>
       </div>
     </el-dialog>
 
-    <el-dialog title="编辑属性值" :visible.sync="dialogEditAttributeVisible">
+    <el-dialog :visible.sync="dialogEditAttributeVisible" title="编辑属性值" >
       <el-form :model="editAttributeForm" label-width="100px">
         <el-form-item label="属性值">
-          <el-input type="textarea" v-model="editAttributeForm.value" auto-complete="off"></el-input>
+          <el-input v-model="editAttributeForm.value" type="textarea" auto-complete="off" />
           <p class="hint">一行为一个属性值，多个属性值用换行输入</p>
         </el-form-item>
       </el-form>
@@ -146,7 +146,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'AttributeEdit',
   data () {
     return {
       editAttributeForm: {},
@@ -245,7 +245,7 @@ export default {
     },
 
     brandSelectChange (brand, bool) {
-      let index = this.brandSelectedList.findIndex(item => item.name === brand.name)
+      var index = this.brandSelectedList.findIndex(item => item.name === brand.name)
       // add
       if (bool && index === -1) {
         this.brandSelectedList.push(brand)
@@ -270,7 +270,7 @@ export default {
     },
 
     addAttribute () {
-      this.editForm.attributeList.push({id: new Date().getTime(), values: []})
+      this.editForm.attributeList.push({ id: new Date().getTime(), values: [] })
     },
 
     removeAttribute (index) {

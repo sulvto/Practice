@@ -9,16 +9,16 @@
         &emsp;
       </el-col>
       <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="3">
-        <el-select size="small" v-model="queryForm.select" clearable placeholder="请选择会员等级">
-          <el-option label="普通会员" :value="1"></el-option>
-          <el-option label="铜牌会员" :value="2"></el-option>
-          <el-option label="银牌会员" :value="3"></el-option>
-          <el-option label="金牌会员" :value="4"></el-option>
-          <el-option label="至尊会员" :value="5"></el-option>
+        <el-select v-model="queryForm.select" size="small" clearable placeholder="请选择会员等级">
+          <el-option :value="1" label="普通会员" />
+          <el-option :value="2" label="铜牌会员" />
+          <el-option :value="3" label="银牌会员" />
+          <el-option :value="4" label="金牌会员" />
+          <el-option :value="5" label="至尊会员" />
         </el-select>
       </el-col>
       <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4">
-        <el-input size="small" v-model="queryForm.searchKeyword" placeholder="输入手机号/邮箱/会员昵称"></el-input>
+        <el-input v-model="queryForm.searchKeyword" size="small" placeholder="输入手机号/邮箱/会员昵称" />
       </el-col>
       <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="3">
         <el-button type="primary" size="small" @click="search">查询</el-button>
@@ -26,22 +26,24 @@
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table
+      :data="tableData"
+      border
+      style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column label="会员">
         <template slot-scope="scope">
           <img src="@/assets/img/419b57e5802bd1f3b8fdedb81fdb5fce_360_360.png" class="head-portrait">
           <div style="float:left;">
-            <label class="member-info">用户名：<span>{{scope.row.username}}</span></label>
-            <label class="member-info">昵称: <span>{{scope.row.nickname}}</span></label>
-            <label class="member-info"><span>手机：{{scope.row.phoneNumber ? scope.row.phoneNumber : '--' }}</span></label>
-            <label class="member-info"><span>邮箱：{{scope.row.email ? scope.row.email : '--' }}</span></label>
+            <label class="member-info">用户名：<span>{{ scope.row.username }}</span></label>
+            <label class="member-info">昵称: <span>{{ scope.row.nickname }}</span></label>
+            <label class="member-info"><span>手机：{{ scope.row.phoneNumber ? scope.row.phoneNumber : '--' }}</span></label>
+            <label class="member-info"><span>邮箱：{{ scope.row.email ? scope.row.email : '--' }}</span></label>
           </div>
         </template>
       </el-table-column>
@@ -49,97 +51,95 @@
       <el-table-column
         prop="level"
         label="会员等级"
-        width="80">
-      </el-table-column>
+        width="80" />
 
       <el-table-column
         prop="promoterNo"
         label="推广员编号"
-        width="100">
-      </el-table-column>
+        width="100" />
 
       <el-table-column
         prop="integral"
         label="积分"
-        width="80">
-      </el-table-column>
+        width="80" />
 
       <el-table-column
         prop="accountBalance"
         label="账户余额"
-        width="80">
-      </el-table-column>
+        width="80" />
 
       <el-table-column
         label="注册&amp;登录"
         width="210">
         <template slot-scope="scope">
-          注册时间 : {{scope.row.registrationDate}}<br>
-          最后登录 : {{scope.row.lastLoginDate}}
+          注册时间 : {{ scope.row.registrationDate }}<br>
+          最后登录 : {{ scope.row.lastLoginDate }}
         </template>
       </el-table-column>
 
       <el-table-column
-          label="状态"
-          width="70">
+        label="状态"
+        width="70">
         <template slot-scope="scope">
-          <el-tag type="success" v-if="scope.row.status === 1">正常</el-tag>
-          <el-tag type="danger" v-else-if="scope.row.status === 2">锁定</el-tag>
+          <el-tag v-if="scope.row.status === 1" type="success">正常</el-tag>
+          <el-tag v-else-if="scope.row.status === 2" type="danger">锁定</el-tag>
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" fixed="right"
-          width="240">
-          <template slot-scope="scope">
-            <div class="center-block">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">账户明细</el-button>
-              <br>
-              <el-button class="margin-top-5" size="mini" @click="dialogRechargeIntegralFormVisible = true">积分调整</el-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <el-button class="margin-top-5" size="mini" @click="dialogRechargeBalanceFormVisible = true">余额调整</el-button>
-              <br>
-              <el-button class="margin-top-5" size="mini" @click="handleEdit(scope.$index, scope.row)">查看足迹</el-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <el-button class="margin-top-5" size="mini" @click="resetPassword(scope.row)">重置密码</el-button>
-              <br>
-              <el-button class="margin-top-5" v-if="scope.row.status === 1" size="mini" @click="handleEdit(scope.$index, scope.row)">锁定</el-button>
-              <el-button class="margin-top-5" v-else-if="scope.row.status === 2" size="mini" @click="handleEdit(scope.$index, scope.row)">解锁</el-button>
-              <el-button class="margin-top-5" size="mini" @click="modifyMember(scope.row)">修改</el-button>
-              <el-button class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-            </div>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="240">
+        <template slot-scope="scope">
+          <div class="center-block">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">账户明细</el-button>
+            <br>
+            <el-button class="margin-top-5" size="mini" @click="dialogRechargeIntegralFormVisible = true">积分调整</el-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-button class="margin-top-5" size="mini" @click="dialogRechargeBalanceFormVisible = true">余额调整</el-button>
+            <br>
+            <el-button class="margin-top-5" size="mini" @click="handleEdit(scope.$index, scope.row)">查看足迹</el-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <el-button class="margin-top-5" size="mini" @click="resetPassword(scope.row)">重置密码</el-button>
+            <br>
+            <el-button v-if="scope.row.status === 1" class="margin-top-5" size="mini" @click="handleEdit(scope.$index, scope.row)">锁定</el-button>
+            <el-button v-else-if="scope.row.status === 2" class="margin-top-5" size="mini" @click="handleEdit(scope.$index, scope.row)">解锁</el-button>
+            <el-button class="margin-top-5" size="mini" @click="modifyMember(scope.row)">修改</el-button>
+            <el-button class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          </div>
+        </template>
       </el-table-column>
     </el-table>
 
-    <el-dialog :title="dialogEditUserFormTitle" size="small" :visible.sync="dialogEditUserFormVisible">
-      <el-form ref="editUserForm" :rules="editUserFormRules" size="small" :model="editUserForm" label-width="100px" >
+    <el-dialog :visible.sync="dialogEditUserFormVisible" :title="dialogEditUserFormTitle" size="small" >
+      <el-form ref="editUserForm" :rules="editUserFormRules" :model="editUserForm" size="small" label-width="100px" >
 
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="editUserForm.username" ></el-input>
+          <el-input v-model="editUserForm.username" />
         </el-form-item>
 
-        <el-form-item label="登录密码" prop="password" v-if="!editUserForm.oldEditUser">
-          <el-input type="password" v-model="editUserForm.password" ></el-input>
+        <el-form-item v-if="!editUserForm.oldEditUser" label="登录密码" prop="password">
+          <el-input v-model="editUserForm.password" type="password" />
         </el-form-item>
 
         <el-form-item label="昵称">
-          <el-input v-model="editUserForm.nickname" ></el-input>
+          <el-input v-model="editUserForm.nickname" />
         </el-form-item>
 
         <el-form-item label="会员等级">
           <el-select v-model="editUserForm.level" placeholder="请选择会员等级">
-            <el-option label="普通会员" :value="1"></el-option>
-            <el-option label="铜牌会员" :value="2"></el-option>
-            <el-option label="银牌会员" :value="3"></el-option>
-            <el-option label="金牌会员" :value="4"></el-option>
-            <el-option label="至尊会员" :value="5"></el-option>
+            <el-option :value="1" label="普通会员" />
+            <el-option :value="2" label="铜牌会员" />
+            <el-option :value="3" label="银牌会员" />
+            <el-option :value="4" label="金牌会员" />
+            <el-option :value="5" label="至尊会员" />
           </el-select>
         </el-form-item>
 
         <el-form-item label="手机号码">
-          <el-input v-model="editUserForm.phoneNumber" ></el-input>
+          <el-input v-model="editUserForm.phoneNumber" />
         </el-form-item>
 
         <el-form-item label="邮箱地址">
-          <el-input v-model="editUserForm.email" ></el-input>
+          <el-input v-model="editUserForm.email" />
         </el-form-item>
 
         <el-form-item label="性别">
@@ -164,12 +164,12 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="重置密码" size="small" :visible.sync="dialogResetPasswordFormVisible">
-      <el-form ref="resetPasswordForm" size="small" :model="resetPasswordForm" label-width="100px" >
+    <el-dialog :visible.sync="dialogResetPasswordFormVisible" title="重置密码" size="small">
+      <el-form ref="resetPasswordForm" :model="resetPasswordForm" size="small" label-width="100px" >
 
-      <el-form-item label="密码" prop="password" >
-        <el-input type="password" v-model="resetPasswordForm.password" ></el-input>
-      </el-form-item>
+        <el-form-item label="密码" prop="password" >
+          <el-input v-model="resetPasswordForm.password" type="password" />
+        </el-form-item>
 
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -178,25 +178,25 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="调整余额" size="small" :visible.sync="dialogRechargeBalanceFormVisible">
-      <el-form ref="rechargeBalanceForm" size="small" :model="rechargeBalanceForm" label-width="100px" >
+    <el-dialog :visible.sync="dialogRechargeBalanceFormVisible" title="调整余额" size="small" >
+      <el-form ref="rechargeBalanceForm" :model="rechargeBalanceForm" size="small" label-width="100px" >
 
-      <el-form-item label="当前余额" >
-        {{ rechargeBalanceForm.currentBalance }}
-      </el-form-item>
+        <el-form-item label="当前余额" >
+          {{ rechargeBalanceForm.currentBalance }}
+        </el-form-item>
 
-      <el-form-item label="调整金额">
-        <el-input type="number" v-model="rechargeBalanceForm.balance" min="-9999" max="9999">
-          <template slot="append">
-                  元
-          </template>
-        </el-input>
-        <p class="hint">增加或减少</p>
-      </el-form-item>
+        <el-form-item label="调整金额">
+          <el-input v-model="rechargeBalanceForm.balance" type="number" min="-9999" max="9999">
+            <template slot="append">
+              元
+            </template>
+          </el-input>
+          <p class="hint">增加或减少</p>
+        </el-form-item>
 
-      <el-form-item label="备注">
-        <el-input type="textarea" v-model="rechargeBalanceForm.notes" ></el-input>
-      </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="rechargeBalanceForm.notes" type="textarea" />
+        </el-form-item>
 
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -205,25 +205,25 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="调整积分" size="small" :visible.sync="dialogRechargeIntegralFormVisible">
-      <el-form ref="rechargeIntegralForm" size="small" :model="rechargeIntegralForm" label-width="100px" >
+    <el-dialog :visible.sync="dialogRechargeIntegralFormVisible" title="调整积分" size="small" >
+      <el-form ref="rechargeIntegralForm" :model="rechargeIntegralForm" size="small" label-width="100px" >
 
-      <el-form-item label="当前积分" >
-        {{ rechargeIntegralForm.currentIntegral }}
-      </el-form-item>
+        <el-form-item label="当前积分" >
+          {{ rechargeIntegralForm.currentIntegral }}
+        </el-form-item>
 
-      <el-form-item label="调整积分">
-        <el-input type="number" v-model="rechargeIntegralForm.integral" >
-          <template slot="append">
-                  分
-          </template>
-        </el-input>
-        <p class="hint">输入负数表示为减少</p>
-      </el-form-item>
+        <el-form-item label="调整积分">
+          <el-input v-model="rechargeIntegralForm.integral" type="number" >
+            <template slot="append">
+              分
+            </template>
+          </el-input>
+          <p class="hint">输入负数表示为减少</p>
+        </el-form-item>
 
-      <el-form-item label="备注">
-        <el-input type="textarea" v-model="rechargeIntegralForm.notes" ></el-input>
-      </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="rechargeIntegralForm.notes" type="textarea" />
+        </el-form-item>
 
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -232,44 +232,43 @@
       </div>
     </el-dialog>
 
-      <!-- 修改会员上级编号-->
-      <div class="modal fade hide" id="modify_pre_promoter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- 修改会员上级编号-->
+    <div class="modal fade hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 class="modal-title" id="myModalLabel">上级编号</h4>
-            </div>
-            <div class="modal-body">
-              <div class="modal-infp-style">
-                <table class="modal-tab">
-                  <tbody>
-                    <tr>
-                      <td style="width:20%">上级编号</td>
-                      <td colspan="3"><input type="text" id="modify_pre_member" class="input-common"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <input type="hidden" id="modify_promoter_userid">
-              <button class="btn btn-primary" onclick="modify_promoter()">保存</button>
-              <button class="btn" data-dismiss="modal">关闭</button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" >上级编号</h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-infp-style">
+              <table class="modal-tab">
+                <tbody>
+                  <tr>
+                    <td style="width:20%">上级编号</td>
+                    <td colspan="3"><input type="text" class="input-common"></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-        </div>
 
+          <div class="modal-footer">
+            <button class="btn btn-primary" onclick="modify_promoter()">保存</button>
+            <button class="btn" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
       </div>
+
+    </div>
 
   </div>
 </template>
 
 <script>
 export default {
-  name: 'list',
+  name: 'MemberList',
   data () {
     return {
       DIALOG_EDITUSERFORM_TITLE_ADD: '添加会员',
@@ -479,7 +478,7 @@ export default {
     saveEditUserForm () {
       // Modify member
       if (this.editUserForm.oldEditUser) {
-        let oldEditUser = this.editUserForm.oldEditUser
+        var oldEditUser = this.editUserForm.oldEditUser
         delete this.editUserForm.oldEditUser
         Object.assign(oldEditUser, this.editUserForm)
       } else {

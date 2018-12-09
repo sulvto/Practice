@@ -6,7 +6,7 @@
     </el-form-item>
 
     <el-form-item label="是否首页显示">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.showFollow"></el-switch>
+      <el-switch v-model="editForm.showFollow" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'keyConcernConfig',
+  name: 'KeyConcernConfig',
   data () {
     return {
       editForm: {},

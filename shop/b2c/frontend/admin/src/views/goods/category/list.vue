@@ -5,26 +5,22 @@
         <el-button type="primary" size="small" @click="$router.push('edit.html')">添加商品分类</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
-      <el-col :span="2">
-      </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
         width="35">
         <template slot-scope="scope">
           <div class="click-icon">
             <el-tooltip effect="dark" content="展开" placement="top">
-              <i class="el-icon el-icon-arrow-right" @click="collapseChange(scope.row.id, true)" v-if="scope.row.level !== 2" v-show="isNotCollapse(scope.row.id)"></i>
+              <i v-if="scope.row.level !== 2" v-show="isNotCollapse(scope.row.id)" class="el-icon el-icon-arrow-right" @click="collapseChange(scope.row.id, true)" />
             </el-tooltip>
 
             <el-tooltip effect="dark" content="收起" placement="top">
-              <i class="el-icon el-icon-arrow-down" @click="collapseChange(scope.row.id, false)" v-if="scope.row.level !== 2" v-show="isCollapse(scope.row.id)"></i>
+              <i v-if="scope.row.level !== 2" v-show="isCollapse(scope.row.id)" class="el-icon el-icon-arrow-down" @click="collapseChange(scope.row.id, false)" />
             </el-tooltip>
           </div>
         </template>
@@ -35,46 +31,46 @@
           <div v-if="scope.row.level === 2" >
 
             <el-row :gutter="1">
-                <el-col :span="2">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </el-col>
-                <el-col :span="2">
-                  |——
-                </el-col>
-                  <el-col :span="19">
-                                        <el-input size="mini" v-model="scope.row.name" @blur="saveCategory"></el-input>
-                </el-col>
-                <el-col :span="1" class="click-icon">
-                  &nbsp;
-                </el-col>
-              </el-row>
+              <el-col :span="2">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </el-col>
+              <el-col :span="2">
+                |——
+              </el-col>
+              <el-col :span="19">
+                <el-input v-model="scope.row.name" size="mini" @blur="saveCategory" />
+              </el-col>
+              <el-col :span="1" class="click-icon">
+                &nbsp;
+              </el-col>
+            </el-row>
           </div>
           <div v-else-if="scope.row.level === 1" >
             <el-row :gutter="8">
-                <el-col :span="2">
-                  |——
-                </el-col>
-                <el-col :span="21">
-                  <el-input size="mini" v-model="scope.row.name" @blur="saveCategory"></el-input>
-                </el-col>
-                <el-col :span="1" class="click-icon">
-                  <el-tooltip effect="dark" content="添加子分类" placement="top">
-                    <i class=" el-icon el-icon-circle-plus" @click="collapseChange(scope.row.id, true), addChildCategory(scope.row)" v-if="scope.row.level !== 2" ></i>
-                  </el-tooltip>
-                </el-col>
-              </el-row>
+              <el-col :span="2">
+                |——
+              </el-col>
+              <el-col :span="21">
+                <el-input v-model="scope.row.name" size="mini" @blur="saveCategory" />
+              </el-col>
+              <el-col :span="1" class="click-icon">
+                <el-tooltip effect="dark" content="添加子分类" placement="top">
+                  <i v-if="scope.row.level !== 2" class=" el-icon el-icon-circle-plus" @click="collapseChange(scope.row.id, true), addChildCategory(scope.row)" />
+                </el-tooltip>
+              </el-col>
+            </el-row>
           </div>
           <div v-else>
-              <el-row :gutter="8">
-                <el-col :span="23">
-                  <el-input size="mini" v-model="scope.row.name" @blur="saveCategory"></el-input>
-                </el-col>
-                <el-col :span="1" class="click-icon">
-                  <el-tooltip effect="dark" content="添加子分类" placement="top">
-                    <i class=" el-icon el-icon-circle-plus" @click="collapseChange(scope.row.id, true), addChildCategory(scope.row)" v-if="scope.row.level !== 2" ></i>
-                  </el-tooltip>
-                </el-col>
-              </el-row>
+            <el-row :gutter="8">
+              <el-col :span="23">
+                <el-input v-model="scope.row.name" size="mini" @blur="saveCategory" />
+              </el-col>
+              <el-col :span="1" class="click-icon">
+                <el-tooltip effect="dark" content="添加子分类" placement="top">
+                  <i v-if="scope.row.level !== 2" class=" el-icon el-icon-circle-plus" @click="collapseChange(scope.row.id, true), addChildCategory(scope.row)" />
+                </el-tooltip>
+              </el-col>
+            </el-row>
           </div>
 
         </template>
@@ -84,36 +80,36 @@
         label="商品分类简称"
         width="120">
         <template slot-scope="scope">
-          <el-input size="mini" v-model="scope.row.abbreviate" @blur="saveCategory"></el-input>
+          <el-input v-model="scope.row.abbreviate" size="mini" @blur="saveCategory" />
         </template>
       </el-table-column>
 
       <el-table-column
-            prop="relationCategory"
-          label="关联类型"
-          width="80">
-      </el-table-column>
+        prop="relationCategory"
+        label="关联类型"
+        width="80" />
 
       <el-table-column
-          label="是否显示"
-          width="80">
+        label="是否显示"
+        width="80">
         <template slot-scope="scope">
-            <span>{{ scope.row.isShow ? '是' : '否' }}</span>
+          <span>{{ scope.row.isShow ? '是' : '否' }}</span>
         </template>
       </el-table-column>
 
       <el-table-column
-          prop="sort"
-          label="排序"
-          width="50">
-      </el-table-column>
+        prop="sort"
+        label="排序"
+        width="50" />
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" @click="deleteCategory(scope.row.id)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="deleteCategory(scope.row.id)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
 
@@ -122,7 +118,7 @@
 
 <script>
 export default {
-  name: 'categroyList',
+  name: 'CategroyList',
   data () {
     return {
       searchKeyword: '',
@@ -350,8 +346,8 @@ export default {
       var result = []
       // sort
       for (let i = 0; i < this.categroyList.length; i++) {
-        let cursorItem = this.categroyList[i]
-        let find = result.find(item => cursorItem.id === item.id)
+        var cursorItem = this.categroyList[i]
+        var find = result.find(item => cursorItem.id === item.id)
 
         // if 没有添加到 result
         //    if 是顶层分类(cursorItem.level === 0)
@@ -398,7 +394,7 @@ export default {
       console.log(index, row)
     },
     deleteCategory (id) {
-      let deleteIndex = this.categroyList.findIndex(item => item.id === id)
+      var deleteIndex = this.categroyList.findIndex(item => item.id === id)
       if (deleteIndex !== -1) {
         this.categroyList.splice(deleteIndex, 1)
       }
@@ -408,7 +404,7 @@ export default {
     },
     addChildCategory (parent) {
       if (parent.level !== 2) {
-        this.categroyList.push({parentId: parent.id, level: (parent.level | 0) + 1, id: new Date().getTime()})
+        this.categroyList.push({ parentId: parent.id, level: (parent.level | 0) + 1, id: new Date().getTime() })
       }
     },
     findChildCategroy (id) {
@@ -420,7 +416,7 @@ export default {
           this.collapseList.push(id)
         }
       } else if (this.isCollapse(id)) {
-        let removeIndex = this.collapseList.findIndex((item) => item === id)
+        var removeIndex = this.collapseList.findIndex((item) => item === id)
         this.collapseList.splice(removeIndex, 1)
       }
     },

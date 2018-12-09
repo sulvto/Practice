@@ -1,85 +1,79 @@
 <template>
   <div>
     <el-row :gutter="8">
-      <el-col :span="12">
-      </el-col>
+      <el-col :span="12" />
 
-      <el-col :span="10"><el-input size="small" v-model="searchKeyword" placeholder="请输入物流公司名称或编号"></el-input></el-col>
+      <el-col :span="10"><el-input v-model="searchKeyword" size="small" placeholder="请输入物流公司名称或编号" /></el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
-
-      <el-table-column
-            prop="username"
-            label="账号">
-          </el-table-column>
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
-            prop="level"
-            label="等级"
-            width="120">
-          </el-table-column>
+        prop="username"
+        label="账号" />
 
       <el-table-column
-            prop="shopName"
-            label="店铺名称">
-          </el-table-column>
+        prop="level"
+        label="等级"
+        width="120" />
 
       <el-table-column
-            prop="phoneNumber"
-            label="手机号"
-            width="120">
-          </el-table-column>
+        prop="shopName"
+        label="店铺名称" />
 
       <el-table-column
-            prop="salesCount"
-            label="销售总额"
-            width="120">
-          </el-table-column>
+        prop="phoneNumber"
+        label="手机号"
+        width="120" />
 
       <el-table-column
-            prop="upper"
-            label="上级推广员">
-          </el-table-column>
+        prop="salesCount"
+        label="销售总额"
+        width="120" />
 
       <el-table-column
-            prop="applicationDate"
-            label="申请时间"
-            width="140">
-          </el-table-column>
+        prop="upper"
+        label="上级推广员" />
 
       <el-table-column
-          label="状态"
-          width="80">
-          <template slot-scope="scope">
-            <el-tag v-show="scope.row.status==1" type="success">审核中</el-tag>
-            <el-tag v-show="scope.row.status==2" type="warning">已拒绝</el-tag>
-          </template>
+        prop="applicationDate"
+        label="申请时间"
+        width="140" />
+
+      <el-table-column
+        label="状态"
+        width="80">
+        <template slot-scope="scope">
+          <el-tag v-show="scope.row.status==1" type="success">审核中</el-tag>
+          <el-tag v-show="scope.row.status==2" type="warning">已拒绝</el-tag>
+        </template>
       </el-table-column>
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-show="scope.row.status==1">通过</el-button>
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-show="scope.row.status==1">拒绝</el-button>
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-show="scope.row.status==2">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button v-show="scope.row.status==1" size="mini" @click="handleEdit(scope.$index, scope.row)" >通过</el-button>
+          <el-button v-show="scope.row.status==1" size="mini" @click="handleEdit(scope.$index, scope.row)" >拒绝</el-button>
+          <el-button v-show="scope.row.status==2" size="mini" @click="handleEdit(scope.$index, scope.row)" >删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
 
-    <br/>
+    <br>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'list',
+  name: 'VerifyList',
   data () {
     return {
       searchKeyword: '',
@@ -124,8 +118,6 @@ export default {
       console.log('search', this.searchKeyword)
     }
 
-  },
-  components: {
   }
 }
 </script>

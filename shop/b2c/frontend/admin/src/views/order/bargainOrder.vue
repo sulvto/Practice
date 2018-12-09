@@ -23,48 +23,47 @@
           <el-form-item label="下单时间">
             <el-date-picker
               v-model="queryForm.orderDateRange"
+              :picker-options="datePickerOptions"
               type="daterange"
               align="right"
               unlink-panels
               range-separator="至"
               start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="datePickerOptions">
-            </el-date-picker>
+              end-placeholder="结束日期"/>
           </el-form-item>
           <el-form-item>
             <el-popover
+              v-model="moreQueryPopoverVisible"
               placement="bottom"
               width="400"
-              trigger="click"
-              v-model="moreQueryPopoverVisible">
+              trigger="click">
               <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
                 <el-form-item label="订单编号">
-                  <el-input v-model="queryForm.orderNo"></el-input>
+                  <el-input v-model="queryForm.orderNo" />
                 </el-form-item>
 
                 <el-form-item label="收货人姓名">
-                  <el-input v-model="queryForm.receiver"></el-input>
+                  <el-input v-model="queryForm.receiver" />
                 </el-form-item>
 
                 <el-form-item label="收货人手机号">
-                  <el-input v-model="queryForm.receiverMobile"></el-input>
+                  <el-input v-model="queryForm.receiverMobile" />
                 </el-form-item>
 
                 <el-form-item label="支付方式">
                   <el-select v-model="queryForm.paymentType" clearable placeholder="请选择">
-                    <el-option label="微信" :value="1"></el-option>
-                    <el-option label="支付宝" :value="2"></el-option>
-                    <el-option label="线下支付" :value="3"></el-option>
-                    <el-option label="货到付款" :value="4"></el-option>
+                    <el-option :value="1" label="微信" />
+                    <el-option :value="2" label="支付宝" />
+                    <el-option :value="3" label="线下支付" />
+                    <el-option :value="4" label="货到付款" />
                   </el-select>
                 </el-form-item>
 
                 <el-form-item label="配送方式">
                   <el-select v-model="queryForm.shippingType" clearable placeholder="请选择">
-                    <el-option label="物流配送" :value="1"></el-option>
-                    <el-option label="买家自提" :value="2"></el-option>
-                    <el-option label="本地配送" :value="3"></el-option>
+                    <el-option :value="1" label="物流配送" />
+                    <el-option :value="2" label="买家自提" />
+                    <el-option :value="3" label="本地配送" />
                   </el-select>
                 </el-form-item>
 
@@ -72,7 +71,7 @@
                   <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
                 </el-form-item>
               </el-form>
-              <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
+              <el-button slot="reference" icon="el-icon-arrow-down" size="small" />
             </el-popover>
             <el-button type="primary" size="small" @click="search">查询</el-button>
           </el-form-item>
@@ -80,14 +79,14 @@
       </el-col>
     </el-row>
 
-    <el-table border
+    <el-table
       :data="tableData"
       :span-method="objectSpanMethod"
+      border
       style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         label="商品信息"
@@ -102,7 +101,7 @@
             <a href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=150" target="_blank" style="color:#333;">
               {{ scope.row.goodsName }}
             </a>
-              <p class="specification" style="margin-bottom: 0px;"><span style="color:#8e8c8c;font-size:12px;">5.0 </span></p>
+            <p class="specification" style="margin-bottom: 0px;"><span style="color:#8e8c8c;font-size:12px;">5.0 </span></p>
           </div>
         </template>
       </el-table-column>
@@ -117,6 +116,8 @@
           <div style="display: inline-block;float:right;">
             {{ scope.row.goodsNumber }}件
           </div>
+          <!-- TODO: 退款 -->
+          <!-- <a href="/order/orderrefunddetail?itemid=347" style="margin:5px 0 10px 0;display:block;">退款已成功</a> -->
         </template>
       </el-table-column>
 
@@ -139,7 +140,13 @@
         width="120">
         <template slot-scope="scope">
           <div style="text-align:center">
-            <div style="text-align:left;"><span class="expressfee">1</span><br><span class="expressfee">13333333333</span><br><span class="expressfee">台湾省&nbsp;台湾省&nbsp;台北&nbsp;2</span></div>
+            <div style="text-align:left;">
+              <span class="expressfee">1</span>
+              <br>
+              <span class="expressfee">13333333333</span>
+              <br>
+              <span class="expressfee">台湾省&nbsp;台湾省&nbsp;台北&nbsp;2</span>
+            </div>
           </div>
         </template>
       </el-table-column>
@@ -152,13 +159,12 @@
             nicemb
             <br>
             <!-- TODO: melibe pc -->
-            <i class="fa fa-television" style="color:#666;"></i>
+            <i class="fa fa-television" style="color:#666;" />
           </div>
         </template>
       </el-table-column>
 
       <el-table-column
-        prop="status"
         label="交易状态"
         width="180">
         <template slot-scope="scope">
@@ -177,144 +183,33 @@
       </el-table-column>
 
       <el-table-column
+        prop="expressType"
         label="配送方式"
-        width="180">
-        <template slot-scope="scope">
-          <div class="business-status" style="text-align:center">物流配送<br></div>
-        </template>
-      </el-table-column>
+        width="180" />
 
       <el-table-column
-        label="操作" fixed="right"
-          width="100">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">订单详情</el-button>
-              <br>
-              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 3">提货</el-button>
-              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 2">发货</el-button>
+        label="操作"
+        fixed="right"
+        width="100">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">订单详情</el-button>
+          <br>
+          <el-button v-if="scope.row.status === 3" size="mini" @click="showUpdateMemosDialog(scope.row)" >提货</el-button>
+          <el-button v-if="scope.row.status === 2" size="mini" @click="showUpdateMemosDialog(scope.row)" >发货</el-button>
 
-              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)">备注</el-button>
-              <br/>
-              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 2">修改地址</el-button>
-              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 7">删除订单</el-button>
-              <el-button size="mini" @click="showUpdateMemosDialog(scope.row)" v-if="scope.row.status === 6">查看物流</el-button>
-          </template>
+          <el-button size="mini" @click="showUpdateMemosDialog(scope.row)">备注</el-button>
+          <br>
+          <el-button v-if="scope.row.status === 2" size="mini" @click="showUpdateMemosDialog(scope.row)" >修改地址</el-button>
+          <el-button v-if="scope.row.status === 7" size="mini" @click="showUpdateMemosDialog(scope.row)" >删除订单</el-button>
+          <el-button v-if="scope.row.status === 6" size="mini" @click="showUpdateMemosDialog(scope.row)" >查看物流</el-button>
+        </template>
       </el-table-column>
     </el-table>
 
-    <div class="ns-main">
-
-  <input type="hidden" id="order_id">
-  <input type="hidden" id="print_select_ids">
-  <input type="hidden" id="order_status" value="">
-  <div>
-  <table class="mytable select">
-    <tbody><tr>
-      <th align="left">
-        <button onclick="dataExcel()" class="btn-common">导出数据</button>
-
-        <a class="btn-common-white" id="PrintOrder" href="javascript:;">
-          <i class="fa fa-print"></i>
-          <span>打印订单</span>
-        </a>
-              </th>
-      <th style="position: relative;">
-        <span>下单时间：</span>
-        <input type="text" id="startDate" class="input-common middle" placeholder="请选择开始日期" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
-        &nbsp;-&nbsp;
-        <input type="text" id="endDate" placeholder="请选择结束日期" class="input-common middle" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
-        <button class="btn-common-white more-search"><i class="fa fa-chevron-down"></i></button>
-        <button onclick="searchData()" class="btn-common">搜索</button>
-
-        <!-- 更多搜索 -->
-        <div class="more-search-container">
-          <dl>
-            <dt>订单编号：</dt>
-            <dd>
-              <input id="orderNo" class="input-common middle" type="text">
-            </dd>
-          </dl>
-          <dl>
-            <dt>收货人姓名：</dt>
-            <dd>
-              <input id="userName" class="input-common middle" type="text">
-            </dd>
-          </dl>
-          <dl>
-            <dt>收货人手机号：</dt>
-            <dd>
-              <input id="receiverMobile" class="input-common middle" type="text">
-            </dd>
-          </dl>
-          <dl>
-            <dt>支付方式：</dt>
-            <dd>
-              <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select"><select id="payment_type" class="select-common middle" tabindex="-1">
-                <option value="">全部</option>
-                <option value="1">微信</option>
-                <option value="2">支付宝</option>
-                <option value="10">线下支付</option>
-                <option value="4">货到付款</option>
-              </select></div><div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="全部">全部</li><li data-index="1" class="" title="微信">微信</li><li data-index="2" class="" title="支付宝">支付宝</li><li data-index="3" class="" title="线下支付">线下支付</li><li data-index="4" class="last" title="货到付款">货到付款</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-            </dd>
-          </dl>
-          <dl>
-            <dt>配送方式：</dt>
-            <dd>
-              <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;"><div class="selectric-hide-select"><select id="shipping_type" class="select-common middle" tabindex="-1">
-                <option value="0">全部</option>
-                <option value="1">物流配送</option>
-                <option value="2">买家自提</option>
-                <option value="3">本地配送</option>
-              </select></div><div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="selected" title="全部">全部</li><li data-index="1" class="" title="物流配送">物流配送</li><li data-index="2" class="" title="买家自提">买家自提</li><li data-index="3" class="last" title="本地配送">本地配送</li></ul></div></div><input class="selectric-input" tabindex="0"></div>
-            </dd>
-          </dl>
-          <dl>
-            <dt></dt>
-            <dd><button onclick="searchData()" class="btn-common">搜索</button></dd>
-          </dl>
-        </div>
-      </th>
-    </tr>
-  </tbody></table>
-
-  <table class="table-class" id="ajax-orderlist">
-    <colgroup>
-      <col width="2%">
-      <col width="34%">
-      <col width="14%">
-      <col width="10%">
-      <col width="10%">
-      <col width="6%">
-      <col width="7%">
-      <col width="7%">
-      <col width="10%">
-    </colgroup>
-    <thead>
-      <tr align="center">
-        <th>
-          <i class="checkbox-common">
-            <input type="checkbox" onclick="CheckAll(this)" id="check">
-          </i>
-        </th>
-        <th>商品信息</th>
-        <th>商品清单</th>
-        <th>订单金额</th>
-        <th>收货信息</th>
-        <th>买家</th>
-        <th>交易状态</th>
-        <th>配送方式</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody id="ajax-orderlist"><tr><td rowspan="1"><i class="checkbox-common"><input id="153137826366141000" type="checkbox" value="316" name="sub"></i></td><td><div style="font-size: 12px;color: #126AE4;margin-bottom:5px;"><span>订单编号：2018071214490001</span>&nbsp;<span>下单时间：2018-07-12 14:49:11</span></div><div class="product-img"><img src="/upload/goods/1499339438694.jpg"></div><div class="product-infor"><a href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=30" target="_blank" style="color:#333;">浴霸智能开关 触摸86型卫生间风暖通用防水4四五合一5开开关面板</a></div></td><td><div class="cell" style="display: inline-block;"><span>180.00元</span></div><div class="cell" style="display: inline-block;float:right;">1件</div><a href="/order/orderrefunddetail?itemid=347" style="margin:5px 0 10px 0;display:block;">退款已成功</a></td><td rowspan="1" style="text-align:center"><div class="cell"><b class="netprice" style="color: #FF6600;font-size: 14px;font-weight: normal;">144.00</b><br><span class="expressfee">(含配送费:0.00元)</span><br><span class="expressfee">线下支付</span></div></td><td rowspan="1" style="text-align:center"><div style="text-align:left;"><span class="expressfee">22222222</span><br><span class="expressfee">14725698564</span><br><span class="expressfee">广西壮族自治区&nbsp;河池市&nbsp;大化瑶族自治县&nbsp;22</span></div></td><td rowspan="1" style="text-align:center"><div class="cell">admin<br><i class="fa fa-mobile fa-2x" style="color:#666;"><i></i></i></div></td><td rowspan="1"><div class="business-status" style="text-align:center">已关闭<br></div></td><td rowspan="1"><div class="business-status" style="text-align:center">物流配送<br></div></td><td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/bargainOrderDetail?order_id=316">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',316)">备注</a><a style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',316)">删除订单</a></td></tr><tr style="height:10px;"><td style="border-bottom:solid #E1E6F0;border-width:0 0 1px 0;" colspan="10"></td></tr><tr><td rowspan="1"><i class="checkbox-common"><input id="152946198724741000" type="checkbox" value="217" name="sub"></i></td><td><div style="font-size: 12px;color: #126AE4;margin-bottom:5px;"><span>订单编号：2018062010330001</span>&nbsp;<span>下单时间：2018-06-20 10:33:07</span></div><div class="product-img"><img src="/upload/goods/20180609/8fae147e6438e98450112f0a6c39022f4.jpg"></div><div class="product-infor"><a href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=77" target="_blank" style="color:#333;">212313132</a><p class="specification" style="margin-bottom: 0px;"><span style="color:#8e8c8c;font-size:12px;">土豪金 </span></p><p class="specification"><span style="color:#8e8c8c;font-size:12px;">编码&nbsp;&nbsp;5</span></p></div></td><td><div class="cell" style="display: inline-block;"><span>5.00元</span></div><div class="cell" style="display: inline-block;float:right;">1件</div></td><td rowspan="1" style="text-align:center"><div class="cell"><b class="netprice" style="color: #FF6600;font-size: 14px;font-weight: normal;">0.50</b><br><span class="expressfee">(含配送费:0.00元)</span><br><span class="expressfee">微信支付</span></div></td><td rowspan="1" style="text-align:center"><div style="text-align:left;"><span class="expressfee">cqinter</span><br><span class="expressfee">18696529503</span><br><span class="expressfee">四川省&nbsp;巴中市&nbsp;通江县&nbsp;dddd</span></div></td><td rowspan="1" style="text-align:center"><div class="cell">cqinter<br><i class="fa fa-mobile fa-2x" style="color:#666;"><i></i></i></div></td><td rowspan="1"><div class="business-status" style="text-align:center">已关闭<br></div></td><td rowspan="1"><div class="business-status" style="text-align:center">物流配送<br></div></td><td rowspan="1" style="text-align:center;"><a style="display:block;margin-bottom:5px;" href="/order/bargainOrderDetail?order_id=217">订单详情</a><a style="display:block;margin-bottom:5px;color:#666666" href="javascript:operation('seller_memo',217)">备注</a><a style="display:block;margin-bottom:5px;color:#ff0000" href="javascript:operation('delete_order',217)">删除订单</a></td></tr></tbody>
-  </table>
-  </div>
-
-  <div id="orderAction">
+  <!-- <div id="orderAction"> -->
 
   <!-- 模态框（Modal） -->
-  <div id="edit-price" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 650px;overflow: overlay;">
+  <!-- <div id="edit-price" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 650px;overflow: overlay;">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="margin-right: 10px;">×</button>
     <h3 id="H1">修改价格</h3>
@@ -370,18 +265,18 @@
     <button class="btn-common btn-big" onclick="updPrice()" id="butSubmit">保存</button>
     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
   </div>
-  </div>
+  </div> -->
 
-  <div class="modal hide fade" id="Delivery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="left:32%">
+  <!-- <div class="modal hide fade" id="Delivery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="left:32%">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3>商品发货</h3>
       </div>
-      <div class="modal-body">
-        <!-- 主要内容 -->
-        <div style="padding: 0 0 10px 0;">待发货(<span id="no_shipping_num"></span>)，已选<span id="checkedbox">0</span></div>
+      <div class="modal-body"> -->
+  <!-- 主要内容 -->
+  <!-- <div style="padding: 0 0 10px 0;">待发货(<span id="no_shipping_num"></span>)，已选<span id="checkedbox">0</span></div>
         <table class="table-class" style="margin-bottom:10px;">
           <thead>
             <tr>
@@ -435,19 +330,19 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
 
   <!-- 本地配送模态框 -->
-  <div class="modal hide fade" id="o2o_Delivery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="left:32%">
+  <!-- <div class="modal hide fade" id="o2o_Delivery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="left:32%">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3>商品发货</h3>
       </div>
-      <div class="modal-body">
-        <!-- 主要内容 -->
-        <div>待发货(<span id="o2o_shipping_num"></span>)</div>
+      <div class="modal-body"> -->
+  <!-- 主要内容 -->
+  <!-- <div>待发货(<span id="o2o_shipping_num"></span>)</div>
         <table class="table table-hover" style="margin-bottom:10px;">
           <thead>
             <tr>
@@ -483,19 +378,19 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
 
   <!-- 自提模态 -->
-  <div class="modal hide fade" id="pickup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-365px; width: 700px;">
+  <!-- <div class="modal hide fade" id="pickup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-365px; width: 700px;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3>商品提货</h3>
       </div>
-      <div class="modal-body">
-        <!-- 主要内容 -->
-        <table class="table table-hover" style="margin-bottom:10px;">
+      <div class="modal-body"> -->
+  <!-- 主要内容 -->
+  <!-- <table class="table table-hover" style="margin-bottom:10px;">
           <thead></thead>
           <colgroup></colgroup><colgroup>
           </colgroup><tbody></tbody>
@@ -523,9 +418,9 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
   <!-- 修改收货地址模态 -->
-  <div class="modal hide fade" id="update_address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-365px; width: 700px;">
+  <!-- <div class="modal hide fade" id="update_address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-365px; width: 700px;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -589,10 +484,10 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
 
   <!-- 模态框（Modal） -->
-  <div class="modal fade hide" id="Memobox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:700px;left:45%;top:30%;">
+  <!-- <div class="modal fade hide" id="Memobox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:700px;left:45%;top:30%;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -616,10 +511,10 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
 
   <!-- 修改运单号 -->
-  <div class="modal hide fade" id="update_express" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 700px; left: 45%; top: 30%; display: none;">
+  <!-- <div class="modal hide fade" id="update_express" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 700px; left: 45%; top: 30%; display: none;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -646,10 +541,10 @@
         <button class="btn-common-cancle btn-big" data-dismiss="modal">关闭</button>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- 打印发货单 -->
-  <div id="prite-send" class="modal hide fade" data-backdrop="static" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;">
+  <!-- <div id="prite-send" class="modal hide fade" data-backdrop="static" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3>打印发货单</h3>
@@ -705,10 +600,10 @@
     <button class="btn-common" id="invoicePrinPreview" aria-hidden="true">打印预览</button>
     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
   </div>
-  </div>
+  </div> -->
 
   <!-- 打印出库单 -->
-  <div id="print-billOfSales" class="modal hide fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;" data-backdrop="static">
+  <!-- <div id="print-billOfSales" class="modal hide fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;" data-backdrop="static">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3>打印出库单</h3>
@@ -770,10 +665,10 @@
     <button class="btn-common" onclick="printpreviewOfInvoice();" aria-hidden="true">打印预览</button>
     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
   </div>
-  </div>
+  </div> -->
 
   <!-- 打印快递单-->
-  <div id="prite-send-express" class="modal hide fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;" data-backdrop="static">
+  <!-- <div id="prite-send-express" class="modal hide fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left:-536px;border-radius: 0;" data-backdrop="static">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3>打印快递单</h3>
@@ -821,10 +716,10 @@
     <button class="btn-common" id="expressPrinPreview" aria-hidden="true">打印预览</button>
     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
   </div>
-  </div>
+  </div> -->
 
   <!-- 批量发货 -->
-  <div id="not-shipped-order-list" role="dialog" class="modal hide fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" style="margin-left:-536px;border-radius: 0;">
+  <!-- <div id="not-shipped-order-list" role="dialog" class="modal hide fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" style="margin-left:-536px;border-radius: 0;">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3>批量发货</h3>
@@ -868,9 +763,9 @@
     <button class="btn-common" id="confirm_delivery" aria-hidden="true">确认发货</button>
     <button class="btn-common-cancle btn-big" data-dismiss="modal" aria-hidden="true">关闭</button>
   </div>
-  </div>
+  </div> -->
 
-  <div class="modal fade hide" id="confirmRefund" tabindex="-1" aria-labelledby="确认退款" aria-hidden="true" data-backdrop="static" style="width: 650px; overflow: overlay;top:50%;">
+  <!-- <div class="modal fade hide" id="confirmRefund" tabindex="-1" aria-labelledby="确认退款" aria-hidden="true" data-backdrop="static" style="width: 650px; overflow: overlay;top:50%;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -902,9 +797,9 @@
         </div>
 
       </div>
-      <div class="modal-footer">
-        <!-- 温馨提示 -->
-        <div class="refunds-block js-not-configured-prompt"></div>
+      <div class="modal-footer"> -->
+  <!-- 温馨提示 -->
+  <!-- <div class="refunds-block js-not-configured-prompt"></div>
         <input type="hidden" id="confirm_order_id">
         <input type="hidden" id="confirm_order_goods_id">
         <input type="hidden" id="refund_require_money">
@@ -913,8 +808,8 @@
       </div>
     </div>
   </div>
-  </div>
-  <div class="modal hide fade" tabindex="-1" aria-labelledby="退款操作提醒" aria-hidden="true" data-backdrop="static" id="refundOperationReminder" style="width:600px;top: 50%;">
+  </div> -->
+  <!-- <div class="modal hide fade" tabindex="-1" aria-labelledby="退款操作提醒" aria-hidden="true" data-backdrop="static" id="refundOperationReminder" style="width:600px;top: 50%;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -929,15 +824,15 @@
         <div class="refunds-block js-confirmation-prompt"></div>
         <div style="clear: both;"></div>
       </div>
-      <div class="modal-footer">
-        <!-- 温馨提示 -->
-        <button class="btn-common disabled" id="countdown_refund_confirm">确定</button>
+      <div class="modal-footer"> -->
+  <!-- 温馨提示 -->
+  <!-- <button class="btn-common disabled" id="countdown_refund_confirm">确定</button>
         <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
       </div>
     </div>
   </div>
-  </div>
-  <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="refuseRefund" style="width:300px;">
+  </div> -->
+  <!-- <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="refuseRefund" style="width:300px;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -974,8 +869,8 @@
       </div>
     </div>
   </div>
-  </div>
-  <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="confirm_receipt" style="width:400px;">
+  </div> -->
+  <!-- <div class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="confirm_receipt" style="width:400px;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -1009,9 +904,9 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
 
-  </div>
+  <!-- </div> -->
 
   </section>
 </template>
@@ -1021,25 +916,55 @@ require('@/assets/style/table.scss')
 require('@/assets/style/order/list.scss')
 
 export default {
-  name: 'bargainOrder',
+  name: 'BargainOrder',
   data () {
     return {
       queryForm: {},
-      orderList: []
+      orderList: [{
+        id: '30',
+        orderNo: '2018071214490001',
+        createDate: '2018-07-12 14:49:11',
+        status: 7,
+        goodsName: '浴霸智能开关 触摸86型卫生间风暖通用防水4四五合一5开开关面板',
+        goodsPrices: 180.00,
+        number: 1,
+        buyer: 'admin',
+        buyType: 'mobile',
+        express_name: '22222222',
+        express_tel: '14725698564',
+        express_address: '广西壮族自治区 河池市 大化瑶族自治县 22',
+        orderPrice: 144.00,
+        expressType: '物流配送'
+      }, {
+        id: '77',
+        orderNo: '2018062010330001',
+        createDate: '2018-06-20 10:33:07',
+        status: 7,
+        goodsName: '212313132',
+        goodsPrices: 5.00,
+        number: 1,
+        buyer: 'cqinter',
+        buyType: 'mobile',
+        express_name: 'cqinter',
+        express_tel: '18696529503',
+        express_address: '四川省 巴中市 通江县 dddd',
+        orderPrice: 0.50,
+        expressType: '物流配送'
+      }]
     }
   },
   computed: {
     tableData () {
-      let result = []
+      var result = []
       this.orderList.forEach(orderListItem => {
-        let goods = this.copyOrderGoodsInfo(orderListItem, 0)
+        var goods = this.copyOrderGoodsInfo(orderListItem, 0)
         if (orderListItem.goodsList.length > 1) {
           goods.multirow = true
           result.push(Object.assign(goods, orderListItem))
 
           orderListItem.goodsList.forEach((goodsListItem, index) => {
             if (index > 0) {
-              let goods = this.copyOrderGoodsInfo(orderListItem, index)
+              var goods = this.copyOrderGoodsInfo(orderListItem, index)
               goods.duplicate = true
               result.push(Object.assign(goods, orderListItem))
             }
@@ -1054,7 +979,7 @@ export default {
 
   methods: {
     copyOrderGoodsInfo ({ goodsList = [] }, index) {
-      let result = {}
+      var result = {}
       result.goodsName = goodsList[index].name
       result.goodsNumber = goodsList[index].number
       result.goodsPrices = goodsList[index].price
@@ -1080,7 +1005,6 @@ export default {
         }
       }
     }
-  },
-  components: {}
+  }
 }
 </script>

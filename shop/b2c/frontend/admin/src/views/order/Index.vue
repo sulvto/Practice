@@ -1,13 +1,13 @@
 <template>
   <div >
-      <router-view/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'order',
+  name: 'Order',
   data () {
     return {
       menuList: [
@@ -42,9 +42,6 @@ export default {
         }
       ]
     }
-  },
-
-  components: {
   }
 }
 </script>

@@ -2,23 +2,13 @@
   <section class="ns-base-section">
 
     <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-      <div class="breadcrumb-nav">
-        <a href="index.html">大鵬系統</a>
-        <i class="fa fa-angle-right"></i>
-        <a href="/account/shopsalesaccount.html">数据</a>
-        <i class="fa fa-angle-right"></i>
-        <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/account/shopreport -->
-        <a href="javascript:;" style="color:#999;">运营报告</a>
-      </div>
-      <!-- 三级导航菜单 -->
 
       <div class="right-side-operation">
         <ul>
           <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"></i>&nbsp;提示</a>
+            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle"/>&nbsp;提示</a>
             <div class="popover">
-              <div class="arrow"></div>
+              <div class="arrow" />
               <div class="popover-content">
                 <div>
                   <h4>操作提示</h4>
@@ -47,11 +37,13 @@
             <td>
               <span>统计方式：</span>
               <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
-                <div class="selectric-hide-select"><select name="search_type" id="search_type" class="select-common middle" tabindex="-1">
-          <option value="1">按照天统计</option>
-          <option value="3">按照周统计</option>
-          <option value="4">按照月统计</option>
-        </select></div>
+                <div class="selectric-hide-select">
+                  <select name="search_type" class="select-common middle" tabindex="-1">
+                    <option value="1">按照天统计</option>
+                    <option value="3">按照周统计</option>
+                    <option value="4">按照月统计</option>
+                  </select>
+                </div>
                 <div class="selectric"><span class="selectric-label">按照天统计</span><button class="selectric-button">▾</button></div>
                 <div class="selectric-items" tabindex="-1">
                   <div class="selectric-scroll">
@@ -61,7 +53,9 @@
                       <li data-index="2" class="last" title="按照月统计">按照月统计</li>
                     </ul>
                   </div>
-                </div><input class="selectric-input" tabindex="0"></div>
+                </div>
+                <input class="selectric-input" tabindex="0">
+              </div>
               <button class="btn-common" value="搜索" onclick="search();">搜索</button>
             </td>
           </tr>
@@ -71,13 +65,15 @@
         <ul class="mt5">
           <li>
             <span class="w210 fl h30 " style="display:block;">
-          <i title="店铺符合搜索条件的订单总金额" class="tip icon-question-sign"></i>
-          总下单金额：<strong id="money">0元</strong>
-        </span>
+              <i title="店铺符合搜索条件的订单总金额" class="tip icon-question-sign" />
+              总下单金额：
+              <strong id="money">0元</strong>
+            </span>
             <span class="w210 fl h30" style="display:block;">
-          <i title="店铺符合搜索条件的订单数量" class="tip icon-question-sign"></i>
-          总下单量：<strong id="num">0</strong>
-        </span>
+              <i title="店铺符合搜索条件的订单数量" class="tip icon-question-sign" />
+              总下单量：
+              <strong id="num">0</strong>
+            </span>
           </li>
         </ul>
       </div>
@@ -90,21 +86,23 @@
       </nav>
       <!-- 下单金额 -->
       <div id="money_div" class="ui-tabs-panel" data-highcharts-chart="1">
-        <div class="highcharts-container" id="highcharts-2" style="width:99%;position:relative;overflow:hidden;height:400px;font-size:12px;" data-highcharts-chart="0">
+        <div class="highcharts-container" data-id="highcharts-2" style="width:99%;position:relative;overflow:hidden;height:400px;font-size:12px;" data-highcharts-chart="0">
           <div id="highcharts-4wjwv44-0" class="highcharts-container " style="position: relative; overflow: hidden; width: 1177px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
             <span
-                style="font-family: &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif; font-size: 18px; position: absolute; white-space: nowrap; margin-left: 0px; margin-top: 0px; left: 535px; top: 7px; color: rgb(51, 51, 51);"
-                class="highcharts-title" transform="translate(0,0)">下单金额统计</span>
+              style="font-family: &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif; font-size: 18px; position: absolute; white-space: nowrap; margin-left: 0px; margin-top: 0px; left: 535px; top: 7px; color: rgb(51, 51, 51);"
+              class="highcharts-title"
+              transform="translate(0,0)">下单金额统计</span>
           </div>
         </div>
       </div>
       <!-- 下单量 -->
       <div id="num_div" class="ui-tabs-panel ui-tabs-hide hide" style="display: none;">
-        <div class="highcharts-container" id="highcharts-3" style="width:99%;position:relative;overflow:hidden;height:400px;font-size:12px;" data-highcharts-chart="1">
+        <div class="highcharts-container" data-id="highcharts-3" style="width:99%;position:relative;overflow:hidden;height:400px;font-size:12px;" data-highcharts-chart="1">
           <div id="highcharts-4wjwv44-4" class="highcharts-container " style="position: relative; overflow: hidden; width: 1337px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
             <span
-                style="font-family: &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif; font-size: 18px; position: absolute; white-space: nowrap; margin-left: 0px; margin-top: 0px; left: 624px; top: 7px; color: rgb(51, 51, 51);"
-                class="highcharts-title" transform="translate(0,0)">下单量统计</span>
+              style="font-family: &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif; font-size: 18px; position: absolute; white-space: nowrap; margin-left: 0px; margin-top: 0px; left: 624px; top: 7px; color: rgb(51, 51, 51);"
+              class="highcharts-title"
+              transform="translate(0,0)">下单量统计</span>
           </div>
         </div>
       </div>

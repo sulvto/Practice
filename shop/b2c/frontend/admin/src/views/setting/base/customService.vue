@@ -37,47 +37,47 @@
 <!-- </dd> -->
 <!-- </dl> -->
 <template>
-    <el-form ref="form" :model="customServiceConfigFrom" label-width="100px" size="mini" label-position="right">
+  <el-form ref="form" :model="customServiceConfigFrom" label-width="100px" size="mini" label-position="right">
 
-        <el-form-item label="启用">
-            <el-radio-group v-model="customServiceConfigFrom.customServiceType" size="mini">
-              <el-radio-button label="美洽" value="meiqia"></el-radio-button>
-              <el-radio-button label="kf5" value="kf5"></el-radio-button>
-              <el-radio-button label="qq" value="qq"></el-radio-button>
-          </el-radio-group>
-        </el-form-item>
+    <el-form-item label="启用">
+      <el-radio-group v-model="customServiceConfigFrom.customServiceType" size="mini">
+        <el-radio-button label="美洽" value="meiqia" />
+        <el-radio-button label="kf5" value="kf5" />
+        <el-radio-button label="qq" value="qq" />
+      </el-radio-group>
+    </el-form-item>
 
-        <el-form-item label="美洽客服链接">
-            <el-input v-model="customServiceConfigFrom.meiqiaServiceAddress" :disabled="customServiceConfigFrom.customServiceType!=='meiqia'"></el-input>
-        </el-form-item>
+    <el-form-item label="美洽客服链接">
+      <el-input v-model="customServiceConfigFrom.meiqiaServiceAddress" :disabled="customServiceConfigFrom.customServiceType!=='meiqia'"/>
+    </el-form-item>
 
-        <el-form-item label="kf5客服链接">
-            <el-input v-model="customServiceConfigFrom.kf5ServiceAddress" :disabled="customServiceConfigFrom.customServiceType!=='kf5'"></el-input>
-        </el-form-item>
+    <el-form-item label="kf5客服链接">
+      <el-input v-model="customServiceConfigFrom.kf5ServiceAddress" :disabled="customServiceConfigFrom.customServiceType!=='kf5'"/>
+    </el-form-item>
 
-        <el-form-item label="QQ客服" >
-            <el-input v-model="customServiceConfigFrom.qqServiceNumber" :disabled="customServiceConfigFrom.customServiceType!=='qq'"></el-input>
-        </el-form-item>
+    <el-form-item label="QQ客服" >
+      <el-input v-model="customServiceConfigFrom.qqServiceNumber" :disabled="customServiceConfigFrom.customServiceType!=='qq'"/>
+    </el-form-item>
 
-        <el-form-item>
-            <el-button type="primary" @click="submitForm('customServiceConfigFrom')">保存</el-button>
-        </el-form-item>
-    </el-form>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('customServiceConfigFrom')">保存</el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
 export default {
-  name: 'customService',
-  methods: {
-    submitForm () {
-
-    }
-  },
+  name: 'CustomService',
   data () {
     return {
       customServiceConfigFrom: {
         customServiceType: 'qq'
       }
+    }
+  },
+  methods: {
+    submitForm () {
+
     }
   }
 }

@@ -2,12 +2,11 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="类型名称" prop="name">
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="排序">
-      <el-input type="number"  v-model="editForm.sort" >
-      </el-input>
+      <el-input v-model="editForm.sort" type="number" />
     </el-form-item>
 
     <el-form-item>
@@ -19,7 +18,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'HelpClassEdit',
   data () {
     return {
       editForm: {},

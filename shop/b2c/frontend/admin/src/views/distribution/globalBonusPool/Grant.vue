@@ -3,7 +3,7 @@
 
     <div class="ns-main">
 
-  <div class="set-style">
+      <!-- <div class="set-style">
 
   <p style="font-size:14px;color:#FFF;padding-top:5px;padding-bottom:5px;line-height:20px;height:20px;padding-left:10px;background-color:#28b779;">上次发放时间:1536128939  发放分红:5000.00</p>
   <input type="hidden" id="last_time" value="2018-09-05">
@@ -54,7 +54,7 @@
   </table>
   </div>
   <input type="hidden" value="1" id="hidden_is_global_enable">
-  <div id="dialog"></div>
+  <div id="dialog"></div> -->
     </div>
 
   </section>

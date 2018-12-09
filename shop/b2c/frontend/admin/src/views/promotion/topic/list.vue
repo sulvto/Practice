@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-tabs v-model="tabActiveName" @tab-click="handleClick">
-      <el-tab-pane label="全部" name="first"></el-tab-pane>
-      <el-tab-pane label="进行中" name="second"></el-tab-pane>
-      <el-tab-pane label="已关闭" name="third"></el-tab-pane>
-      <el-tab-pane label="已结束" name="fourth"></el-tab-pane>
+      <el-tab-pane label="全部" name="first" />
+      <el-tab-pane label="进行中" name="second" />
+      <el-tab-pane label="已关闭" name="third" />
+      <el-tab-pane label="已结束" name="fourth" />
     </el-tabs>
 
     <el-row :gutter="8">
@@ -14,41 +14,39 @@
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入专题活动名称"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入专题活动名称" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         prop="name"
-        label="活动名称">
-      </el-table-column>
+        label="活动名称" />
 
       <el-table-column
         label="图像"
         width="120">
         <template slot-scope="scope">
-            <img src="http://showfx.niuteam.cn/upload/common/1533095180.jpg">
+          <img src="http://showfx.niuteam.cn/upload/common/1533095180.jpg">
         </template>
       </el-table-column>
 
       <el-table-column
-          label="活动状态"
-          width="180">
+        label="活动状态"
+        width="180">
         <template slot-scope="scope">
-            <span v-if="scope.row.status === 1">进行中</span>
-            <span v-if="scope.row.status === 2">已关闭</span>
-            <span v-if="scope.row.status === 3">已结束</span>
+          <span v-if="scope.row.status === 1">进行中</span>
+          <span v-if="scope.row.status === 2">已关闭</span>
+          <span v-if="scope.row.status === 3">已结束</span>
         </template>
       </el-table-column>
 
@@ -62,19 +60,21 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" fixed="right"
-          width="300">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">预览</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button size="mini" @click="showTopicDetailDialog(scope.row)">详情</el-button>
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="300">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">预览</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" @click="showTopicDetailDialog(scope.row)">详情</el-button>
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
 
-    <el-dialog title="设置商品折扣" size="small" :visible.sync="dialogTopicDetailVisible">
-      <el-form size="small" :model="topicDetail" label-width="100px" >
+    <el-dialog :visible.sync="dialogTopicDetailVisible" title="设置商品折扣" size="small" >
+      <el-form :model="topicDetail" size="small" label-width="100px" >
 
         <el-form-item label="活动名称">
           {{ topicDetail.name }}
@@ -124,7 +124,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'TopicList',
   data () {
     return {
       searchKeyword: '',

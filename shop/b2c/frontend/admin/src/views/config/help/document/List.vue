@@ -6,48 +6,46 @@
         <el-button type="primary" size="small" @click="$router.push('edit.html')">添加帮助内容</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
-      <el-col :span="2">
-      </el-col>
+      <el-col :span="10" />
+      <el-col :span="2" />
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         label="标题">
         <template slot-scope="scope">
-          <el-input v-model="scope.row.title" size="small"></el-input>
+          <el-input v-model="scope.row.title" size="small" />
         </template>
       </el-table-column>
 
       <el-table-column
         prop="classify"
         label="分类"
-        width="180">
-      </el-table-column>
+        width="180" />
 
       <el-table-column
         label="排序"
         width="120">
         <template slot-scope="scope">
-          <el-input type="number" v-model="scope.row.sort" style="width: 80px;" size="small"></el-input>
+          <el-input v-model="scope.row.sort" type="number" style="width: 80px;" size="small" />
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" fixed="right"
-          width="250">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">预览</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="250">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">预览</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -55,7 +53,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   data () {
     return {
       searchKeyword: '',

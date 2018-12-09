@@ -47,45 +47,43 @@
   </div>
   </div> -->
 <template>
-    <div>
-      <el-row :gutter="8">
-        <el-col :span="12">
-          <el-button type="primary" size="small">添加核销人员</el-button>
-        </el-col>
+  <div>
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button type="primary" size="small">添加核销人员</el-button>
+      </el-col>
 
-        <el-col :span="10">
-          </el-col>
-        <el-col :span="2">
-        </el-col>
-      </el-row>
+      <el-col :span="10" />
+      <el-col :span="2" />
+    </el-row>
 
-      <br/>
+    <br>
 
-        <el-table border :data="tableData" style="width: 100%">
-            <el-table-column
-      prop="username"
-      label="核销人员昵称">
-    </el-table-column>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column
+        prop="username"
+        label="核销人员昵称" />
 
- <el-table-column
-      prop="createDate"
-      label="创建时间"
-      width="140">
-    </el-table-column>
+      <el-table-column
+        prop="createDate"
+        label="创建时间"
+        width="140" />
 
-            <el-table-column label="操作" fixed="right"
-                width="180">
-                <template slot-scope="scope">
-                    <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   data () {
     return {
       tableData: [{

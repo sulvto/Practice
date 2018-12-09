@@ -1,14 +1,15 @@
 <template>
-  <el-table border
+  <el-table
     :data="tableData"
+    border
     style="width: 100%">
     <el-table-column
       label="支付方式">
       <template slot-scope="scope">
         <div class="table-logo"><img :src="scope.row.logo"></div>
-        <span class="table-pay">{{scope.row.name}}</span><br>
+        <span class="table-pay">{{ scope.row.name }}</span><br>
         <span class="table-desc">
-        {{scope.row.description}}
+          {{ scope.row.description }}
         </span>
       </template>
     </el-table-column>
@@ -16,11 +17,11 @@
       label="状态"
       width="180">
       <template slot-scope="scope">
-        <el-switch v-model="scope.row.status">
-        </el-switch>
+        <el-switch v-model="scope.row.status" />
       </template>
     </el-table-column>
-    <el-table-column label="操作"
+    <el-table-column
+      label="操作"
       width="180">
       <template slot-scope="scope">
         <!-- <a href="/config/payconfig.html?type=wchat">配置</a> -->

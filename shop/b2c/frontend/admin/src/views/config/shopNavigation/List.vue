@@ -1,70 +1,64 @@
 <template>
   <div>
     <el-tabs v-model="tabName" @tab-click="handleClick">
-    <el-tab-pane label="PC端" name="pc"></el-tab-pane>
-    <el-tab-pane label="手机端" name="mobile"></el-tab-pane>
-  </el-tabs>
- <el-row :gutter="8">
+      <el-tab-pane label="PC端" name="pc" />
+      <el-tab-pane label="手机端" name="mobile" />
+    </el-tabs>
+    <el-row :gutter="8">
       <el-col :span="12">
         <el-button type="danger" size="small">批量删除</el-button>
         <el-button type="primary" size="small" @click="$router.push('edit.html')">添加导航栏</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
-      <el-col :span="2">
-      </el-col>
+      <el-col :span="10" />
+      <el-col :span="2" />
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         prop="name"
-        label="导航名称">
-      </el-table-column>
+        label="导航名称" />
 
       <el-table-column
         prop="link"
-        label="链接地址">
-      </el-table-column>
+        label="链接地址" />
 
       <el-table-column
         prop="type"
         label="所属类型"
-        width="80">
-      </el-table-column>
+        width="80" />
 
       <el-table-column
         label="是否显示"
         width="80">
         <template slot-scope="scope">
-          {{scope.row.isShow ? '是' : '否' }}
+          {{ scope.row.isShow ? '是' : '否' }}
         </template>
       </el-table-column>
 
       <el-table-column
         prop="createDate"
         label="创建时间"
-        width="140">
-      </el-table-column>
+        width="140" />
       <el-table-column
         prop="sort"
         label="排序"
-        width="50">
-      </el-table-column>
+        width="50" />
 
-      <el-table-column label="操作" fixed="right"
-          width="155">
-          <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-            <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="155">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -72,12 +66,7 @@
 
 <script>
 export default {
-  name: 'edit',
-  watch: {
-    tabName (newValue, oldValue) {
-      console.log('TAB:', newValue)
-    }
-  },
+  name: 'Edit',
   data () {
     return {
       TAB_PC: 'pc',
@@ -135,6 +124,11 @@ export default {
           sort: 0
         }
       ]
+    }
+  },
+  watch: {
+    tabName (newValue, oldValue) {
+      console.log('TAB:', newValue)
     }
   },
   methods: {

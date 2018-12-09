@@ -1,67 +1,67 @@
 <template>
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="120px" size="small" label-position="right">
     <el-form-item label="会员注册送积分">
-      <el-input type="number" min="0" v-model="editForm.registerIntegral" >
+      <el-input v-model="editForm.registerIntegral" type="number" min="0" >
         <template slot="append">
           分
         </template>
       </el-input>
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isRegisterIntegralEnable"></el-switch>
+      <el-switch v-model="editForm.isRegisterIntegralEnable" active-text="是" inactive-text="否" />
       <p class="hint">是否启用会员注册送积分</p>
     </el-form-item>
 
     <el-form-item label="会员注册送优惠券">
       <el-select v-model="editForm.registerCoupon" placeholder="请选择">
-        <el-option label="选择1" value="1"></el-option>
-        <el-option label="选择2" value="2"></el-option>
+        <el-option label="选择1" value="1" />
+        <el-option label="选择2" value="2" />
       </el-select>
-      <br/>
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isRegisterCouponEnable"></el-switch>
+      <br>
+      <el-switch v-model="editForm.isRegisterCouponEnable" active-text="是" inactive-text="否" />
       <p class="hint">是否启用会员注册送优惠券</p>
     </el-form-item>
 
     <el-form-item label="签到送积分">
-      <el-input type="number" min="0" v-model="editForm.signIntegral" >
+      <el-input v-model="editForm.signIntegral" type="number" min="0" >
         <template slot="append">
           分
         </template>
       </el-input>
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isSignIntegralEnable"></el-switch>
+      <el-switch v-model="editForm.isSignIntegralEnable" active-text="是" inactive-text="否" />
       <p class="hint">是否启用签到送积分</p>
     </el-form-item>
 
     <el-form-item label="签到送优惠券">
       <el-select v-model="editForm.signCoupon" placeholder="请选择">
-        <el-option label="选择1" value="1"></el-option>
-        <el-option label="选择2" value="2"></el-option>
+        <el-option label="选择1" value="1" />
+        <el-option label="选择2" value="2" />
       </el-select>
-      <br/>
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isSignCouponEnable"></el-switch>
+      <br>
+      <el-switch v-model="editForm.isSignCouponEnable" active-text="是" inactive-text="否" />
       <p class="hint">是否启用签到送优惠券</p>
     </el-form-item>
 
     <el-form-item label="分享送积分">
-      <el-input type="number" min="0" v-model="editForm.shareIntegral" >
+      <el-input v-model="editForm.shareIntegral" type="number" min="0" >
         <template slot="append">
           分
         </template>
       </el-input>
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isShareIntegralEnable"></el-switch>
+      <el-switch v-model="editForm.isShareIntegralEnable" active-text="是" inactive-text="否" />
       <p class="hint">是否启用分享送积分</p>
     </el-form-item>
 
     <el-form-item label="分享送优惠券">
       <el-select v-model="editForm.shareCoupon" placeholder="请选择">
-        <el-option label="选择1" value="1"></el-option>
-        <el-option label="选择2" value="2"></el-option>
+        <el-option label="选择1" value="1" />
+        <el-option label="选择2" value="2" />
       </el-select>
-      <br/>
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isShareCouponEnable"></el-switch>
+      <br>
+      <el-switch v-model="editForm.isShareCouponEnable" active-text="是" inactive-text="否" />
       <p class="hint">是否启用分享送优惠券</p>
     </el-form-item>
 
     <el-form-item label="点赞送积分">
-      <el-input type="number" min="0" v-model="editForm.proIntegral" >
+      <el-input v-model="editForm.proIntegral" type="number" min="0" >
         <template slot="append">
           分
         </template>
@@ -70,16 +70,16 @@
 
     <el-form-item label="点赞送优惠券">
       <el-select v-model="editForm.proCoupon" placeholder="请选择">
-        <el-option label="选择1" value="1"></el-option>
-        <el-option label="选择2" value="2"></el-option>
+        <el-option label="选择1" value="1" />
+        <el-option label="选择2" value="2" />
       </el-select>
-      <br/>
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isProCouponEnable"></el-switch>
+      <br>
+      <el-switch v-model="editForm.isProCouponEnable" active-text="是" inactive-text="否" />
       <p class="hint">是否启用点赞送优惠券</p>
     </el-form-item>
 
     <el-form-item label="评论送积分">
-      <el-input type="number" min="0" v-model="editForm.commentIntegral" >
+      <el-input v-model="editForm.commentIntegral" type="number" min="0" >
         <template slot="append">
           分
         </template>
@@ -88,11 +88,11 @@
 
     <el-form-item label="评论送优惠券">
       <el-select v-model="editForm.commentCoupon" placeholder="请选择">
-        <el-option label="选择1" value="1"></el-option>
-        <el-option label="选择2" value="2"></el-option>
+        <el-option label="选择1" value="1" />
+        <el-option label="选择2" value="2" />
       </el-select>
-      <br/>
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isCommentCouponEnable"></el-switch>
+      <br>
+      <el-switch v-model="editForm.isCommentCouponEnable" active-text="是" inactive-text="否" />
       <p class="hint">是否启用评论送优惠券</p>
     </el-form-item>
 
@@ -105,7 +105,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'RewardRules',
   data () {
     return {
       editForm: {},

@@ -7,26 +7,25 @@
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入物流公司名称或编号"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入物流公司名称或编号" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column label="第三方登录">
         <template slot-scope="scope">
           <div class="table-logo"><img :src="scope.row.logo"></div>
-          <span class="table-pay">{{scope.row.name}}</span><br>
-          <span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
+          <span class="table-pay">{{ scope.row.name }}</span><br>
+          <span class="table-desc">提示：{{ scope.row.tooltip }} 链接：<a :href="scope.row.link" target="_brank">{{ scope.row.link }}</a>
           </span>
         </template>
       </el-table-column>
@@ -34,24 +33,24 @@
       <el-table-column
         prop="type"
         label="类型"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
-          label="状态"
-          width="180">
+        label="状态"
+        width="180">
         <template slot-scope="scope">
-            <el-switch v-model="scope.row.status">
-            </el-switch>
+          <el-switch v-model="scope.row.status" />
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -59,7 +58,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   data () {
     return {
       searchKeyword: '',

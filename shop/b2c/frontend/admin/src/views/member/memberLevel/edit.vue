@@ -2,7 +2,7 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="等级名称" prop="name">
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
       <p class="hint">设置会员等级名称</p>
     </el-form-item>
 
@@ -10,19 +10,19 @@
       <el-checkbox-group v-model="editForm.upgradeCondition">
         <el-checkbox :label="1">
           累计积分满
-          <el-input style="width:250px" type="number" min="0" v-model="editForm.minIntegral">
+          <el-input v-model="editForm.minIntegral" style="width:250px" type="number" min="0" >
             <template slot="append">
-                元
+              元
             </template>
           </el-input>
           <span class="hint">设置会员等级所需要的累计积分且必须大于等于0</span>
         </el-checkbox>
-        <br/>
+        <br>
         <el-checkbox :label="2">
           消费额度满
-          <el-input style="width:250px" type="number" min="0" v-model="editForm.quota">
+          <el-input v-model="editForm.quota" style="width:250px" type="number" min="0" >
             <template slot="append">
-                元
+              元
             </template>
           </el-input>
           <span class="hint">设置会员等级所需要的消费额度且必须大于等于0,单位：元</span>
@@ -39,16 +39,16 @@
     </el-form-item>
 
     <el-form-item label="折扣率" prop="discount">
-      <el-input type="number"  v-model="editForm.discount" >
+      <el-input v-model="editForm.discount" type="number" >
         <template slot="append">
-                %
+          %
         </template>
       </el-input>
       <p class="hint">折扣率单位为百分比，如输入90，表示该会员等级的用户可以以商品原价的90%购买</p>
     </el-form-item>
 
     <el-form-item label="等级描述">
-      <el-input type="textarea" v-model="editForm.description"></el-input>
+      <el-input v-model="editForm.description" type="textarea" />
       <p class="hint">会员等级描述信息</p>
     </el-form-item>
 
@@ -62,7 +62,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'MemberLevelEdit',
   data () {
     return {
       editForm: {

@@ -7,53 +7,49 @@
         <el-button type="primary" size="small">开启股东分红(关闭中)</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
-      <el-col :span="2">
-      </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
-            prop="name"
-            label="等级名称"
-            width="120">
-          </el-table-column>
+        prop="name"
+        label="等级名称"
+        width="120" />
 
       <el-table-column label="申请最低消费">
-          <template slot-scope="scope">
+        <template slot-scope="scope">
 
-              <div class="table-logo"><img :src="scope.row.logo"></div>
-              <span class="table-pay">{{scope.row.name}}</span><br>
-              <span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
-              </span>
-          </template>
+          <div class="table-logo"><img :src="scope.row.logo"></div>
+          <span class="table-pay">{{ scope.row.name }}</span><br>
+          <span class="table-desc">提示：{{ scope.row.tooltip }} 链接：<a :href="scope.row.link" target="_brank">{{ scope.row.link }}</a>
+          </span>
+        </template>
       </el-table-column>
 
       <el-table-column label="股东分红佣金比率">
-          <template slot-scope="scope">
+        <template slot-scope="scope">
 
-              <div class="table-logo"><img :src="scope.row.logo"></div>
-              <span class="table-pay">{{scope.row.name}}</span><br>
-              <span class="table-desc">提示：{{scope.row.tooltip}} 链接：<a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
-              </span>
-          </template>
+          <div class="table-logo"><img :src="scope.row.logo"></div>
+          <span class="table-pay">{{ scope.row.name }}</span><br>
+          <span class="table-desc">提示：{{ scope.row.tooltip }} 链接：<a :href="scope.row.link" target="_brank">{{ scope.row.link }}</a>
+          </span>
+        </template>
       </el-table-column>
 
       <el-table-column
-            prop="createDate"
-            label="创建时间"
-            width="120">
-          </el-table-column>
+        prop="createDate"
+        label="创建时间"
+        width="120" />
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -61,7 +57,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'Config',
   data () {
     return {
       searchKeyword: '',

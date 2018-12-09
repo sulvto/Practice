@@ -1,37 +1,35 @@
 <template>
- <div>
-   <el-form :inline="true" :model="queryForm" size="small" >
+  <div>
+    <el-form :inline="true" :model="queryForm" size="small" >
 
-    <el-form-item label="用户名称">
-      <el-input v-model="queryForm.username" placeholder="用户名称"></el-input>
-    </el-form-item>
+      <el-form-item label="用户名称">
+        <el-input v-model="queryForm.username" placeholder="用户名称" />
+      </el-form-item>
 
-    <el-form-item label="角色">
-      <el-select v-model="queryForm.role" placeholder="角色">
-        <el-option label="全部" value="0"></el-option>
-        <el-option label="推广员" value="1"></el-option>
-        <el-option label="股东" value="2"></el-option>
-        <el-option label="代理" value="3"></el-option>
-      </el-select>
-    </el-form-item>
+      <el-form-item label="角色">
+        <el-select v-model="queryForm.role" placeholder="角色">
+          <el-option label="全部" value="0" />
+          <el-option label="推广员" value="1" />
+          <el-option label="股东" value="2" />
+          <el-option label="代理" value="3" />
+        </el-select>
+      </el-form-item>
 
-    <el-form-item>
-      <el-button type="primary" @click="search">查询</el-button>
-    </el-form-item>
-  </el-form>
+      <el-form-item>
+        <el-button type="primary" @click="search">查询</el-button>
+      </el-form-item>
+    </el-form>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         prop="username"
-        label="用户名称">
-      </el-table-column>
+        label="用户名称" />
 
       <el-table-column
         label="是否是推广员"
         width="110">
         <template slot-scope="scope">
-          <i class="el-icon-error" v-if="!scope.row.isPromoter"></i>
-          <i class="el-icon-success" v-if="scope.row.isPromoter"></i>
+          <i :class="{true: 'el-icon-success', false: 'el-icon-error'}[scope.row.isPromoter]" />
         </template>
 
       </el-table-column>
@@ -41,8 +39,7 @@
         label="是否是股东"
         width="100">
         <template slot-scope="scope">
-          <i class="el-icon-error" v-if="!scope.row.isShareholder"></i>
-          <i class="el-icon-success" v-if="scope.row.isShareholder"></i>
+          <i :class="{true: 'el-icon-success', false: 'el-icon-error'}[scope.row.isShareholder]" />
         </template>
       </el-table-column>
 
@@ -51,8 +48,7 @@
         label="是否是代理"
         width="100">
         <template slot-scope="scope">
-          <i class="el-icon-error" v-if="!scope.row.isAgent"></i>
-          <i class="el-icon-success" v-if="scope.row.isAgent"></i>
+          <i :class="{true: 'el-icon-success', false: 'el-icon-error'}[scope.row.isAgent]" />
         </template>
       </el-table-column>
 
@@ -60,7 +56,7 @@
         label="总佣金"
         width="120">
         <template slot-scope="scope">
-          <span class="color-red">{{scope.row.commissionCount}}</span>
+          <span class="color-red">{{ scope.row.commissionCount }}</span>
         </template>
       </el-table-column>
 
@@ -68,7 +64,7 @@
         label="可提现佣金"
         width="120">
         <template slot-scope="scope">
-          <span class="color-green">{{scope.row.canWithdrawCommissionCount}}</span>
+          <span class="color-green">{{ scope.row.canWithdrawCommissionCount }}</span>
         </template>
       </el-table-column>
 
@@ -76,49 +72,47 @@
         label="已提现佣金"
         width="120">
         <template slot-scope="scope">
-          <span class="color-blue">{{scope.row.withdrawCommissionCount}}</span>
+          <span class="color-blue">{{ scope.row.withdrawCommissionCount }}</span>
         </template>
       </el-table-column>
 
       <el-table-column
         prop="distributionCommissionCount"
         label="分销佣金"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="shareholderDividendCount"
         label="股东分红"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="globalDividendCount"
         label="股东全球分红"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="agentCommissionCount"
         label="区域代理佣金"
-        width="120">
-      </el-table-column>
+        width="120" />
 
-      <el-table-column label="操作" fixed="right"
-          width="200">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.isPromoter">账户详情</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.isPromoter">分销佣金</el-button>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="200">
+        <template slot-scope="scope">
+          <el-button v-if="scope.row.isPromoter" size="mini" @click="handleEdit(scope.$index, scope.row)">账户详情</el-button>
+          <el-button v-if="scope.row.isPromoter" size="mini" @click="handleEdit(scope.$index, scope.row)">分销佣金</el-button>
 
-              <div v-if="scope.row.isShareholder" class="margin-top-5">
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" >股东分红</el-button>
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" >全球分红</el-button>
-              </div>
+          <div v-if="scope.row.isShareholder" class="margin-top-5">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" >股东分红</el-button>
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" >全球分红</el-button>
+          </div>
 
-              <div v-if="scope.row.isAgent" class="margin-top-5">
-                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" >代理佣金</el-button>
-              </div>
-          </template>
+          <div v-if="scope.row.isAgent" class="margin-top-5">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" >代理佣金</el-button>
+          </div>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -126,7 +120,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'UserAccountList',
   data () {
     return {
       searchKeyword: '',

@@ -2,19 +2,19 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="规格名称" prop="name">
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="规格排序" >
-      <el-input type="number" v-model="editForm.sort"></el-input>
+      <el-input v-model="editForm.sort" type="number" />
     </el-form-item>
 
     <el-form-item label="是否启用">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isEnable"></el-switch>
+      <el-switch v-model="editForm.isEnable" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item label="是否筛选">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.is_screen"></el-switch>
+      <el-switch v-model="editForm.is_screen" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item label="展示方式">
@@ -26,12 +26,12 @@
     </el-form-item>
 
     <el-form-item label="规格值" prop="value">
-      <el-input type="textarea" v-model="editForm.value"></el-input>
+      <el-input v-model="editForm.value" type="textarea" />
       <p class="hint">一行为一个规格项，多个规格项用换行输入</p>
     </el-form-item>
 
     <el-form-item label="规格说明" >
-      <el-input type="textarea" v-model="editForm.description"></el-input>
+      <el-input v-model="editForm.description" type="textarea" />
     </el-form-item>
 
     <el-form-item>
@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'GoodsSpecEdit',
   data () {
     return {
       editForm: {},

@@ -14,47 +14,47 @@
   <el-form ref="form" :model="expressMessageFrom" label-width="100px" size="small" label-position="right">
     <h4>物流跟踪设置</h4>
 
-      <el-form-item label="接口名称">
-              <el-select v-model="expressMessageFrom.type" placeholder="请选择">
-                  <el-option label="快递鸟" value="1"></el-option>
-                  <el-option label="快递100（免费版）" value="2"></el-option>
-                  <el-option label="快递100（企业版）" value="3"></el-option>
-              </el-select>
-      </el-form-item>
+    <el-form-item label="接口名称">
+      <el-select v-model="expressMessageFrom.type" placeholder="请选择">
+        <el-option label="快递鸟" value="1" />
+        <el-option label="快递100（免费版）" value="2" />
+        <el-option label="快递100（企业版）" value="3" />
+      </el-select>
+    </el-form-item>
 
-      <el-form-item label="APPID" v-show="expressMessageFrom.type==1">
-          <el-input v-model="expressMessageFrom.appId"></el-input>
-          <p class="hint">应用APPID</p>
-      </el-form-item>
+    <el-form-item v-show="expressMessageFrom.type==1" label="APPID" >
+      <el-input v-model="expressMessageFrom.appId" />
+      <p class="hint">应用APPID</p>
+    </el-form-item>
 
-      <el-form-item label="APPKEY">
-          <el-input v-model="expressMessageFrom.appKey"></el-input>
-          <p class="hint">应用密钥</p>
-      </el-form-item>
+    <el-form-item label="APPKEY">
+      <el-input v-model="expressMessageFrom.appKey" />
+      <p class="hint">应用密钥</p>
+    </el-form-item>
 
-      <el-form-item label="CUSTOMER"  v-show="expressMessageFrom.type==3">
-        <el-input v-model="expressMessageFrom.customer"></el-input>
-        <p class="hint">快递100分配给的公司编号</p>
-      </el-form-item>
+    <el-form-item v-show="expressMessageFrom.type==3" label="CUSTOMER" >
+      <el-input v-model="expressMessageFrom.customer" />
+      <p class="hint">快递100分配给的公司编号</p>
+    </el-form-item>
 
-      <el-form-item label="说明">
-          <a :href="{1: 'http://www.kdniao.com/', 2: 'http://www.kuaidi100.com/', 3: 'http://www.kuaidi100.com/'}[expressMessageFrom.type]" target="_blank">点击申请</a>
-      </el-form-item>
+    <el-form-item label="说明">
+      <a :href="{1: 'http://www.kdniao.com/', 2: 'http://www.kuaidi100.com/', 3: 'http://www.kuaidi100.com/'}[expressMessageFrom.type]" target="_blank">点击申请</a>
+    </el-form-item>
 
-      <el-form-item label="是否启用">
-          <el-switch  active-text="是" inactive-text="否" v-model="expressMessageFrom.isEnable"></el-switch>
-      </el-form-item>
+    <el-form-item label="是否启用">
+      <el-switch v-model="expressMessageFrom.isEnable" active-text="是" inactive-text="否" />
+    </el-form-item>
 
-      <el-form-item>
-          <el-button type="primary" @click="submitForm('expressMessageFrom')">保存</el-button>
-          <el-button type="info" @click="$router.back()">返回</el-button>
-      </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('expressMessageFrom')">保存</el-button>
+      <el-button type="info" @click="$router.back()">返回</el-button>
+    </el-form-item>
   </el-form>
 </template>
 
 <script>
 export default {
-  name: 'expressMessageFrom',
+  name: 'ExpressMessageFrom',
   data () {
     return {
       expressMessageFrom: {}

@@ -2,14 +2,14 @@
 
   <div class="ns-base-section">
     <el-steps :space="400" :active="step" finish-status="success">
-      <el-step title="创建活动"></el-step>
-      <el-step title="中奖设置"></el-step>
-      <el-step title="奖励设置"></el-step>
-      <el-step title="完成"></el-step>
+      <el-step title="创建活动" />
+      <el-step title="中奖设置" />
+      <el-step title="奖励设置" />
+      <el-step title="完成" />
     </el-steps>
 
     <div class="promotion-game-main">
-            <div class="game-container">
+      <div class="game-container">
         <!-- 活动缩略图 -->
         <div class="game-thumbnail">
           <img src="@/assets/img/games/promotion_game_guaguale.png">
@@ -22,40 +22,39 @@
               <h4 class="option-title">创建活动</h4>
 
               <el-form-item label="活动名称" required>
-                <el-input v-model="editForm.name" placeholder="填写活动名称"></el-input>
+                <el-input v-model="editForm.name" placeholder="填写活动名称" />
               </el-form-item>
 
               <el-form-item label="有效时间" required>
                 <el-date-picker
                   v-model="editForm.dateRange"
-                  type="datetimerange"
                   :picker-options="pickerOptions"
+                  type="datetimerange"
                   range-separator="至"
                   start-placeholder="开始时间"
                   end-placeholder="结束时间"
-                  align="right">
-                </el-date-picker>
+                  align="right" />
               </el-form-item>
 
               <el-form-item label="活动说明" >
-                <el-input type="textarea" v-model="editForm.introduction"></el-input>
+                <el-input v-model="editForm.introduction" type="textarea" />
               </el-form-item>
 
               <h4 class="option-title">参与条件</h4>
 
               <el-form-item label="参与的用户" >
                 <el-select v-model="editForm.needMemberLevel" clearable>
-                  <el-option label="普通会员" value="1"></el-option>
-                  <el-option label="铜牌会员" value="2"></el-option>
-                  <el-option label="银牌会员" value="3"></el-option>
-                  <el-option label="金牌会员" value="4"></el-option>
-                  <el-option label="至尊会员" value="5"></el-option>
+                  <el-option label="普通会员" value="1" />
+                  <el-option label="铜牌会员" value="2" />
+                  <el-option label="银牌会员" value="3" />
+                  <el-option label="金牌会员" value="4" />
+                  <el-option label="至尊会员" value="5" />
                 </el-select>
                 <p class="ini">默认所有用户都能参与活动。</p>
               </el-form-item>
 
               <el-form-item label="消耗积分" required>
-                <el-input type="number" min="1" v-model="editForm.deductIntegral" >
+                <el-input v-model="editForm.deductIntegral" type="number" min="1" >
                   <template slot="append">
                     分
                   </template>
@@ -71,7 +70,7 @@
               </el-form-item>
 
               <el-form-item label="参与次数">
-                <el-input type="number" min="0" v-model="editForm.joinFrequency" >
+                <el-input v-model="editForm.joinFrequency" type="number" min="0" >
                   <template slot="append">
                     次
                   </template>
@@ -106,7 +105,7 @@
               <h4 class="option-title">中奖设置</h4>
 
               <el-form-item label="中奖率" required>
-                <el-input type="number" min="0" max="100" v-model="editForm.winningRate" placeholder="0-100">
+                <el-input v-model="editForm.winningRate" type="number" min="0" max="100" placeholder="0-100">
                   <template slot="append">
                     %
                   </template>
@@ -115,7 +114,7 @@
               </el-form-item>
 
               <el-form-item label="未中奖说明" >
-                <el-input type="textarea" v-model="editForm.noWinningInfo" placeholder="哎呀！真可惜没有中奖" value="哎呀！真可惜没有中奖"></el-input>
+                <el-input v-model="editForm.noWinningInfo" type="textarea" placeholder="哎呀！真可惜没有中奖" value="哎呀！真可惜没有中奖" />
               </el-form-item>
 
               <el-form-item label="中奖名单">
@@ -133,7 +132,7 @@
               </el-form-item>
 
               <el-form-item label="中奖次数">
-                <el-input type="number" min="0" v-model="editForm.winningLimit" >
+                <el-input v-model="editForm.winningLimit" type="number" min="0" >
                   <template slot="append">
                     次
                   </template>
@@ -151,20 +150,19 @@
 
             <div class="award-container">
 
-              <el-table border :data="editForm.rules" style="width: 100%">
+              <el-table :data="editForm.rules" border style="width: 100%">
 
                 <el-table-column
                   prop="name"
-                  label="奖励等级">
-                </el-table-column>
+                  label="奖励等级" />
 
                 <el-table-column
                   label="奖品类型">
                   <template slot-scope="scope">
-                      <span v-show="scope.row.awardType === 1">积分</span>
-                      <span v-show="scope.row.awardType === 2">优惠券</span>
-                      <span v-show="scope.row.awardType === 3">红包</span>
-                      <span v-show="scope.row.awardType === 4">赠品</span>
+                    <span v-show="scope.row.awardType === 1">积分</span>
+                    <span v-show="scope.row.awardType === 2">优惠券</span>
+                    <span v-show="scope.row.awardType === 3">红包</span>
+                    <span v-show="scope.row.awardType === 4">赠品</span>
                   </template>
                 </el-table-column>
 
@@ -188,25 +186,24 @@
                 </el-table-column>
 
                 <el-table-column
-                    prop="number"
-                    label="奖品数量(个)">
-                </el-table-column>
+                  prop="number"
+                  label="奖品数量(个)" />
 
                 <el-table-column
                   label="操作"
                   fixed="right"
                   width="150">
-                    <template slot-scope="scope">
-                        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                    </template>
+                  <template slot-scope="scope">
+                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                  </template>
                 </el-table-column>
               </el-table>
 
               <div style="margin-top: 10px;">
                 <el-form ref="ruleForm" :model="ruleForm" label-width="100px" size="small" label-position="right">
                   <el-form-item label="奖励等级" >
-                    <el-input v-model="ruleForm.name" placeholder="请填写奖励等级"></el-input>
+                    <el-input v-model="ruleForm.name" placeholder="请填写奖励等级" />
                   </el-form-item>
 
                   <el-form-item label="奖品类型">
@@ -218,38 +215,38 @@
                     </el-radio-group>
                   </el-form-item>
 
-                  <el-form-item label="赠送积分" v-show="ruleForm.awardType === 1">
-                    <el-input type="number" min="0" v-model="ruleForm.integral" >
+                  <el-form-item v-show="ruleForm.awardType === 1" label="赠送积分" >
+                    <el-input v-model="ruleForm.integral" type="number" min="0" >
                       <template slot="append">
                         分
                       </template>
                     </el-input>
                   </el-form-item>
 
-                  <el-form-item label="优惠劵"  v-show="ruleForm.awardType === 2">
+                  <el-form-item v-show="ruleForm.awardType === 2" label="优惠劵" >
                     <el-select v-model="ruleForm.coupon" placeholder="请选择">
-                      <el-option label="选择1" value="1"></el-option>
-                      <el-option label="选择2" value="2"></el-option>
+                      <el-option label="选择1" value="1" />
+                      <el-option label="选择2" value="2" />
                     </el-select>
                   </el-form-item>
 
-                  <el-form-item label="奖励红包" v-show="ruleForm.awardType === 3">
-                    <el-input type="number" min="0" v-model="ruleForm.hongbao" >
+                  <el-form-item v-show="ruleForm.awardType === 3" label="奖励红包">
+                    <el-input v-model="ruleForm.hongbao" type="number" min="0" >
                       <template slot="append">
                         元
                       </template>
                     </el-input>
                   </el-form-item>
 
-                  <el-form-item label="奖励赠品" v-show="ruleForm.awardType === 4">
+                  <el-form-item v-show="ruleForm.awardType === 4" label="奖励赠品" >
                     <el-select v-model="ruleForm.gift" placeholder="请选择">
-                      <el-option label="选择1" value="1"></el-option>
-                      <el-option label="选择2" value="2"></el-option>
+                      <el-option label="选择1" value="1" />
+                      <el-option label="选择2" value="2" />
                     </el-select>
                   </el-form-item>
 
                   <el-form-item label="奖品数量">
-                    <el-input type="number" min="0" v-model="ruleForm.number" >
+                    <el-input v-model="ruleForm.number" type="number" min="0" >
                       <template slot="append">
                         个
                       </template>
@@ -264,13 +261,13 @@
 
               </div>
             </div>
-            <br/>
+            <br>
           </div>
           <!-- 奖励设置 end -->
 
-          <el-button size="small" v-show="step > 1" @click="step--">上一步</el-button>
-          <el-button size="small" v-show="step < 3" @click="step++">下一步</el-button>
-          <el-button size="small" v-show="step === 3" @click="done()">完成</el-button>
+          <el-button v-show="step > 1" size="small" @click="step--">上一步</el-button>
+          <el-button v-show="step < 3" size="small" @click="step++">下一步</el-button>
+          <el-button v-show="step === 3" size="small" @click="done()">完成</el-button>
         </div>
       </div>
     </div>
@@ -279,7 +276,7 @@
 
 <script>
 export default {
-  name: 'gameEdit',
+  name: 'GameEdit',
   data () {
     return {
       step: 1,

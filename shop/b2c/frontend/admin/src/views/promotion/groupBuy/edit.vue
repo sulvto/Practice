@@ -2,7 +2,7 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="活动名称" prop="name" required>
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="活动时间" required>
@@ -11,12 +11,11 @@
         type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
-        end-placeholder="结束日期">
-      </el-date-picker>
+        end-placeholder="结束日期" />
     </el-form-item>
 
     <el-form-item label="最大购买量" required>
-      <el-input type="number"  v-model="editForm.maxNumber" >
+      <el-input v-model="editForm.maxNumber" type="number">
         <template slot="append">
           件
         </template>
@@ -25,26 +24,26 @@
 
     <el-form-item label="价格阶梯" required>
       <span class="hint" style="font-size:14px">最小购买</span>
-      <el-input type="number" style="width:400px" v-model="editForm.minNumber" >
+      <el-input v-model="editForm.minNumber" type="number" style="width:400px" >
         <template slot="append">
-                件
+          件
         </template>
       </el-input>
-      <br/>
+      <br>
       <span class="hint" style="font-size:14px">购买价格</span>
-      <el-input type="number" style="width:400px" v-model="editForm.price" >
+      <el-input v-model="editForm.price" type="number" style="width:400px" >
         <template slot="append">
-                元
+          元
         </template>
       </el-input>
     </el-form-item>
 
     <el-form-item label="活动说明">
-      <el-input type="textarea" v-model="editForm.description"></el-input>
+      <el-input v-model="editForm.description" type="textarea" />
     </el-form-item>
 
     <el-form-item label="选择商品">
-      <SimpleGoodsTable :tableData="editForm.goodsList"/>
+      <SimpleGoodsTable :table-data="editForm.goodsList"/>
     </el-form-item>
 
     <el-form-item>
@@ -58,7 +57,10 @@
 import SimpleGoodsTable from '@/components/SimpleGoodsTable.vue'
 
 export default {
-  name: 'edit',
+  name: 'GroupBuyEdit',
+  components: {
+    SimpleGoodsTable
+  },
   data () {
     return {
       editForm: {
@@ -76,9 +78,6 @@ export default {
     submitForm () {
       console.log('submitForm', this.editForm)
     }
-  },
-  components: {
-    SimpleGoodsTable
   }
 }
 </script>

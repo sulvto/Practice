@@ -2,29 +2,29 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="专题标题" prop="title">
-      <el-input v-model="editForm.title"></el-input>
+      <el-input v-model="editForm.title" />
     </el-form-item>
 
-<!--<dt>专题封面：</dt>
-<dd>
-<div class="upload-btn-common">
-<div>
-<input class="input-file" name="file_upload" id="uploadLogo" type="file" onchange="imgUpload(this);" title="上传">
-<input type="hidden" id="logo" value="upload/common/1534744933.jpg">
-</div>
+    <!--<dt>专题封面：</dt>
+    <dd>
+    <div class="upload-btn-common">
+    <div>
+    <input class="input-file" name="file_upload" id="uploadLogo" type="file" onchange="imgUpload(this);" title="上传">
+    <input type="hidden" id="logo" value="upload/common/1534744933.jpg">
+    </div>
 
-<input type="text" id="text_logo" class="input-common" readonly="readonly" value="upload/common/1534744933.jpg">
-<em>上传</em>
-<img id="preview_logo" src="/public/static/blue/img/upload-common-select.png" data-src="/upload/common/1534744933.jpg" data-html="true" data-container="body" data-placement="top" data-trigger="manual" data-original-title="" title="">
-</div>
-<p class="hint">
-建议使用<i class="important-note">宽1200</i>像素-<i class="important-note">高300</i>像素内的<i class="important-note">GIF</i>或<i class="important-note">PNG</i>透明图片
-</p>
-<p class="error">请上传图片</p>
-</dd> -->
+    <input type="text" id="text_logo" class="input-common" readonly="readonly" value="upload/common/1534744933.jpg">
+    <em>上传</em>
+    <img id="preview_logo" src="/public/static/blue/img/upload-common-select.png" data-src="/upload/common/1534744933.jpg" data-html="true" data-container="body" data-placement="top" data-trigger="manual" data-original-title="" title="">
+    </div>
+    <p class="hint">
+    建议使用<i class="important-note">宽1200</i>像素-<i class="important-note">高300</i>像素内的<i class="important-note">GIF</i>或<i class="important-note">PNG</i>透明图片
+    </p>
+    <p class="error">请上传图片</p>
+    </dd> -->
 
     <el-form-item label="专题内容">
-      <el-input type="textarea" v-model="editForm.content"></el-input>
+      <el-input v-model="editForm.content" type="textarea" />
     </el-form-item>
 
     <el-form-item label="保存类型">
@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'Edit',
   data () {
     return {
       editForm: {},

@@ -2,50 +2,49 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="模块名" prop="name">
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="上级菜单">
       <el-select v-model="editForm.select" placeholder="请选择">
-        <el-option label="选择1" value="1"></el-option>
-        <el-option label="选择2" value="2"></el-option>
+        <el-option label="选择1" value="1" />
+        <el-option label="选择2" value="2" />
       </el-select>
       <p class="hint">伪静态只支持<i class="important-note">pathinfo</i>模式，如果开启伪静态，请选择<i class="important-note">pathinfo</i>模式</p>
     </el-form-item>
 
     <el-form-item label="控制器名" prop="controllerName">
-      <el-input v-model="editForm.controllerName"></el-input>
-      <p class="hint"></p>
+      <el-input v-model="editForm.controllerName" />
     </el-form-item>
 
     <el-form-item label="方法名" prop="methodName">
-      <el-input v-model="editForm.methodName"></el-input>
+      <el-input v-model="editForm.methodName" />
     </el-form-item>
 
     <el-form-item label="URL" prop="url">
-      <el-input type="url" v-model="editForm.url"></el-input>
+      <el-input v-model="editForm.url" type="url" />
     </el-form-item>
 
     <el-form-item label="是否是菜单">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isMenu"></el-switch>
+      <el-switch v-model="editForm.isMenu" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item label="是否控制权限">
-      <el-switch  active-text="开" inactive-text="关" v-model="editForm.switch"></el-switch>
+      <el-switch v-model="editForm.switch" active-text="开" inactive-text="关" />
     </el-form-item>
 
     <el-form-item label="是否开发者模式可见">
-      <el-switch  active-text="开" inactive-text="关" v-model="editForm.switch"></el-switch>
+      <el-switch v-model="editForm.switch" active-text="开" inactive-text="关" />
     </el-form-item>
 
     <el-form-item label="排序">
-      <el-input type="number" v-model="editForm.sort"></el-input>
+      <el-input v-model="editForm.sort" type="number" />
     </el-form-item>
 
     <!-- TODO： 图片 -->
 
     <el-form-item label="描述">
-      <el-input type="textarea" v-model="editForm.description"></el-input>
+      <el-input v-model="editForm.description" type="textarea" />
     </el-form-item>
 
     <el-form-item>
@@ -57,7 +56,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'Edit',
   data () {
     return {
       editForm: {},

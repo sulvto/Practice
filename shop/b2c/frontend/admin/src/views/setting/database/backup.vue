@@ -1,61 +1,53 @@
 <template>
-    <div>
-      <el-row :gutter="8">
-        <el-col :span="12">
-          <el-button type="primary" size="small">备份</el-button>
-          <el-button type="primary" size="small">修复</el-button>
-        </el-col>
+  <div>
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button type="primary" size="small">备份</el-button>
+        <el-button type="primary" size="small">修复</el-button>
+      </el-col>
 
-        <el-col :span="10">
-          </el-col>
-        <el-col :span="2">
-        </el-col>
-      </el-row>
+    </el-row>
 
-      <br/>
+    <br>
 
-        <el-table border :data="tableData" style="width: 100%">
-            <el-table-column
-              type="selection"
-              width="35">
-            </el-table-column>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column
+        type="selection"
+        width="35" />
 
-            <el-table-column
-                  prop="tableName"
-                  label="表名">
-            </el-table-column>
+      <el-table-column
+        prop="tableName"
+        label="表名" />
 
-            <el-table-column
-                  prop="count"
-                  label="数据量"
-                  width="120">
-            </el-table-column>
+      <el-table-column
+        prop="count"
+        label="数据量"
+        width="120" />
 
-            <el-table-column
-                  prop="dataSize"
-                  label="数据大小"
-                  width="120">
-            </el-table-column>
+      <el-table-column
+        prop="dataSize"
+        label="数据大小"
+        width="120" />
 
-            <el-table-column
-                  prop="createDate"
-                  label="创建时间"
-                  width="140">
-            </el-table-column>
+      <el-table-column
+        prop="createDate"
+        label="创建时间"
+        width="140" />
 
-            <el-table-column label="操作"
-                width="180">
-                <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修复</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+      <el-table-column
+        label="操作"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修复</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'backup',
+  name: 'Backup',
   data () {
     return {
       tableData: [{

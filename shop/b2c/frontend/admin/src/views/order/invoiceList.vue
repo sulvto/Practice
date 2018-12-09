@@ -10,18 +10,17 @@
           <el-form-item label="下单时间">
             <el-date-picker
               v-model="queryForm.orderDateRange"
+              :picker-options="datePickerOptions"
               type="daterange"
               align="right"
               unlink-panels
               range-separator="至"
               start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="datePickerOptions">
-            </el-date-picker>
+              end-placeholder="结束日期" />
           </el-form-item>
 
           <el-form-item label="订单编号">
-            <el-input v-model="queryForm.orderNo"></el-input>
+            <el-input v-model="queryForm.orderNo" />
           </el-form-item>
 
           <el-form-item>
@@ -31,59 +30,51 @@
       </el-col>
     </el-row>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
         prop="orderNo"
-        label="订单编号">
-      </el-table-column>
+        label="订单编号" />
 
       <el-table-column
         prop="username"
         label="用户名"
-        width="150">
-      </el-table-column>
+        width="150" />
 
       <el-table-column
         prop="amount"
         label="开票金额"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="title"
-        label="抬头">
-      </el-table-column>
+        label="抬头" />
 
       <el-table-column
         prop="content"
-        label="发票内容">
-      </el-table-column>
+        label="发票内容" />
 
       <el-table-column
         prop="taxpayerIdentificationNumber"
         label="纳税人识别号"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="createDate"
         label="创建时间"
-        width="140">
-      </el-table-column>
+        width="140" />
 
       <el-table-column
         label="操作"
         fixed="right"
-        width="80">
-      </el-table-column>
+        width="80" />
     </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'invoiceList',
+  name: 'OrderInvoiceList',
   data () {
     return {
       searchKeyword: '',

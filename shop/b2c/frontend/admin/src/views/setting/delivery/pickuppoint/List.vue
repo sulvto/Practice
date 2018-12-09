@@ -48,69 +48,63 @@
 <template>
   <div>
     <el-row :gutter="8">
-        <el-col :span="12">
-          <el-button type="danger" size="small">批量删除</el-button>
-          <el-button type="primary" size="small" @click="$router.push('edit.html')">添加门店</el-button>
-        </el-col>
+      <el-col :span="12">
+        <el-button type="danger" size="small">批量删除</el-button>
+        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加门店</el-button>
+      </el-col>
 
-        <el-col :span="10"><el-input size="small" v-model="searchKeyword" placeholder="请输入门店名称"></el-input></el-col>
-        <el-col :span="2">
-          <el-button type="primary" size="small" @click="search">查询</el-button>
-        </el-col>
+      <el-col :span="10"><el-input v-model="searchKeyword" size="small" placeholder="请输入门店名称" /></el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
     </el-row>
 
-  <br/>
+    <br>
 
-  <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
-      type="selection"
-      width="35">
-      </el-table-column>
+        type="selection"
+        width="35" />
 
-    <el-table-column
+      <el-table-column
         prop="name"
         label="门店名称"
-        width="120">
-      </el-table-column>
+        width="120" />
 
-    <el-table-column
+      <el-table-column
         prop="address"
         label="地址"
-        width="300">
-      </el-table-column>
+        width="300" />
 
-    <el-table-column
+      <el-table-column
         prop="contact"
         label="联系人"
-        width="80">
-      </el-table-column>
+        width="80" />
 
-    <el-table-column
+      <el-table-column
         prop="tel"
         label="联系电话"
-        width="100">
-      </el-table-column>
+        width="100" />
 
-    <el-table-column
+      <el-table-column
         prop="publishDate"
         label="发布时间"
-        width="140">
-      </el-table-column>
+        width="140" />
 
       <el-table-column label="操作" >
-          <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">添加审核人员</el-button>
-          </template>
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">添加审核人员</el-button>
+        </template>
       </el-table-column>
-        </el-table>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'pickuppointList',
+  name: 'PickuppointList',
   data () {
     return {
       searchKeyword: '',

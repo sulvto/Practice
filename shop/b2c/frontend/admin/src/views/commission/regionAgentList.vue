@@ -5,23 +5,22 @@
       <el-form-item label="下单时间">
         <el-date-picker
           v-model="queryForm.orderDateRange"
+          :picker-options="datePickerOptions"
           type="daterange"
           align="right"
           style="width:220px"
           unlink-panels
           range-separator="至"
           start-placeholder="开始日期"
-          end-placeholder="结束日期"
-          :picker-options="datePickerOptions">
-        </el-date-picker>
+          end-placeholder="结束日期" />
       </el-form-item>
 
       <el-form-item label="买家名称">
-        <el-input size="small" style="width:190px" v-model="queryForm.buyer" ></el-input>
+        <el-input v-model="queryForm.buyer" size="small" style="width:190px" />
       </el-form-item>
 
       <el-form-item label="订单编号">
-        <el-input size="small" style="width:190px" v-model="queryForm.orderNo" ></el-input>
+        <el-input v-model="queryForm.orderNo" size="small" style="width:190px" />
       </el-form-item>
 
       <el-form-item label="订单状态">
@@ -29,15 +28,15 @@
           v-model="queryForm.role"
           style="width:100px"
           placeholder="订单状态">
-          <el-option label="全部" value="0"></el-option>
-          <el-option label="待付款" value="1"></el-option>
-          <el-option label="待发货" value="2"></el-option>
-          <el-option label="待收货" value="3"></el-option>
-          <el-option label="已收货" value="4"></el-option>
-          <el-option label="交易成功" value="5"></el-option>
-          <el-option label="已关闭" value="6"></el-option>
-          <el-option label="退款中" value="-1"></el-option>
-          <el-option label="已退款" value="-2"></el-option>
+          <el-option label="全部" value="0" />
+          <el-option label="待付款" value="1" />
+          <el-option label="待发货" value="2" />
+          <el-option label="待收货" value="3" />
+          <el-option label="已收货" value="4" />
+          <el-option label="交易成功" value="5" />
+          <el-option label="已关闭" value="6" />
+          <el-option label="退款中" value="-1" />
+          <el-option label="已退款" value="-2" />
         </el-select>
       </el-form-item>
 
@@ -46,54 +45,47 @@
       </el-form-item>
     </el-form>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         prop="orderNo"
-        label="订单号">
-      </el-table-column>
+        label="订单号" />
 
       <el-table-column
         prop="amount"
         label="订单金额"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="status"
         label="订单状态"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="commission"
         label="佣金"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="buyer"
         label="买家"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="createDate"
         label="创建时间"
-        width="140">
-      </el-table-column>
+        width="140" />
 
       <el-table-column
         prop="completionDate"
         label="完成时间"
-        width="140">
-      </el-table-column>
+        width="140" />
     </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'regionAgentList',
+  name: 'RegionAgentList',
   data () {
     return {
       queryForm: {

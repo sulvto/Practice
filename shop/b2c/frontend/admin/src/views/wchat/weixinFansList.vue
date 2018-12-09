@@ -6,16 +6,16 @@
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入粉丝名称"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入粉丝名称" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column label="粉丝头像">
         <template slot-scope="scope">
@@ -25,36 +25,32 @@
 
       <el-table-column
         prop="name"
-        label="粉丝名称">
-      </el-table-column>
+        label="粉丝名称" />
 
       <el-table-column
         prop="address"
-        label="地址">
-      </el-table-column>
+        label="地址" />
 
       <el-table-column
         prop="status"
         label="关注状态"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="followDate"
-          label="关注时间"
-          width="140">
-      </el-table-column>
+        label="关注时间"
+        width="140" />
 
-      <el-table-column label="备注"
-          width="180">
-      </el-table-column>
+      <el-table-column
+        label="备注"
+        width="180" />
     </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'list',
+  name: 'WeixinFansList',
   data () {
     return {
       searchKeyword: '',

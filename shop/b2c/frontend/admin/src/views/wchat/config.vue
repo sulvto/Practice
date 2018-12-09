@@ -4,11 +4,11 @@
     <h4>微信公众号设置<span class="muted">（选填，用于配置自定义菜单）</span></h4>
 
     <el-form-item label="APPID">
-      <el-input v-model="editForm.appId" placeholder="AppID"></el-input>
+      <el-input v-model="editForm.appId" placeholder="AppID" />
     </el-form-item>
 
     <el-form-item label="APP密钥">
-      <el-input v-model="editForm.appSecret" placeholder="Appsecret"></el-input>
+      <el-input v-model="editForm.appSecret" placeholder="Appsecret" />
       <p class="hint">
         <span>AppID以及Appsecret来自于您申请开发接口时提供的账号和密码，且公众号为已认证服务号</span>
       </p>
@@ -17,11 +17,11 @@
     <h4>服务器配置<span class="muted">（用于接收用户消息）</span></h4>
 
     <el-form-item label="URL">
-      <el-input readonly value="http://showfx.niuteam.cn/wap/wchat/relateWeixin.html"></el-input>
+      <el-input readonly value="http://showfx.niuteam.cn/wap/wchat/relateWeixin.html" />
     </el-form-item>
 
     <el-form-item label="Token">
-      <el-input v-model="editForm.token" maxlength="32"></el-input>
+      <el-input v-model="editForm.token" maxlength="32" />
       <p class="muted" style="margin-top: 5px;">Token必须为英文或数字，长度为3-32字符。如不填写则默认为“TOKEN”。</p>
     </el-form-item>
 
@@ -56,7 +56,7 @@
 
 <script>
 export default {
-  name: 'config',
+  name: 'Config',
   data () {
     return {
       editForm: {},

@@ -1,6 +1,6 @@
 <template>
   <div >
-      <router-view/>
+    <router-view/>
   </div>
 </template>
 
@@ -9,7 +9,10 @@
 // import Sidebar from '@/components/TheSidebar.vue';
 
 export default {
-  name: 'account',
+  name: 'Account',
+  components: {
+    // Sidebar
+  },
   data () {
     return {
       menuList: [
@@ -36,9 +39,6 @@ export default {
         }
       ]
     }
-  },
-  components: {
-    // Sidebar
   }
 }
 </script>

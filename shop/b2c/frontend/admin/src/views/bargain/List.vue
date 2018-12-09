@@ -1,7 +1,7 @@
 <template>
 
   <section class="ns-base-section">
-    <div class="ns-main">
+    <!-- <div class="ns-main">
 
   <table class="mytable">
   <tbody><tr>
@@ -46,10 +46,10 @@
       <tbody id="productTbody" style="border: 0;"><tr align="center"><td><div class="cell"><i class="checkbox-common"><input name="sub_no_use" type="checkbox" value="8"></i></div></td><td align="left">砍</td><td>结束</td><td>2018-08-05 12:54:48</td><td>开始时间：2018-08-05 12:52:14<br>结束时间：2018-08-11 12:52:16</td><td><a href="javascript:void(0);" onclick="bargainInfo(8)">详情</a>&nbsp;</td></tr><tr align="center"><td><div class="cell"><i class="checkbox-common disabled"><input name="sub_use" type="checkbox" value="7" disabled=""></i></div></td><td align="left">砍价</td><td>正常</td><td>2018-08-03 10:20:33</td><td>开始时间：2018-08-03 10:19:20<br>结束时间：2018-08-31 10:19:23</td><td><a href="javascript:void(0);" onclick="closeBargain(7)">关闭</a>&nbsp;<a href="javascript:void(0);" onclick="bargainInfo(7)">详情</a>&nbsp;</td></tr><tr align="center"><td><div class="cell"><i class="checkbox-common disabled"><input name="sub_use" type="checkbox" value="6" disabled=""></i></div></td><td align="left">rewqrw</td><td>正常</td><td>2018-07-31 16:13:30</td><td>开始时间：2018-07-31 16:13:20<br>结束时间：2018-09-28 16:13:21</td><td><a href="javascript:void(0);" onclick="closeBargain(6)">关闭</a>&nbsp;<a href="javascript:void(0);" onclick="bargainInfo(6)">详情</a>&nbsp;</td></tr><tr align="center"><td><div class="cell"><i class="checkbox-common"><input name="sub_no_use" type="checkbox" value="5"></i></div></td><td align="left">yttt</td><td>结束</td><td>2018-07-27 10:59:59</td><td>开始时间：2018-07-17 10:59:33<br>结束时间：2018-07-31 10:59:36</td><td><a href="javascript:void(0);" onclick="bargainInfo(5)">详情</a>&nbsp;</td></tr><tr align="center"><td><div class="cell"><i class="checkbox-common"><input name="sub_no_use" type="checkbox" value="2"></i></div></td><td align="left">kankankan</td><td>结束</td><td>2018-07-23 11:01:38</td><td>开始时间：2018-07-23 11:01:26<br>结束时间：2018-07-28 11:01:27</td><td><a href="javascript:void(0);" onclick="bargainInfo(2)">详情</a>&nbsp;</td></tr><tr align="center"><td><div class="cell"><i class="checkbox-common"><input name="sub_no_use" type="checkbox" value="1"></i></div></td><td align="left">eeee</td><td>结束</td><td>2018-07-03 14:20:46</td><td>开始时间：2018-07-02 14:20:30<br>结束时间：2018-07-31 14:20:32</td><td><a href="javascript:void(0);" onclick="bargainInfo(1)">详情</a>&nbsp;</td></tr></tbody>
     </table>
   </div>
-  </div>
+  </div> -->
 
-  <!-- 模态框（Modal） -->
-  <div class="modal fade hide" id="bargainInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- 模态框（Modal） -->
+    <!-- <div class="modal fade hide" id="bargainInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -96,7 +96,7 @@
       </div>
     </div>
   </div>
-    </div>
+    </div> -->
 
   </section>
 
@@ -132,7 +132,7 @@
       </el-col>
     </el-row>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         type="selection"
         width="35">
@@ -185,7 +185,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   data () {
     return {
       searchKeyword: '',

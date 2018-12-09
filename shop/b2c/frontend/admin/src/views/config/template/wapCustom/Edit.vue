@@ -2,7 +2,7 @@
   <section class="ns-base-section">
     <div class="ns-main">
 
-      <div class="mb10"></div>
+      <div class="mb10" />
       <article class="custom-resolution">
         <button class="btn-common" data-width="320">320*0</button>
         <button class="btn-common" data-width="375">375*0</button>
@@ -15,8 +15,8 @@
           <img src="/public/static/wapCustomTemplate/images/titlebar.png">
           <h4 title="模板名称" data-custom-template-name="模板名称" style="margin: 0px 0px 0px -30px;">模板名称</h4>
         </header>
-        <div class="custom-main"></div>
-        <div class="caret-up"></div>
+        <div class="custom-main" />
+        <div class="caret-up" />
         <div class="plug-in">
           <h4>添加内容</h4>
           <ul>
@@ -41,7 +41,6 @@
           </ul>
         </div>
         <div style="text-align:center;padding:10px;">
-          <input type="hidden" value="0" id="hidden_id">
           <button class="btn-common btn-big js-save">保存</button>
           <button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
         </div>

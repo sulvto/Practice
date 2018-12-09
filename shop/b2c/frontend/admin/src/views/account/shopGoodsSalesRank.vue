@@ -1,36 +1,36 @@
 <template>
-    <div>
-        <el-row>
-            <el-button type="danger" size="small">批量删除</el-button>
-            <el-button type="primary" size="small">添加路由规则</el-button>
-        </el-row>
+  <div>
+    <el-row>
+      <el-button type="danger" size="small">批量删除</el-button>
+      <el-button type="primary" size="small">添加路由规则</el-button>
+    </el-row>
 
-        <el-table border :data="tableData" style="width: 100%">
+    <el-table
+      :data="tableData"
+      border
+      style="width: 100%">
 
-            <el-table-column
-      prop="rank"
-      label="排行"
-      width="120">
-    </el-table-column>
+      <el-table-column
+        prop="rank"
+        label="排行"
+        width="120" />
 
-         <el-table-column
-      prop="name"
-      label="商品名称"
-      width="120">
-    </el-table-column>
+      <el-table-column
+        prop="name"
+        label="商品名称"
+        width="120" />
 
-         <el-table-column
-      prop="sales"
-      label="销售量"
-      width="120">
-    </el-table-column>
-        </el-table>
+      <el-table-column
+        prop="sales"
+        label="销售量"
+        width="120" />
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'shopGoodsSalesRank',
+  name: 'ShopGoodsSalesRank',
   data () {
     return {
       tableData: [

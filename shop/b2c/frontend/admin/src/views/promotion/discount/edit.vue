@@ -2,7 +2,7 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="活动名称" prop="name" required>
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="活动有效期" required>
@@ -11,8 +11,7 @@
         type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
-        end-placeholder="结束日期">
-      </el-date-picker>
+        end-placeholder="结束日期" />
     </el-form-item>
 
     <el-form-item label="价格保留方式">
@@ -27,7 +26,7 @@
     </el-form-item>
 
     <el-form-item>
-      <SimpleGoodsTable :tableData="editForm.goodsList"/>
+      <SimpleGoodsTable :table-data="editForm.goodsList"/>
     </el-form-item>
 
     <el-form-item>
@@ -41,7 +40,10 @@
 import SimpleGoodsTable from '@/components/SimpleGoodsTable.vue'
 
 export default {
-  name: 'edit',
+  name: 'DiscountEdit',
+  components: {
+    SimpleGoodsTable
+  },
   data () {
     return {
       editForm: {},
@@ -57,9 +59,6 @@ export default {
     submitForm () {
       console.log('submitForm', this.editForm)
     }
-  },
-  components: {
-    SimpleGoodsTable
   }
 }
 </script>

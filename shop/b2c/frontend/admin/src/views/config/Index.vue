@@ -1,22 +1,13 @@
 <template>
   <div >
-      <router-view/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'config',
-  watch: {
-    $route: {
-      handler (val, oldVal) {
-        console.log('watch route', this.$route)
-      },
-      // 深度观察监听
-      deep: true
-    }
-  },
+  name: 'Index',
 
   data () {
     return {
@@ -66,9 +57,15 @@ export default {
     }
   },
 
-  components: {
+  watch: {
+    $route: {
+      handler (val, oldVal) {
+        console.log('watch route', this.$route)
+      },
+      // 深度观察监听
+      deep: true
+    }
   },
-
   created () {
     console.log('created route', this.$route)
   }

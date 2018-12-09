@@ -1,6 +1,7 @@
 <template>
-  <el-table border
+  <el-table
     :data="tableData"
+    border
     style="width: 100%">
     <el-table-column
       label="第三方登录">
@@ -9,12 +10,12 @@
           <img :src="scope.row.logo">
         </div>
         <span class="table-pay">
-          {{scope.row.name}}
+          {{ scope.row.name }}
         </span>
         <br>
         <span class="table-desc">
-          提示：{{scope.row.tooltip}} 链接：
-          <a :href="scope.row.link" target="_brank">{{scope.row.link}}</a>
+          提示：{{ scope.row.tooltip }} 链接：
+          <a :href="scope.row.link" target="_brank">{{ scope.row.link }}</a>
         </span>
       </template>
     </el-table-column>
@@ -22,14 +23,14 @@
       label="状态"
       width="180">
       <template slot-scope="scope">
-        <el-switch v-model="scope.row.status">
-        </el-switch>
+        <el-switch v-model="scope.row.status" />
       </template>
     </el-table-column>
-    <el-table-column label="操作"
+    <el-table-column
+      label="操作"
       width="180">
       <template slot-scope="scope">
-          <!-- <a href="/config/loginconfig.html?type=qq">配置</a> -->
+        <!-- <a href="/config/loginconfig.html?type=qq">配置</a> -->
         <el-button
           size="mini"
           @click="handleEdit(scope.$index, scope.row)">配置</el-button>

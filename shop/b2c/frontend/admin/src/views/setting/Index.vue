@@ -7,7 +7,9 @@
 <script>
 
 export default {
-  name: 'setting',
+  name: 'Setting',
+  components: {
+  },
   data () {
     return {
       menuList: [{
@@ -36,8 +38,6 @@ export default {
         name: '核销设置'
       }]
     }
-  },
-  components: {
   }
 }
 </script>

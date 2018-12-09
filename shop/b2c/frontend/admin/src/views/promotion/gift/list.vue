@@ -4,8 +4,8 @@
 <template>
   <div>
 
-<!-- 模态框（Modal） -->
-    <div class="modal fade hide" id="giftInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" v-show="false">
+    <!-- 模态框（Modal） -->
+    <div v-show="false" class="modal fade hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -15,30 +15,32 @@
           <div class="modal-body">
             <div class="modal-infp-style">
               <table>
-                <tbody><tr>
-                  <td>活动名称</td>
-                  <td id="gift_name"></td>
-                </tr>
-                <tr>
-                  <td>有效期</td>
-                  <td id="time"></td>
-                </tr>
-                <tr>
-                  <td>领取有效期</td>
-                  <td id="days"></td>
-                </tr>
-                <tr>
-                  <td>领取限制</td>
-                  <td id="max_num"></td>
-                </tr>
-                <tr>
-                  <td colspan="2">赠品</td>
-                </tr>
-                <tr id="goods_list">
-                  <td></td>
-                  <td>商品名称</td>
-                </tr>
-              </tbody></table>
+                <tbody>
+                  <tr>
+                    <td>活动名称</td>
+                    <td data-id="gift_name" />
+                  </tr>
+                  <tr>
+                    <td>有效期</td>
+                    <td data-id="time" />
+                  </tr>
+                  <tr>
+                    <td>领取有效期</td>
+                    <td data-id="days" />
+                  </tr>
+                  <tr>
+                    <td>领取限制</td>
+                    <td data-id="max_num" />
+                  </tr>
+                  <tr>
+                    <td colspan="2">赠品</td>
+                  </tr>
+                  <tr id="goods_list">
+                    <td>&emsp;</td>
+                    <td>商品名称</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           <div class="modal-footer">
@@ -54,74 +56,74 @@
       </el-col>
 
       <el-col :span="10">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入赠品名称"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入赠品名称" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
         type="selection"
-        width="35">
+        width="35" />
+
+      <el-table-column
+        prop="name"
+        label="活动名称" />
+
+      <el-table-column
+        label="活动状态"
+        width="120">
+        <template slot-scope="scope">
+          <span v-if="scope.row.status === 1">进行中</span>
+          <span v-if="scope.row.status === 2">已关闭</span>
+          <span v-if="scope.row.status === 3">已结束</span>
+        </template>
       </el-table-column>
 
       <el-table-column
-            prop="name"
-            label="活动名称">
-          </el-table-column>
+        label="已赠送"
+        width="120">
+        <template slot-scope="scope">-</template>
+      </el-table-column>
 
       <el-table-column
-            label="活动状态"
-            width="120">
-        <template slot-scope="scope">
-            <span v-if="scope.row.status === 1">进行中</span>
-            <span v-if="scope.row.status === 2">已关闭</span>
-            <span v-if="scope.row.status === 3">已结束</span>
-        </template>
-          </el-table-column>
+        label="已领取"
+        width="120">
+        <template slot-scope="scope">-</template>
+      </el-table-column>
 
       <el-table-column
-            label="已赠送"
-            width="120">
-            <template slot-scope="scope">-</template>
-          </el-table-column>
-
-      <el-table-column
-            label="已领取"
-            width="120">
-                <template slot-scope="scope">-</template>
-          </el-table-column>
-
-      <el-table-column label="有效时间"
+        label="有效时间"
         width="210">
         <template slot-scope="scope">
-          开始时间：{{scope.row.startDate}}
+          开始时间：{{ scope.row.startDate }}
           <br>
-          结束时间：{{scope.row.endDate}}
+          结束时间：{{ scope.row.endDate }}
         </template>
       </el-table-column>
 
-        <el-table-column label="操作"
-          width="220">
-          <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" v-if="scope.row.status !== 1">删除</el-button>
-            <el-button size="mini" class="margin-top-5" @click="$router.push('records.html?id=' + scope.row.id)">发放记录</el-button>
-          </template>
-        </el-table-column>
+      <el-table-column
+        label="操作"
+        width="220">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">详情</el-button>
+          <el-button v-if="scope.row.status !== 1" size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+          <el-button size="mini" class="margin-top-5" @click="$router.push('records.html?id=' + scope.row.id)">发放记录</el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'giftList',
+  name: 'GiftList',
   data () {
     return {
       searchKeyword: '',

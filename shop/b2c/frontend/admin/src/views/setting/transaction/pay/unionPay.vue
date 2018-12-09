@@ -2,39 +2,35 @@
   <el-form ref="form" :model="unionPayConfigFrom" label-width="140px" size="mini" label-position="right">
 
     <el-form-item label="商户号">
-        <el-input   v-model="unionPayConfigFrom.merchantNumber">
+      <el-input v-model="unionPayConfigFrom.merchantNumber" />
+    </el-form-item>
+
+    <el-form-item label="签名证书秘钥">
+      <el-input v-model="unionPayConfigFrom.signCertSecretkey" />
+    </el-form-item>
+
+    <el-form-item label="证书路径">
+      <el-input v-model="unionPayConfigFrom.certsPath" />
+    </el-form-item>
+
+    <el-form-item label="日志路径">
+      <el-input v-model="unionPayConfigFrom.logPath" />
+    </el-form-item>
+
+    <el-form-item label="手续费">
+      <el-input v-model="unionPayConfigFrom.serviceCharge" type="number">
+        <template slot="append">
+          倍
+        </template>
       </el-input>
     </el-form-item>
 
-      <el-form-item label="签名证书秘钥">
-        <el-input   v-model="unionPayConfigFrom.signCertSecretkey">
-      </el-input>
-      </el-form-item>
-
-      <el-form-item label="证书路径">
-        <el-input   v-model="unionPayConfigFrom.certsPath">
-      </el-input>
-      </el-form-item>
-
-      <el-form-item label="日志路径">
-        <el-input   v-model="unionPayConfigFrom.logPath">
-        </el-input>
-      </el-form-item>
-
-      <el-form-item label="手续费">
-        <el-input type="number"  v-model="unionPayConfigFrom.serviceCharge" >
-        <template slot="append">
-              倍
-        </template>
-      </el-input>
-      </el-form-item>
-
     <el-form-item label="是否启用支付">
-      <el-switch active-text="是" inactive-text="否" v-model="unionPayConfigFrom.isUse"></el-switch>
+      <el-switch v-model="unionPayConfigFrom.isUse" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item label="是否启用退款">
-      <el-switch active-text="是" inactive-text="否" v-model="unionPayConfigFrom.canRefund"></el-switch>
+      <el-switch v-model="unionPayConfigFrom.canRefund" active-text="是" inactive-text="否" />
       <p class="hint">开启银联卡支付才可以进行后续操作</p>
     </el-form-item>
 
@@ -47,15 +43,15 @@
 
 <script>
 export default {
-  name: 'unionPayConfig',
-  methods: {
-    handlePreview () {},
-    handleRemove () {}
-  },
+  name: 'UnionPayConfig',
   data () {
     return {
       unionPayConfigFrom: {}
     }
+  },
+  methods: {
+    handlePreview () {},
+    handleRemove () {}
   }
 }
 </script>

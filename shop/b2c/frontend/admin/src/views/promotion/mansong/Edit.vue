@@ -3,19 +3,18 @@
     <h4>活动信息</h4>
 
     <el-form-item label="活动名称" prop="name" required>
-      <el-input v-model="editForm.name" max="10"></el-input>
+      <el-input v-model="editForm.name" max="10" />
     </el-form-item>
 
     <el-form-item label="生效时间" required>
       <el-date-picker
         v-model="editForm.dateRange"
-        type="datetimerange"
         :picker-options="pickerOptions"
+        type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
         end-placeholder="结束日期"
-        align="right">
-      </el-date-picker>
+        align="right" />
     </el-form-item>
 
     <h4>优惠设置</h4>
@@ -30,19 +29,19 @@
 
     <el-form-item label="优惠条件">
 
-      <el-table border :data="editForm.conditions" style="width: 100%">
+      <el-table :data="editForm.conditions" border style="width: 100%">
         <el-table-column
           label="层级"
           width="80">
           <template slot-scope="scope">
-          {{ scope.$index + 1 }}
+            {{ scope.$index + 1 }}
           </template>
         </el-table-column>
 
         <el-table-column label="优惠门槛">
           <template slot-scope="scope">
             满
-            <el-input type="number" style="width:200px" v-model="scope.row.basePrice" >
+            <el-input v-model="scope.row.basePrice" type="number" style="width:200px" >
               <template slot="append">
                 元
               </template>
@@ -51,7 +50,7 @@
         </el-table-column>
 
         <el-table-column
-            label="优惠方式（可多选）">
+          label="优惠方式（可多选）">
           <template slot-scope="scope">
             <div class="my-checkbox-group">
               <el-checkbox-group v-model="scope.row.way">
@@ -60,7 +59,7 @@
                   <span v-if="!scope.row.way.includes(1)">减现金</span>
                   <div v-else>
                     减
-                    <el-input type="number" size="mini" min="0" style="width:200px" v-model="scope.row.discount" >
+                    <el-input v-model="scope.row.discount" type="number" size="mini" min="0" style="width:200px" >
                       <template slot="append">
                         元
                       </template>
@@ -74,7 +73,7 @@
                   <span v-if="!scope.row.way.includes(3)">送积分</span>
                   <div v-else>
                     送
-                    <el-input type="number" size="mini" min="0" style="width:200px" v-model="scope.row.giveIntegral" >
+                    <el-input v-model="scope.row.giveIntegral" type="number" size="mini" min="0" style="width:200px" >
                       <template slot="append">
                         分
                       </template>
@@ -86,9 +85,9 @@
                   <span v-if="!scope.row.way.includes(4)">送优惠券</span>
                   <div v-else>
                     送
-                    <el-select size="mini" v-model="scope.row.giveCoupon" placeholder="请选择">
-                      <el-option label="选择1" value="1"></el-option>
-                      <el-option label="选择2" value="2"></el-option>
+                    <el-select v-model="scope.row.giveCoupon" size="mini" placeholder="请选择">
+                      <el-option label="选择1" value="1" />
+                      <el-option label="选择2" value="2" />
                     </el-select>
                     <el-button size="mini">刷新</el-button>
                     <el-button size="mini">创建</el-button>
@@ -99,9 +98,9 @@
                   <span v-if="!scope.row.way.includes(5)">送赠品</span>
                   <div v-else>
                     送
-                    <el-select size="mini" v-model="scope.row.giveGift" placeholder="请选择">
-                      <el-option label="选择1" value="1"></el-option>
-                      <el-option label="选择2" value="2"></el-option>
+                    <el-select v-model="scope.row.giveGift" size="mini" placeholder="请选择">
+                      <el-option label="选择1" value="1" />
+                      <el-option label="选择2" value="2" />
                     </el-select>
                     <el-button size="mini">刷新</el-button>
                     <el-button size="mini">创建</el-button>
@@ -112,11 +111,13 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="操作" fixed="right"
-            width="80">
-            <template slot-scope="scope">
-                <el-button size="mini" @click="editForm.conditions.splice(scope.$index, 1)">删除</el-button>
-            </template>
+        <el-table-column
+          label="操作"
+          fixed="right"
+          width="80">
+          <template slot-scope="scope">
+            <el-button size="mini" @click="editForm.conditions.splice(scope.$index, 1)">删除</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <div v-show="editForm.type === 2">
@@ -129,17 +130,17 @@
 
     <el-form-item label="参与商品">
       <el-radio-group v-model="editForm.isAll">
-          <el-radio :label="true">全部</el-radio>
-          <el-radio :label="false">部分</el-radio>
+        <el-radio :label="true">全部</el-radio>
+        <el-radio :label="false">部分</el-radio>
       </el-radio-group>
     </el-form-item>
 
-    <el-form-item label="选择商品" v-show="!editForm.isAll">
+    <el-form-item v-show="!editForm.isAll" label="选择商品" >
       <el-button type="primary" @click="submitForm('editForm')">选择商品</el-button>
     </el-form-item>
 
     <el-form-item v-show="!editForm.isAll">
-      <SimpleGoodsTable :tableData="editForm.goodsList"/>
+      <SimpleGoodsTable :table-data="editForm.goodsList"/>
     </el-form-item>
 
     <el-form-item>
@@ -153,7 +154,10 @@
 import SimpleGoodsTable from '@/components/SimpleGoodsTable.vue'
 
 export default {
-  name: 'edit',
+  name: 'MansongEdit',
+  components: {
+    SimpleGoodsTable
+  },
   data () {
     return {
       editForm: {
@@ -201,9 +205,6 @@ export default {
     submitForm () {
       console.log('submitForm', this.editForm)
     }
-  },
-  components: {
-    SimpleGoodsTable
   }
 }
 </script>

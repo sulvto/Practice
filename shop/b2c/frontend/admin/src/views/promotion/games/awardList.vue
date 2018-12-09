@@ -1,35 +1,32 @@
 <template>
   <div>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
         prop="name"
-        label="游戏活动名称">
-      </el-table-column>
+        label="游戏活动名称" />
 
       <el-table-column
         prop="level"
-        label="奖励规则等级">
-      </el-table-column>
+        label="奖励规则等级" />
 
       <el-table-column
         prop="award"
-        label="奖励">
-      </el-table-column>
+        label="奖励" />
 
       <el-table-column
         label="剩余奖品数/总奖品数">
         <template slot-scope="scope">
-          {{scope.row.rest}}/{{scope.row.total}}
+          {{ scope.row.rest }} / {{ scope.row.total }}
         </template>
       </el-table-column>
 
       <el-table-column
         label="操作">
-          <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑游戏活动</el-button>
-          </template>
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑游戏活动</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -37,7 +34,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'AwardList',
   data () {
     return {
       searchKeyword: '',

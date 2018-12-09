@@ -1,16 +1,11 @@
 <template>
   <section class="ns-base-section">
-<div>
-  <el-tabs v-model="selectedStatus" >
-    <el-tab-pane label="出售中" :name="1">
-    </el-tab-pane>
-    <el-tab-pane label="已下架" :name="2">
-    </el-tab-pane>
-    <el-tab-pane label="库存预警" :name="3">
-    </el-tab-pane>
-    <el-tab-pane label="回收站" :name="4">
-    </el-tab-pane>
-  </el-tabs>
+    <el-tabs v-model="selectedStatus" >
+      <el-tab-pane :name="1" label="出售中" />
+      <el-tab-pane :name="2" label="已下架" />
+      <el-tab-pane :name="3" label="库存预警" />
+      <el-tab-pane :name="4" label="回收站" />
+    </el-tabs>
 
     <el-row :gutter="4">
       <el-col :span="14">
@@ -18,36 +13,36 @@
         <el-button size="small">上架</el-button>
         <el-button size="small">下架</el-button>
         <el-popover
+          v-model="seleteRecommendTypesPopoverVisible"
           title="标题"
           placement="bottom"
           popper-class="popover-checkbox-group"
           width="80"
           style="min-width: unset;"
-          trigger="click"
-          v-model="seleteRecommendTypesPopoverVisible">
+          trigger="click">
           <el-checkbox-group v-model="updateRecommendTypes">
-            <el-checkbox label="热卖"></el-checkbox>
-            <el-checkbox label="精品"></el-checkbox>
-            <el-checkbox label="新品"></el-checkbox>
+            <el-checkbox label="热卖" />
+            <el-checkbox label="精品" />
+            <el-checkbox label="新品" />
           </el-checkbox-group>
-          <br/>
+          <br>
           <el-button type="primary" size="mini" @click="seleteRecommendTypesPopoverVisible = false">确定</el-button>
           <el-button slot="reference" size="small">推荐</el-button>
         </el-popover>
 
         <el-popover
+          v-model="seleteTagsPopoverVisible"
           popper-class="popover-checkbox-group"
           title="修改商品标签"
           placement="bottom"
           width="100"
-          trigger="click"
-          v-model="seleteTagsPopoverVisible">
+          trigger="click">
           <el-checkbox-group v-model="updateTags">
-            <el-checkbox label="hot"></el-checkbox>
-            <el-checkbox label="火火火"></el-checkbox>
-            <el-checkbox label="明星同款"></el-checkbox>
+            <el-checkbox label="hot" />
+            <el-checkbox label="火火火" />
+            <el-checkbox label="明星同款" />
           </el-checkbox-group>
-          <br/>
+          <br>
           <el-button type="primary" size="mini" @click="seleteTagsPopoverVisible = false">确定</el-button>
           <el-button slot="reference" size="small">商品标签</el-button>
         </el-popover>
@@ -57,37 +52,37 @@
       </el-col>
 
       <el-col :span="7">
-        <el-input size="small" v-model="queryForm.goodsName" placeholder="要搜索的商品名称"></el-input>
+        <el-input v-model="queryForm.goodsName" size="small" placeholder="要搜索的商品名称" />
       </el-col>
       <el-col :span="1">
         <el-popover
+          v-model="moreQueryPopoverVisible"
           placement="bottom"
           width="400"
-          trigger="click"
-          v-model="moreQueryPopoverVisible">
+          trigger="click">
           <el-form ref="editForm" :model="queryForm" label-width="100px" size="small" label-position="right">
             <el-form-item label="商品编码">
-              <el-input v-model="queryForm.goodsCode"></el-input>
+              <el-input v-model="queryForm.goodsCode" />
             </el-form-item>
 
             <el-form-item label="供货商">
               <el-select v-model="queryForm.supplierId" clearable placeholder="请选择">
-                <el-option label="小米供货商" :value="1"></el-option>
-                <el-option label="三星供货商" :value="2"></el-option>
+                <el-option :value="1" label="小米供货商" />
+                <el-option :value="2" label="三星供货商" />
               </el-select>
             </el-form-item>
 
             <el-form-item label="商品类型">
               <el-select v-model="queryForm.goodsType" clearable placeholder="请选择">
-                <el-option label="实物商品" :value="1"></el-option>
-                <el-option label="虚拟商品" :value="2"></el-option>
+                <el-option :value="1" label="实物商品" />
+                <el-option :value="2" label="虚拟商品" />
               </el-select>
             </el-form-item>
 
             <el-form-item label="商品标签">
               <el-select v-model="queryForm.labels" multiple clearable placeholder="请选择">
-                <el-option label="hot" :value="1"></el-option>
-                <el-option label="牛逼的标签" :value="2"></el-option>
+                <el-option :value="1" label="hot" />
+                <el-option :value="2" label="牛逼的标签" />
               </el-select>
             </el-form-item>
 
@@ -95,7 +90,7 @@
               <el-button type="primary" @click="moreQueryPopoverVisible = false">确定</el-button>
             </el-form-item>
           </el-form>
-          <el-button slot="reference" icon="el-icon-arrow-down" size="small" ></el-button>
+          <el-button slot="reference" icon="el-icon-arrow-down" size="small" />
         </el-popover>
       </el-col>
       <el-col :span="2">
@@ -103,13 +98,12 @@
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="goodsList" style="width: 100%" @selection-change="handleSelectionChange">
+    <el-table :data="goodsList" border style="width: 100%" @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         label="商品名称">
@@ -119,8 +113,8 @@
             <span class="pro-code" style="margin-left:10px;">
               创建时间：{{ scope.row.createDate }}
               <span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative">
-                <i class="icon iconfont icon-qrcode" ></i>
-                <div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode">
+                <i class="icon iconfont icon-qrcode" />
+                <div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode">
                   <p><img src="http://showfx.niuteam.cn/upload/goods_qrcode/goods_qrcode_157.png" style="width:110px;"></p>
                 </div>
               </span>
@@ -129,10 +123,11 @@
           <div style="width:450px;">
             <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=157" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="http://pc7mzzjqj.bkt.clouddn.com/upload/goods/20180724/1ba75c9b575740a0db4e6dd8aca893a14.jpg"></a>
             <div class="div-pro-view-name">
-              <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=157">{{ scope.row.name }}</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="157" data-up-type="goods_name"
-                  type="text" value="1"><br>
-              <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><span style="color:#999;font-size:12px;display:block;height:25px;overflow:hidden;text-decoration: none;">1</span></div><input data-goods-id="157" data-up-type="introduction" class="js-update-introduction input-common" style="width:350px!important;"
-                  type="text" maxlength="60" value="1">
+              <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=157">{{ scope.row.name }}</a></div>
+              <input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="157" data-up-type="goods_name" type="text" value="1">
+              <br>
+              <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><span style="color:#999;font-size:12px;display:block;height:25px;overflow:hidden;text-decoration: none;">1</span></div>
+              <input data-goods-id="157" data-up-type="introduction" class="js-update-introduction input-common" style="width:350px!important;" type="text" maxlength="60" value="1">
 
               <div style="position: relative;margin-left: 75px;">
                 <i v-for="tag in scope.row.tags" :key="tag" style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">{{ tag }}</i>
@@ -145,84 +140,78 @@
       <el-table-column
         prop="price"
         label="价格(元)"
-        width="80">
-      </el-table-column>
+        width="80" />
 
       <el-table-column
         prop="totalStock"
         label="总库存"
-        width="80">
-      </el-table-column>
+        width="80" />
 
       <el-table-column
         prop="totalSales"
         label="销量"
-        width="80">
-      </el-table-column>
+        width="80" />
 
       <el-table-column
         prop="type"
         label="实物类型"
-        width="80">
-      </el-table-column>
+        width="80" />
 
       <el-table-column
         label="排序"
         width="80">
         <template slot-scope="scope">
-          <el-input class="disable-input-spinner-button" type="number" size="small" v-model="scope.row.sort" >
-          </el-input>
+          <el-input v-model="scope.row.sort" class="disable-input-spinner-button" type="number" size="small" />
         </template>
       </el-table-column>
 
       <!-- 实物类型 -->
-      <el-table-column label="操作" fixed="right"
-          width="200">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">复制</el-button>
-              <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-              <br/>
-              <el-button class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">下架</el-button>
-              <br/>
-              <el-button class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">设置会员折扣</el-button>
-              <br/>
-              <el-button class="margin-top-5" size="mini" v-if="scope.row.type >= 20" @click="handleDelete(scope.$index, scope.row)">虚拟商品管理</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="200">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">复制</el-button>
+          <el-button size="mini" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <br>
+          <el-button class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">下架</el-button>
+          <br>
+          <el-button class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">设置会员折扣</el-button>
+          <br>
+          <el-button v-if="scope.row.type >= 20" class="margin-top-5" size="mini" @click="handleDelete(scope.$index, scope.row)">虚拟商品管理</el-button>
+        </template>
       </el-table-column>
     </el-table>
 
-    <el-dialog title="批量处理" size="small" :visible.sync="dialogBatchProcessingFormVisible">
-      <el-form ref="batchProcessingForm" size="small" :model="batchProcessingForm" label-width="80px" >
+    <el-dialog :visible.sync="dialogBatchProcessingFormVisible" title="批量处理" size="small" >
+      <el-form ref="batchProcessingForm" :model="batchProcessingForm" size="small" label-width="80px" >
 
-        <el-alert type="success" :closable="false" description="1、如果未设置任何选择，则商品保持原状不变。"></el-alert>
-        <el-alert type="success" :closable="false" description="2、设置商品库存，将作用于所选商品的所有规格项。"></el-alert>
-        <br/>
+        <el-alert :closable="false" type="success" description="1、如果未设置任何选择，则商品保持原状不变。" />
+        <el-alert :closable="false" type="success" description="2、设置商品库存，将作用于所选商品的所有规格项。" />
+        <br>
 
         <el-form-item label="商品分类">
-          <el-select class="width-180" v-model="batchProcessingForm.categroyLevel0" clearable placeholder="请选择一级分类">
+          <el-select v-model="batchProcessingForm.categroyLevel0" class="width-180" clearable placeholder="请选择一级分类">
             <el-option
               v-for="item in categroyLevel_0"
               :key="item.id"
               :label="item.name"
-              :value="item.id">
-            </el-option>
+              :value="item.id" />
           </el-select>
-          <el-select class="width-180" v-model="batchProcessingForm.categroyLevel1" clearable placeholder="请选择二级分类">
+          <el-select v-model="batchProcessingForm.categroyLevel1" class="width-180" clearable placeholder="请选择二级分类">
             <el-option
               v-for="item in categroyLevel_1(batchProcessingForm.categroyLevel0)"
               :key="item.id"
               :label="item.name"
-              :value="item.id">
-            </el-option>
+              :value="item.id" />
           </el-select>
-          <el-select class="width-180" v-model="batchProcessingForm.categroyLevel2" clearable placeholder="请选择三级分类">
+          <el-select v-model="batchProcessingForm.categroyLevel2" class="width-180" clearable placeholder="请选择三级分类">
             <el-option
               v-for="item in categroyLevel_2(batchProcessingForm.categroyLevel1)"
               :key="item.id"
               :label="item.name"
-              :value="item.id">
-            </el-option>
+              :value="item.id" />
           </el-select>
         </el-form-item>
 
@@ -232,7 +221,7 @@
             <el-radio :label="0">减少</el-radio>
           </el-radio-group>
           &emsp;&emsp;
-          <el-input class="disable-input-spinner-button width-180" type="number" value="0" v-model="batchProcessingForm.salePrice" ></el-input>
+          <el-input v-model="batchProcessingForm.salePrice" class="disable-input-spinner-button width-180" type="number" value="0" />
 
           <span class="info">销售价增加N元或减少N元</span>
 
@@ -244,7 +233,7 @@
             <el-radio :label="0">减少</el-radio>
           </el-radio-group>
           &emsp;&emsp;
-          <el-input class="disable-input-spinner-button width-180" type="number" value="0" v-model="batchProcessingForm.marketPrice" ></el-input>
+          <el-input v-model="batchProcessingForm.marketPrice" class="disable-input-spinner-button width-180" type="number" value="0" />
 
           <span class="info">市场价增加N元或减少N元</span>
 
@@ -256,7 +245,7 @@
             <el-radio :label="0">减少</el-radio>
           </el-radio-group>
           &emsp;&emsp;
-          <el-input class="disable-input-spinner-button width-180" type="number" value="0" v-model="batchProcessingForm.costPrice" ></el-input>
+          <el-input v-model="batchProcessingForm.costPrice" class="disable-input-spinner-button width-180" type="number" value="0" />
 
           <span class="info">成本价增加N元或减少N元</span>
         </el-form-item>
@@ -267,7 +256,7 @@
             <el-radio :label="0">减少</el-radio>
           </el-radio-group>
           &emsp;&emsp;
-          <el-input class="disable-input-spinner-button width-180" type="number" value="0" v-model="batchProcessingForm.stock" ></el-input>
+          <el-input v-model="batchProcessingForm.stock" class="disable-input-spinner-button width-180" type="number" value="0" />
 
           <span class="info">库存增加N件或减少N件</span>
         </el-form-item>
@@ -278,8 +267,7 @@
               v-for="item in brandList"
               :key="item.id"
               :label="item.name"
-              :value="item.id">
-            </el-option>
+              :value="item.id" />
           </el-select>
 
         </el-form-item>
@@ -291,13 +279,13 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="设置商品折扣" size="small" :visible.sync="dialogSetMemberDiscountFormVisible">
-      <el-form ref="setMemberDiscountForm" size="small" :model="setMemberDiscountForm" label-width="100px" >
+    <el-dialog :visible.sync="dialogSetMemberDiscountFormVisible" title="设置商品折扣" size="small">
+      <el-form ref="setMemberDiscountForm" :model="setMemberDiscountForm" size="small" label-width="100px" >
 
         <el-form-item label="黄金会员">
-          <el-input type="number" min="0" max="100" step="1" v-model="setMemberDiscountForm.salePrice" >
+          <el-input v-model="setMemberDiscountForm.salePrice" type="number" min="0" max="100" step="1" >
             <template slot="append">
-                %
+              %
             </template>
           </el-input>
         </el-form-item>
@@ -316,13 +304,11 @@
       </div>
     </el-dialog>
 
-  </div>
-
     <!-- 操作提示 -->
 
     <div class="ns-main">
 
-      <div class="js-mask-category" style="display:none;background: rgba(0,0,0,0);position:fixed;width:100%;height:100%;top:0;left:0;right:0;bottom:0;z-index:90;"></div>
+      <div class="js-mask-category" style="display:none;background: rgba(0,0,0,0);position:fixed;width:100%;height:100%;top:0;left:0;right:0;bottom:0;z-index:90;" />
       <table class="mytable">
         <tbody>
           <tr>
@@ -331,75 +317,75 @@
 
               商品分类：
               <div style="display: inline-block;position: relative;">
-                <input type="text" placeholder="请选择商品分类" @click="showCategory=!showCategory" class="input-common middle">
-                <div class="goodsCategory one" v-show="showCategory">
+                <input type="text" placeholder="请选择商品分类" class="input-common middle" @click="showCategory=!showCategory">
+                <div v-show="showCategory" class="goodsCategory one">
                   <ul>
                     <li class="js-category-one" category_id="3">
                       <span>养护设备</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="4">
                       <span>工程设备</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="5">
                       <span>环卫设备</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="146">
                       <span>服装</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="6">
                       <span>配件专区</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="7">
                       <span>女鞋/箱包/钟表/珠宝</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="8">
                       <span>男鞋/运动/户外</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="2">
                       <span>混凝土设</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="9">
                       <span>汽车/汽车用品</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="10">
                       <span>母婴/玩具用品</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                     <li class="js-category-one" category_id="11">
                       <span>食品/酒类/生鲜/特产</span>
-                      <i class="fa fa-angle-right fa-lg"></i>
+                      <i class="fa fa-angle-right fa-lg" />
                     </li>
                   </ul>
                 </div>
                 <div class="goodsCategory two" style="border-left:0;">
-                  <ul id="goodsCategoryTwo"></ul>
+                  <ul id="goodsCategoryTwo" />
                 </div>
                 <div class="goodsCategory three">
-                  <ul id="goodsCategoryThree"></ul>
+                  <ul id="goodsCategoryThree" />
                 </div>
                 <div class="selectGoodsCategory">
-                  <a href="javascript:;" id="confirmSelect" style="float:right;">确认选择</a>
+                  <a href="javascript:;" data-id="confirmSelect" style="float:right;">确认选择</a>
                 </div>
-                <input type="hidden" id="category_id_1">
-                <input type="hidden" id="category_id_2">
-                <input type="hidden" id="category_id_3">
+                <input type="hidden" data-id="category_id_1">
+                <input type="hidden" data-id="category_id_2">
+                <input type="hidden" data-id="category_id_3">
               </div>
 
-              <span class="interval"></span>
+              <span class="interval" />
               <span>商品名称：</span>
               <input id="goods_name" class="input-medium input-common middle" type="text" value="" placeholder="要搜索的商品名称">
-              <span class="interval"></span>
-              <button class="btn-common-white more-search"><i class="fa fa-chevron-down"></i></button>
-              <span class="interval"></span>
+              <span class="interval" />
+              <button class="btn-common-white more-search"><i class="fa fa-chevron-down" /></button>
+              <span class="interval" />
               <button onclick="searchData()" class="btn-common">搜索</button>
 
               <!-- 更多搜索 -->
@@ -414,11 +400,13 @@
                   <dt>供货商：</dt>
                   <dd>
                     <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
-                      <div class="selectric-hide-select"><select id="supplier_id" class="select-common middle" tabindex="-1">
-                  <option value="">全部</option>
-                                <option value="1">小米供货商</option>
-                                <option value="2">三星供货商</option>
-                              </select></div>
+                      <div class="selectric-hide-select">
+                        <select id="supplier_id" class="select-common middle" tabindex="-1">
+                          <option value="">全部</option>
+                          <option value="1">小米供货商</option>
+                          <option value="2">三星供货商</option>
+                        </select>
+                      </div>
                       <div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div>
                       <div class="selectric-items" tabindex="-1">
                         <div class="selectric-scroll">
@@ -428,16 +416,18 @@
                             <li data-index="2" class="last" title="三星供货商">三星供货商</li>
                           </ul>
                         </div>
-                      </div><input class="selectric-input" tabindex="0"></div>
+                      </div>
+                      <input class="selectric-input" tabindex="0">
+                    </div>
                   </dd>
                 </dl>
                 <dl>
                   <dt>上下架：</dt>
                   <dd>
                     <select id="state" class="select-common middle" >
-                    <option value="" >全部</option>
-                    <option value="1" >上架</option>
-                    <option value="0" >下架</option>
+                      <option value="" >全部</option>
+                      <option value="1" >上架</option>
+                      <option value="0" >下架</option>
                     </select>
                   </dd>
                 </dl>
@@ -445,11 +435,13 @@
                   <dt>商品类型：</dt>
                   <dd>
                     <div class="selectric-wrapper selectric-select-common selectric-middle" style="width: 150px;">
-                      <div class="selectric-hide-select"><select id="goods_type" class="select-common middle" tabindex="-1">
-                  <option value="all">全部</option>
-                  <option value="1">实物商品</option>
-                  <option value="0">虚拟商品</option>
-                </select></div>
+                      <div class="selectric-hide-select">
+                        <select id="goods_type" class="select-common middle" tabindex="-1">
+                          <option value="all">全部</option>
+                          <option value="1">实物商品</option>
+                          <option value="0">虚拟商品</option>
+                        </select>
+                      </div>
                       <div class="selectric"><span class="selectric-label">全部</span><button class="selectric-button">▾</button></div>
                       <div class="selectric-items" tabindex="-1">
                         <div class="selectric-scroll">
@@ -459,17 +451,19 @@
                             <li data-index="2" class="last" title="虚拟商品">虚拟商品</li>
                           </ul>
                         </div>
-                      </div><input class="selectric-input" tabindex="0"></div>
+                      </div>
+                      <input class="selectric-input" tabindex="0">
+                    </div>
                   </dd>
                 </dl>
                 <dl>
                   <dt>商品标签：</dt>
                   <dd>
-                    <input type="text" placeholder="请选择商品标签" id="selectGoodsLabel" onfocus="selectGoodsLabel();" is_show="false" data-html="true" class="input-common middle" title="<h6 class='edit-group-title'>选择商品标签</h6>" data-container="body" data-placement="bottom" data-trigger="manual"
-                        data-content=""></dd>
+                    <!-- <input type="text" data-id="selectGoodsLabel" onfocus="selectGoodsLabel();" is_show="false" data-html="true" class="input-common middle" title="<h6 class='edit-group-title'>选择商品标签</h6>" data-container="body" data-placement="bottom" data-trigger="manual" data-content="" placeholder="请选择商品标签"> -->
+                  </dd>
                 </dl>
                 <dl>
-                  <dt></dt>
+                  <!-- <dt></dt> -->
                   <dd>
                     <a href="javascript:;" onclick="searchData()" class="btn-common">完成</a>
                   </dd>
@@ -497,24 +491,24 @@
               <tr>
                 <th>
                   <i class="checkbox-common">
-                  <input onclick="CheckAll(this)" type="checkbox" id="chek_all">
-                </i>
+                    <input onclick="CheckAll(this)" type="checkbox" data-id="chek_all">
+                  </i>
                 </th>
                 <th align="left">商品名称</th>
-                <th class="goods-fields-sort" data-field="price" style="text-align: right;">价格(元)<span class="desc"></span></th>
-                <th class="goods-fields-sort" data-field="stock" style="text-align: right;">总库存<span class="desc"></span></th>
-                <th class="goods-fields-sort" data-field="sales" style="text-align: right;">销量<span class="desc"></span></th>
+                <th class="goods-fields-sort" data-field="price" style="text-align: right;">价格(元)<span class="desc" /></th>
+                <th class="goods-fields-sort" data-field="stock" style="text-align: right;">总库存<span class="desc" /></th>
+                <th class="goods-fields-sort" data-field="sales" style="text-align: right;">销量<span class="desc" /></th>
                 <th>实物类型</th>
-                <th class="goods-fields-sort" data-field="sort" style="text-align: center;">排序<span class="desc"></span></th>
+                <th class="goods-fields-sort" data-field="sort" style="text-align: center;">排序<span class="desc" /></th>
                 <th>操作</th>
               </tr>
             </thead>
-            <tbody id="productTbody" style="border: 0;">
+            <!-- <tbody id="productTbody" style="border: 0;">
 
               <tr class="tr-title">
-                <td class="td-155" style="border-bottom:0;"></td>
+                <td class="td-155" style="border-bottom:0;">&emsp;</td>
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-20 12:22:10<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_155.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-20 12:22:10<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_155.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -524,24 +518,22 @@
                   <div style="width:450px;">
                     <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=155" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/149933394894.jpg"></a>
                     <div class="div-pro-view-name">
-                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=155">5555 123</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="155" data-up-type="goods_name"
-                          type="text" value="5555 123"><br>
+                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=155">5555 123</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="155" data-up-type="goods_name" type="text" value="5555 123"><br>
                       <div style="position: relative;margin-left: 75px;"><i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
                         <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">活动</i>
-                        <i
-                            style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i>
+                        <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice155" style="color:#FF6600;">10.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice155" style="color:#FF6600;">10.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock155">0</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock155">0</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock155">1</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock155">1</span></div>
                 </td>
                 <td style="text-align: center;"><span>实物类</span></td>
                 <td style="text-align: center;">
@@ -554,9 +546,9 @@
                 </td>
               </tr>
               <tr class="tr-title">
-                <td class="td-154" style="border-bottom:0;"></td>
+                <td class="td-154" style="border-bottom:0;" />
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-18 17:32:08<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_154.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-18 17:32:08<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_154.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -566,26 +558,23 @@
                   <div style="width:450px;">
                     <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=154" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180718/1b39ba1e861f577e3fcd34f54dbeadae4.jpg"></a>
                     <div class="div-pro-view-name">
-                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=154">AAA3213-副本</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="154" data-up-type="goods_name"
-                          type="text" value="AAA3213-副本"><br>
-                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><span style="color:#999;font-size:12px;display:block;height:25px;overflow:hidden;text-decoration: none;">123123213123123</span></div><input data-goods-id="154" data-up-type="introduction" class="js-update-introduction input-common" style="width:350px!important;"
-                          type="text" maxlength="60" value="123123213123123">
+                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=154">AAA3213-副本</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="154" data-up-type="goods_name" type="text" value="AAA3213-副本"><br>
+                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><span style="color:#999;font-size:12px;display:block;height:25px;overflow:hidden;text-decoration: none;">123123213123123</span></div><input data-goods-id="154" data-up-type="introduction" class="js-update-introduction input-common" style="width:350px!important;" type="text" maxlength="60" value="123123213123123">
                       <div style="position: relative;margin-left: 75px;"><i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i>
                         <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">活动</i>
-                        <i
-                            style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
+                        <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice154" style="color:#FF6600;">5.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice154" style="color:#FF6600;">5.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock154">22</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock154">22</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock154">0</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock154">0</span></div>
                 </td>
                 <td style="text-align: center;"><span>虚拟类</span></td>
                 <td style="text-align: center;">
@@ -597,9 +586,9 @@
                 </td>
               </tr>
               <tr class="tr-title">
-                <td class="td-152" style="border-bottom:0;"></td>
+                <td class="td-152" style="border-bottom:0;" />
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-18 16:27:52<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_152.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-18 16:27:52<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_152.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -609,24 +598,22 @@
                   <div style="width:450px;">
                     <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=152" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180718/faf7a70e656bf2dadea2e1e6ceff2f714.jpg"></a>
                     <div class="div-pro-view-name">
-                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=152">TV1233213-副本</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="152" data-up-type="goods_name"
-                          type="text" value="TV1233213-副本"><br>
+                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=152">TV1233213-副本</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="152" data-up-type="goods_name" type="text" value="TV1233213-副本"><br>
                       <div style="position: relative;margin-left: 75px;"><i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i>
                         <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">活动</i>
-                        <i
-                            style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
+                        <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice152" style="color:#FF6600;">5.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice152" style="color:#FF6600;">5.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock152">263</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock152">263</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock152">1</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock152">1</span></div>
                 </td>
                 <td style="text-align: center;"><span>实物类</span></td>
                 <td style="text-align: center;">
@@ -639,9 +626,9 @@
                 </td>
               </tr>
               <tr class="tr-title">
-                <td class="td-151" style="border-bottom:0;"></td>
+                <td class="td-151" style="border-bottom:0;" />
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-18 16:27:45<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_151.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-18 16:27:45<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_151.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -651,24 +638,22 @@
                   <div style="width:450px;">
                     <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=151" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180718/faf7a70e656bf2dadea2e1e6ceff2f714.jpg"></a>
                     <div class="div-pro-view-name">
-                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=151">TV1233213-副本</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="151" data-up-type="goods_name"
-                          type="text" value="TV1233213-副本"><br>
+                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=151">TV1233213-副本</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="151" data-up-type="goods_name" type="text" value="TV1233213-副本"><br>
                       <div style="position: relative;margin-left: 75px;"><i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i>
                         <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">活动</i>
-                        <i
-                            style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
+                        <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice151" style="color:#FF6600;">5.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice151" style="color:#FF6600;">5.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock151">264</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock151">264</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock151">0</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock151">0</span></div>
                 </td>
                 <td style="text-align: center;"><span>实物类</span></td>
                 <td style="text-align: center;">
@@ -681,9 +666,9 @@
                 </td>
               </tr>
               <tr class="tr-title">
-                <td class="td-150" style="border-bottom:0;"></td>
+                <td class="td-150" style="border-bottom:0;" />
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-18 15:55:05<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_150.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-18 15:55:05<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_150.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -693,26 +678,23 @@
                   <div style="width:450px;">
                     <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=150" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180718/faf7a70e656bf2dadea2e1e6ceff2f714.jpg"></a>
                     <div class="div-pro-view-name">
-                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=150">TV1233213</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="150" data-up-type="goods_name"
-                          type="text" value="TV1233213"><br>
-                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><span style="color:#999;font-size:12px;display:block;height:25px;overflow:hidden;text-decoration: none;">321AAAAAAA</span></div><input data-goods-id="150" data-up-type="introduction" class="js-update-introduction input-common" style="width:350px!important;"
-                          type="text" maxlength="60" value="321AAAAAAA">
+                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=150">TV1233213</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="150" data-up-type="goods_name" type="text" value="TV1233213"><br>
+                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><span style="color:#999;font-size:12px;display:block;height:25px;overflow:hidden;text-decoration: none;">321AAAAAAA</span></div><input data-goods-id="150" data-up-type="introduction" class="js-update-introduction input-common" style="width:350px!important;" type="text" maxlength="60" value="321AAAAAAA">
                       <div style="position: relative;margin-left: 75px;"><i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i>
                         <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">活动</i>
-                        <i
-                            style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
+                        <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice150" style="color:#FF6600;">5.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice150" style="color:#FF6600;">5.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock150">262</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock150">262</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock150">2</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock150">2</span></div>
                 </td>
                 <td style="text-align: center;"><span>实物类</span></td>
                 <td style="text-align: center;">
@@ -725,9 +707,9 @@
                 </td>
               </tr>
               <tr class="tr-title">
-                <td class="td-149" style="border-bottom:0;"></td>
+                <td class="td-149" style="border-bottom:0;" />
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-17 19:18:38<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_149.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-17 19:18:38<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_149.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -737,24 +719,22 @@
                   <div style="width:450px;">
                     <a class="a-pro-view-img" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=149" target="_blank" style="height:70px;line-height:70px;text-align:center;"><img class="thumbnail-img" src="/upload/goods/20180714/15944de900d8591a9b58a310578828c14.jpg"></a>
                     <div class="div-pro-view-name">
-                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=149">123</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="149" data-up-type="goods_name"
-                          type="text" value="123"><br>
+                      <div class="editGoodsIntroduction" ondblclick="editGoodsInfo(this)"><a target="_blank" style="word-break:break-all;" href="http://b2c.niuteam.cn/goods/goodsinfo?goodsid=149">123</a></div><input class="js-update-goods-name input-common" style="width:350px!important;" data-goods-id="149" data-up-type="goods_name" type="text" value="123"><br>
                       <div style="position: relative;margin-left: 75px;"><i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i>
                         <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">活动</i>
-                        <i
-                            style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
+                        <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice149" style="color:#FF6600;">5.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice149" style="color:#FF6600;">5.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock149">23</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock149">23</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock149">3</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock149">3</span></div>
                 </td>
                 <td style="text-align: center;"><span>虚拟类</span></td>
                 <td style="text-align: center;">
@@ -766,9 +746,9 @@
                 </td>
               </tr>
               <tr class="tr-title">
-                <td class="td-148" style="border-bottom:0;"></td>
+                <td class="td-148" style="border-bottom:0;" />
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-16 23:10:49<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_148.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-16 23:10:49<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_148.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -782,20 +762,19 @@
                           type="text" value="闻气味"><br>
                       <div style="position: relative;margin-left: 75px;"><i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">新品lll</i>
                         <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">活动</i>
-                        <i
-                            style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
+                        <i style="color:#999;font-size:12px;margin-top:5px;padding:1px 4px;border-radius:3px;display:inline-block;color:#FFF;background-color:#FF6600;text-decoration: none;height:16px;line-height: 16px;overflow:hidden;margin-right:5px;text-align:center;font-style:normal;">热卖</i>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice148" style="color:#FF6600;">11.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice148" style="color:#FF6600;">11.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock148">53</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock148">53</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock148">2</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock148">2</span></div>
                 </td>
                 <td style="text-align: center;"><span>实物类</span></td>
                 <td style="text-align: center;">
@@ -810,7 +789,7 @@
               <tr class="tr-title">
                 <td class="td-147" style="border-bottom:0;"></td>
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-16 23:01:55<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_147.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-16 23:01:55<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_147.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -831,13 +810,13 @@
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice147" style="color:#FF6600;">1.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice147" style="color:#FF6600;">1.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock147">55</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock147">55</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock147">0</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock147">0</span></div>
                 </td>
                 <td style="text-align: center;"><span>实物类</span></td>
                 <td style="text-align: center;">
@@ -852,7 +831,7 @@
               <tr class="tr-title">
                 <td class="td-143" style="border-bottom:0;"></td>
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：123465456</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-16 16:39:20<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_143.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：123465456</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-16 16:39:20<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_143.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -869,13 +848,13 @@
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice143" style="color:#FF6600;">1.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice143" style="color:#FF6600;">1.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock143">300</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock143">300</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock143">0</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock143">0</span></div>
                 </td>
                 <td style="text-align: center;"><span>实物类</span></td>
                 <td style="text-align: center;">
@@ -890,7 +869,7 @@
               <tr class="tr-title">
                 <td class="td-141" style="border-bottom:0;"></td>
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-15 23:43:28<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_141.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-15 23:43:28<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_141.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -907,13 +886,13 @@
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice141" style="color:#FF6600;">99.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice141" style="color:#FF6600;">99.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock141">99996</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock141">99996</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock141">2</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock141">2</span></div>
                 </td>
                 <td style="text-align: center;"><span>虚拟类</span></td>
                 <td style="text-align: center;">
@@ -927,7 +906,7 @@
               <tr class="tr-title">
                 <td class="td-139" style="border-bottom:0;"></td>
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-14 15:26:53<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_139.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-14 15:26:53<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_139.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -944,13 +923,13 @@
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice139" style="color:#FF6600;">10.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice139" style="color:#FF6600;">10.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock139">221</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock139">221</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock139">1</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock139">1</span></div>
                 </td>
                 <td style="text-align: center;"><span>虚拟类</span></td>
                 <td style="text-align: center;">
@@ -964,7 +943,7 @@
               <tr class="tr-title">
                 <td class="td-136" style="border-bottom:0;"></td>
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-10 21:50:10<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_136.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-10 21:50:10<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_136.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -981,13 +960,13 @@
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice136" style="color:#FF6600;">0.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice136" style="color:#FF6600;">0.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock136">0</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock136">0</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock136">0</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock136">0</span></div>
                 </td>
                 <td style="text-align: center;"><span>实物类</span></td>
                 <td style="text-align: center;">
@@ -1002,7 +981,7 @@
               <tr class="tr-title">
                 <td class="td-135" style="border-bottom:0;"></td>
                 <td colspan="9" style="border-bottom:0;">
-                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-10 14:25:48<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_135.png" style="width:110px;"></p></div></span></span>
+                  <div style="display: inline-block; width: 100%;font-size:12px;color:#666;" class="pro-code"><span>商家编码：</span><span class="pro-code" style="margin-left:10px;">创建时间：2018-07-10 14:25:48<span class="div-flag-style" style="display: inline-block;margin:0 20px;position:relative"><i class="icon-qrcode" style="background: none; color: #555; font-size: 20px; margin-right: 0;"></i><div class="QRcode" style="display: none; position: absolute;width:110px;top:28px;left:0;z-index:10;" data-id="qrcode"><p><img src="/upload/goods_qrcode/goods_qrcode_135.png" style="width:110px;"></p></div></span></span>
                   </div>
                 </td>
               </tr>
@@ -1019,13 +998,13 @@
                   </div>
                 </td>
                 <td style="text-align: right;">
-                  <div><span class="price-numble" id="moreChangePrice135" style="color:#FF6600;">0.00</span></div>
+                  <div><span class="price-numble" data-id="moreChangePrice135" style="color:#FF6600;">0.00</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock135">8</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock135">8</span></div>
                 </td>
                 <td style="text-align: right;">
-                  <div class="cell"><span class="pro-stock" style="color: #666;" id="moreChangeStock135">2</span></div>
+                  <div class="cell"><span class="pro-stock" style="color: #666;" data-id="moreChangeStock135">2</span></div>
                 </td>
                 <td style="text-align: center;"><span>虚拟类</span></td>
                 <td style="text-align: center;">
@@ -1036,23 +1015,23 @@
                     <a href="javascript:showMemberDiscount(135)">设置会员折扣</a><br><a href="/goods/virtualGoodsList?goods_id=135" title="虚拟商品管理" target="_blank">虚拟商品管理</a></div>
                 </td>
               </tr>
-            </tbody>
+            </tbody> -->
           </table>
         </div>
-        <input type="hidden" id="state" value="">
-        <input type="hidden" id="selectGoodsLabelId">
-        <input type="hidden" id="stock_warning" value="0">
+        <input type="hidden" data-id="state" value="">
+        <input type="hidden" data-id="selectGoodsLabelId">
+        <input type="hidden" data-id="stock_warning" value="0">
       </div>
-      <input type="hidden" id="hidden_sort_rule" class="">
+      <input type="hidden" data-id="hidden_sort_rule" class="">
 
-      <div class="modal fade hide" id="set_member_discount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade hide" data-id="set_member_discount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h3>设置商品折扣</h3>
             </div>
-            <div class="modal-body" id="member_discount">
+            <div class="modal-body" data-id="member_discount">
               <dl>
                 <dt>黄金会员</dt>
                 <dd>
@@ -1087,17 +1066,17 @@
                 <dt>价格保留方式</dt>
                 <dd>
                   <label class="radio inline normal decimal_reservation_number">
-                  <i class="checkbox-common">
-                    <input type="checkbox" name="decimal-reservation-number" value="0">
-                  </i>
-                  <span>抹去角和分</span>
-                </label>
+                    <i class="checkbox-common">
+                      <input type="checkbox" name="decimal-reservation-number" value="0">
+                    </i>
+                    <span>抹去角和分</span>
+                  </label>
                   <label class="radio inline normal decimal_reservation_number">
-                  <i class="checkbox-common">
-                    <input type="checkbox" name="decimal-reservation-number" value="1">
-                  </i>
-                  <span>抹去分</span>
-                </label>
+                    <i class="checkbox-common">
+                      <input type="checkbox" name="decimal-reservation-number" value="1">
+                    </i>
+                    <span>抹去分</span>
+                  </label>
                 </dd>
               </dl>
             </div>
@@ -1116,7 +1095,7 @@
 <script>
 
 export default {
-  name: 'goodsList',
+  name: 'GoodsList',
 
   data () {
     return {
@@ -1416,9 +1395,7 @@ export default {
         .filter(categroyListItem => categroyListItem.level === 2)
         .filter(categroyListItem => categroyListItem.parentId === parentId)
     }
-  },
-
-  components: {}
+  }
 }
 </script>
 

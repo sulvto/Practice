@@ -5,59 +5,54 @@
   <div>
     <el-row :gutter="8">
       <el-col :span="10" :offset="12">
-        <el-input size="small" v-model="searchKeyword" placeholder="请输入活动名称"></el-input>
+        <el-input v-model="searchKeyword" size="small" placeholder="请输入活动名称" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" size="small" @click="search">查询</el-button>
       </el-col>
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
         prop="name"
-        label="赠品名称">
-      </el-table-column>
+        label="赠品名称" />
 
       <el-table-column
         label="发放商品信息">
         <template slot-scope="scope">
-            <img :src="scope.row.goodsImg" />
-            <span>{{scope.row.goodsName}}</span>
+          <img :src="scope.row.goodsImg" >
+          <span>{{ scope.row.goodsName }}</span>
         </template>
       </el-table-column>
 
       <el-table-column
         prop="type"
         label="发放类型"
-        width="120">
-      </el-table-column>
+        width="120" />
 
       <el-table-column
         prop="username"
-        label="发放用户">
-      </el-table-column>
+        label="发放用户" />
 
       <el-table-column
         prop="date"
         label="发放时间"
-        width="180">
-      </el-table-column>
+        width="180" />
 
       <el-table-column
         prop="notes"
         label="备注"
-        width="380">
-      </el-table-column>
+        width="380" />
     </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'list',
+  name: 'Records',
   data () {
     return {
       searchKeyword: '',

@@ -6,47 +6,42 @@
         <el-button type="primary" size="small" @click="$router.push('edit.html')">添加专题</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
-      <el-col :span="2">
-      </el-col>
+      <el-col :span="10" />
+      <el-col :span="2" />
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         prop="title"
-        label="标题">
-      </el-table-column>
+        label="标题" />
 
       <el-table-column
         prop="status"
-        label="状态">
-      </el-table-column>
+        label="状态" />
 
       <el-table-column
         prop="createDate"
-        label="创建时间">
-      </el-table-column>
+        label="创建时间" />
 
       <el-table-column
         prop="publishDate"
-        label="发布时间">
-      </el-table-column>
+        label="发布时间" />
 
-      <el-table-column label="操作" fixed="right"
-          width="250">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">预览</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="250">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">预览</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -54,7 +49,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   data () {
     return {
       searchKeyword: '',

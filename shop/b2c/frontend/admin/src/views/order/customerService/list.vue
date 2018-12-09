@@ -11,14 +11,13 @@
           <el-form-item label="下单时间">
             <el-date-picker
               v-model="queryForm.orderDateRange"
+              :picker-options="datePickerOptions"
               type="daterange"
               align="right"
               unlink-panels
               range-separator="至"
               start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              :picker-options="datePickerOptions">
-            </el-date-picker>
+              end-placeholder="结束日期" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" size="small" @click="search">查询</el-button>
@@ -27,31 +26,30 @@
       </el-col>
     </el-row>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
       <el-table-column
         type="selection"
-        width="35">
-      </el-table-column>
+        width="35" />
 
       <el-table-column
         label="商品信息"
         width="350">
         <template slot-scope="scope">
-            <div style="font-size: 12px;color: #126AE4;margin-bottom:5px;">
-              <span>订单编号：{{ scope.row.orderNo }}</span>&nbsp;
-              <span>下单时间：{{ scope.row.createDate }}</span>
-            </div>
-            <div class="product-img">
-              <img src="@/assets/img/goods/14993422181194.jpg">
-            </div>
-            <div class="product-infor">
-              <a href="http://showfx.niuteam.cn/index.php?s=/goods/goodsinfo&amp;goodsid=57" target="_blank" style="color:#333;">
+          <div style="font-size: 12px;color: #126AE4;margin-bottom:5px;">
+            <span>订单编号：{{ scope.row.orderNo }}</span>&nbsp;
+            <span>下单时间：{{ scope.row.createDate }}</span>
+          </div>
+          <div class="product-img">
+            <img src="@/assets/img/goods/14993422181194.jpg">
+          </div>
+          <div class="product-infor">
+            <a href="http://showfx.niuteam.cn/index.php?s=/goods/goodsinfo&amp;goodsid=57" target="_blank" style="color:#333;">
               {{ scope.row.goodsName }}
-              </a>
-              <p class="specification" style="margin-bottom: 0px;">
-                <span style="color:#8e8c8c;font-size:12px;">5.0 3G </span>
-              </p>
-            </div>
+            </a>
+            <p class="specification" style="margin-bottom: 0px;">
+              <span style="color:#8e8c8c;font-size:12px;">5.0 3G </span>
+            </p>
+          </div>
         </template>
       </el-table-column>
 
@@ -60,7 +58,7 @@
         width="120">
         <template slot-scope="scope">
           <div style="display: inline-block;">
-              <span>{{ scope.row.goodsPrices }}元</span>
+            <span>{{ scope.row.goodsPrices }}元</span>
           </div>
           <div style="display: inline-block;float:right;">
             {{ scope.row.number }}件
@@ -97,14 +95,14 @@
       </el-table-column>
 
       <el-table-column
-          label="买家"
-          width="100">
+        label="买家"
+        width="100">
         <template slot-scope="scope">
           <div style="text-align:center">
             {{ scope.row.username }}
             <br>
             <!-- scope.row.order_from -->
-            <i class="fa fa-television" style="color:#666;"></i>
+            <i class="fa fa-television" style="color:#666;" />
           </div>
         </template>
       </el-table-column>
@@ -134,7 +132,7 @@
 
 <script>
 export default {
-  name: 'list',
+  name: 'CustomerServiceList',
   data () {
     return {
       searchKeyword: '',

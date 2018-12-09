@@ -2,31 +2,31 @@
   <el-form ref="pickuppointFrom" :rules="rules" :model="pickuppointFrom" label-width="110px" size="small" label-position="right">
 
     <el-form-item label="门店名称" prop="name">
-      <el-input v-model="pickuppointFrom.name"></el-input>
+      <el-input v-model="pickuppointFrom.name"/>
     </el-form-item>
 
     <el-form-item label="门店地址" prop="address" required>
       <el-select v-model="pickuppointFrom.province" placeholder="请选择省">
-        <el-option v-for="provinceListItem in provinceList" :key="provinceListItem.id" :label="provinceListItem.name" :value="provinceListItem.id"></el-option>
+        <el-option v-for="provinceListItem in provinceList" :key="provinceListItem.id" :label="provinceListItem.name" :value="provinceListItem.id" />
       </el-select>
       <el-select v-model="pickuppointFrom.city" placeholder="请选择市">
-        <el-option v-for="citysItem in citys[pickuppointFrom.province]" :key="citysItem.id" :label="citysItem.name" :value="citysItem.id"></el-option>
+        <el-option v-for="citysItem in citys[pickuppointFrom.province]" :key="citysItem.id" :label="citysItem.name" :value="citysItem.id" />
       </el-select>
       <el-select v-model="pickuppointFrom.area" placeholder="请选择区/县">
-        <el-option v-for="areasItem in areas[pickuppointFrom.city]" :key="areasItem.id" :label="areasItem.name" :value="areasItem.id"></el-option>
+        <el-option v-for="areasItem in areas[pickuppointFrom.city]" :key="areasItem.id" :label="areasItem.name" :value="areasItem.id" />
       </el-select>
     </el-form-item>
 
     <el-form-item label="详细地址" prop="detailAddress">
-      <el-input type="textarea" v-model="pickuppointFrom.detailAddress"></el-input>
+      <el-input v-model="pickuppointFrom.detailAddress" type="textarea" />
     </el-form-item>
 
     <el-form-item label="门店联系人">
-      <el-input v-model="pickuppointFrom.contact"></el-input>
+      <el-input v-model="pickuppointFrom.contact"/>
     </el-form-item>
 
     <el-form-item label="门店电话" prop="tel">
-      <el-input v-model="pickuppointFrom.tel"></el-input>
+      <el-input v-model="pickuppointFrom.tel"/>
     </el-form-item>
 
     <el-form-item>
@@ -40,7 +40,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'pickuppointEdit',
+  name: 'PickuppointEdit',
   data () {
     return {
       provinceList: null,
@@ -65,40 +65,39 @@ export default {
   },
   mounted () {
     console.log('mounted')
-    let that = this
 
     if (!this.areas) {
       axios.get('/static/china_regions/area.json')
-        .then(function (response) {
+        .then(response => {
           if (response.status === 200) {
-            that.areas = response.data
+            this.areas = response.data
           }
         })
-        .catch(function (error) {
+        .catch(error => {
           console.log(error)
         })
     }
 
     if (!this.citys) {
       axios.get('/static/china_regions/city.json')
-        .then(function (response) {
+        .then(response => {
           if (response.status === 200) {
-            that.citys = response.data
+            this.citys = response.data
           }
         })
-        .catch(function (error) {
+        .catch(error => {
           console.log(error)
         })
     }
 
     if (!this.provinceList) {
       axios.get('/static/china_regions/province.json')
-        .then(function (response) {
+        .then(response => {
           if (response.status === 200) {
-            that.provinceList = response.data
+            this.provinceList = response.data
           }
         })
-        .catch(function (error) {
+        .catch(error => {
           console.log(error)
         })
     }

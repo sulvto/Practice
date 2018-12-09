@@ -1,37 +1,35 @@
 <template>
-    <div>
-        <el-table border :data="tableData" style="width: 100%">
-           <el-table-column
-      prop="filename"
-      label="文件名称">
-    </el-table-column>
+  <div>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column
+        prop="filename"
+        label="文件名称" />
 
-     <el-table-column
-      prop="fileSize"
-      label="文件大小"
-      width="120">
-    </el-table-column>
+      <el-table-column
+        prop="fileSize"
+        label="文件大小"
+        width="120" />
 
-     <el-table-column
-      prop="backupTime"
-      label="备份时间"
-      width="140">
-    </el-table-column>
+      <el-table-column
+        prop="backupTime"
+        label="备份时间"
+        width="140" />
 
-            <el-table-column label="操作"
-                width="180">
-                <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">恢复</el-button>
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+      <el-table-column
+        label="操作"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">恢复</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'databaseRestore',
+  name: 'DatabaseRestore',
   data () {
     return {
       tableData: [{

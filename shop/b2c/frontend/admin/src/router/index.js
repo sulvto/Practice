@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import BaseRouter from '@/components/BaseRouter.vue'
+import TabsRouter from '@/components/TabsRouter.vue'
+import CardTabsRouter from '@/components/CardTabsRouter.vue'
 import Index from '@/views/Index.vue'
 
-import Goods from '@/views/goods/Index.vue'
 import GoodsList from '@/views/goods/list.vue'
 import GoodsEdit from '@/views/goods/publish.vue'
 import GoodsCategoryList from '@/views/goods/category/list.vue'
@@ -21,7 +22,7 @@ import GoodsAttributeEdit from '@/views/goods/attribute/edit.vue'
 import GoodsComment from '@/views/goods/comment.vue'
 
 import SystemAlbumList from '@/views/system/album/list.vue'
-import SystemAlbumPictureList from '@/views/system/album/picturelist.vue'
+// import SystemAlbumPictureList from '@/views/system/album/picturelist.vue'
 import SaleserviceConsult from '@/views/saleservice/consult.vue'
 
 import Order from '@/views/order/Index.vue'
@@ -30,27 +31,25 @@ import VirtualOrder from '@/views/order/virtualOrder.vue'
 import BargainOrder from '@/views/order/bargainOrder.vue'
 import OrderInvoiceList from '@/views/order/invoiceList.vue'
 import OrderCustomerServiceList from '@/views/order/customerService/list.vue'
-import OrderCustomerServiceDetail from '@/views/order/customerService/detail.vue'
+// import OrderCustomerServiceDetail from '@/views/order/customerService/detail.vue'
 
-import TuangouIndex from '@/views/tuangou/Index.vue'
 import TuangouList from '@/views/tuangou/tuangouList.vue'
 
 import PintuanList from '@/views/tuangou/pintuanList.vue'
 import PintuanOrderList from '@/views/tuangou/pintuanOrderList.vue'
 
 import OrderPresellList from '@/views/orderPresell/list.vue'
-import OrderPresellDetail from '@/views/orderPresell/detail.vue'
+// import OrderPresellDetail from '@/views/orderPresell/detail.vue'
 
 import Promotion from '@/views/promotion/Index.vue'
 import PromotionCouponTypeList from '@/views/promotion/coupon/list.vue'
 import PromotionCouponTypeEdit from '@/views/promotion/coupon/edit.vue'
 import PromotionCouponTypeGrantRecords from '@/views/promotion/coupon/grantRecordsList.vue'
 import PromotionPointconfig from '@/views/promotion/pointconfig.vue'
-import PromotionGiftIndex from '@/views/promotion/gift/Index.vue'
 import PromotionGiftList from '@/views/promotion/gift/list.vue'
 import PromotionGiftEdit from '@/views/promotion/gift/edit.vue'
 import PromotionGiftRecords from '@/views/promotion/gift/records.vue'
-import PromotionMansongList from '@/views/promotion/mansong/list.vue'
+// import PromotionMansongList from '@/views/promotion/mansong/list.vue'
 import PromotionMansongEdit from '@/views/promotion/mansong/Edit.vue'
 import PromotionDiscountList from '@/views/promotion/discount/list.vue'
 import PromotionDiscountEdit from '@/views/promotion/discount/edit.vue'
@@ -69,7 +68,6 @@ import PromotionGroupBuyEdit from '@/views/promotion/groupBuy/edit.vue'
 import PromotionTopicList from '@/views/promotion/topic/list.vue'
 import PromotionTopicEdit from '@/views/promotion/topic/edit.vue'
 
-import BargainIndex from '@/views/bargain/Index.vue'
 import BargainList from '@/views/bargain/List.vue'
 import BargainEdit from '@/views/bargain/edit.vue'
 import BargainConfig from '@/views/bargain/config.vue'
@@ -83,7 +81,7 @@ import MemberPointList from '@/views/member/pointList.vue'
 import MemberUserCommissionWithdrawList from '@/views/member/userCommissionWithdrawList.vue'
 
 import Account from '@/views/account/Index.vue'
-import AccountShopSalesAccount from '@/views/account/shopSalesAccount.vue'
+// import AccountShopSalesAccount from '@/views/account/shopSalesAccount.vue'
 import AccountShopGoodsSalesList from '@/views/account/shopGoodsSalesList.vue'
 import AccountShopGoodsGroupSaleCount from '@/views/account/shopGoodsGroupSaleCount.vue'
 import AccountShopReport from '@/views/account/shopReport.vue'
@@ -100,17 +98,16 @@ import ExtendHooksEdit from '@/views/extend/hooks/edit.vue'
 import SystemModuleList from '@/views/system/module/list.vue'
 import SystemModuleEdit from '@/views/system/module/edit.vue'
 
-import Wchat from '@/views/wchat/Index.vue'
 import WchatAppletConfig from '@/views/wchat/appletConfig.vue'
 import WchatConfig from '@/views/wchat/config.vue'
-import WchatMenu from '@/views/wchat/menu.vue'
+// import WchatMenu from '@/views/wchat/menu.vue'
 import WchatQrcodeTemplate from '@/views/wchat/weixinQrcodeTemplate.vue'
 import WchatQrcode from '@/views/wchat/qrcode.vue'
 import WchatReplayConfig from '@/views/wchat/replayConfig.vue'
 import WchatEditKeywordReplay from '@/views/wchat/EditKeywordReplay.vue'
 import WchatMaterialMessage from '@/views/wchat/materialMessage.vue'
 import WchatAddMedia from '@/views/wchat/addmedia.vue'
-import WchatShareConfig from '@/views/wchat/shareConfig.vue'
+// import WchatShareConfig from '@/views/wchat/shareConfig.vue'
 import WchatKeyConcernConfig from '@/views/wchat/keyConcernConfig.vue'
 import WchatFansMessageManage from '@/views/wchat/fansMessageManage.vue'
 import WchatWeixinFansList from '@/views/wchat/weixinFansList.vue'
@@ -133,15 +130,13 @@ import ConfigHomeNoticeEdit from '@/views/config/homeNotice/Edit.vue'
 import ConfigShopNavigationList from '@/views/config/shopNavigation/List.vue'
 import ConfigShopNavigationEdit from '@/views/config/shopNavigation/Edit.vue'
 
-import ConfigTemplate from '@/views/config/template/Index.vue'
-import ConfigTemplatePc from '@/views/config/template/Pc.vue'
-import ConfigTemplateFixed from '@/views/config/template/Fixed.vue'
-import ConfigTemplateWapCustomList from '@/views/config/template/wapCustom/List.vue'
+// import ConfigTemplatePc from '@/views/config/template/Pc.vue'
+// import ConfigTemplateFixed from '@/views/config/template/Fixed.vue'
+// import ConfigTemplateWapCustomList from '@/views/config/template/wapCustom/List.vue'
 import ConfigTemplateWapCustomEdit from '@/views/config/template/wapCustom/Edit.vue'
 
 import ConfigSearchConfig from '@/views/config/searchConfig.vue'
 
-import ConfigHelp from '@/views/config/help/Index.vue'
 import ConfigHelpDocumentList from '@/views/config/help/document/List.vue'
 import ConfigHelpDocumentEdit from '@/views/config/help/document/Edit.vue'
 import ConfigHelpClassList from '@/views/config/help/class/List.vue'
@@ -150,17 +145,15 @@ import ConfigHelpClassEdit from '@/views/config/help/class/Edit.vue'
 import ConfigLinkList from '@/views/config/link/list.vue'
 import ConfigLinkEdit from '@/views/config/link/edit.vue'
 
-import ConfigAds from '@/views/config/ads/Index.vue'
 import ConfigAdsList from '@/views/config/ads/list.vue'
 import ConfigAdsEdit from '@/views/config/ads/edit.vue'
 import ConfigAdsPositionList from '@/views/config/ads/position/list.vue'
-import ConfigAdsPositionEdit from '@/views/config/ads/position/edit.vue'
+// import ConfigAdsPositionEdit from '@/views/config/ads/position/edit.vue'
 
 import SystemGoodsCategoryBlock from '@/views/system/goodsCategoryBlock.vue'
 
-import CmsArticle from '@/views/cms/article/Index.vue'
 import CmsArticleList from '@/views/cms/article/List.vue'
-import CmsArticleEdit from '@/views/cms/article/Edit.vue'
+// import CmsArticleEdit from '@/views/cms/article/Edit.vue'
 import CmsArticleClassList from '@/views/cms/article/ClassList.vue'
 
 import CmsTopicList from '@/views/cms/topic/List.vue'
@@ -168,26 +161,21 @@ import CmsTopicEdit from '@/views/cms/topic/Edit.vue'
 
 import Distribution from '@/views/distribution/Index.vue'
 
-import DistributionPromoter from '@/views/distribution/promoter/Index.vue'
 import DistributionPromoterList from '@/views/distribution/promoter/List.vue'
 import DistributionPromoterVerifyList from '@/views/distribution/promoter/VerifyList.vue'
 
 import DistributionGoodsCommissionRateList from '@/views/distribution/goodsCommissionRateList.vue'
-import DistributionThreeLevelDistribution from '@/views/distribution/threeLevelDistribution/Index.vue'
 import DistributionThreeLevelDistributionConfig from '@/views/distribution/threeLevelDistribution/Config.vue'
 import DistributionThreeLevelDistributionLevelList from '@/views/distribution/threeLevelDistribution/level/List.vue'
 import DistributionThreeLevelDistributionLevelEdit from '@/views/distribution/threeLevelDistribution/level/Edit.vue'
 
-import DistributionRegionalAgent from '@/views/distribution/regionalAgent/Index.vue'
 import DistributionRegionalAgentConfig from '@/views/distribution/regionalAgent/Config.vue'
-import DistributionRegionalAgentPromoterList from '@/views/distribution/regionalAgent/PromoterList.vue'
+// import DistributionRegionalAgentPromoterList from '@/views/distribution/regionalAgent/PromoterList.vue'
 
-import DistributionShareholderDividends from '@/views/distribution/shareholderDividends/Index.vue'
 import DistributionShareholderDividendsConfig from '@/views/distribution/shareholderDividends/Config.vue'
-import DistributionShareholderDividendsAddPartnerLevel from '@/views/distribution/shareholderDividends/AddPartnerLevel.vue'
-import DistributionShareholderDividendsPartnerList from '@/views/distribution/shareholderDividends/PartnerList.vue'
+// import DistributionShareholderDividendsAddPartnerLevel from '@/views/distribution/shareholderDividends/AddPartnerLevel.vue'
+// import DistributionShareholderDividendsPartnerList from '@/views/distribution/shareholderDividends/PartnerList.vue'
 
-import DistributionGlobalBonusPool from '@/views/distribution/globalBonusPool/Index.vue'
 import DistributionGlobalBonusPoolConfig from '@/views/distribution/globalBonusPool/Config.vue'
 import DistributionGlobalBonusPoolGrant from '@/views/distribution/globalBonusPool/Grant.vue'
 import DistributionGlobalBonusPoolRecords from '@/views/distribution/globalBonusPool/Records.vue'
@@ -206,7 +194,7 @@ import SettingBaseCustomPseudoStaticRule from '@/views/setting/base/customPseudo
 import SettingBasePartyLogin from '@/views/setting/base/partyLogin/list.vue'
 import SettingBaseNotify from '@/views/setting/base/notify/list.vue'
 import SettingBaseCustomservice from '@/views/setting/base/customService.vue'
-import SettingBaseMerchantService from '@/views/setting/base/merchantService.vue'
+// import SettingBaseMerchantService from '@/views/setting/base/merchantService.vue'
 
 import SettingTransaction from '@/views/setting/transaction/Index.vue'
 import SettingTransactionShopConfig from '@/views/setting/transaction/ShopConfig.vue'
@@ -217,36 +205,29 @@ import SettingTransactionPaymentConfigAliPay from '@/views/setting/transaction/p
 import SettingTransactionPaymentConfigWchatPay from '@/views/setting/transaction/pay/wchatPay.vue'
 import SettingTransactionPaymentConfigUnionPay from '@/views/setting/transaction/pay/unionPay.vue'
 
-import SettingAuth from '@/views/setting/auth/Index.vue'
 import SettingAuthUserList from '@/views/setting/auth/user/list.vue'
 import SettingAuthUserEdit from '@/views/setting/auth/user/edit.vue'
 import SettingAuthGroup from '@/views/setting/auth/Group.vue'
 import SettingAuthLog from '@/views/setting/auth/Log.vue'
 
-import SettingDatabase from '@/views/setting/database/Index.vue'
 import SettingDatabaseBackup from '@/views/setting/database/backup.vue'
 import SettingDatabaseRestore from '@/views/setting/database/restore.vue'
 
-import SettingDelivery from '@/views/setting/delivery/Index.vue'
-import SettingDeliveryExpress from '@/views/setting/delivery/express/Index.vue'
 import SettingDeliveryExpressCompany from '@/views/setting/delivery/express/expressCompany.vue'
 import SettingDeliveryExpressCompanyEdit from '@/views/setting/delivery/express/editExpressCompany.vue'
 import SettingDeliveryExpressSellerAddress from '@/views/setting/delivery/express/SellerAddress.vue'
 import SettingDeliveryExpressMessage from '@/views/setting/delivery/express/ExpressMessage.vue'
-import SettingDeliveryAreaManagement from '@/views/setting/delivery/express/AreaManagement.vue'
+// import SettingDeliveryAreaManagement from '@/views/setting/delivery/express/AreaManagement.vue'
 
-import SettingDeliveryLocal from '@/views/setting/delivery/local/Index.vue'
-import SettingDeliveryLocalArea from '@/views/setting/delivery/local/area.vue'
+// import SettingDeliveryLocalArea from '@/views/setting/delivery/local/area.vue'
 import SettingDeliveryLocalConfig from '@/views/setting/delivery/local/config.vue'
 import SettingDeliveryLocalUserList from '@/views/setting/delivery/local/userList.vue'
 
-import SettingDeliveryPickuppoint from '@/views/setting/delivery/pickuppoint/Index.vue'
 import SettingDeliveryPickuppointList from '@/views/setting/delivery/pickuppoint/List.vue'
 import SettingDeliveryPickuppointFreight from '@/views/setting/delivery/pickuppoint/Freight.vue'
 import SettingDeliveryPickuppointEdit from '@/views/setting/delivery/pickuppoint/Edit.vue'
-import SettingDeliveryPickuppointAuditor from '@/views/setting/delivery/pickuppoint/Auditor.vue'
+// import SettingDeliveryPickuppointAuditor from '@/views/setting/delivery/pickuppoint/Auditor.vue'
 
-import SettingVerification from '@/views/setting/verification/Index.vue'
 import SettingVerificationList from '@/views/setting/verification/List.vue'
 import SettingVerificationRecords from '@/views/setting/verification/Records.vue'
 
@@ -270,7 +251,7 @@ export default new Router({
     {
       path: '/goods',
       name: '商品',
-      component: Goods,
+      component: BaseRouter,
       children: [{
         path: '/',
         redirect: 'list.html'
@@ -410,10 +391,10 @@ export default new Router({
         path: 'albumlist.html',
         name: 'systemAlbumList',
         component: SystemAlbumList
-      }, {
-        path: 'albumpicturelist.html',
-        name: 'systemAlbumPictureList',
-        component: SystemAlbumPictureList
+      // }, {
+      //   path: 'albumpicturelist.html',
+      //   name: 'systemAlbumPictureList',
+      //   component: SystemAlbumPictureList
       }]
     },
     {
@@ -443,15 +424,26 @@ export default new Router({
         path: 'customerservicelist.html',
         name: 'customerServiceList',
         component: OrderCustomerServiceList
-      }, {
-        path: 'customerservicedetail.html',
-        name: 'customerServiceDetail',
-        component: OrderCustomerServiceDetail
+      // }, {
+      //   path: 'customerservicedetail.html',
+      //   name: 'customerServiceDetail',
+      //   component: OrderCustomerServiceDetail
       }]
     }, {
       path: '/tuangou',
       name: '拼团',
-      component: TuangouIndex,
+      component: TabsRouter,
+      props: {
+        tabs: [
+          {
+            path: '/tuangou/pintuanList.html',
+            name: '拼团列表'
+          }, {
+            path: '/tuangou/tuangouList.html',
+            name: '拼团设置'
+          }
+        ]
+      },
       children: [{
         path: '/',
         redirect: 'pintuanList.html'
@@ -472,7 +464,18 @@ export default new Router({
     {
       path: '/bargain',
       name: '砍价活动',
-      component: BargainIndex,
+      component: TabsRouter,
+      props: {
+        tabs: [
+          {
+            path: '/bargain/index.html',
+            name: '砍价列表'
+          }, {
+            path: '/bargain/config.html',
+            name: '砍价设置'
+          }
+        ]
+      },
       children: [{
         path: '/',
         redirect: 'index.html'
@@ -530,7 +533,18 @@ export default new Router({
       }, {
         path: 'gift',
         name: '赠品',
-        component: PromotionGiftIndex,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/promotion/gift/list.html',
+              name: '赠品列表'
+            }, {
+              path: '/promotion/gift/records.html',
+              name: '赠品发放记录'
+            }
+          ]
+        },
         children: [
           {
             path: '/',
@@ -558,10 +572,10 @@ export default new Router({
             path: '/',
             redirect: 'list.html'
           }, {
-            path: 'list.html',
-            name: '满减送列表',
-            component: PromotionMansongList
-          }, {
+          //   path: 'list.html',
+          //   name: '满减送列表',
+          //   component: PromotionMansongList
+          // }, {
             path: 'edit.html',
             name: '编辑满减送',
             component: PromotionMansongEdit
@@ -698,10 +712,10 @@ export default new Router({
         path: 'list.html',
         name: 'orderPresellList',
         component: OrderPresellList
-      }, {
-        path: 'detail.html',
-        name: 'orderPresellDetail',
-        component: OrderPresellDetail
+      // }, {
+      //   path: 'detail.html',
+      //   name: 'orderPresellDetail',
+      //   component: OrderPresellDetail
       }]
     },
     {
@@ -754,10 +768,10 @@ export default new Router({
       children: [{
         path: '/',
         redirect: 'shopsalesaccount.html'
-      }, {
-        path: 'shopsalesaccount.html',
-        name: 'shopsalesaccount',
-        component: AccountShopSalesAccount
+      // }, {
+      //   path: 'shopsalesaccount.html',
+      //   name: 'shopsalesaccount',
+      //   component: AccountShopSalesAccount
       }, {
         path: 'shopgoodssaleslist.html',
         name: 'shopGoodsSalesList',
@@ -823,10 +837,10 @@ export default new Router({
         path: 'config.html',
         name: '公众号管理',
         component: WchatConfig
-      }, {
-        path: 'menu.html',
-        name: 'menu',
-        component: WchatMenu
+      // }, {
+      //   path: 'menu.html',
+      //   name: 'menu',
+      //   component: WchatMenu
       }, {
         path: 'weixinqrcodetemplate.html',
         name: '推广二维码管理',
@@ -859,10 +873,10 @@ export default new Router({
         path: 'weixinfanslist.html',
         name: '粉丝列表',
         component: WchatWeixinFansList
-      }, {
-        path: 'shareconfig.html',
-        name: '分享内容设置',
-        component: WchatShareConfig
+      // }, {
+      //   path: 'shareconfig.html',
+      //   name: '分享内容设置',
+      //   component: WchatShareConfig
       }, {
         path: 'keyconcernconfig.html',
         name: '一键关注设置',
@@ -875,7 +889,7 @@ export default new Router({
     }, {
       path: '/menu',
       name: 'menu',
-      component: Wchat,
+      component: BaseRouter,
       children: [{
         path: 'addonmenu.html',
         name: 'addonMenu',
@@ -884,7 +898,7 @@ export default new Router({
     }, {
       path: '/member',
       name: 'member',
-      component: Wchat,
+      component: BaseRouter,
       children: []
     }, {
       path: '/commission',
@@ -957,29 +971,43 @@ export default new Router({
       }, {
         path: 'template',
         name: '店铺装修',
-        component: ConfigTemplate,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/config/template/pc.html',
+              name: '电脑端模板'
+            }, {
+              path: '/config/template/fixed.html',
+              name: '手机端模板'
+            }, {
+              path: '/config/template/wapCustom',
+              name: '手机端自定义模板'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'pc.html'
         }, {
-          path: 'pc.html',
-          name: '电脑端模板',
-          component: ConfigTemplatePc
-        }, {
-          path: 'fixed.html',
-          name: '手机端模板',
-          component: ConfigTemplateFixed
-        }, {
+        //   path: 'pc.html',
+        //   name: '电脑端模板',
+        //   component: ConfigTemplatePc
+        // }, {
+        //   path: 'fixed.html',
+        //   name: '手机端模板',
+        //   component: ConfigTemplateFixed
+        // }, {
           path: 'wapCustom',
           name: '手机端自定义模板',
           component: BaseRouter,
           children: [{
             path: '/',
             redirect: 'list.html'
-          }, {
-            path: 'list.html',
-            name: '自定义模板列表',
-            component: ConfigTemplateWapCustomList
+          // }, {
+          //   path: 'list.html',
+          //   name: '自定义模板列表',
+          //   component: ConfigTemplateWapCustomList
           }, {
             path: 'list.html',
             name: '编辑自定义模板',
@@ -993,7 +1021,18 @@ export default new Router({
       }, {
         path: 'help',
         name: '站点帮助',
-        component: ConfigHelp,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/config/help/document/list.html',
+              name: '帮助内容'
+            }, {
+              path: '/config/help/class/list.html',
+              name: '帮助类型'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'document'
@@ -1067,7 +1106,18 @@ export default new Router({
       }, {
         path: 'article',
         name: '文章管理',
-        component: CmsArticle,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/config/article/list.html',
+              name: '文章列表'
+            }, {
+              path: '/config/article/classList.html',
+              name: '文章分类'
+            }
+          ]
+        },
         children: [
           {
             path: '/',
@@ -1076,10 +1126,10 @@ export default new Router({
             path: 'list.html',
             name: '文章列表',
             component: CmsArticleList
-          }, {
-            path: 'edit.html',
-            name: '编辑文章',
-            component: CmsArticleEdit
+          // }, {
+          //   path: 'edit.html',
+          //   name: '编辑文章',
+          //   component: CmsArticleEdit
           }, {
             path: 'classList.html',
             name: '文章分类',
@@ -1089,7 +1139,18 @@ export default new Router({
       }, {
         path: 'ads',
         name: '广告管理',
-        component: ConfigAds,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/config/ads',
+              name: '广告列表'
+            }, {
+              path: '/config/ads/position',
+              name: '广告位管理'
+            }
+          ]
+        },
         children: [
           {
             path: '/',
@@ -1113,10 +1174,10 @@ export default new Router({
               path: 'list.html',
               name: '广告位列表',
               component: ConfigAdsPositionList
-            }, {
-              path: 'list.html',
-              name: '编辑广告位',
-              component: ConfigAdsPositionEdit
+            // }, {
+            //   path: 'list.html',
+            //   name: '编辑广告位',
+            //   component: ConfigAdsPositionEdit
             }]
           }
         ]
@@ -1157,7 +1218,18 @@ export default new Router({
       }, {
         path: 'promoter',
         name: '推广员管理',
-        component: DistributionPromoter,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/distribution/promoter/list.html',
+              name: '推广员'
+            }, {
+              path: '/distribution/promoter/verifyList.html',
+              name: '待审核'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'list.html'
@@ -1177,7 +1249,18 @@ export default new Router({
       }, {
         path: 'threeLevelDistribution',
         name: '三级分销',
-        component: DistributionThreeLevelDistribution,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/distribution/threeLevelDistribution/config.html',
+              name: '基本设置'
+            }, {
+              path: '/distribution/threeLevelDistribution/level/list.html',
+              name: '推广员等级'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'config.html'
@@ -1206,43 +1289,83 @@ export default new Router({
       }, {
         path: 'regionalAgent',
         name: '区域代理',
-        component: DistributionRegionalAgent,
-        children: [{
-          path: '/',
-          redirect: 'config.html'
-        }, {
-          path: 'config.html',
-          name: '基本设置',
-          component: DistributionRegionalAgentConfig
-        }, {
-          path: 'promoterList.html',
-          name: '人员管理',
-          component: DistributionRegionalAgentPromoterList
-        }]
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/distribution/regionalAgent/config.html',
+              name: '基本设置'
+            }, {
+              path: '/distribution/regionalAgent/promoterList.html',
+              name: '人员管理'
+            }
+          ]
+        },
+        children: [
+          {
+            path: '/',
+            redirect: 'config.html'
+          }, {
+            path: 'config.html',
+            name: '基本设置',
+            component: DistributionRegionalAgentConfig
+          // }, {
+          //   path: 'promoterList.html',
+          //   name: '人员管理',
+          //   component: DistributionRegionalAgentPromoterList
+          }
+        ]
       }, {
         path: 'shareholderDividends',
         name: '股东分红',
-        component: DistributionShareholderDividends,
-        children: [{
-          path: '/',
-          redirect: 'config.html'
-        }, {
-          path: 'config.html',
-          name: '基本设置',
-          component: DistributionShareholderDividendsConfig
-        }, {
-          path: 'partnerList.html',
-          name: '人员管理',
-          component: DistributionShareholderDividendsPartnerList
-        }, {
-          path: 'addPartnerLevel.html',
-          name: '添加股东等级',
-          component: DistributionShareholderDividendsAddPartnerLevel
-        }]
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/distribution/shareholderDividends/config.html',
+              name: '基本设置'
+            }, {
+              path: '/distribution/shareholderDividends/partnerList.html',
+              name: '人员管理'
+            }
+          ]
+        },
+        children: [
+          {
+            path: '/',
+            redirect: 'config.html'
+          }, {
+            path: 'config.html',
+            name: '基本设置',
+            component: DistributionShareholderDividendsConfig
+          // }, {
+          //   path: 'partnerList.html',
+          //   name: '人员管理',
+          //   component: DistributionShareholderDividendsPartnerList
+          // }, {
+          //   path: 'addPartnerLevel.html',
+          //   name: '添加股东等级',
+          //   component: DistributionShareholderDividendsAddPartnerLevel
+          }
+        ]
       }, {
         path: 'globalBonusPool',
         name: '全球分红',
-        component: DistributionGlobalBonusPool,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/distribution/globalBonusPool/config.html',
+              name: '基本设置'
+            }, {
+              path: '/distribution/globalBonusPool/grant.html',
+              name: '发放分红'
+            }, {
+              path: '/distribution/globalBonusPool/records.html',
+              name: '发放记录'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'config.html'
@@ -1324,11 +1447,11 @@ export default new Router({
             path: 'customService.html',
             name: '客服',
             component: SettingBaseCustomservice
-          },
-          {
-            path: 'merchantService.html',
-            name: '商家服务',
-            component: SettingBaseMerchantService
+          // },
+          // {
+          //   path: 'merchantService.html',
+          //   name: '商家服务',
+          //   component: SettingBaseMerchantService
           }
         ]
       }, {
@@ -1378,7 +1501,23 @@ export default new Router({
       }, {
         path: 'auth',
         name: '管理员列表',
-        component: SettingAuth,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/setting/auth/userList.html',
+              name: '用户列表'
+            },
+            {
+              path: '/setting/auth/group.html',
+              name: '权限组'
+            },
+            {
+              path: '/setting/auth/log.html',
+              name: '操作日志'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'userList.html'
@@ -1402,7 +1541,19 @@ export default new Router({
       }, {
         path: 'database',
         name: '数据库管理',
-        component: SettingDatabase,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/setting/database/backup.html',
+              name: '数据库备份'
+            },
+            {
+              path: '/setting/database/restore.html',
+              name: '数据库恢复'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'backup.html'
@@ -1418,14 +1569,50 @@ export default new Router({
       }, {
         path: 'delivery',
         name: '配送管理',
-        component: SettingDelivery,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/setting/delivery/express',
+              name: '物流配送'
+            },
+            {
+              path: '/setting/delivery/pickuppoint',
+              name: '门店自提'
+            },
+            {
+              path: '/setting/delivery/local',
+              name: '本地配送'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'express'
         }, {
           path: 'express',
           name: '物流配送',
-          component: SettingDeliveryExpress,
+          component: CardTabsRouter,
+          props: {
+            tabs: [
+              {
+                path: '/setting/delivery/express/expressCompany.html',
+                name: '物流公司'
+              }, {
+                path: '/setting/delivery/express/areaManagement.html',
+                name: '地区管理'
+              }, {
+                path: '/setting/delivery/express/SellerAddress.html',
+                name: '商家地址'
+              }, {
+                path: '/setting/delivery/express',
+                name: '货到付款地区管理'
+              }, {
+                path: '/setting/delivery/express/expressMessage.html',
+                name: '物流跟踪设置'
+              }
+            ]
+          },
           children: [{
             path: '/',
             redirect: 'expressCompany.html'
@@ -1437,19 +1624,19 @@ export default new Router({
             path: 'editExpressCompany.html',
             name: '编辑物流公司',
             component: SettingDeliveryExpressCompanyEdit
-          }, {
-            path: 'areaManagement.html',
-            name: '地区管理',
-            component: SettingDeliveryAreaManagement
+          // }, {
+          //   path: 'areaManagement.html',
+          //   name: '地区管理',
+          //   component: SettingDeliveryAreaManagement
           }, {
             path: 'SellerAddress.html',
             name: '商家地址',
             component: SettingDeliveryExpressSellerAddress
           }, {
-            path: 'aaaaeditExpressCompany.html',
-            name: '货到付款地区管理',
-            component: SettingDeliveryExpress
-          }, {
+          //   path: 'editExpressCompany.html',
+          //   name: '货到付款地区管理',
+          //   component: SettingDeliveryExpress
+          // }, {
             path: 'expressMessage.html',
             name: '物流跟踪设置',
             component: SettingDeliveryExpressMessage
@@ -1457,7 +1644,21 @@ export default new Router({
         }, {
           path: 'pickuppoint',
           name: '门店自提',
-          component: SettingDeliveryPickuppoint,
+          component: CardTabsRouter,
+          props: {
+            tabs: [
+              {
+                path: '/setting/delivery/pickuppoint/list.html',
+                name: '门店管理'
+              }, {
+                path: '/setting/delivery/pickuppoint/freight.html',
+                name: '门店运费'
+              }, {
+                path: '/setting/delivery/pickuppoint/auditor.html',
+                name: '门店审核人员管理'
+              }
+            ]
+          },
           children: [{
             path: '/',
             redirect: 'list.html'
@@ -1471,10 +1672,10 @@ export default new Router({
             name: '门店运费',
             component: SettingDeliveryPickuppointFreight
           }, {
-            path: 'auditor.html',
-            name: '门店审核人员管理',
-            component: SettingDeliveryPickuppointAuditor
-          }, {
+          //   path: 'auditor.html',
+          //   name: '门店审核人员管理',
+          //   component: SettingDeliveryPickuppointAuditor
+          // }, {
             path: 'edit.html',
             name: '添加门店',
             component: SettingDeliveryPickuppointEdit
@@ -1482,7 +1683,21 @@ export default new Router({
         }, {
           path: 'local',
           name: '本地配送',
-          component: SettingDeliveryLocal,
+          component: CardTabsRouter,
+          props: {
+            tabs: [
+              {
+                path: '/setting/delivery/local/userList.html',
+                name: '配送人员'
+              }, {
+                path: '/setting/delivery/local/config.html',
+                name: '配送费用'
+              }, {
+                path: '/setting/delivery/local/area.html',
+                name: '配送地区'
+              }
+            ]
+          },
           children: [{
             path: '/',
             redirect: 'userList.html'
@@ -1495,17 +1710,29 @@ export default new Router({
             path: 'config.html',
             name: '配送费用',
             component: SettingDeliveryLocalConfig
-          }, {
-            path: 'area.html',
-            name: '配送地区',
-            component: SettingDeliveryLocalArea
+          // }, {
+          //   path: 'area.html',
+          //   name: '配送地区',
+          //   component: SettingDeliveryLocalArea
           }
           ]
         }]
       }, {
         path: 'verification',
         name: '核销设置',
-        component: SettingVerification,
+        component: TabsRouter,
+        props: {
+          tabs: [
+            {
+              path: '/setting/verification/list.html',
+              name: '核销人员'
+            },
+            {
+              path: '/setting/verification/records.html',
+              name: '核销记录'
+            }
+          ]
+        },
         children: [{
           path: '/',
           redirect: 'list.html'

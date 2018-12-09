@@ -2,7 +2,7 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="140px" size="small" label-position="right">
 
     <el-form-item label="活动名称" prop="name" required>
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="活动有效期" required>
@@ -11,21 +11,18 @@
         type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
-        end-placeholder="结束日期">
-      </el-date-picker>
+        end-placeholder="结束日期" />
     </el-form-item>
 
     <el-form-item label="首刀比例">
-      <el-input type="number" style="width:200px" v-model="editForm.minFirstCutRate" >
-      </el-input>
+      <el-input v-model="editForm.minFirstCutRate" type="number" style="width:200px" />
       -
-      <el-input type="number" style="width:200px" v-model="editForm.maxFirstCutRate" >
-      </el-input>
+      <el-input v-model="editForm.maxFirstCutRate" type="number" style="width:200px" />
       %
     </el-form-item>
 
     <el-form-item label="至少需要砍的次数" required>
-      <el-input type="number"  v-model="editForm.minNumber" >
+      <el-input v-model="editForm.minNumber" type="number" >
         <template slot="append">
           次
         </template>
@@ -33,7 +30,7 @@
     </el-form-item>
 
     <el-form-item label="可砍到的最低比例" required>
-      <el-input type="number"  v-model="editForm.minRate" >
+      <el-input v-model="editForm.minRate" type="number" >
         <template slot="append">
           %
         </template>
@@ -45,7 +42,7 @@
     </el-form-item>
 
     <el-form-item>
-      <SimpleGoodsTable :tableData="editForm.goodsList"/>
+      <SimpleGoodsTable :table-data="editForm.goodsList" />
     </el-form-item>
 
     <el-form-item>
@@ -59,7 +56,10 @@
 import SimpleGoodsTable from '@/components/SimpleGoodsTable.vue'
 
 export default {
-  name: 'edit',
+  name: 'Edit',
+  components: {
+    SimpleGoodsTable
+  },
   data () {
     return {
       editForm: {
@@ -77,9 +77,6 @@ export default {
     submitForm () {
       console.log('submitForm', this.editForm)
     }
-  },
-  components: {
-    SimpleGoodsTable
   }
 }
 </script>

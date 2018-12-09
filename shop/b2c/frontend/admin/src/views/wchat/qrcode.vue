@@ -3,12 +3,12 @@
     <div class="ns-main">
 
       <div class="table">
-        <div class="l qrcode" id="dragBlock" @mousedown="dragBlockDown" @mouseup="dragBlockUp">
+        <div class="l qrcode" data-id="dragBlock" @mousedown="dragBlockDown" @mouseup="dragBlockUp">
           <img id="imgLogo">
-          <img id="header" src="/static/images/icon-header.png" :style="{left: headerLeft + 'px', top: headerTop + 'px'}" ondragstart="return false;" @mousemove="dragBlockMousemove">
-          <img id="logo" src="/static/images/default_img_url/logo.png" :style="{left: logoLeft + 'px', top: logoTop + 'px'}" ondragstart="return false;" @mousemove="dragBlockMousemove">
-          <img id="code" src="/static/images/template_qrcode.png" :style="{left: codeLeft + 'px', top: codeTop + 'px'}" ondragstart="return false;" @mousemove="dragBlockMousemove">
-          <span id="name" :style="{left: nameLeft + 'px', top: nameTop + 'px'}" style="color:#2B2B2B;font-size:23px;" ondragstart="return false;" @mousemove="dragBlockMousemove">昵称</span>
+          <img id="header" :style="{ left: headerLeft + 'px', top: headerTop + 'px' }" src="/static/images/icon-header.png" ondragstart="return false;" @mousemove="dragBlockMousemove">
+          <img id="logo" :style="{ left: logoLeft + 'px', top: logoTop + 'px' }" src="/static/images/default_img_url/logo.png" ondragstart="return false;" @mousemove="dragBlockMousemove">
+          <img id="code" :style="{ left: codeLeft + 'px', top: codeTop + 'px' }" src="/static/images/template_qrcode.png" ondragstart="return false;" @mousemove="dragBlockMousemove">
+          <span id="name" :style="{ left: nameLeft + 'px', top: nameTop + 'px' }" style="color:#2B2B2B;font-size:23px;" ondragstart="return false;" @mousemove="dragBlockMousemove">昵称</span>
         </div>
         <div class="r form">
 
@@ -19,10 +19,10 @@
               <dd>
                 <div class="upload-btn-common">
                   <div>
-                    <input class="input-file" name="file_upload" id="uploadImg" type="file" onchange="imgUpload(this);" title="上传">
-                    <input type="hidden" id="Logo" value="">
+                    <input class="input-file" name="file_upload" data-id="uploadImg" type="file" onchange="imgUpload(this);" title="上传">
+                    <input type="hidden" data-id="Logo" value="">
                   </div>
-                  <input type="text" id="text_Logo" class="input-common" readonly="readonly" value="">
+                  <input type="text" data-id="text_Logo" class="input-common" readonly="readonly" value="">
                   <em>上传</em>
 
                   <img id="preview_Logo" src="/static/blue/img/upload-common-select.png" data-html="true" data-container="body" data-placement="top" data-trigger="manual">
@@ -41,7 +41,7 @@
             <dl>
               <dt>昵称字体大小:</dt>
               <dd>
-                  <input id="nick_font_size" type="number" min="10" max="36" step="1" size="4" value="23" class="input-common harf"><em class="unit">PX</em>
+                <input id="nick_font_size" type="number" min="10" max="36" step="1" size="4" value="23" class="input-common harf"><em class="unit">PX</em>
                 <p class="hint">字体大小的单位为像素（px）</p>
                 <p class="error">请输入昵称字体大小</p>
               </dd>
@@ -49,12 +49,10 @@
             <dl>
               <dt>是否显示logo:</dt>
               <dd>
-                <input id="is_logo_show" type="checkbox" class="checkbox" checked="" simpleswitch="0" result="true" style="display: none;"><div class="Switch Switch_FlatRadius On" id="Switch0"><span class="switch-open">是</span><span class="switch-close">否</span></div>
+                <input id="is_logo_show" type="checkbox" class="checkbox" checked="" simpleswitch="0" result="true" style="display: none;"><div class="Switch Switch_FlatRadius On" data-id="Switch0"><span class="switch-open">是</span><span class="switch-close">否</span></div>
               </dd>
             </dl>
             <dl>
-              <dt>
-              </dt>
               <dd>
                 <button class="btn-common btn-big" onclick="save();">保存</button>
                 <button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
@@ -71,7 +69,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'Qrcode',
   data () {
     return {
       dragActive: false,
@@ -146,8 +144,8 @@ export default {
       }
     },
     dragLogo (event) {
-      let logoTargetWidth = event.target.width
-      let logoTargetHeight = event.target.height
+      var logoTargetWidth = event.target.width
+      var logoTargetHeight = event.target.height
 
       console.log('dragLogo page', event.pageX, event.pageY, event)
       console.log('dragLogo', this.logoLeftOnDragBlockDown, this.logoTopOnDragBlockDown)
@@ -174,8 +172,8 @@ export default {
       console.log('dragLogo', this.logoLeft, this.logoTop)
     },
     dragHeader (event) {
-      let headerTargetWidth = event.target.width
-      let headerTargetHeight = event.target.height
+      var headerTargetWidth = event.target.width
+      var headerTargetHeight = event.target.height
 
       this.headerLeft = event.pageX - this.blockOffsetLeft - (this.blockPageX - this.blockOffsetLeft) + this.headerLeftOnDragBlockDown
       this.headerTop = event.pageY - this.blockOffsetTop - (this.blockPageY - this.blockOffsetTop) + this.headerTopOnDragBlockDown
@@ -194,8 +192,8 @@ export default {
       }
     },
     dragCode (event) {
-      let codeTargetWidth = event.target.width
-      let codeTargetHeight = event.target.height
+      var codeTargetWidth = event.target.width
+      var codeTargetHeight = event.target.height
 
       this.codeLeft = event.pageX - this.blockOffsetLeft - (this.blockPageX - this.blockOffsetLeft) + this.codeLeftOnDragBlockDown
       this.codeTop = event.pageY - this.blockOffsetTop - (this.blockPageY - this.blockOffsetTop) + this.codeTopOnDragBlockDown
@@ -214,7 +212,7 @@ export default {
       }
     },
     dragName (event) {
-      let nameTargetHeight = event.target.clientHeight
+      var nameTargetHeight = event.target.clientHeight
 
       this.nameLeft = event.pageX - this.blockOffsetLeft - (this.blockPageX - this.blockOffsetLeft) + this.nameLeftOnDragBlockDown
       this.nameTop = event.pageY - this.blockOffsetTop - (this.blockPageY - this.blockOffsetTop) + this.nameTopOnDragBlockDown

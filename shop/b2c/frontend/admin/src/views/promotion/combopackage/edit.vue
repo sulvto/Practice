@@ -2,11 +2,11 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="组合套餐名称" required>
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="组合套餐价格" required>
-      <el-input type="number" min="0" v-model="editForm.price" >
+      <el-input v-model="editForm.price" type="number" min="0" >
         <template slot="append">
           元
         </template>
@@ -22,7 +22,7 @@
     </el-form-item>
 
     <el-form-item label="是否上架">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.shelvesUp"></el-switch>
+      <el-switch v-model="editForm.shelvesUp" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item label="选择商品">
@@ -31,7 +31,7 @@
     </el-form-item>
 
     <el-form-item>
-      <SimpleGoodsTable :tableData="editForm.goodsList"/>
+      <SimpleGoodsTable :table-data="editForm.goodsList"/>
     </el-form-item>
 
     <el-form-item>
@@ -45,7 +45,10 @@
 import SimpleGoodsTable from '@/components/SimpleGoodsTable.vue'
 
 export default {
-  name: 'edit',
+  name: 'CombopackageEdit',
+  components: {
+    SimpleGoodsTable
+  },
   data () {
     return {
       editForm: {
@@ -63,9 +66,6 @@ export default {
     submitForm () {
       console.log('submitForm', this.editForm)
     }
-  },
-  components: {
-    SimpleGoodsTable
   }
 }
 </script>

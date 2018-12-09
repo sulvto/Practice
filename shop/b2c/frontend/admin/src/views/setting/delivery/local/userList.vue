@@ -32,58 +32,56 @@
 </div> -->
 
 <template>
-    <div>
-      <el-row :gutter="8">
-        <el-col :span="12">
-          <el-button type="danger" size="small">批量删除</el-button>
-          <el-button type="primary" size="small">添加配送人员</el-button>
-        </el-col>
+  <div>
+    <el-row :gutter="8">
+      <el-col :span="12">
+        <el-button type="danger" size="small">批量删除</el-button>
+        <el-button type="primary" size="small">添加配送人员</el-button>
+      </el-col>
 
-        <el-col :span="10"><el-input size="small" v-model="searchKeyword" placeholder="请输入配送人姓名"></el-input></el-col>
-        <el-col :span="2">
-          <el-button type="primary" size="small" @click="onSearch">查询</el-button>
-        </el-col>
-      </el-row>
+      <el-col :span="10"><el-input v-model="searchKeyword" size="small" placeholder="请输入配送人姓名" /></el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="onSearch">查询</el-button>
+      </el-col>
+    </el-row>
 
-      <br/>
+    <br>
 
-        <el-table border :data="tableData" style="width: 100%">
-            <el-table-column
-              type="selection"
-              width="35">
-            </el-table-column>
+    <el-table :data="tableData" style="width: 100%" border >
+      <el-table-column
+        type="selection"
+        width="35" />
 
-            <el-table-column
-              prop="name"
-              label="姓名"
-              width="120">
-            </el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名"
+        width="120" />
 
-            <el-table-column
-                prop="tel"
-                label="电话"
-                width="180">
-            </el-table-column>
+      <el-table-column
+        prop="tel"
+        label="电话"
+        width="180" />
 
-            <el-table-column
-              prop="notes"
-            label="备注">
-            </el-table-column>
-            <el-table-column label="操作"
-                width="180">
-                <template slot-scope="scope">
-                    <!-- <a href="/config/loginconfig.html?type=qq">配置</a> -->
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+      <el-table-column
+        prop="notes"
+        label="备注" />
+
+      <el-table-column
+        label="操作"
+        width="180">
+        <template slot-scope="scope">
+          <!-- <a href="/config/loginconfig.html?type=qq">配置</a> -->
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'userList',
+  name: 'UserList',
   data () {
     return {
       tableData: [{

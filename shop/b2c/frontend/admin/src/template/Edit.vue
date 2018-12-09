@@ -2,22 +2,22 @@
   <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
     <el-form-item label="手续费" required>
-      <el-input type="number"  v-model="editForm.serviceCharge" >
+      <el-input v-model="editForm.serviceCharge" type="number" >
         <template slot="append">
-                倍
+          倍
         </template>
       </el-input>
     </el-form-item>
 
     <el-form-item label="数值" prop="number">
-      <el-input type="number" v-model="editForm.number"></el-input>
+      <el-input v-model="editForm.number" type="number" />
       <p class="hint">网页标题通常是搜索引擎关注的重点，本附加字设置出现在标题中商城名称后，如有多个附加字，建议用<i class="important-note">英文“,”</i>分隔</p>
     </el-form-item>
 
     <el-form-item label="多选select">
       <el-select v-model="editForm.select" placeholder="请选择">
-        <el-option label="选择1" value="1"></el-option>
-        <el-option label="选择2" value="2"></el-option>
+        <el-option label="选择1" value="1" />
+        <el-option label="选择2" value="2" />
       </el-select>
       <p class="hint">伪静态只支持<i class="important-note">pathinfo</i>模式，如果开启伪静态，请选择<i class="important-note">pathinfo</i>模式</p>
     </el-form-item>
@@ -41,17 +41,17 @@
     </el-form-item>
 
     <el-form-item label="开关">
-      <el-switch  active-text="开" inactive-text="关" v-model="editForm.switch"></el-switch>
+      <el-switch v-model="editForm.switch" active-text="开" inactive-text="关" />
       <p class="hint">设置为不允许则游客无法注册成为站点会员</p>
     </el-form-item>
 
     <el-form-item label="文本">
-      <el-input v-model="editForm.text"></el-input>
+      <el-input v-model="editForm.text" />
       <p class="hint">网页标题通常是搜索引擎关注的重点，本附加字设置出现在标题中商城名称后，如有多个附加字，建议用<i class="important-note">英文“,”</i>分隔</p>
     </el-form-item>
 
     <el-form-item label="文本域">
-      <el-input type="textarea" v-model="editForm.textarea"></el-input>
+      <el-input v-model="editForm.textarea" type="textarea" />
       <p class="hint">网页标题通常是搜索引擎关注的重点，本附加字设置出现在标题中商城名称后，如有多个附加字，建议用<i class="important-note">英文“,”</i>分隔</p>
     </el-form-item>
 
@@ -64,7 +64,7 @@
 
 <script>
 export default {
-  name: 'edit',
+  name: 'Edit',
   data () {
     return {
       editForm: {},

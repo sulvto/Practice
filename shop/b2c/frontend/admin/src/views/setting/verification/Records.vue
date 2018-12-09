@@ -1,62 +1,58 @@
 <template>
-    <div>
-      <el-row :gutter="8">
-        <el-col :span="12">
-        </el-col>
+  <div>
+    <el-row :gutter="8">
+      <el-col :span="12" />
 
-        <el-col :span="10"><el-input size="small" v-model="searchKeyword" placeholder="输入虚拟商品名称"></el-input></el-col>
-        <el-col :span="2">
-          <el-button type="primary" size="small" @click="search">查询</el-button>
-        </el-col>
-      </el-row>
+      <el-col :span="10">
+        <el-input v-model="searchKeyword" size="small" placeholder="输入虚拟商品名称" />
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" size="small" @click="search">查询</el-button>
+      </el-col>
+    </el-row>
 
-      <br/>
+    <br>
 
-        <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
-          <el-table-column
-              prop="goods"
-              label="虚拟商品">
-            </el-table-column>
+      <el-table-column
+        prop="goods"
+        label="虚拟商品" />
 
-          <el-table-column
-              prop="possessor"
-              label="商品所有人"
-              width="120">
-            </el-table-column>
+      <el-table-column
+        prop="possessor"
+        label="商品所有人"
+        width="120" />
 
-          <el-table-column
-              prop="verifier"
-              label="核销员"
-              width="120">
-            </el-table-column>
+      <el-table-column
+        prop="verifier"
+        label="核销员"
+        width="120" />
 
-          <el-table-column
-              prop="count"
-              label="核销次数/次"
-              width="100">
-            </el-table-column>
+      <el-table-column
+        prop="count"
+        label="核销次数/次"
+        width="100" />
 
-            <el-table-column
-                      label="核销状态"
-                      width="100">
-                <template slot-scope="scope">
-                    <span v-show="scope.row.status===1">已使用</span>
-                </template>
-            </el-table-column>
+      <el-table-column
+        label="核销状态"
+        width="100">
+        <template slot-scope="scope">
+          <span v-show="scope.row.status===1">已使用</span>
+        </template>
+      </el-table-column>
 
-            <el-table-column
-              prop="notes"
-              label="备注">
-            </el-table-column>
+      <el-table-column
+        prop="notes"
+        label="备注" />
 
-        </el-table>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'list',
+  name: 'List',
   data () {
     return {
       searchKeyword: '',

@@ -6,44 +6,43 @@
         <el-button type="primary" size="small" @click="addClass">添加分类</el-button>
       </el-col>
 
-      <el-col :span="10">
-      </el-col>
-      <el-col :span="2">
-      </el-col>
+      <el-col :span="10" />
+      <el-col :span="2" />
     </el-row>
 
-    <br/>
+    <br>
 
-    <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
       <el-table-column
         label="分类名称">
         <template slot-scope="scope">
-          <span style="color: #ccc;" v-show="scope.row.parentId">|——</span>
-          <span class="table-pay">{{scope.row.name}}</span>
+          <span v-show="scope.row.parentId" style="color: #ccc;" >|——</span>
+          <span class="table-pay">{{ scope.row.name }}</span>
         </template>
       </el-table-column>
 
       <el-table-column
         prop="sort"
-        label="排序">
-      </el-table-column>
+        label="排序" />
 
-      <el-table-column label="操作" fixed="right"
-          width="180">
-          <template slot-scope="scope">
-              <el-button size="mini" @click="updateClass(scope.$index, scope.row)">修改</el-button>
-              <el-button size="mini" @click="deleteClass(scope.$index, scope.row)">删除</el-button>
-          </template>
+      <el-table-column
+        label="操作"
+        fixed="right"
+        width="180">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="updateClass(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="deleteClass(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
 
     <!-- 添加（or修改）分类 -->
-    <el-dialog :title="dialogClassFormTitle" size="small"  :visible.sync="dialogClassFormVisible">
+    <el-dialog :title="dialogClassFormTitle" :visible.sync="dialogClassFormVisible" size="small" >
       <el-form ref="classForm" :rules="classFormRules" :model="classForm" label-width="100px" >
 
         <el-form-item label="分类名称" prop="name">
-          <el-input v-model="classForm.name" auto-complete="off" placeholder="请输入分类名称"></el-input>
+          <el-input v-model="classForm.name" auto-complete="off" placeholder="请输入分类名称" />
         </el-form-item>
 
         <el-form-item label="上级分类" >
@@ -52,13 +51,12 @@
               v-for="item in topClassList"
               :key="item.id"
               :label="item.name"
-              :value="item.id">
-            </el-option>
+              :value="item.id" />
           </el-select>
 
         </el-form-item>
-          <el-form-item label="排序" >
-          <el-input v-model="classForm.sort" type="number"></el-input>
+        <el-form-item label="排序" >
+          <el-input v-model="classForm.sort" type="number" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -72,7 +70,7 @@
 
 <script>
 export default {
-  name: 'classList',
+  name: 'ClassList',
   data () {
     return {
       DIALOG_CLASS_FORM_TITLE_ADD: '添加分类',
@@ -132,11 +130,11 @@ export default {
       this.dialogClassFormVisible = true
     },
     addClass () {
-      this.classForm = {id: new Date().getTime()}
+      this.classForm = { id: new Date().getTime() }
       this.dialogClassFormVisible = true
     },
     deleteClass (index, data) {
-      let removeIndex = this.classList.findIndex(item => item.id === data.id)
+      var removeIndex = this.classList.findIndex(item => item.id === data.id)
       if (removeIndex !== -1) {
         this.classList.splice(removeIndex, 1)
       }

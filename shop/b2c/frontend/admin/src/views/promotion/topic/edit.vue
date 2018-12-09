@@ -3,19 +3,19 @@
     <h4>专题活动信息</h4>
 
     <el-form-item label="专题名称" required prop="name">
-      <el-input v-model="editForm.name"></el-input>
+      <el-input v-model="editForm.name" />
     </el-form-item>
 
     <el-form-item label="关键字">
-      <el-input v-model="editForm.keyword"></el-input>
+      <el-input v-model="editForm.keyword" />
     </el-form-item>
 
     <el-form-item label="描述">
-      <el-input type="textarea" v-model="editForm.description"></el-input>
+      <el-input v-model="editForm.description" type="textarea" />
     </el-form-item>
     <!-- TODO: 图像：条幅：背景图： -->
 
-      <!-- <dt><span style="color:red;">*</span>&nbsp;&nbsp;图像：</dt>
+    <!-- <dt><span style="color:red;">*</span>&nbsp;&nbsp;图像：</dt>
     <dd>
         <div class="upload-btn-common">
           <div>
@@ -70,7 +70,7 @@
    -->
 
     <el-form-item label="背景色">
-      <el-color-picker v-model="editForm.backgroundColor"></el-color-picker>
+      <el-color-picker v-model="editForm.backgroundColor" />
     </el-form-item>
 
     <el-form-item label="有效时间" required>
@@ -79,27 +79,26 @@
         type="datetimerange"
         range-separator="至"
         start-placeholder="开始日期"
-        end-placeholder="结束日期">
-      </el-date-picker>
+        end-placeholder="结束日期" />
     </el-form-item>
 
     <h4>高级设置</h4>
     <el-form-item label="专题介绍">
-      <UEditor :content="editForm.introduce" :config="{initialFrameHeight: '400'}" ref="ue"/>
+      <UEditor ref="ue" :content="editForm.introduce" :config="{initialFrameHeight: '400'}" />
     </el-form-item>
 
     <el-form-item label="是否显示头部">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isShowHead"></el-switch>
+      <el-switch v-model="editForm.isShowHead" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <el-form-item label="是否显示底部">
-      <el-switch  active-text="是" inactive-text="否" v-model="editForm.isShowFoot"></el-switch>
+      <el-switch v-model="editForm.isShowFoot" active-text="是" inactive-text="否" />
     </el-form-item>
 
     <h4>选择活动商品：</h4>
 
     <el-form-item label="参与商品">
-      <el-switch  active-text="全部" inactive-text="部分" v-model="editForm.isAll"></el-switch>
+      <el-switch v-model="editForm.isAll" active-text="全部" inactive-text="部分" />
     </el-form-item>
 
     <el-form-item label="选择商品">
@@ -107,25 +106,25 @@
     </el-form-item>
 
     <el-form-item>
-      <SimpleGoodsTable :tableData="editForm.goodsList"/>
+      <SimpleGoodsTable :table-data="editForm.goodsList"/>
     </el-form-item>
 
     <h4>模板设置</h4>
-      <el-form-item label="电脑端">
-        <el-input v-model="editForm.pcCustomTemplate" >
-          <el-button slot="prepend">template/shop/blue/Goods/</el-button>
-          <el-button slot="append">.html</el-button>
-        </el-input>
-        <p class="hint">用户自定义模板必须存放在template/shop/blue/Goods/下，模板名只能由英文组成</p>
-      </el-form-item>
+    <el-form-item label="电脑端">
+      <el-input v-model="editForm.pcCustomTemplate" >
+        <el-button slot="prepend">template/shop/blue/Goods/</el-button>
+        <el-button slot="append">.html</el-button>
+      </el-input>
+      <p class="hint">用户自定义模板必须存放在template/shop/blue/Goods/下，模板名只能由英文组成</p>
+    </el-form-item>
 
-      <el-form-item label="手机端">
-        <el-input v-model="editForm.wapCustomTemplate" >
-          <el-button slot="prepend">template/wap/default_new/Goods/</el-button>
-          <el-button slot="append">.html</el-button>
-        </el-input>
-        <p class="hint">用户自定义模板必须存放在template/wap/default_new/Goods/下，模板名只能由英文组成</p>
-      </el-form-item>
+    <el-form-item label="手机端">
+      <el-input v-model="editForm.wapCustomTemplate" >
+        <el-button slot="prepend">template/wap/default_new/Goods/</el-button>
+        <el-button slot="append">.html</el-button>
+      </el-input>
+      <p class="hint">用户自定义模板必须存放在template/wap/default_new/Goods/下，模板名只能由英文组成</p>
+    </el-form-item>
 
     <el-form-item>
       <el-button type="primary" @click="submitForm('editForm')">保存</el-button>
@@ -139,7 +138,11 @@ import UEditor from '@/components/UEditor.vue'
 import SimpleGoodsTable from '@/components/SimpleGoodsTable.vue'
 
 export default {
-  name: 'edit',
+  name: 'TopicEdit',
+  components: {
+    UEditor,
+    SimpleGoodsTable
+  },
   data () {
     return {
       editForm: {
@@ -159,10 +162,6 @@ export default {
       this.editForm.content = this.$refs.ue.getContent()
       console.log('submitForm', this.editForm)
     }
-  },
-  components: {
-    UEditor,
-    SimpleGoodsTable
   }
 }
 </script>

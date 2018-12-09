@@ -1,53 +1,50 @@
 <template>
-    <div>
-        <el-row>
-        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加商品类型</el-button>
-        </el-row>
+  <div>
+    <el-row>
+      <el-button type="primary" size="small" @click="$router.push('edit.html')">添加商品类型</el-button>
+    </el-row>
 
-    <br/>
+    <br>
 
-        <el-table border :data="tableData" style="width: 100%">
+    <el-table :data="tableData" border style="width: 100%">
 
- <el-table-column
-      prop="name"
-      label="类型名称">
-    </el-table-column>
+      <el-table-column
+        prop="name"
+        label="类型名称" />
 
- <el-table-column
-      label="属性标签">
-      <template slot-scope="scope">
+      <el-table-column
+        label="属性标签">
+        <template slot-scope="scope">
           {{ scope.row.attributeList.map(attributeItem => attributeItem.name).join(',') }}
-      </template>
-    </el-table-column>
+        </template>
+      </el-table-column>
 
-    <el-table-column
+      <el-table-column
         label="启用"
         width="80">
         <template slot-scope="scope">
-            <el-switch v-model="scope.row.isEnable">
-            </el-switch>
+          <el-switch v-model="scope.row.isEnable" />
         </template>
-    </el-table-column>
+      </el-table-column>
 
- <el-table-column
-      prop="sort"
-      label="排序"
-      width="80">
-    </el-table-column>
+      <el-table-column
+        prop="sort"
+        label="排序"
+        width="80" />
 
       <el-table-column label="操作" fixed="right" width="180">
-                <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'attributeList',
+  name: 'AttributeList',
   data () {
     return {
       tableData: [
