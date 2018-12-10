@@ -377,15 +377,15 @@
             </el-menu-item-group>
           </el-submenu>
 
-          <el-menu-item v-show="verticalMenu.isHome" index="1" >
+          <el-menu-item v-show="verticalMenu.isHomePage" index="1" >
             <i class="el-icon-circle-plus" />
             <span slot="title">常用功能</span>
           </el-menu-item>
 
         </el-menu>
       </el-aside>
-      <el-main>
-        <el-row :gutter="20">
+      <el-main :style="{true: 'padding:0px;', false: ''}[isIndexPage]">
+        <el-row v-if="!isIndexPage" :gutter="20">
           <el-col :span="12">
             <el-breadcrumb separator-class="el-icon-arrow-right">
               <el-breadcrumb-item v-for="item in breadcrumb" :key="item.path" :to="item">{{ item.name }}</el-breadcrumb-item>
@@ -409,7 +409,7 @@
           </el-col>
         </el-row>
 
-        <br>
+        <br v-if="!isIndexPage">
 
         <router-view/>
       </el-main>
@@ -436,7 +436,7 @@ export default {
         {
           name: '首页',
           path: '/index.html',
-          isHome: true,
+          isHomePage: true,
           children: [
             {
               path: '/index.html',
@@ -819,7 +819,7 @@ export default {
           ]
         }, {
           name: '系统',
-          path: '/upgrade/onlineupdate.html',
+          path: '/upgrade',
           children: [
             {
               path: '/upgrade/onlineupdate.html',
@@ -848,6 +848,9 @@ export default {
   },
 
   computed: {
+    isIndexPage () {
+      return this.$route.path === '/index.html'
+    },
     maxAsideHeight () {
       return window.innerHeight - 60
     },
@@ -1059,6 +1062,9 @@ img {
 .el-main {
   margin-top: 60px;
   margin-left: 200px;
+}
+.el-menu {
+  border: none;
 }
 
 /*滚动条整体部分*/
