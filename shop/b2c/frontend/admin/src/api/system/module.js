@@ -1,108 +1,268 @@
+import { mockList, mockItem } from '@/utils/mock'
+
 const data = [
   {
-    id: '1001',
-    area: { name: '江北区', value: '江北区' },
-    no: '900100',
-    role: { id: 1, name: '社区民警' },
-    idNumber: '500233190010105106',
-    name: '五里店',
-    createDate: '2018-12-01 11:27:27'
+    id: 1,
+    name: '门店管理',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1002',
-    area: { name: '江北区', value: '江北区' },
-    no: '900101',
-    role: { id: 1, name: '社区民警' },
-    idNumber: '500233190010105106',
-    name: '红旗河沟',
-    createDate: '2018-12-01 11:27:27'
+    id: 2,
+    name: '首页',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1003',
-    area: { name: '南岸区', value: '南岸区' },
-    no: '900102',
-    role: { id: 1, name: '社区民警' },
-    idNumber: '500233190010105106',
-    name: '红旗河沟',
-    createDate: '2018-12-01 11:27:27'
+    id: 3,
+    name: '商品',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1004',
-    area: { name: '南岸区', value: '南岸区' },
-    no: '900103',
-    role: { id: 1, name: '社区民警' },
-    idNumber: '500233190010105106',
-    name: '华新街',
-    createDate: '2018-12-01 11:27:27'
+    id: 4,
+    name: '订单',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1005',
-    area: { name: '江北区', value: '江北区' },
-    no: '900104',
-    role: { id: 2, name: '派出所领导' },
-    idNumber: '500233190010105106',
-    name: '江北嘴',
-    createDate: '2018-12-01 11:27:27'
+    id: 5,
+    name: '营销',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1006',
-    area: { name: '南岸区', value: '南岸区' },
-    no: '900105',
-    role: { id: 3, name: '区县经侦支大队领导' },
-    idNumber: '500233190010105106',
-    name: '北滨路',
-    createDate: '2018-12-01 11:27:27'
+    id: 6,
+    name: '会员',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1007',
-    area: { name: '渝北区', value: '渝北区' },
-    no: '900106',
-    role: { id: 4, name: '区县经侦支大队民警' },
-    idNumber: '500233190010105106',
-    name: '北滨路',
-    createDate: '2018-12-01 11:27:27'
+    id: 7,
+    name: '数据',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1008',
-    area: { name: '沙坪坝区', value: '沙坪坝区' },
-    no: '900107',
-    role: { id: 4, name: '区县经侦支大队民警' },
-    idNumber: '500233190010105106',
-    name: '北滨路',
-    createDate: '2018-12-01 11:27:27'
+    id: 8,
+    name: '微信',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1009',
-    area: { name: '江北区', value: '江北区' },
-    no: '900108',
-    role: { id: 5, name: '总队六支队民警' },
-    idNumber: '500233190010105106',
-    name: '北滨路',
-    createDate: '2018-12-01 11:27:27'
+    id: 9,
+    name: '佣金',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1010',
-    area: { name: '沙坪坝区', value: '沙坪坝区' },
-    no: '900109',
-    role: { id: 5, name: '总队六支队民警' },
-    idNumber: '500233190010105106',
-    name: '北滨路',
-    createDate: '2018-12-01 11:27:27'
+    id: 10,
+    name: '网站',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1011',
-    area: { name: '渝北区', value: '渝北区' },
-    no: '900110',
-    role: { id: 1, name: '社区民警' },
-    idNumber: '500233190010105106',
-    name: '北滨路',
-    createDate: '2018-12-01 11:27:27'
+    id: 11,
+    name: '分销',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1012',
-    area: { name: '九龙坡区', value: '九龙坡区' },
-    no: '900111',
-    role: { id: 6, name: '总队六支队领导' },
-    idNumber: '500233190010105106',
-    name: '北滨路',
-    createDate: '2018-12-01 11:27:27'
+    id: 12,
+    name: '设置',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }, {
-    id: '1013',
-    area: { name: '九龙坡区', value: '九龙坡区' },
-    no: '900112',
-    role: { id: 7, name: '总队领导' },
-    idNumber: '500233190010105106',
-    name: '北滨路',
-    createDate: '2018-12-01 11:27:27'
+    id: 13,
+    name: '系统',
+    level: 0,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 14,
+    name: '空调',
+    level: 1,
+    parentId: 1,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 15,
+    name: '洗衣机',
+    level: 1,
+    parentId: 1,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 16,
+    name: '智能家居',
+    level: 1,
+    parentId: 1,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 17,
+    name: '曲面电视',
+    level: 2,
+    parentId: 13,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 18,
+    name: '超薄电视',
+    level: 2,
+    parentId: 13,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 19,
+    name: 'HDR电视',
+    level: 2,
+    parentId: 13,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 20,
+    name: '电脑整机',
+    level: 1,
+    parentId: 3,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 21,
+    name: '电脑配件',
+    level: 1,
+    parentId: 3,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 22,
+    name: '外设产品',
+    level: 1,
+    parentId: 3,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 23,
+    name: '鼠标',
+    level: 2,
+    parentId: 22,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 24,
+    name: '键盘',
+    level: 2,
+    parentId: 22,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
+  }, {
+    id: 25,
+    name: '键鼠套装',
+    level: 2,
+    parentId: 22,
+    url: '',
+    controllerName: '',
+    methodName: '',
+    isShow: true,
+    description: '',
+    sort: 1
   }
 ]
 
@@ -130,18 +290,8 @@ var roles = [{
 }]
 
 export function fetchList (params) {
-  var start = (params.page - 1) * params.limit
-  var end = start + params.limit
-
   return new Promise(resolve => {
-    resolve({
-      code: 0,
-      message: '',
-      data: {
-        items: data.filter(item => params.role ? item.role.name === params.role : true).slice(start, end),
-        total: data.filter(item => params.role ? item.role.name === params.role : true).length
-      }
-    })
+    resolve(mockList(params, data))
   }, 1000)
 }
 
@@ -151,15 +301,9 @@ export function fetchRecyclerList (params) {
 
 export function fetchById (id) {
   console.log('fetchById', id)
-  var result = null
-  if (id) {
-    result = { code: 0, message: '', data: data.find(item => item.id === id) }
-  } else {
-    result = { code: -1, message: '' }
-  }
 
   return new Promise(resolve => {
-    resolve(result)
+    resolve(mockItem(id, data))
   })
 }
 
@@ -184,9 +328,13 @@ export function fetchRole (id) {
 }
 
 export function save (form) {
-  if (!form.id) {
+  if (form.id) {
+    var find = data.find(item => item.id === form.id)
+    // assert find != null
+    find = Object.assign(find, form)
+  } else {
     // 新增
-    form.id = new Date().getTime().toString()
+    form.id = new Date().getTime()
     form.createDate = new Date()
 
     console.log('webuser save', form)
