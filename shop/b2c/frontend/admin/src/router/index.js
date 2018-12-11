@@ -204,7 +204,7 @@ import SettingDeliveryExpressSellerAddress from '@/views/setting/delivery/expres
 import SettingDeliveryExpressMessage from '@/views/setting/delivery/express/ExpressMessage.vue'
 // import SettingDeliveryAreaManagement from '@/views/setting/delivery/express/AreaManagement.vue'
 
-// import SettingDeliveryLocalArea from '@/views/setting/delivery/local/area.vue'
+import SettingDeliveryLocalArea from '@/views/setting/delivery/local/area.vue'
 import SettingDeliveryLocalConfig from '@/views/setting/delivery/local/config.vue'
 import SettingDeliveryLocalUserList from '@/views/setting/delivery/local/userList.vue'
 
@@ -780,6 +780,9 @@ export default new Router({
       name: '系统',
       component: BaseRouter,
       children: [{
+        path: '/',
+        redirect: 'onlineupdate.html'
+      }, {
         path: 'onlineupdate.html',
         name: '线上更新',
         component: UpgradeOnlineUpdate
@@ -1743,12 +1746,11 @@ export default new Router({
             path: 'config.html',
             name: '配送费用',
             component: SettingDeliveryLocalConfig
-          // }, {
-          //   path: 'area.html',
-          //   name: '配送地区',
-          //   component: SettingDeliveryLocalArea
-          }
-          ]
+          }, {
+            path: 'area.html',
+            name: '配送地区',
+            component: SettingDeliveryLocalArea
+          }]
         }]
       }, {
         path: 'verification',

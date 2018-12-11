@@ -1,13 +1,14 @@
 <template>
 
-  <section class="ns-base-section">
+  <div>
 
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span>授权信息</span>
       </div>
       <div class="text item">
-        授&nbsp;&nbsp;权&nbsp;码：<el-button size="mini" type="primary" round>重新绑定</el-button>
+        授&nbsp;&nbsp;权&nbsp;码：
+        <el-button size="mini" type="primary" round>重新绑定</el-button>
       </div>
 
       <div class="text item">站点URL：
@@ -16,14 +17,19 @@
       <div class="text item">授权时间：
       </div>
 
-      <div class="text item">当前版本：  <el-button size="mini" type="warning" round>旗舰版2.6</el-button>
+      <div class="text item">
+        当前版本：
+        <el-button size="mini" type="warning" round>旗舰版2.6</el-button>
       </div>
 
-      <div class="text item">最新版本：  <el-button size="mini" type="info" round>V2.2</el-button>
+      <div class="text item">
+        最新版本：
+        <el-button size="mini" type="info" round>V2.2</el-button>
       </div>
 
-      <div class="text item">授权状态：  <el-button size="mini" type="danger" round>未授权</el-button>
-
+      <div class="text item">
+        授权状态：
+        <el-button size="mini" type="danger" round>未授权</el-button>
       </div>
     </el-card>
     <!-- <div class="ns-main">
@@ -65,5 +71,5 @@
       </div>
     </div> -->
 
-  </section>
+  </div>
 </template>

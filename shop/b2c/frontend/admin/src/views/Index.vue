@@ -529,21 +529,21 @@ h1, h2, h3 {
 }
 
 .ns-base-section {
-    position: relative;
-    background: #f2f6fc;
+  position: relative;
+  background: #f2f6fc;
 }
 
 .ns-notice {
   top: 60px;
   border-bottom: 1px solid #e5e5e5;
   border-left: 1px solid #e5e5e5;
-	box-shadow: 0 0 5px #ffffff;
-	overflow: hidden;
-	height: 39px;
-	line-height: 39px;
-	position: fixed;
-	background: #ffffff;
-	width: 100%;
+  box-shadow: 0 0 5px #ffffff;
+  overflow: hidden;
+  height: 39px;
+  line-height: 39px;
+  position: fixed;
+  background: #ffffff;
+  width: 100%;
   z-index: 3;
   nav {
     height: 100%;
