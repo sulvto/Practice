@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      name: microservice
+      profile: k8s
+      uri: http://config-service:8766/
+      label: master
