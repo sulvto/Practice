@@ -3,7 +3,7 @@
     <el-row :gutter="8">
       <el-col :span="12">
         <el-button type="danger" size="small">批量删除</el-button>
-        <el-button type="primary" size="small">添加物流公司</el-button>
+        <el-button type="primary" size="small" @click="$router.push('edit.html')">添加物流公司</el-button>
       </el-col>
 
       <el-col :span="10">

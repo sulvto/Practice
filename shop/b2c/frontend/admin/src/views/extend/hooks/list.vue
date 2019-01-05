@@ -4,7 +4,7 @@
 
     <el-row :gutter="20">
       <el-col :span="6">
-        <el-button type="primary" size="medium" @click="location.href='/extend/addhooks.html';">添加钩子</el-button>
+        <el-button type="primary" size="medium" @click="$router.push('hooksedit.html')">添加钩子</el-button>
       </el-col>
     </el-row>
 

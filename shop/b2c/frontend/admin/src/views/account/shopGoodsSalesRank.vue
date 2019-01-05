@@ -1,10 +1,5 @@
 <template>
   <div>
-    <el-row>
-      <el-button type="danger" size="small">批量删除</el-button>
-      <el-button type="primary" size="small">添加路由规则</el-button>
-    </el-row>
-
     <el-table
       :data="tableData"
       border
@@ -17,8 +12,7 @@
 
       <el-table-column
         prop="name"
-        label="商品名称"
-        width="120" />
+        label="商品名称" />
 
       <el-table-column
         prop="sales"

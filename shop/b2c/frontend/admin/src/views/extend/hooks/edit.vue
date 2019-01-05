@@ -1,83 +1,63 @@
 <template>
-  <section class="ns-base-section">
-    <div style="position:relative;margin:0;">
-      <!-- 面包屑导航 -->
-      <div class="breadcrumb-nav">
-        <a href="index.html">零基础学IT就来</a>
-        <i class="fa fa-angle-right" />
-        <a href="/upgrade/onlineupdate.html">系统</a>
-        <i class="fa fa-angle-right" />
-        <!-- 需要加跳转链接用这个：http://showfx.niuteam.cn/admin/extend/addhooks -->
-        <a href="javascript:;" style="color:#999;">添加钩子</a>
-      </div>
-      <!-- 三级导航菜单 -->
-      <div class="right-side-operation">
-        <ul>
-          <li>
-            <a class="js-open-warmp-prompt" href="javascript:;" data-menu-desc=""><i class="fa fa-question-circle" />&nbsp;提示</a>
-            <div class="popover">
-              <div class="arrow" />
-              <div class="popover-content">
-                <div>
-                  <h4>功能提示</h4>
-                  <p class="function-prompts" />
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <el-form ref="editForm" :rules="rules" :model="editForm" label-width="100px" size="small" label-position="right">
 
-    <div class="ns-main">
-      <div class="set-style">
-        <dl>
-          <dt><span class="color-red">*</span>钩子名称：</dt>
-          <dd>
-            <input id="name" type="text" class="input-common" >
-            <p class="error">请输入钩子名称</p>
-            <p class="hint">需要在程序中先添加钩子，否则无效</p>
-          </dd>
-        </dl>
-        <dl>
-          <dt>钩子描述：</dt>
-          <dd>
-            <p><textarea id="desc" class="textarea-common" /></p>
-            <p class="hint">钩子的描述信息</p>
-          </dd>
-        </dl>
-        <dl>
-          <dt>钩子类型：</dt>
-          <dd>
-            <div class="selectric-wrapper selectric-select-common" style="width: 250px;">
-              <select id="type" class="select-common" tabindex="-1">
-                <option value="1">视图</option>
-                <option value="2">控制器</option>
-              </select>
-            </div>
-            <div class="selectric">
-              <span class="selectric-label">视图</span>
-              <button class="selectric-button">▾</button>
-            </div>
-            <div class="selectric-items" tabindex="-1">
-              <div class="selectric-scroll">
-                <ul>
-                  <li data-index="0" class="selected" title="视图">视图</li>
-                  <li data-index="1" class="last" title="控制器">控制器</li>
-                </ul>
-              </div>
-            </div>
-            <input class="selectric-input" tabindex="0" >
-            <p class="hint">区分钩子的主要用途</p>
-          </dd>
-        </dl>
-        <dl>
-          <dd>
-            <button class="btn-common btn-big" onclick="save()">保存</button>
-            <button class="btn-common-cancle btn-big" onclick="javascript:history.back(-1);">返回</button>
-          </dd>
-        </dl>
-      </div>
-    </div>
-  </section>
+    <el-form-item label="钩子名称" prop="name">
+      <el-input v-model="editForm.name" />
+      <p class="hint">需要在程序中先添加钩子，否则无效</p>
+    </el-form-item>
+
+    <el-form-item label="钩子描述">
+      <el-input v-model="editForm.desc" type="textarea"/>
+      <p class="hint">钩子的描述信息</p>
+    </el-form-item>
+
+    <el-form-item label="钩子类型">
+      <el-select v-model="editForm.type" placeholder="请选择">
+        <el-option label="视图" value="1" />
+        <el-option label="控制器" value="2" />
+      </el-select>
+      <p class="hint">区分钩子的主要用途</p>
+    </el-form-item>
+
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('editForm')">保存</el-button>
+      <el-button type="info" @click="$router.back()">返回</el-button>
+    </el-form-item>
+  </el-form>
 </template>
+
+<script>
+export default {
+  name: 'Edit',
+  data () {
+    return {
+      editForm: {},
+      rules: {
+        name: [
+          { required: true, message: '请输入钩子名称', trigger: 'blur' },
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        ]
+      }
+    }
+  },
+  methods: {
+    submitForm () {
+      console.log('submitForm', this.editForm)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.hint {
+  font-size: 12px;
+  line-height: 16px;
+  color: #999999;
+  margin: 10px 0 0;
+}
+
+.important-note {
+  color: #ff6600;
+  font-style: normal;
+}
+</style>

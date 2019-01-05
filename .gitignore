@@ -3,6 +3,9 @@
 target/
 **/mysql_data
 *.log
+.vscode/
+
+package-lock.json
 
 PHP/
 python/
