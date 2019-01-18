@@ -15,7 +15,7 @@ services:
       - user-service
       - message-service
     command:
-      - "--redis.address=192.168.1.7"
+      - "--redis.address=192.168.0.106"
 
   course-service:
     image: course-service:latest

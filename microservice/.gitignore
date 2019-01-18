@@ -1,0 +1,10 @@
+
+.data/
+
+# Java
+target/
+
+# Editor directories and files
+.idea
+.vscode
+*.iml

@@ -16,4 +16,4 @@ docker run -d --net=host --privileged \
 	mesosphere/mesos-slave:1.5.0 \
 	--no-systemd_enable_support	\
 	--no-hostname_lookup \
-	--ip=192.168.58.3
+	--ip=192.168.56.3

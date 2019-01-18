@@ -1,4 +1,4 @@
-#/bin/bash
+#!/usr/bin/env bash
 
 docker-machine create -d virtualbox --virtualbox-memory 2048 vbox-server-0
 

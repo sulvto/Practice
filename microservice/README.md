@@ -21,14 +21,26 @@
 
 # 环境
 
-#### harbor
-修改 harbor.cfg  hostname = hub.qinchao.me:8080
+#### [harbor](https://github.com/goharbor/harbor)
+修改 harbor.cfg  hostname = hub.qinchao.me
+修改 harbor.cfg  secretkey_path = ./data
 修改 docker-compose.yml volumes 修改到当前目录, 修改 port
 修改 data 目录权限 chmod 755 ./data
 密码在 harbor.cfg
 
 
 #### thrift (0.10.0)
+
+[Build and Install](http://thrift.apache.org/docs/install/centos)
+```
+git clone https://github.com/apache/thrift.git
+cd thrift
+git checkout 0.10.0
+./bootstrap.sh
+./configure --with-lua=no --with-cpp=no --with-php=no --with-nodejs=no
+make
+sudo make install
+```
 
 #### redis
 进入Docker容器redis的客户端
@@ -60,3 +72,28 @@ docker-machine scp ./mesos-master.sh vbox-server-0:/home/docker/
 全局安全配置
 	登录用户可以做任何事
   		匿名用户具有可读权限
+
+#### Mesos
+
+
+
+
+                                         __________________________
+                                         |  HOST                  |
+                                         |      zookeeper         |
+                                     //  |          Marathon-lb   | \\
+                                   //    |________________________|   \\
+                                 //                 ||                  \\
+                               //                   ||                    \\
+                             //                     ||                      \\
+                           //                       ||                        \\
+                         //                         ||                          \\
+                       //                           ||                            \\
+                     //                             ||                              \\
+                   //                               ||                                \\
+__________________________               __________________________            __________________________
+|  Server01              |               |  Server02              |            |  Server03              |
+|       MesosSlave       |               |        MesosMaster     |            |        MesosSlave      |
+|                        |               |         Marathon       |            |                        |
+|________________________|               |________________________|            |________________________|
+

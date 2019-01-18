@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 docker stop zookeeper
 docker rm zookeeper
 

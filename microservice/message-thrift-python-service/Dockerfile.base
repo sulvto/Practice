@@ -2,4 +2,4 @@ FROM hub.qinchao.me/microservice/python:3.6
 
 MAINTAINER sulvto
 
-RUN pip install thrift
+RUN pip install thrift==0.10.0
