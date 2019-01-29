@@ -4,9 +4,9 @@ pipeline {
 	agent any
 	
 	environment {
-		REPOSITORY='ssh://git@gitlab.qinchao.me:2222/sulvto/microservice.git'
-		MODULE='user-edge-service'	
-		PROJECT_PATH='Java/microservice'
+		REPOSITORY='http://gitlab.qinchao.me:9080/sulvto/microservice.git'
+		MODULE='user-edge-service'
+		PROJECT_PATH='microservice'
 	}
 
 	stages {
@@ -14,7 +14,7 @@ pipeline {
 			steps {
 				echo 'start fetch code from git'
 				deleteDir()
-                git branch: 'Java', url: '${REPOSITORY}'
+                git branch: 'microservice', url: 'http://gitlab.qinchao.me:9080/sulvto/microservice.git'
 			}
 		}
 
@@ -28,6 +28,7 @@ pipeline {
 			steps {
 				echo 'start compile'
 				dir(PROJECT_PATH) {
+					echo pwd()
 					sh 'mvn -U -pl ${MODULE} -am clean package'
 				}
 			}
@@ -37,7 +38,7 @@ pipeline {
         	steps {
         		echo 'start build image'
 				dir(PROJECT_PATH) {
-					sh 'build-images.sh ${MODULE}'
+					sh './build-images.sh ${MODULE}'
 				}
         	}
         }                                       

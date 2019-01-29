@@ -22,14 +22,11 @@
 # 环境
 
 #### [harbor](https://github.com/goharbor/harbor)
-修改 harbor.cfg  hostname = hub.qinchao.me
-修改 harbor.cfg  secretkey_path = ./data
-修改 docker-compose.yml volumes 修改到当前目录, 修改 port
-修改 data 目录权限 chmod 755 ./data
-密码在 harbor.cfg
-
-
-#### thrift (0.10.0)
+- 修改 harbor.cfg  hostname = hub.qinchao.me 
+- 修改 harbor.cfg  secretkey_path = ./data
+- 修改 docker-compose.yml volumes 修改到当前目录, 修改 port
+- 修改 data 目录权限 chmod 755 ./data
+- 密码在 harbor.cfg#### thrift (0.10.0)
 
 [Build and Install](http://thrift.apache.org/docs/install/centos)
 ```
@@ -63,21 +60,38 @@ docker-machine scp ./mesos-master.sh vbox-server-0:/home/docker/
 
 #### gitlab
 
-修改ssh端口（如果主机端口使用的不是22端口）
-修改文件：${GITLAB_DIR}/config/gitlab.rb 找到这一行：# gitlab_rails['gitlab_shell_ssh_port'] = 22 把22修改为你的宿主机端口（这里是2222）。然后将注释去掉。
+- 修改ssh端口（如果主机端口使用的不是22端口）
+- 修改文件：${GITLAB_DIR}/config/gitlab.rb 找到这一行：# gitlab_rails['gitlab_shell_ssh_port'] = 22 把22修改为你的宿主机端口（这里是2222）。然后将注释去掉。
 
-重新启动 gitlab 容器
+- 重新启动 gitlab 容器
+- 创建帐号，创建项目(microservice)
+- 创建项目的 gitlab 链接添加到 .git/config
+- 配置 hook /admin/application_settings/network#js-outbound-settings (Allow requests to the local network from hooks and services)
 
 #### Jenkins
 全局安全配置
 	登录用户可以做任何事
   		匿名用户具有可读权限
+  	
+    CSRF
+    
+
+
+#### CICD
+
+Jenkins
+Job Configure 
+    Build Triggers
+        Trigger builds remotely
+        
+GitLab
+添加 WebHook  /sulvto/microservice/settings/integrations (local jenkins following  URL)
 
 #### Mesos
 
 
 
-
+```
                                          __________________________
                                          |  HOST                  |
                                          |      zookeeper         |
@@ -97,3 +111,4 @@ __________________________               __________________________            _
 |                        |               |         Marathon       |            |                        |
 |________________________|               |________________________|            |________________________|
 
+```

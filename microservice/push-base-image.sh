@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# docker login hub.qinchao.me
+# docker login harbor
+# docker login 127.0.0.1
 
 docker pull openjdk:8-jre
 docker pull python:3.6
