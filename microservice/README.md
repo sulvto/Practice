@@ -26,8 +26,10 @@
 - 修改 harbor.cfg  secretkey_path = ./data
 - 修改 docker-compose.yml volumes 修改到当前目录, 修改 port
 - 修改 data 目录权限 chmod 755 ./data
-- 密码在 harbor.cfg#### thrift (0.10.0)
+- 密码在 harbor.cfg
 
+
+#### thrift (0.10.0)
 [Build and Install](http://thrift.apache.org/docs/install/centos)
 ```
 git clone https://github.com/apache/thrift.git
@@ -80,9 +82,9 @@ docker-machine scp ./mesos-master.sh vbox-server-0:/home/docker/
 #### CICD
 
 Jenkins
-Job Configure 
-    Build Triggers
-        Trigger builds remotely
+    Job Configure 
+        Build Triggers
+            Trigger builds remotely
         
 GitLab
 添加 WebHook  /sulvto/microservice/settings/integrations (local jenkins following  URL)
@@ -111,4 +113,32 @@ __________________________               __________________________            _
 |                        |               |         Marathon       |            |                        |
 |________________________|               |________________________|            |________________________|
 
+```
+
+
+#### docker swarm
+```shell
+# 初始化一个 Swarm 集群 成为管理节点
+docker swarm init --advertise-addr 192.168.2.108
+
+# 增加工作节点
+docker swarm join ...
+
+# 部署服务
+docker stack deploy -c docker-services.yml microservice
+
+# 查看服务
+docker service ls
+
+# 删除服务
+docker stack rm microservice
+
+# 移除服务 不会移除服务所使用的 数据卷
+docker stack down microservice
+
+# worker node to leave the swarm
+docker swarm leave
+
+# manager node to leave the swarm
+docker swarm leave --force
 ```

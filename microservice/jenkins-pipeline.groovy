@@ -35,12 +35,21 @@ pipeline {
 		}                                       
 		
 		stage('构建镜像') {
-        	steps {
-        		echo 'start build image'
-				dir(PROJECT_PATH) {
-					sh './build-images.sh ${MODULE}'
-				}
-        	}
-        }                                       
-	}
+            steps {
+                echo 'start build image'
+                dir(PROJECT_PATH) {
+                    sh './build-images.sh ${MODULE}'
+                }
+            }
+        }
+
+        stage('发布系统') {
+            steps {
+                echo 'start deploy'
+                dir(PROJECT_PATH) {
+                    sh './deploy.sh ${MODULE}'
+                }
+            }
+        }
+    }
 }

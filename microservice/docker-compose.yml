@@ -1,11 +1,14 @@
 version: '3'
 
 services:
+  config-service:
+    image: config-service:latest
+
   message-service:
-    image: message-srevice:latest
+    image: message-service:latest
 
   user-service:
-    image: user-srevice:latest
+    image: user-service:latest
     command:
       - "--mysql-address=192.168.0.106"
 
@@ -26,11 +29,11 @@ services:
       - "--zookeeper.address=192.168.0.106"
 
   course-edge-service:
-      image: course-edge-service:latest
-      links:
-        - user-edge-service
-      command:
-        - "--zookeeper.address=192.168.0.106"
+    image: course-edge-service:latest
+    links:
+      - user-edge-service
+    command:
+      - "--zookeeper.address=192.168.0.106"
 
   api-gateway-zuul:
     image: api-gateway-zuul:latest

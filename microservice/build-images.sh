@@ -10,5 +10,6 @@ cd ${MODULE}
 docker build -t ${IMAGE_NAME} .
 cd -
 
-
 docker push ${IMAGE_NAME}
+
+echo "${IMAGE_NAME}" > IMAGE_NAME
