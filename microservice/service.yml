@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  message-service:
+    image: message-srevice:latest
+
+  user-service:
+    image: user-srevice:latest
+    command:
+      - "--mysql-address=192.168.0.106"
+    deploy:
+      mode: replicated
+      replicas: 3
+
+  user-edge-service:
+    image: user-edge-service:latest
+    links:
+      - user-service
+      - message-service
+    command:
+      - "--redis.address=192.168.0.106"
+    deploy:
+      mode: replicated
+      replicas: 3
+
+  course-service:
+    image: course-service:latest
+    links:
+      - user-service
+    command:
+      - "--mysql.address=192.168.0.106"
+      - "--zookeeper.address=192.168.0.106"
+    deploy:
+      mode: replicated
+      replicas: 3
+
+  course-edge-service:
+    image: course-edge-service:latest
+    links:
+      - user-edge-service
+    command:
+      - "--zookeeper.address=192.168.0.106"
+    deploy:
+      mode: replicated
+      replicas: 3
+
+  api-gateway-zuul:
+    image: api-gateway-zuul:latest
+    links:
+      - user-edge-service
+      - course-edge-service
+    ports:
+      - 8080:8080
+    deploy:
+      mode: replicated
+      replicas: 1
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+    - "8888:8080"
+    stop_grace_period: 1m30s
+    volumes:
+    - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
