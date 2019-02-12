@@ -3,8 +3,8 @@ package me.qinchao.example.interceptor;
 import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import me.qinchao.example.model.User;
 import me.qinchao.example.config.Constant;
+import me.qinchao.example.model.User;
 import me.qinchao.example.utils.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +44,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                     logger.warn("claims is null: token -> {}", token);
                     return false;
                 } else {
+                    request.setAttribute(Constant.ATTR_TOKEN, token);
                     request.setAttribute(Constant.ATTR_CLAIMS, claims);
                     request.setAttribute(Constant.ATTR_USER, JSON.parseObject(claims.getSubject(), User.class));
                     request.setAttribute(Constant.ATTR_EXPIRATION, claims.getExpiration());

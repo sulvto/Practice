@@ -1,11 +1,14 @@
 package me.qinchao.example.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import me.qinchao.example.config.Constant;
 import me.qinchao.example.model.User;
+import me.qinchao.example.repository.UserRepository;
 import me.qinchao.example.utils.Response;
 import me.qinchao.example.utils.TokenUtil;
-import me.qinchao.example.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +17,19 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.TimeUnit;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/admin")
 public class LoginController {
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+    LoadingCache<String, String> jwtBlacklist = CacheBuilder.newBuilder().expireAfterWrite(Constant.JWT_TTL, TimeUnit.MINUTES).build(new CacheLoader<String, String>() {
+        @Override
+        public String load(String key) throws Exception {
+            return null;
+        }
+    });
 
     @Autowired
     private UserRepository userRepository;
@@ -45,9 +56,10 @@ public class LoginController {
     }
 
     @PostMapping("/logout")
-    public String logout(HttpServletResponse response) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        String token = (String) request.getAttribute(Constant.ATTR_TOKEN);
         response.addCookie(new Cookie("token", ""));
-
+        jwtBlacklist.put(token, "");
         return Response.success();
     }
 
@@ -63,5 +75,25 @@ public class LoginController {
             return Response.error(-1, "用户未登录");
         }
     }
+
+    @PostMapping("/refreshToken")
+    public String refreshToken(HttpServletRequest request, HttpServletResponse response) {
+        String token = (String) request.getAttribute(Constant.ATTR_TOKEN);
+        if (jwtBlacklist.getIfPresent(token) == null) {
+            jwtBlacklist.put(token, "");
+
+            User user = (User) request.getAttribute(Constant.ATTR_USER);
+            String newToken = TokenUtil.createJWT(Constant.JWT_ID, TokenUtil.generalSubject(user), Constant.JWT_TTL);
+            JSONObject responseData = new JSONObject();
+            responseData.put("token", newToken);
+            responseData.put("type", "bearer");
+            responseData.put("userinfo", user);
+            response.addCookie(new Cookie("token", newToken));
+            return Response.success("", responseData);
+        } else {
+            return Response.error(-1, "非法访问");
+        }
+    }
+
 }
 
