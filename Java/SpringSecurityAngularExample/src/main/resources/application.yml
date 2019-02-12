@@ -1,0 +1,19 @@
+# security:
+#   user:
+#     password: password
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+#  不加这句则默认为myisam引擎
+  database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_user
+    username: root
+    password: a111111
