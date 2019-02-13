@@ -31,7 +31,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
-            if (authHeader == null || !authHeader.startsWith("bearer;")) {
+            if (authHeader == null || !authHeader.startsWith("bearer")) {
                 logger.warn("error authorization header: {}", authHeader);
                 return false;
             }

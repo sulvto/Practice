@@ -14,12 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 public class CommonInterceptor extends HandlerInterceptorAdapter {
     private final Logger logger = LoggerFactory.getLogger(CommonInterceptor.class);
 
-    public  static  final  String  LAST_PAGE = "lastPage";
+    public static final String LAST_PAGE = "lastPage";
 
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) {
-
         logger.info("============== preHandle ================", request.getRequestURI());
         logger.info("url: {}", request.getRequestURI());
         return true;

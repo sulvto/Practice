@@ -12,7 +12,10 @@ import me.qinchao.example.utils.TokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -44,8 +47,9 @@ public class LoginController {
             String token = TokenUtil.createJWT(Constant.JWT_ID, TokenUtil.generalSubject(user), Constant.JWT_TTL);
 
             JSONObject responseData = new JSONObject();
-            responseData.put("token", token);
-            responseData.put("type", "bearer");
+            responseData.put("access_token", token);
+            responseData.put("token_type", "bearer");
+            responseData.put("expires_in", Constant.JWT_TTL);
             responseData.put("userinfo", user);
             response.addCookie(new Cookie("token", token));
             return Response.success("登录成功", responseData);
@@ -63,7 +67,7 @@ public class LoginController {
         return Response.success();
     }
 
-    @GetMapping("/me")
+    @PostMapping("/me")
     public String me(HttpServletRequest request, HttpServletResponse response) {
         User user = (User) request.getAttribute(Constant.ATTR_USER);
 

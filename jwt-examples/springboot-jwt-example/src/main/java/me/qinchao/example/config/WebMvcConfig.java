@@ -1,7 +1,7 @@
 package me.qinchao.example.config;
 
-import me.qinchao.example.interceptor.CommonInterceptor;
 import me.qinchao.example.interceptor.AuthInterceptor;
+import me.qinchao.example.interceptor.CommonInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -25,7 +25,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getAuthInterceptor()).excludePathPatterns("/api/login").addPathPatterns("/api/**");
+        registry.addInterceptor(getAuthInterceptor()).excludePathPatterns("/api/admin/login").addPathPatterns("/api/**");
 
         // 拦截所有
         registry.addInterceptor(getCommonInterceptor()).addPathPatterns("/**");
