@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: spring-boot-kafka-example-consumer
+
+kafka:
+  consumer:
+    zookeeper:
+      connect: 127.0.0.1:2181
+    servers: 127.0.0.1:9092
+    enable:
+      auto:
+        commit: true
+    session:
+      timeout: 6000
+    auto:
+      commit:
+        interval: 100
+      offset:
+        reset: latest
+    group:
+      id: test
+    concurrency: 10
