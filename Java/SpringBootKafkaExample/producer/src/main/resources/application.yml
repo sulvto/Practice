@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-boot-kafka-example-producer
+
+
+kafka:
+  producer:
+    servers: 127.0.0.1:9092
+    retries: 0
+    batch:
+      size: 4096
+    linger: 1
+    buffer:
+      memroy: 40960
