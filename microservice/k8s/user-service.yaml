@@ -1,4 +1,4 @@
-apiVresion: v1
+apiVersion: v1
 kind: Service
 metadata:
   labels:
@@ -19,7 +19,7 @@ spec:
   sessionAffinity: None
   type: ClusterIP
 ---
-apiVresion: app/v1bata1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-service-deployment
