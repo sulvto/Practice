@@ -19,6 +19,9 @@ metadata:
   name: message-service-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: message-service
   template:
     metadata:
       labels:
