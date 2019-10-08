@@ -4,16 +4,25 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8760/eureka
+      defaultZone: http://192.168.0.111:8760/eureka
 
 spring:
   application:
     name: config-server
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/sulvto/test
+#          searchPaths: config-repo
+#          username:
+#          password:
+  profiles:
+    # 配置文件在本地
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/sulvto/test
-          searchPaths: config-repo
-          username:
-          password:
+        native:
+          # 配置文件的目录
+          search-locations: classpath:/config

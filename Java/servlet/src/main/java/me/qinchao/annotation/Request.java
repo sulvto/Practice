@@ -19,9 +19,21 @@ public class Request extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         System.out.println("me.qinchao.annotation.Request ");
+        String uri = req.getRequestURI();
+        String s = resp.encodeURL(uri);
+        System.out.println("encodeurl " + s);
+
+        Integer count = (Integer) req.getSession().getAttribute("count");
+        if (count == null) {
+            count = 1;
+        } else {
+            count += 1;
+        }
+        req.getSession().setAttribute("count", count);
 
         System.out.println(req.getRequestURL());
         System.out.println(req.getLocalName() + "正在提交 ");
+        System.out.println("count: " + count);
 
         String name = req.getParameter("username");
         String password = req.getParameter("password");

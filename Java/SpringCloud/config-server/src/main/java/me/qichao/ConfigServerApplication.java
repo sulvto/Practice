@@ -2,12 +2,16 @@ package me.qichao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.config.server.EnableConfigServer;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * Created by sulvto on 18-7-31.
  */
 @SpringBootApplication
+@EnableEurekaClient
+@EnableDiscoveryClient
 @EnableConfigServer
 public class ConfigServerApplication {
 
