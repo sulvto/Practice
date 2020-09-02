@@ -24,7 +24,10 @@ public class DbConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         String resource = "mybatis.xml";
         try (InputStream inputStream = Resources.getResourceAsStream(resource)) {
-            return new SqlSessionFactoryBuilder().build(inputStream);
+            SqlSessionFactory build = new SqlSessionFactoryBuilder().build(inputStream);
+            build.getConfiguration().addInterceptor(new ExamplePlugin());
+            build.getConfiguration().addInterceptor(new ExamplePluginB());
+            return build;
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
