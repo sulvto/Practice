@@ -2,10 +2,8 @@ package me.qinchao.example.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.plugin.*;
 
-import java.sql.Statement;
 import java.util.Properties;
 
 /**
