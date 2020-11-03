@@ -9,7 +9,7 @@ import java.sql.*;
  * @version $Id: JDBCTest.java, v0.1 08/09/2020 10:43 sulvto Exp$$
  */
 public class JDBCTest {
-    public static final String URL = "jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=utf8";
+    public static final String URL = "jdbc:mysql://localhost:3316/mydb?useUnicode=true&characterEncoding=utf8";
     public static final String USER = "root";
     public static final String PASSWORD = "a111111";
 

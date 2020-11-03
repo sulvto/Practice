@@ -24,6 +24,7 @@
         <module>MybatisXmlExample</module>
         <module>MybatisAnnotationExample</module>
         <module>SpringMybatisExample</module>
+        <module>SpringBootMybatisExample</module>
     </modules>
 
 
