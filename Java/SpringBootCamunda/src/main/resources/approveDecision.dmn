@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="approve-decision" name="approveDecision" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+  <decision id="approve_d" name="approve_d">
+    <decisionTable id="DecisionTable_1b7ppqn">
+      <input id="Input_1" label="Role">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>role</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1sj162b" label="UserFor">
+        <inputExpression id="LiteralExpression_0r18zkp" typeRef="string">
+          <text>userFor</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Passed" name="passed" typeRef="boolean" />
+      <rule id="DecisionRule_10yf6ey">
+        <inputEntry id="UnaryTests_00ypkri">
+          <text>"HR"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05j63n6">
+          <text>"stationery"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0reqe6s">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0g0bmp4">
+        <inputEntry id="UnaryTests_1gd4qa1">
+          <text>"HR"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mpetbo">
+          <text>"computer"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1k2fp5i">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0qv609k">
+        <inputEntry id="UnaryTests_0m99xhr">
+          <text>"HR"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mx8o3a">
+          <text>"food"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1va30fh">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1qxyd9v">
+        <inputEntry id="UnaryTests_0mn4u2u">
+          <text>not("HR")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i4r4v6">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vfareo">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="approve_d">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
