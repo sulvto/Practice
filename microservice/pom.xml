@@ -12,6 +12,15 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>api-gateway-zuul</module>
+        <module>config-service</module>
+        <module>course-dubbo-service-api</module>
+        <module>course-dubbo-service</module>
+        <module>course-edge-service</module>
+        <module>user-thrift-service-api</module>
+        <module>user-edge-service-client</module>
         <module>user-edge-service</module>
+        <module>user-thrift-service</module>
+        <module>message-thrift-service-api</module>
     </modules>
 </project>

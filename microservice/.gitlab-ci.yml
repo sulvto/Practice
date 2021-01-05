@@ -1,0 +1,94 @@
+image: maven:3.3.9-jdk-8
+
+stages:
+  - build
+  - package
+  - deploy
+
+cache:
+  key: ${CI_BUILD_STAGE}
+  paths:
+    - /root/.m2/repository
+
+maven-build:
+  stage: build
+  tags:
+    - java
+  only:
+    refs:
+      - dev
+      - test
+      - master
+  variables:
+    MAVEN_OPTS: "-Djava.awt.headless=true -Dmaven.test.skip=true -Dmaven.repo.local=/root/.m2/repository"
+    MAVEN_CLI_OPTS: "-s ./.m2/settings.xml --batch-mode -P k8s"
+  script:
+    - mvn clean package $MAVEN_CLI_OPTS
+  artifacts:
+    paths:
+      - facade/impl/target/*.jar
+      - agent/*
+      - api-gateway-zuul/target/
+
+docker-build:
+  stage: package
+  tags:
+    - java
+  variables:
+    DOCKER_IMAGE_NAME: appone/red-alert-company-service
+  script:
+#    - TIME=`date "+%Y%m%d%H%M"`_
+#    - docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${TIME}_$CI_COMMIT_SHORT_SHA -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_BRANCH -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:latest .
+#    - docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:${TIME}_$CI_COMMIT_SHORT_SHA
+#    - docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_BRANCH
+#    - docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:latest
+     - docker login
+     - sh build-all-images.sh
+
+.kubernetes-deploy:
+  stage: deploy
+  tags:
+    - java
+  before_script:
+    - sed -i 's/$CI_COMMIT_TAG/'"$CI_COMMIT_SHORT_SHA"'/' k8s/api-gateway.yaml
+    - sed -i 's/$CI_COMMIT_TAG/'"$CI_COMMIT_SHORT_SHA"'/' k8s/config-service.yaml
+    - sed -i 's/$CI_COMMIT_TAG/'"$CI_COMMIT_SHORT_SHA"'/' k8s/course-service.yaml
+    - sed -i 's/$CI_COMMIT_TAG/'"$CI_COMMIT_SHORT_SHA"'/' k8s/message-service.yaml
+    - sed -i 's/$CI_COMMIT_TAG/'"$CI_COMMIT_SHORT_SHA"'/' k8s/user-service.yaml
+
+kubernetes-deploy-development:
+  extends: .kubernetes-deploy
+  only:
+    refs:
+      - dev
+  script:
+    - kubectl apply -f k8s/api-gateway.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/config-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/course-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/message-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/user-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+
+kubernetes-deploy-testing:
+  extends: .kubernetes-deploy
+  only:
+    refs:
+      - test
+  script:
+    - kubectl apply -f k8s/api-gateway.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/config-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/course-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/message-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/user-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+
+kubernetes-deploy-production:
+  extends: .kubernetes-deploy
+  only:
+    refs:
+      - master
+  when: manual
+  script:
+    - kubectl apply -f k8s/api-gateway.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/config-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/course-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/message-service.yaml -n default --kubeconfig=/.kube/kube_dev_config
+    - kubectl apply -f k8s/user-service.yaml -n default --kubeconfig=/.kube/kube_dev_config

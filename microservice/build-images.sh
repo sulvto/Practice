@@ -3,12 +3,12 @@
 MODULE=$1
 TIME=`date "+%Y%m%d%H%M"`
 GIT_REVISION=`git log -1 --pretty=format:"%h"`
-IMAGE_NAME=hub.qinchao.me/microservice/${MODULE}:${TIME}_${GIT_REVISION}
+IMAGE_NAME=harbor.devops.qinchao.me/microservice/${MODULE}:${TIME}_${GIT_REVISION}
 
-cd ${MODULE}
+pushd ${MODULE}
 
 docker build -t ${IMAGE_NAME} .
-cd -
+popd
 
 docker push ${IMAGE_NAME}
 

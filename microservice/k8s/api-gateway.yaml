@@ -8,11 +8,9 @@ spec:
   ports:
   - port: 30080
     protocol: TCP
-    targetPort: 8080
-    nodePort: 30080
   selector:
     app: api-gateway
-  type: NodePort
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,6 +30,14 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: hub.qinchao.me/microservice/api-gateway-zuul:latest
+        image: harbor.devops.qinchao.me/microservice/api-gateway-zuul:$CI_COMMIT_TAG
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 5
+

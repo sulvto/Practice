@@ -11,7 +11,7 @@ spec:
     targetPort: 9090
   selector:
     app: message-service
-  type: ClusterIP
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: message-service
-        image: hub.qinchao.me/microservice/message-service:latest
+        image: harbor.devops.qinchao.me/microservice/message-service:$CI_COMMIT_TAG
         ports:
         - containerPort: 9090

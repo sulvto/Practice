@@ -22,7 +22,7 @@
 # 环境
 
 #### [harbor](https://github.com/goharbor/harbor)
-- 修改 harbor.cfg  hostname = hub.qinchao.me 
+- 修改 harbor.cfg  hostname = harbor.devops.qinchao.me 
 - 修改 harbor.cfg  secretkey_path = ./data
 - 修改 docker-compose.yml volumes 修改到当前目录, 修改 port
 - 修改 data 目录权限 chmod 755 ./data

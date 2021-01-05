@@ -2,5 +2,5 @@
 
 mvn clean package
 
-docker build -t hub.qinchao.me/microservice/api-gateway-zuul:latest .
-docker push hub.qinchao.me/microservice/api-gateway-zuul:latest
+docker build -t harbor.devops.qinchao.me/microservice/api-gateway-zuul:latest .
+docker push harbor.devops.qinchao.me/microservice/api-gateway-zuul:latest

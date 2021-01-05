@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   config-service:
-    image: hub.qinchao.me/microservice/config-service:latest
+    image: harbor.devops.qinchao.me/microservice/config-service:latest
     deploy:
       # 使用dnsrr方式做负载均衡
       endpoint_mode: dnsrr
@@ -12,7 +12,7 @@ services:
           memory: '128M'
 
   message-service:
-    image: hub.qinchao.me/microservice/message-service:latest
+    image: harbor.devops.qinchao.me/microservice/message-service:latest
     deploy:
       endpoint_mode: dnsrr
       resources:
@@ -23,7 +23,7 @@ services:
       - config-service
 
   user-service:
-    image: hub.qinchao.me/microservice/user-service:latest
+    image: harbor.devops.qinchao.me/microservice/user-service:latest
     deploy:
       mode: replicated
       endpoint_mode: dnsrr
@@ -36,7 +36,7 @@ services:
       - config-service
 
   user-edge-service:
-    image: hub.qinchao.me/microservice/user-edge-service:latest
+    image: harbor.devops.qinchao.me/microservice/user-edge-service:latest
     deploy:
       mode: replicated
       endpoint_mode: vip
@@ -52,7 +52,7 @@ services:
       - message-service
 
   course-service:
-    image: hub.qinchao.me/microservice/course-service:latest
+    image: harbor.devops.qinchao.me/microservice/course-service:latest
     deploy:
       mode: replicated
       endpoint_mode: dnsrr
@@ -65,7 +65,7 @@ services:
       - user-service
 
   course-edge-service:
-    image: hub.qinchao.me/microservice/course-edge-service:latest
+    image: harbor.devops.qinchao.me/microservice/course-edge-service:latest
     deploy:
       mode: replicated
       endpoint_mode: vip
@@ -80,7 +80,7 @@ services:
       - user-edge-service
 
   api-gateway-zuul:
-    image: hub.qinchao.me/microservice/api-gateway-zuul:latest
+    image: harbor.devops.qinchao.me/microservice/api-gateway-zuul:latest
     deploy:
       endpoint_mode: vip
       resources:

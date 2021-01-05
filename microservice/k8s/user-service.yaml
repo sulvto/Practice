@@ -17,7 +17,7 @@ spec:
   selector:
     app: user-service
   sessionAffinity: None
-  type: ClusterIP
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,10 +35,17 @@ spec:
     spec:
       containers:
       - name: user-service
-        image: hub.qinchao.me/microservice/user-service:latest
+        image: harbor.devops.qinchao.me/microservice/user-service:$CI_COMMIT_TAG
         ports:
         - containerPort: 7911
       - name: user-edge-service
-        image: hub.qinchao.me/microservice/user-edge-service:latest
+        image: harbor.devops.qinchao.me/microservice/user-edge-service:$CI_COMMIT_TAG
         ports:
         - containerPort: 8082
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 8082
+          initialDelaySeconds: 20
+          periodSeconds: 5
