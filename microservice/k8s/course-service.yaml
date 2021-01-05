@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: course-service
+  name: course-service
+spec:
+  ports:
+  - port: 8081
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: course-service
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: course-service
+  template:
+    metadata:
+      labels:
+        app: course-service
+    spec:
+      containers:
+      - name: course-service
+        image: harbor.devops.qinchao.me/microservice/course-service:$CI_COMMIT_TAG
+        ports:
+        - containerPort: 20880
+      - name: course-edge-service
+        image: harbor.devops.qinchao.me/microservice/course-edge-service:$CI_COMMIT_TAG
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 8081
+          initialDelaySeconds: 20
+          periodSeconds: 5

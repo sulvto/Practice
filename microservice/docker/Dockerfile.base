@@ -1,0 +1,11 @@
+FROM harbor.devops.qinchao.me/microservice/python:3.8
+
+MAINTAINER sulvto
+
+ENV http_proxy=""
+ENV https_proxy=""
+ENV HTTP_PROXY=""
+ENV HTTPS_PROXY=""
+
+RUN pip install pysocks
+RUN pip install thrift==0.10.0
